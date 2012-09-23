@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nil | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/nil/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2012-09-23T16:02:17+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[プレシャスなとき～]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/06/26/github-jekyll/"/>
+    <updated>2011-06-26T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/06/26/github-jekyll</id>
+    <content type="html"><![CDATA[<p>き～み～の傘　あ～たたかい～</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[あゝ無情]]></title>
+    <link href="http://namusyaka.github.com/blog/2010/10/15/github-jekyll/"/>
+    <updated>2010-10-15T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2010/10/15/github-jekyll</id>
+    <content type="html"><![CDATA[<p>毎回言ってるけど、WEBサービスを提供する上で一番大事なのは知名度だと思ってる。</p>
+
+<p>んで、pc起動してブラウザ起動してまず最初にすることはgoogleでnamusyakaと検索すること。
+何か僕が知名度を獲得したようなアクションがあれば検索結果の上位表示も大分変わっているはずだろうから、まずそれをチェックしてる。
+まぁ今のところ変化無し。</p>
+
+<p>残念。
+[f:id:namusyaka:20101015124448p:image]</p>
+
+<p>ちなみにbiddersのnamusyakaってのは僕じゃないです。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[簡単つぶやきサービス「うけるthis」をリリース！！！]]></title>
+    <link href="http://namusyaka.github.com/blog/2010/09/28/github-jekyll/"/>
+    <updated>2010-09-28T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2010/09/28/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://namusyaka.info/ukeru/">リリースしました！！</a>
+なかなか面白いと思います。
+このページウケるわーと思ったら、簡単な手順で
+そのページのURLとコメントをつぶやくことが出来ます。</p>
+
+<p>細かい手順などは画像などで示してあります。</p>
+
+<p>よろしくお願いします。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Twitterに対する考え方]]></title>
+    <link href="http://namusyaka.github.com/blog/2010/09/17/github-jekyll/"/>
+    <updated>2010-09-17T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2010/09/17/github-jekyll</id>
+    <content type="html"><![CDATA[<p>Twitterがすごく流行ってます。
+実際に使っている人がいるんだから需要があるってことなんでしょう。</p>
+
+<h2>だけど</h2>
+
+
+<p>今ひとつコンセプトが明確じゃない気がするんですよね。
+ミニブログ　というのに分類されていたりするみたいですが、Twitterにハマる要因っていうのは大抵他の人とのつながりなわけじゃないですか。(それがゆるいかどうかは別にして)
+それってブログっていうよりかはSNSに近いよなーと。
+最近Twitterさん自身もそういう側面を認めるような発言をしたような気がします。</p>
+
+<h2>Twitterに固執する理由</h2>
+
+
+<p>しかし140文字っていう制限内でコミュニケーションをとる必要あるのかなと。
+どっかの党の総裁さんも140文字で何つぶやけばいいのかわかんね的発言をしてた気がするので僕と同じように気になる人はいるんだと思います。
+誰かと意思疎通をはかる上で字数制限なんてのは障害でしかないと思います。
+まぁ重要な用件とかはTwitterじゃなくメールとかメッセンジャーを使う人がほとんどだとは思うんですけどね。
+でもそれが出来てない人も多いんじゃないかとも思います。</p>
+
+<h2>つまり何がいいたいか</h2>
+
+
+<p>このご時世色んな素晴らしいサービスが無料で提供されてます。
+Twitterに固執せずに要所要所で使い分けることも大事ですよってことです。</p>
+
+<h2>あ、それと</h2>
+
+
+<p>新しいサービスを始めたんですよ。
+<a href="http://namusyaka.info/stats/">StatsPrinter</a>ってやつです。
+CSS設定も出来てかなり自由度があると思います。
+自己紹介用のパーツとして使ってみるといいんじゃないでしょうか。
+<a href="http://namusyaka.info/">こんなかんじで。</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[あｓｄｆ]]></title>
+    <link href="http://namusyaka.github.com/blog/2010/05/18/github-jekyll/"/>
+    <updated>2010-05-18T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2010/05/18/github-jekyll</id>
+    <content type="html"><![CDATA[<p>最近よくhatenaを見かけるので興味本位で作ってみた。
+自分のブログシステム(rubyで制作)はあるわけだけど、リピーターがついたらそっちに変えよう。、</p>
+]]></content>
+  </entry>
+  
+</feed>

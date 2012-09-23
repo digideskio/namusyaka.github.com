@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:36:56+09:00</updated>
+  <updated>2012-09-23T16:02:17+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/08/29/github-jekyll/"/>
+    <updated>2012-08-29T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/08/29/github-jekyll</id>
+    <content type="html"><![CDATA[<p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
+チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
+
+<p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
+
+<p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
+早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rubyで例外クラスを動的に定義する]]></title>
@@ -662,119 +677,46 @@ gem install data-converterでインストールできます
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[じぇむずなのか]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/05/06/github-jekyll/"/>
-    <updated>2011-05-06T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/05/06/github-jekyll</id>
-    <content type="html"><![CDATA[<p>ずっとげむずだと思ってた.
-先日, 誰もmacbook airを授けてくれる気配がないので自分で買ったら何とRubyがデフォルトで入ってた, 嬉しい.
-ていうかPHP, Perl, Python, Javaなども入ってるようで改めてすばらしいと思いましたというはなし.</p>
+    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
+    <updated>2011-10-08T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
+    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
 
-<p>しかしながら, gem install hogeがバージョンが古いと怒られて出来なかったので,gem update --systemしたらだめだった.
-何でだろと思って色々調べたら以下のように書くとオッケーらしい.
-Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
 
-<p>無事できたのでよかったです.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rubygemsにライブラリ(モジュール)をあげてみた]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/04/20/github-jekyll/"/>
-    <updated>2011-04-20T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/04/20/github-jekyll</id>
-    <content type="html"><![CDATA[<p>CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
-http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
-を参考にRubygemsを始めてみました。</p>
-
-<p>まず、アカウントを作ります。
-めんどいので端折ります。</p>
-
-<p>そしてgemcutterをインストールします。
-Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
-
-<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。
-Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
-
-<p>とても簡単です。わーい。</p>
-
-<h2>公開したOperatorというモジュール</h2>
+<h2>Webype(ウェバイプ)βとは</h2>
 
 
-<p>Rubygems https://rubygems.org/gems/Operator
-Github https://github.com/namusyaka/Operator</p>
+<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
+・完全無料。
+・独自CSSで自分のデザインを反映できる。
+・その他、様々な機能がある。
+・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
 
-<p><a href="http://weble.org/2011/03/07/php-get-and-post-function">PHP で凄く簡単に GET/POST 送信ができる関数を作りました</a>にあった関数をみてて思いついたものです。
-get/postを簡単に出来るのはもちろん、responseを操作したい場面が多々あったのでそっちのメソッドも少し実装してます。
-構造的には
--Operator
---Operator::HTML
---Operator::HTTP
-ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
-使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
-gemにあがっているので、以下を実行するとインストールできます。
-Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+<h2>なぜつくったか</h2>
 
-<p>具体的には以下のように使えます。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  require &#39;rubygems&#39;</span>
-</span><span class='line'><span class="sr">  require &#39;Operator&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#namusyaka.infoのa要素href属性を抜き出したい場合</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">pick_attribute</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="c1">#指定ラインからのみ抽出したい場合は、第三引数に指定行をNumericかRangeで渡します。&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#後ろから読み込む</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">reverse_read</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;p line</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#前から読み込む</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">read_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;p line</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
-</span><span class='line'><span class="sr">  op.close&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>がんばろう。</p>
+<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
+結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
+
+<h2>どう展開していくか</h2>
+
+
+<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
+開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
+
+<p>でもやっぱりお金欲しいよねって思うのが人情です。
+今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
+ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
+また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
+
+<h2>作ってみた感想</h2>
+
+
+<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
+初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
+当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
 ]]></content>
   </entry>
   

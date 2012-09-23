@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:36:56+09:00</updated>
+  <updated>2012-09-23T16:02:17+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/08/29/github-jekyll/"/>
+    <updated>2012-08-29T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/08/29/github-jekyll</id>
+    <content type="html"><![CDATA[<p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
+チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
+
+<p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
+
+<p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
+早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
@@ -81,46 +96,46 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[暑中見舞い]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/08/05/github-jekyll/"/>
-    <updated>2011-08-05T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/08/05/github-jekyll</id>
-    <content type="html"><![CDATA[<p>あついですね</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hokkaido.pmに参加しました]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/07/16/github-jekyll/"/>
-    <updated>2011-07-16T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/07/16/github-jekyll</id>
-    <content type="html"><![CDATA[<h5>Hokkaido.pm！</h5>
+    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
+    <updated>2011-10-08T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
+    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
+
+<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
+
+<h2>Webype(ウェバイプ)βとは</h2>
 
 
-<p>以前から何らかの勉強会などに参加してみたいと思いつつもなかなか機会が無くて参加していませんでしたが、今回は思い切って参加してみました。</p>
+<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
+・完全無料。
+・独自CSSで自分のデザインを反映できる。
+・その他、様々な機能がある。
+・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
 
-<h5>しかし</h5>
-
-
-<p>寝坊＋道に迷うで開始時刻に間に合いませんでしたほんとにすいません。
-aloelightさんにはtwitterでご迷惑をおかけしました＞＜
-まさかマックスバリューが二つあるとは。
-ちょうどnekokakさん発表の前の休憩時間に到着することが出来たので、そこからはエディタで発表内容をまとめるなどして、聴いていました。</p>
-
-<h5>ワタシパールワカラナーイ</h5>
+<h2>なぜつくったか</h2>
 
 
-<p>参加までにはある程度Perlを書けるようになっているつもりだったんですが無理でした。根性なしです。すいません。
-よって、正直きついだろうなと思っていましたが、nekokakさんのエンジニアの意識に関する発表やdont_cocoaさんのテスト駆動開発など、言語の垣根を越えて参考になるものが多く、Perl初心者、もといボクのようなPerlを全く知らないような人でも楽しめるような内容でした。</p>
+<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
+結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
 
-<h5>そして伝説へ</h5>
+<h2>どう展開していくか</h2>
 
 
-<p>以前から交流があったhirataraさんとお会いすることが出来て感動でした。
-実用gitを持っていくつもりだったんですが寝坊というアクシデントですっかり頭からぶっ飛んでいてしまったのが残念です。
-近いうちにまたお会いできればなと思います。
-また、今回は金銭的な都合で懇親会に参加できませんでしたが、今度はぜひ参加させていただきたいです。
-Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつかれさまでした。</p>
+<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
+開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
+
+<p>でもやっぱりお金欲しいよねって思うのが人情です。
+今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
+ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
+また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
+
+<h2>作ってみた感想</h2>
+
+
+<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
+初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
+当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
 ]]></content>
   </entry>
   
