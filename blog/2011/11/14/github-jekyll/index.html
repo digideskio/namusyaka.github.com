@@ -1,14 +1,110 @@
-<hr />
 
-<p>  layout: post
-  title: RubyのデータをHTMLに変換
-  date: 2011-11-14
-  comments: true
-  categories: Ruby</p>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RubyのデータをHTMLに変換 - 法華経</title>
+  <meta name="author" content="namusyaka">
 
-<hr />
+  
+  <meta name="description" content="data-converterってのをつくりました Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
+gem install data-converterでインストールできます
+github
+rubygems 例: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11 &hellip;">
+  
 
-<p>  <h4>data-converterってのをつくりました</h4></p>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">RubyのデータをHTMLに変換</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-14T00:00:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>data-converterってのをつくりました</h4>
+
 
 <p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
 gem install data-converterでインストールできます
@@ -40,11 +136,7 @@ gem install data-converterでインストールできます
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span><span class='line'><span class="nb">require</span> <span class="s1">&#39;data-converter&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="nb">puts</span> <span class="no">DataConverter</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span>
@@ -67,8 +159,6 @@ gem install data-converterでインストールできます
 </span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
 </span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
 </span><span class='line'><span class="sr">RESULT</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">            </span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
@@ -79,3 +169,129 @@ gem install data-converterでインストールできます
 
 <p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
 技術系のこと以外ははてなブログを使おうと思います。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">namusyaka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-14T00:00:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/" data-via="" data-counturl="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/10/08/github-jekyll/" title="Previous Post: SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました">&laquo; SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/29/github-jekyll/" title="Next Post: HTML4.01における開始タグ・終了タグの省略について">HTML4.01における開始タグ・終了タグの省略について &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">esolangインタプリタの件</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

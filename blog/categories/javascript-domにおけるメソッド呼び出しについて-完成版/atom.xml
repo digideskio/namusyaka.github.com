@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript]DOMにおけるメソッド呼び出しについて[完成版 | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/javascript-domにおけるメソッド呼び出しについて-完成版/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2012-09-23T15:03:12+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[・DOM操作をする場合の注意。]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/03/04/github-jekyll/"/>
+    <updated>2011-03-04T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/03/04/github-jekyll</id>
+    <content type="html"><![CDATA[<p>全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。</p>
+
+<h4>キャッシュしよう</h4>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="err">/em&gt;d.getElementById(id))</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>こうすることで、DOMの重たいメソッドを何度も呼び出さずに済みます。いぇーい。</p>
+
+<h4><del>しかしそう甘くはないのがJavaScript</del><ins>甘かったのは俺だった</ins></h4>
+
+
+<p><del>なんと、結果をキャッシュをすることでスピードが落ちるブラウザが二つありました。</del>
+<del>IEとFirefoxです。</del>
+とりあえず以下のソースでベンチをとってみました。</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;test&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="c">&lt;!--</span>
+</span><span class='line'><span class="c1">//修正しました。JavaScriptをHTML以降に書いていてもDOM操作をする場合はonload内に処理を記述する必要があります。(IE&amp;Firefox対策)</span>
+</span><span class='line'><span class="nx">onload</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">_$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="o">+</span><span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="nx">f</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span><span class="o">+</span><span class="nx">g</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>IE8</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>Chrome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>①</th>
+<td>1906</td>
+<td>270</td>
+<td>317</td>
+<td>119</td>
+</tr>
+<tr>
+<th>②</th>
+<td>583</td>
+<td>37</td>
+<td>72</td>
+<td>13</td>
+</tr>
+<tr>
+<th>③</th>
+<td>3464</td>
+<td>276</td>
+<td>335</td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>まず如何にIEが遅く、Chromeが速いかがわかる結果となりました。
+<del>結果をキャッシュしたものが裏目に出ているのが前述した通りIEとFirefox。</del>
+<ins>結果をキャッシュしているものが全てのブラウザで速くなりました。</ins>
+<del>IE・Firefoxをとるならキャッシュをせず、Opera・Chromeをとるならキャッシュをしようということになりますね。</del>
+<ins>どのブラウザでもキャッシュは有効です。</ins></p>
+
+<h4>追記 23:08</h4>
+
+
+<p>結果おかしいんじゃないかという異議を唱えられたので追記します！</p>
+
+<blockquote><p>http://jsperf.com/getelementbyid-cache>
+getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.ne.jp/namusyaka/20110304/1299228350 の計測データが一部おかしい感じがする。
+&lt;&lt;</p></blockquote>
+
+<p>即ち②の方がはやいんじゃねえかということでした。
+実際http://jsperf.com/getelementbyid-cacheで試してみると確かに2がIE8でもFirefoxでもfastestでした。
+見間違えたかなと思って再度IE8とFirefoxでベンチを取り直しましたが結果は変わらず・・・。
+友人にも同じベンチを取ってもらいましたが、僕と同じ結果でした。
+今何故そうなるのか原因を追究してます。わかる方がいたら教えてくださるとうれしいです＞＜</p>
+
+<dl>
+<dt>否定された可能性</dt>
+<dd>DOCTYPE宣言によるスイッチ => 結果変わらず</dd>
+</dl>
+
+
+<h4>追記 3/5 15:15</h4>
+
+
+<p>どうやら、僕のベンチマークの取り方だとFirefoxとIEではdocument.getElementByIdが要素を見つけられず、nullを返しているようでした。
+よって、結果をキャッシュ出来ていなかったわけですね。
+これは<strong>必要要素以降にJavaScriptを記述しておけば、問題なく取得できるであろう</strong>という僕の勘違いが招いた結果です＞＜
+<strong>DOM操作をする場合には必ずonload内に処理を記述するようにしましょう。</strong>
+また、head・body要素を記述した場合にはonloadを書かなくても成功したりするようですが、やはり一番確実なのはonload内に処理を記述することだと思います。
+結果は修正しておきます！</p>
+]]></content>
+  </entry>
+  
+</feed>

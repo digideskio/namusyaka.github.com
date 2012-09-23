@@ -1,14 +1,99 @@
-<hr />
 
-<p>  layout: post
-  title: 自分の見ているページを悟られないようにするためのJavaScript。
-  date: 2010-11-07
-  comments: true
-  categories: JavaScript</p>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>自分の見ているページを悟られないようにするためのJavaScript。 - 法華経</title>
+  <meta name="author" content="namusyaka">
 
-<hr />
+  
+  <meta name="description" content="エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします &hellip;">
+  
 
-<p>  エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/2010/11/07/github-jekyll/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">自分の見ているページを悟られないようにするためのJavaScript。</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-07T00:00:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
 一人暮らしだったらそのままにするのもありでしょう。
 しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
 そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします。</p>
@@ -18,15 +103,9 @@
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">&quot;YouTube - Broadcast Yourself&quot;</span><span class="p">})()</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">&quot;YouTube - Broadcast Yourself&quot;</span><span class="p">})()</span>
 </span><span class='line'><span class="cm">/*これをアドレス入力欄に入力して実行するとそのページの表示名がYouTube - Broadcast Yourselfに変わります。</span>
 </span><span class='line'><span class="cm">そのページ自体を開いておかなければただYouTubeを開いているように見えるのでかなり有効だと思います。*/</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
@@ -34,14 +113,8 @@
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;国会議事堂の全て&quot;</span><span class="p">,</span><span class="s2">&quot;フラワーホーンの飼育&quot;</span><span class="p">,</span><span class="s2">&quot;Twitter / ホーム&quot;</span><span class="p">],</span><span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">n</span><span class="p">]})()</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;国会議事堂の全て&quot;</span><span class="p">,</span><span class="s2">&quot;フラワーホーンの飼育&quot;</span><span class="p">,</span><span class="s2">&quot;Twitter / ホーム&quot;</span><span class="p">],</span><span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">n</span><span class="p">]})()</span>
 </span><span class='line'><span class="cm">/*同じくアドレス入力欄に入力して実行すると変数aの配列の中身にあるタイトルにランダムで変更されます。もちろんタイトルを変えるのも、配列要素数を増やすのも減らすのも自由です。*/</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
@@ -52,3 +125,129 @@
 <p><a href='javascript:(function(){var a=["国会議事堂の全て","フラワーホーンの飼育","Twitter / ホーム"],n=Math.floor(Math.random()*a.length);document.getElementsByTagName("title")[0].innerHTML=a[n]})()'>ランダム変更</a></p>
 
 <p>しょうもないなとは思いますが、個人的に使いたいと思う場面が結構あったので書かせていただきました。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">namusyaka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-07T00:00:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2010/11/07/github-jekyll/" data-via="" data-counturl="http://namusyaka.github.com/blog/2010/11/07/github-jekyll/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/10/25/github-jekyll/" title="Previous Post: チャベリでのURLを自動でリンクに変換するユーザースクリプト「URIchanger」">&laquo; チャベリでのURLを自動でリンクに変換するユーザースクリプト「URIchanger」</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/11/18/github-jekyll/" title="Next Post: JavaScriptにおけるオブジェクト生成の高速化の話">JavaScriptにおけるオブジェクト生成の高速化の話 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">esolangインタプリタの件</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

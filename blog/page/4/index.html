@@ -9,7 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="layout: post title: JavaScriptでTwitter検索を実装する date: 2011-05-22 comments: true categories: JavaScript Twitterではスクロールをすると自動で過去のツイートが読み込まれます. &hellip;">
+  <meta name="description" content="Twitterではスクロールをすると自動で過去のツイートが読み込まれます.
+それを利用した検索ブックマークレットを作ってみました.
+http://twitter.com/#!/username形式のページで使えます. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +72,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/22/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/22/github-jekyll/">JavaScriptでTwitter検索を実装する</a></h1>
     
     
       <p class="meta">
@@ -93,17 +95,7 @@
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: JavaScriptでTwitter検索を実装する
-  date: 2011-05-22
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  Twitterではスクロールをすると自動で過去のツイートが読み込まれます.
+  <div class="entry-content"><p>Twitterではスクロールをすると自動で過去のツイートが読み込まれます.
 それを利用した検索ブックマークレットを作ってみました.
 http://twitter.com/#!/username形式のページで使えます.
 デフォルトで読み込まれていたのでjQueryを使ってclassの配列を取得しています.
@@ -132,11 +124,7 @@ http://twitter.com/#!/username形式のページで使えます.
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="c1">//スクリプト</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//スクリプト</span>
 </span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">s</span><span class="p">){</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span><span class="nx">$t</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">e</span><span class="p">)},</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="nx">s</span><span class="p">,</span>
 </span><span class='line'>  <span class="nx">loop</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
@@ -159,8 +147,6 @@ http://twitter.com/#!/username形式のページで使えます.
 </span><span class='line'>
 </span><span class='line'><span class="c1">//圧縮後</span>
 </span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">s</span><span class="p">){</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span><span class="nx">$t</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">e</span><span class="p">)},</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="nx">s</span><span class="p">,</span><span class="nx">loop</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">m</span><span class="p">);</span><span class="kd">var</span> <span class="nx">l</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.stream-item&quot;</span><span class="p">);</span><span class="k">for</span><span class="p">(;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="o">++</span><span class="nx">i</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">+=</span><span class="s1">&#39;/status/&#39;</span><span class="o">+</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/data-item-id=&quot;([0-9]+)&quot;/</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span><span class="nx">b</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="k">return</span><span class="p">;}}</span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">&gt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;見つからなかった。&#39;</span><span class="p">);</span><span class="nx">m</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">;</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);};</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">loop</span><span class="p">,</span><span class="mi">1000</span><span class="p">);})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;探すテキスト入力&#39;</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -177,7 +163,7 @@ http://twitter.com/#!/username形式のページで使えます.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/21/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/21/github-jekyll/">大学生になってよかったことよくなかったこと</a></h1>
     
     
       <p class="meta">
@@ -200,18 +186,10 @@ http://twitter.com/#!/username形式のページで使えます.
   </header>
 
 
-  <div class="entry-content"><hr />
+  <div class="entry-content"><h4>よかったこと</h4>
 
-<p>  layout: post
-  title: 大学生になってよかったことよくなかったこと
-  date: 2011-05-21
-  comments: true
-  categories: その他</p>
 
-<hr />
-
-<p>  <h4>よかったこと</h4>
-とくになし</p>
+<p>とくになし</p>
 
 <h4>よかったとおもえるかもしれなかったこと, おもえるかもしれないこと</h4>
 
@@ -270,7 +248,7 @@ http://twitter.com/#!/username形式のページで使えます.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/17/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/17/github-jekyll/">僕がプログラミングを始めたきっかけ</a></h1>
     
     
       <p class="meta">
@@ -293,17 +271,7 @@ http://twitter.com/#!/username形式のページで使えます.
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: 僕がプログラミングを始めたきっかけ
-  date: 2011-05-17
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  流行ってるのでやります。</p>
+  <div class="entry-content"><p>流行ってるのでやります。</p>
 
 <h4>きっかけ</h4>
 
@@ -353,7 +321,7 @@ http://twitter.com/#!/username形式のページで使えます.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/09/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/09/github-jekyll/">2chスレッドから指定IDのレスだけ抽出</a></h1>
     
     
       <p class="meta">
@@ -376,17 +344,7 @@ http://twitter.com/#!/username形式のページで使えます.
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: 2chスレッドから指定IDのレスだけ抽出
-  date: 2011-05-09
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  記事のタイトル通り。
+  <div class="entry-content"><p>記事のタイトル通り。
 便利。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -394,17 +352,11 @@ http://twitter.com/#!/username形式のページで使えます.
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
 </span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">e</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
 </span><span class='line'>    <span class="kd">with</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">parentNode</span><span class="p">)</span>
 </span><span class='line'>    <span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="o">--</span><span class="nx">i</span><span class="p">].</span><span class="nx">nextSibling</span><span class="p">),</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
 </span><span class='line'><span class="p">})(</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;ID入力&quot;</span><span class="p">),</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;dt&quot;</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -421,7 +373,7 @@ http://twitter.com/#!/username形式のページで使えます.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/07/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/07/github-jekyll/">Github</a></h1>
     
     
       <p class="meta">
@@ -444,17 +396,7 @@ http://twitter.com/#!/username形式のページで使えます.
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: github
-  date: 2011-05-07
-  comments: true
-  categories: Git</p>
-
-<hr />
-
-<p>  オープンソースがすきです.
+  <div class="entry-content"><p>オープンソースがすきです.
 bookmarkletsなど, これからはgithubにあげて, ブログで紹介って感じになると思います.</p>
 
 <p>皆さんもgithubやりましょうそしてぼくをフォローしましょう.</p>
@@ -472,7 +414,7 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/05/06/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/05/06/github-jekyll/">じぇむずなのか</a></h1>
     
     
       <p class="meta">
@@ -495,25 +437,13 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: じぇむずなのか
-  date: 2011-05-06
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  ずっとげむずだと思ってた.
+  <div class="entry-content"><p>ずっとげむずだと思ってた.
 先日, 誰もmacbook airを授けてくれる気配がないので自分で買ったら何とRubyがデフォルトで入ってた, 嬉しい.
 ていうかPHP, Perl, Python, Javaなども入ってるようで改めてすばらしいと思いましたというはなし.</p>
 
 <p>しかしながら, gem install hogeがバージョンが古いと怒られて出来なかったので,gem update &#8211;systemしたらだめだった.
-何でだろと思って色々調べたら以下のように書くとオッケーらしい.</p>
-
-<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
-</code></pre>
+何でだろと思って色々調べたら以下のように書くとオッケーらしい.
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
 <p>無事できたのでよかったです.</p>
 </div>
@@ -528,7 +458,7 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/04/29/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/04/29/github-jekyll/">プログラミングのはなし</a></h1>
     
     
       <p class="meta">
@@ -551,18 +481,10 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
   </header>
 
 
-  <div class="entry-content"><hr />
+  <div class="entry-content"><h4>パフォーマンス</h4>
 
-<p>  layout: post
-  title: プログラミングのはなし
-  date: 2011-04-29
-  comments: true
-  categories: JavaScript</p>
 
-<hr />
-
-<p>  <h4>パフォーマンス</h4>
-どの言語でプログラミングをする場合も、美しく且つパフォーマンスが良いコードを書くのが良いというのはもはや当たり前のことだと思ってたんですが、どうも可視性という言葉をはき違えてわけのわからないコードの書き方を正当化しようとする輩がいるようなので思いの丈を述べようと思います。</p>
+<p>どの言語でプログラミングをする場合も、美しく且つパフォーマンスが良いコードを書くのが良いというのはもはや当たり前のことだと思ってたんですが、どうも可視性という言葉をはき違えてわけのわからないコードの書き方を正当化しようとする輩がいるようなので思いの丈を述べようと思います。</p>
 
 <p>サーバサイドでは、プログラムの実行環境が一つなため、スペックなどを知ることが出来るし、それに比例して多少は冗長なコードを書いても大丈夫な場合がある(書いても良いということではない)。
 一方、クライアントサイドでは実行環境を特定することが不可能で、幅広いユーザーをカバーするためにサーバサイド以上にパフォーマンスにこだわる必要があると思います。</p>
@@ -578,14 +500,8 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">hoge</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">hoge</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()</span>
 </span><span class='line'>  <span class="nx">hoge</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -594,13 +510,7 @@ document.getSelectionは何も選択されていない場合空文字を返し�
 よって</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>  <span class="nx">hoge</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">hoge</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -608,13 +518,7 @@ document.getSelectionは何も選択されていない場合空文字を返し�
 しかし、JavaScriptの特性上、以下のように書くのが一番わかりやすく、簡単かと思います。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>  <span class="o">!</span><span class="nx">hoge</span>
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">!</span><span class="nx">hoge</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -636,15 +540,9 @@ document.getSelectionは何も選択されていない場合空文字を返し�
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 </span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;評価する式を入力してください。&quot;</span><span class="p">)))</span>
 </span><span class='line'><span class="p">})()</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -653,15 +551,9 @@ document.getSelectionは何も選択されていない場合空文字を返し�
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
 </span><span class='line'>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;追加するjsファイルのURL&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="p">})()</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -673,10 +565,8 @@ document.getSelectionは何も選択されていない場合空文字を返し�
 <p>Github : <a href="https://github.com/namusyaka/RSS-Reader">https://github.com/namusyaka/RSS-Reader</a>
 Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/gems/rss_reader</a></p>
 
-<p>installは以下</p>
-
-<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
-</code></pre>
+<p>installは以下
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
 <p>使用例:巡回してcacheが有効になっているか確認.</p>
 
@@ -702,11 +592,7 @@ Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/g
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss_reader&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1"># cacheファイルがあるか確認. 無ければ生成.</span>
@@ -728,8 +614,6 @@ Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/g
 </span><span class='line'><span class="c1"># 見つからない場合もnil.</span>
 </span><span class='line'><span class="c1"># 内部的にはFile.ctimeを使った方がスマートだが, 個人的な理由で別の方法を使ってる.</span>
 </span><span class='line'><span class="nb">print</span> <span class="s2">&quot;キャッシュは有効&quot;</span> <span class="k">if</span> <span class="n">rss</span><span class="o">.</span><span class="n">cache</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -746,7 +630,7 @@ Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/g
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/04/20/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/04/20/github-jekyll/">Rubygemsにライブラリ(モジュール)をあげてみた</a></h1>
     
     
       <p class="meta">
@@ -769,32 +653,18 @@ Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/g
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: Rubygemsにライブラリ(モジュール)をあげてみた
-  date: 2011-04-20
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
+  <div class="entry-content"><p>CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
 http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
 を参考にRubygemsを始めてみました。</p>
 
 <p>まず、アカウントを作ります。
 めんどいので端折ります。</p>
 
-<p>そしてgemcutterをインストールします。</p>
+<p>そしてgemcutterをインストールします。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
-<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
-</code></pre>
-
-<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。</p>
-
-<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
-</code></pre>
+<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
 <p>とても簡単です。わーい。</p>
 
@@ -812,10 +682,8 @@ get/postを簡単に出来るのはもちろん、responseを操作したい場�
 &#8211;Operator::HTTP
 ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
 使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
-gemにあがっているので、以下を実行するとインストールできます。</p>
-
-<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
-</code></pre>
+gemにあがっているので、以下を実行するとインストールできます。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
 <p>具体的には以下のように使えます。</p>
 
@@ -837,11 +705,7 @@ gemにあがっているので、以下を実行するとインストールで�
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;Operator&#39;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。</span>
@@ -859,8 +723,6 @@ gemにあがっているので、以下を実行するとインストールで�
 </span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">close</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -877,7 +739,7 @@ gemにあがっているので、以下を実行するとインストールで�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/04/18/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/04/18/github-jekyll/">Remoteっていうモジュール</a></h1>
     
     
       <p class="meta">
@@ -900,17 +762,7 @@ gemにあがっているので、以下を実行するとインストールで�
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: remoteっていうモジュール
-  date: 2011-04-18
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  今個人的に作ろうと思ってるウェブサービスがあって、それに使えるモジュールを作成中
+  <div class="entry-content"><p>今個人的に作ろうと思ってるウェブサービスがあって、それに使えるモジュールを作成中
 ウェブルってブログの人が以前phpでget/postをしやすくするみたいな関数作ってたけど、それの拡張版的な感じ。
 メインはresponseの操作。</p>
 
@@ -927,7 +779,7 @@ gemにあがっているので、以下を実行するとインストールで�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/04/16/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/04/16/github-jekyll/">JavaScriptでRubyのObject.sendみたいなのを実装してみた</a></h1>
     
     
       <p class="meta">
@@ -950,17 +802,7 @@ gemにあがっているので、以下を実行するとインストールで�
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: JavaScriptでRubyのObject.sendみたいなのを実装してみた
-  date: 2011-04-16
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  RubyにはObjectクラスにsendメソッドってのがあって、第一引数:関数名を文字列、第二引数:関数の引数って感じで使える。
+  <div class="entry-content"><p>RubyにはObjectクラスにsendメソッドってのがあって、第一引数:関数名を文字列、第二引数:関数の引数って感じで使える。
 動的に実行する関数を選べたりするので便利。
 そこでJavaScriptで二パターン実装してみた。
 一つ目はObject.prototypeのメソッドとして。</p>
@@ -973,11 +815,7 @@ gemにあがっているので、以下を実行するとインストールで�
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">send</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">send</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="o">?</span> <span class="nx">args</span> <span class="o">:</span> <span class="p">[</span><span class="nx">args</span><span class="p">]</span>
 </span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="nx">method</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
 </span><span class='line'><span class="p">}</span>
@@ -985,8 +823,6 @@ gemにあがっているので、以下を実行するとインストールで�
 </span><span class='line'><span class="s2">&quot;ai,u,eo&quot;</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">);</span> <span class="c1">// [&quot;ai&quot;, &quot;u&quot;, &quot;eo&quot;]</span>
 </span><span class='line'>
 </span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a,b,c&quot;</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// &quot;b&quot;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1016,11 +852,7 @@ gemにあがっているので、以下を実行するとインストールで�
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">send</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">send</span><span class="p">(</span><span class="nx">func</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">func</span> <span class="o">=</span> <span class="sr">/\./</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="o">?</span> <span class="nx">func</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">:</span> <span class="nx">func</span><span class="p">;</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="o">?</span> <span class="nx">args</span> <span class="o">:</span> <span class="p">[</span><span class="nx">args</span><span class="p">];</span>
 </span><span class='line'>
@@ -1044,8 +876,6 @@ gemにあがっているので、以下を実行するとインストールで�
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">));</span> <span class="c1">// &quot;v&quot;</span>
 </span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;bd.c&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]));</span> <span class="c1">// &quot;foobar&quot;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1060,17 +890,11 @@ gemにあがっているので、以下を実行するとインストールで�
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">w</span><span class="o">=</span><span class="nb">window</span><span class="p">,</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">;</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">p</span><span class="o">=</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">w</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;置換対象の文字列を入力してください。&quot;</span><span class="p">),</span><span class="s2">&quot;g&quot;</span><span class="p">),</span><span class="nx">g</span><span class="o">=</span><span class="nx">w</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;置換後の文字列を入力してください。&quot;</span><span class="p">);</span>
 </span><span class='line'>  <span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">g</span><span class="p">)</span>
 </span><span class='line'><span class="p">})()</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1099,23 +923,23 @@ gemにあがっているので、以下を実行するとインストールで�
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/08/29/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/26/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/07/26/github-jekyll/">esolangインタプリタの件</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/20/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/06/27/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/11/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JavaScript,(X)HTML | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/javascript-x-html/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2012-09-23T15:03:12+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JavaScriptでObjectとArrayをパースしてHTML(Document Object)に変換する]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/02/27/github-jekyll/"/>
+    <updated>2011-02-27T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/02/27/github-jekyll</id>
+    <content type="html"><![CDATA[<p>jsonとか配列って結構入り組んだ形になりやすくて、構造を確認するのが結構めんどくさかったりします。
+しかしHTMLに変換すると結構見やすいです。
+というわけで、オブジェクトを定義リスト、配列をリストに変換する関数を作ってみました。</p>
+
+<script src="https://gist.github.com/869512.js"> </script>
+
+
+<p><noscript>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">parseObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="o">&lt;</span><span class="err">/em&gt;d.createElement(element)}</span>
+</span><span class='line'>  <span class="k">switch</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">constructor</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">case</span> <span class="nb">Array</span><span class="o">:</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">create</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">case</span> <span class="nb">Object</span><span class="o">:</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dl&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">default</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">switch</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="nx">tagName</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">case</span> <span class="s1">&#39;UL&#39;</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">case</span> <span class="s1">&#39;DL&#39;</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">)).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">list</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p></noscript>
+CSSも活用するとかなり見やすくなるかと思います。
+何かおかしい点があったら言ってください。</p>
+]]></content>
+  </entry>
+  
+</feed>

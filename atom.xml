@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T14:59:58+09:00</updated>
+  <updated>2012-09-23T15:03:12+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -14,21 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
     <link href="http://namusyaka.github.com/blog/2012/08/29/github-jekyll/"/>
     <updated>2012-08-29T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/08/29/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: チャベリ裏口に似たサービス「チャベリ勝手口」をつくった
-  date: 2012-08-29
-  comments: true
-  categories: Ruby,その他</p>
-
-<hr />
-
-<p>  手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
+    <content type="html"><![CDATA[<p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
 チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
 
 <p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
@@ -39,21 +29,11 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[esolangインタプリタの件]]></title>
     <link href="http://namusyaka.github.com/blog/2012/07/26/github-jekyll/"/>
     <updated>2012-07-26T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/07/26/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: esolangインタプリタの件
-  date: 2012-07-26
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  流石に手を抜き過ぎだろと言われたのでそれぞれテストページを用意</p>
+    <content type="html"><![CDATA[<p>流石に手を抜き過ぎだろと言われたのでそれぞれテストページを用意</p>
 
 <p><a href="http://namusyaka.info/esolang/brainfuck.html" target="_blank">Brainf*ck Interpreter</a>
 <a href="http://namusyaka.info/esolang/monamona.html" target="_blank">MONAmona Interpreter</a>
@@ -64,22 +44,14 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて]]></title>
     <link href="http://namusyaka.github.com/blog/2012/07/20/github-jekyll/"/>
     <updated>2012-07-20T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/07/20/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
+    <content type="html"><![CDATA[<h4>Esolangインタプリタの話</h4>
 
-<p>  layout: post
-  title: JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&amp;SeaSlugについて
-  date: 2012-07-20
-  comments: true
-  categories: JavaScript</p>
 
-<hr />
-
-<p>  <h4>Esolangインタプリタの話</h4>
-Github : <a href="https://github.com/namusyaka/sandbox/tree/master/Esolang">sandbox/Esolang</a>
+<p>Github : <a href="https://github.com/namusyaka/sandbox/tree/master/Esolang">sandbox/Esolang</a>
 テスト(Firefoxでしか動作確認していない上にフリーズの危険性があるので注意) : <a href="http://namusyaka.info/esolang/esolang.html">Esolang</a></p>
 
 <p>何番煎じだよ感ありますが、現実逃避したくて書きました。
@@ -99,22 +71,14 @@ VimとVimScriptのWEB実装みたいなやつです。
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
     <link href="http://namusyaka.github.com/blog/2012/06/27/github-jekyll/"/>
     <updated>2012-06-27T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/06/27/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
+    <content type="html"><![CDATA[<h4>Mr.Easiness閉鎖の件</h4>
 
-<p>  layout: post
-  title: Mr.Easiness閉鎖しましたってことと近況について
-  date: 2012-06-27
-  comments: true
-  categories: その他</p>
 
-<hr />
-
-<p>  <h4>Mr.Easiness閉鎖の件</h4>
-タイトルにあるとおり閉鎖しました。
+<p>タイトルにあるとおり閉鎖しました。
 理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
 
 <h4>近況</h4>
@@ -130,21 +94,11 @@ VimとVimScriptのWEB実装みたいなやつです。
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。]]></title>
     <link href="http://namusyaka.github.com/blog/2012/04/11/github-jekyll/"/>
     <updated>2012-04-11T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/04/11/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。
-  date: 2012-04-11
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>一応IE,Opera,Firefox,Chrome,Safariで確認。</p>
+    <content type="html"><![CDATA[<p>一応IE,Opera,Firefox,Chrome,Safariで確認。</p>
 
 <iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-xdP-qLWZNA" width="500"></iframe>
 
@@ -179,11 +133,7 @@ VimとVimScriptのWEB実装みたいなやつです。
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">w</span> <span class="o">=</span> <span class="nb">window</span><span class="p">;</span>
 </span><span class='line'>
@@ -211,8 +161,6 @@ VimとVimScriptのWEB実装みたいなやつです。
 </span><span class='line'>
 </span><span class='line'>  <span class="k">return</span><span class="p">;</span>
 </span><span class='line'><span class="p">})();</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -221,21 +169,11 @@ VimとVimScriptのWEB実装みたいなやつです。
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[JavaScriptでWebページ用付箋ブックマークレット]]></title>
     <link href="http://namusyaka.github.com/blog/2012/04/09/github-jekyll/"/>
     <updated>2012-04-09T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/04/09/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: JavaScriptでWebページ用付箋ブックマークレット
-  date: 2012-04-09
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
+    <content type="html"><![CDATA[<p>長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
 
 <p>実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。
 saveを入力するとlocalStorage上に現在のスクロール量が記録されます。
@@ -259,14 +197,7 @@ localStorageが使えないブラウザでは動きません。</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span>
 </span><span class='line'>
@@ -277,9 +208,6 @@ localStorageが使えないブラウザでは動きません。</p>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">return</span><span class="p">;</span>
 </span><span class='line'><span class="p">})();</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -290,53 +218,27 @@ localStorageが使えないブラウザでは動きません。</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[大学やめます]]></title>
     <link href="http://namusyaka.github.com/blog/2012/04/06/github-jekyll/"/>
     <updated>2012-04-06T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/04/06/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: 大学やめます
-  date: 2012-04-06
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  個人事業主にでもなろうかと思います。
+    <content type="html"><![CDATA[<p>個人事業主にでもなろうかと思います。
 余裕ができたら<a herf="http://luilak.net">Luilak</a>を法人化します。
 よろしく。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[Rubyで例外クラスを動的に定義する]]></title>
     <link href="http://namusyaka.github.com/blog/2012/03/18/github-jekyll/"/>
     <updated>2012-03-18T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/03/18/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: Rubyで例外クラスを動的に定義する
-  date: 2012-03-18
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  グローバルの場合。</p>
+    <content type="html"><![CDATA[<p>グローバルの場合。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;HogeError&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="c1"># 継承させたい例外クラスを渡す</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;HogeError&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="c1"># 継承させたい例外クラスを渡す</span>
 </span><span class='line'><span class="k">raise</span> <span class="no">HogeError</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -351,11 +253,7 @@ localStorageが使えないブラウザでは動きません。</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="k">module</span> <span class="nn">Hoge</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Hoge</span>
 </span><span class='line'>  <span class="k">class</span> <span class="nc">Fuga</span>
 </span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;Piyo&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span>
 </span><span class='line'>
@@ -364,8 +262,6 @@ localStorageが使えないブラウザでは動きません。</p>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="no">Hoge</span><span class="o">::</span><span class="no">Fuga</span><span class="o">.</span><span class="n">test</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -388,11 +284,7 @@ localStorageが使えないブラウザでは動きません。</p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="k">module</span> <span class="nn">Foo</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Foo</span>
 </span><span class='line'>  <span class="k">class</span> <span class="nc">Bar</span>
 </span><span class='line'>    <span class="vc">@@error_class</span> <span class="o">=</span> <span class="sx">%w( Hoge Fuga Piyo )</span>
 </span><span class='line'>    <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="p">}</span>
@@ -409,8 +301,6 @@ localStorageが使えないブラウザでは動きません。</p>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="no">Foo</span><span class="o">::</span><span class="no">Bar</span><span class="o">.</span><span class="n">hoge</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -419,21 +309,11 @@ localStorageが使えないブラウザでは動きません。</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[地獄のミサワ用スクレイピングライブラリをつくった]]></title>
     <link href="http://namusyaka.github.com/blog/2012/02/27/github-jekyll/"/>
     <updated>2012-02-27T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/02/27/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: 地獄のミサワ用スクレイピングライブラリをつくった
-  date: 2012-02-27
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  nokogiriとかoptparse使ってみたくてつくりまひた。
+    <content type="html"><![CDATA[<p>nokogiriとかoptparse使ってみたくてつくりまひた。
 やたらと長いHashは、引数で受け取ったカテゴリが実在するかどうかをhttp-request飛ばして判断するようにすればなんとかなるとおもうけど、typo多そうだしやめておきまひた。
 だけどカテゴリ増えるごとにコード修正すんのも面倒なんですよねー。
 そのうち方針を変えるかもしれません。</p>
@@ -615,11 +495,7 @@ localStorageが使えないブラウザでは動きません。</p>
 <span class='line-number'>172</span>
 <span class='line-number'>173</span>
 <span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="c1"># -*- encoding: UTF-8 -*-</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- encoding: UTF-8 -*-</span>
 </span><span class='line'>
 </span><span class='line'><span class="sx">%w( uri open-uri optparse rubygems nokogiri )</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span> <span class="nb">name</span> <span class="o">|</span>
 </span><span class='line'>  <span class="nb">require</span> <span class="nb">name</span>
@@ -793,8 +669,6 @@ localStorageが使えないブラウザでは動きません。</p>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -806,13 +680,7 @@ localStorageが使えないブラウザでは動きません。</p>
 <p>インストールは以下の通り。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>
-</span><span class='line'>gem install Ruby4Misawa
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gem install Ruby4Misawa
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -820,13 +688,7 @@ localStorageが使えないブラウザでは動きません。</p>
 ちなみにこれは、バイトリーダーの０～３ページまでに表示される画像を保存します。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>
-</span><span class='line'>ruby Ruby4Misawa.rb -t save -c バイトリーダー -p 0..3
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ruby Ruby4Misawa.rb -t save -c バイトリーダー -p 0..3
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -852,21 +714,11 @@ localStorageが使えないブラウザでは動きません。</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[JavaScriptで記号プログラミング AND console.logで出力]]></title>
     <link href="http://namusyaka.github.com/blog/2012/02/19/github-jekyll/"/>
     <updated>2012-02-19T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/02/19/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: JavaScriptで記号プログラミング AND console.logで出力
-  date: 2012-02-19
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  謎解きみたいで面白かった
+    <content type="html"><![CDATA[<p>謎解きみたいで面白かった
 &#8217;.&#8217;をどうやって取るかで一瞬迷ったのと、一度どこまでやったか忘れると死ぬので疲れた
 もっと短く出来るとはおもうけど公開
 Firefoxでしか動作確認しておりません</p>
@@ -921,11 +773,7 @@ Firefoxでしか動作確認しておりません</p>
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
 <span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">[][(({}</span><span class="o">+</span><span class="p">{})[(([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})])</span><span class="o">+</span><span class="p">(({}</span><span class="o">+</span><span class="p">{})[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])</span><span class="o">+</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">[][(({}</span><span class="o">+</span><span class="p">{})[(([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})])</span><span class="o">+</span><span class="p">(({}</span><span class="o">+</span><span class="p">{})[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])</span><span class="o">+</span>
 </span><span class='line'><span class="p">((([][{}</span><span class="o">&lt;&lt;</span><span class="p">{}])</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&gt;</span><span class="p">{})</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[(([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">+</span><span class="p">([]</span>
 </span><span class='line'><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])</span><span class="o">+</span><span class="p">((([][{}</span><span class="o">&lt;&lt;</span><span class="p">{}])</span><span class="o">+</span>
 </span><span class='line'><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]])</span><span class="o">+</span><span class="p">(({}</span><span class="o">+</span><span class="p">{})[(([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&lt;</span>
@@ -975,8 +823,6 @@ Firefoxでしか動作確認しておりません</p>
 </span><span class='line'><span class="p">)])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]])</span><span class="o">+</span><span class="p">(({}</span><span class="o">+</span><span class="p">{})[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])</span><span class="o">+</span><span class="p">((([]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">+</span><span class="p">({}</span><span class="o">+</span><span class="p">{}))[[]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}])]</span><span class="o">+</span>
 </span><span class='line'><span class="p">({}</span><span class="o">+</span><span class="p">{}))[(([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">*</span><span class="p">((([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">&lt;&lt;</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span>
 </span><span class='line'><span class="p">)</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{}))</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})</span><span class="o">+</span><span class="p">([]</span><span class="o">^</span><span class="p">[]</span><span class="o">&lt;</span><span class="p">{})]))()</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -985,21 +831,12 @@ Firefoxでしか動作確認しておりません</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[キーワード解析に重点をおいたTwitterプロフィールサービス「Twihomeβ」をリリースしました。]]></title>
     <link href="http://namusyaka.github.com/blog/2012/02/17/github-jekyll/"/>
     <updated>2012-02-17T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/02/17/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
+    <content type="html"><![CDATA[<p><a href="http://twihome.jp/">TwihomeURL</a></p>
 
-<p>  layout: post
-  title: キーワード解析に重点をおいたTwitterプロフィールサービス「Twihomeβ」をリリースしました。
-  date: 2012-02-17
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  <p><a href="http://twihome.jp/">TwihomeURL</a></p></p>
 
 <p>大昔に作ったtwihome.jpn.orgのリメイクを作ろうぜということで<a href="http://luilak.net">Luilak</a>で開発しました。
 確か去年の年末くらいから開発し始めましたが、色々あって公開にやたらと時間がかかった挙げ句、機能も相当縮小してリリースすることになってしまったのが残念です。
@@ -1027,33 +864,17 @@ Firefoxでしか動作確認しておりません</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[トンヌラ]]></title>
     <link href="http://namusyaka.github.com/blog/2012/02/06/github-jekyll/"/>
     <updated>2012-02-06T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/02/06/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: トンヌラ
-  date: 2012-02-06
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  前の記事で書いた画像を予めloadの理屈について簡単に説明します。
+    <content type="html"><![CDATA[<p>前の記事で書いた画像を予めloadの理屈について簡単に説明します。
 大抵のブラウザでは、ImageオブジェクトのsrcプロパティにURLを突っ込んだ時点でそれを取るRequestを飛ばします。
 要はその仕組みを利用し(一度loadした画像はブラウザがキャッシュする)、遅れて表示される等の問題を解消したかったわけです。
 以下のようなコードを実行し、Webコンソールとか見るとわかります。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="k">new</span> <span class="nx">Image</span><span class="p">()).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://example.com/hoge.png&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="k">new</span> <span class="nx">Image</span><span class="p">()).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://example.com/hoge.png&quot;</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1062,21 +883,11 @@ Firefoxでしか動作確認しておりません</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[CSSから検出した画像を予めloadしておくことで画像が遅れて表示されることを防ぎたい]]></title>
     <link href="http://namusyaka.github.com/blog/2012/02/03/github-jekyll/"/>
     <updated>2012-02-03T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/02/03/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: CSSから検出した画像を予めloadしておくことで画像が遅れて表示されることを防ぎたい
-  date: 2012-02-03
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  root, 相対パス, 絶対パス対応
+    <content type="html"><![CDATA[<p>root, 相対パス, 絶対パス対応
 CSSスプライトとかやってないサイト用</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1098,11 +909,7 @@ CSSスプライトとかやってないサイト用</p>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">styleSheets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
@@ -1121,8 +928,6 @@ CSSスプライトとかやってないサイト用</p>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">})()</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1131,21 +936,11 @@ CSSスプライトとかやってないサイト用</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[ネタ]]></title>
     <link href="http://namusyaka.github.com/blog/2012/01/26/github-jekyll/"/>
     <updated>2012-01-26T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/01/26/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: ネタ
-  date: 2012-01-26
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  公開してなかったゴミみたいなコードを晒す会</p>
+    <content type="html"><![CDATA[<p>公開してなかったゴミみたいなコードを晒す会</p>
 
 <p>両替pattern計算</p>
 
@@ -1162,11 +957,7 @@ CSSスプライトとかやってないサイト用</p>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">sort</span><span class="p">(),</span>
 </span><span class='line'>  <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>  <span class="nx">l</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">/</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
@@ -1179,8 +970,6 @@ CSSスプライトとかやってないサイト用</p>
 </span><span class='line'>    <span class="nx">count</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">i</span> <span class="o">*</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">c</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
 </span><span class='line'><span class="p">})(</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1202,11 +991,7 @@ CSSスプライトとかやってないサイト用</p>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">styleSheets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">styleSheet</span> <span class="o">=</span> <span class="nx">styleSheets</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
@@ -1222,8 +1007,6 @@ CSSスプライトとかやってないサイト用</p>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1232,21 +1015,11 @@ CSSスプライトとかやってないサイト用</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[DOM操作においてinnerHTMLは使うべきか(追記)]]></title>
     <link href="http://namusyaka.github.com/blog/2012/01/18/github-jekyll/"/>
     <updated>2012-01-18T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/01/18/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: DOM操作においてinnerHTMLは使うべきか(追記)
-  date: 2012-01-18
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  innerHTMLというプロパティがあります。
+    <content type="html"><![CDATA[<p>innerHTMLというプロパティがあります。
 HTMLを文字列の状態で突っ込むとそのまま反映してくれるという非常に楽で便利なものなんですが、残念なことに、遅い遅いと昔から言われていました。</p>
 
 <p>そうは言っても、document.createElementとかdocument.createTextNodeとかappendChildとか、だるいなあと思いますし、なかなかinnerHTMLの呪縛から逃れられずに早一年。
@@ -1274,11 +1047,7 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>  <span class="c1">// Code</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="c1">// Code</span>
 </span><span class='line'>    <span class="kd">var</span> <span class="nx">$1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>       <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 </span><span class='line'>
@@ -1300,8 +1069,6 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 </span><span class='line'>
 </span><span class='line'>  <span class="c1">// Usage</span>
 </span><span class='line'>    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$1</span><span class="p">([</span><span class="s1">&#39;iframe&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="nx">border</span> <span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="s1">&#39;フレームを使用できないブラウザです。&#39;</span><span class="p">]));</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1394,11 +1161,7 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 <span class='line-number'>78</span>
 <span class='line-number'>79</span>
 <span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
 </span><span class='line'><span class="nt">&lt;head&gt;</span>
 </span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -1478,8 +1241,6 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 </span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/body&gt;</span>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1521,11 +1282,7 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">();</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">();</span>
 </span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>          <span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;ul class=&quot;a&quot;&gt;&#39;</span>
 </span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;li class=&quot;b&quot;&gt;&#39;</span>
@@ -1547,8 +1304,6 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 </span><span class='line'>      <span class="p">}</span>
 </span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">;</span>
 </span><span class='line'>      <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1562,21 +1317,11 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[getElementByIdについて]]></title>
     <link href="http://namusyaka.github.com/blog/2012/01/13/github-jekyll/"/>
     <updated>2012-01-13T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/01/13/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: getElementByIdについて
-  date: 2012-01-13
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
+    <content type="html"><![CDATA[<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
 window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 
 <pre><code>"foo" という名前を持つ a、applet、area、embed、form、frame、frameset、iframe、img、または object 要素、または
@@ -1596,11 +1341,7 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
 </span><span class='line'><span class="nt">&lt;head&gt;</span>
 </span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hoge</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// [object HTMLParagraphElement]</span>
@@ -1611,8 +1352,6 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 </span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;hoge&quot;</span><span class="nt">&gt;</span>fuga<span class="nt">&lt;/p&gt;</span>
 </span><span class='line'><span class="nt">&lt;/body&gt;</span>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1621,21 +1360,11 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[Skypeチャットでコンタクトリストに追加されてないメンバーに承認リクエストを飛ばすscriptを書いた]]></title>
     <link href="http://namusyaka.github.com/blog/2012/01/02/github-jekyll/"/>
     <updated>2012-01-02T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/01/02/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: Skypeチャットでコンタクトリストに追加されてないメンバーに承認リクエストを飛ばすscriptを書いた
-  date: 2012-01-02
-  comments: true
-  categories: Python</p>
-
-<hr />
-
-<p>  意識が高い学生のチャットに一人放り込まれた意識不明の学生namusyakaです。
+    <content type="html"><![CDATA[<p>意識が高い学生のチャットに一人放り込まれた意識不明の学生namusyakaです。
 大成しそうな人ばっかりですし、コンタクトを共有したいのですが全員にリクエストを飛ばすのは正直だるいです。
 なのでコードを書きました。Skype4Pyが必要です。</p>
 
@@ -1656,12 +1385,7 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>
-</span><span class='line'><span class="c"># -*- coding: utf_8 -*-  </span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># -*- coding: utf_8 -*-  </span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">Skype4Py</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
 </span><span class='line'>
@@ -1678,9 +1402,6 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 </span><span class='line'>
 </span><span class='line'><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
 </span><span class='line'>  <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1690,21 +1411,11 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[HTML4.01における開始タグ・終了タグの省略について]]></title>
     <link href="http://namusyaka.github.com/blog/2011/12/29/github-jekyll/"/>
     <updated>2011-12-29T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2011/12/29/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: HTML4.01における開始タグ・終了タグの省略について
-  date: 2011-12-29
-  comments: true
-  categories: (X)HTML</p>
-
-<hr />
-
-<p>  以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
+    <content type="html"><![CDATA[<p>以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
 
 <h4>HTMLのおはなし</h4>
 
@@ -1728,20 +1439,12 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='dtd'><span class='line'>
-</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">P</span> <span class="nt">-</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="nt">--</span> <span class="nt">paragraph</span> <span class="nt">--</span><span class="k">&gt;</span>
+</pre></td><td class='code'><pre><code class='dtd'><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">P</span> <span class="nt">-</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="nt">--</span> <span class="nt">paragraph</span> <span class="nt">--</span><span class="k">&gt;</span>
 </span><span class='line'><span class="c">&lt;!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 --&gt;</span>
 </span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BR</span> <span class="nt">-</span> <span class="nt">O</span> <span class="kc">EMPTY</span>                 <span class="nt">--</span> <span class="nt">forced</span> <span class="nt">line</span> <span class="nt">break</span> <span class="nt">--</span><span class="k">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BODY</span> <span class="nt">O</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%block;</span><span class="o">|</span><span class="nt">SCRIPT</span><span class="o">)+</span> <span class="o">+(</span><span class="nt">INS</span><span class="o">|</span><span class="nt">DEL</span><span class="o">)</span> <span class="nt">--</span> <span class="nt">document</span> <span class="nt">body</span> <span class="nt">--</span><span class="k">&gt;</span>
 </span><span class='line'><span class="c">&lt;!-- これは開始タグ、終了タグを両方省略できるということを意味します。 --&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1753,18 +1456,12 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>
-</span><span class='line'><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
 </span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'><span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="nt">&lt;h1&gt;</span>test<span class="nt">&lt;/h1&gt;</span>
 </span><span class='line'><span class="nt">&lt;p&gt;</span>柴咲コウだいすき
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1783,21 +1480,12 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[RubyのデータをHTMLに変換]]></title>
     <link href="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/"/>
     <updated>2011-11-14T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2011/11/14/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
+    <content type="html"><![CDATA[<h4>data-converterってのをつくりました</h4>
 
-<p>  layout: post
-  title: RubyのデータをHTMLに変換
-  date: 2011-11-14
-  comments: true
-  categories: Ruby</p>
-
-<hr />
-
-<p>  <h4>data-converterってのをつくりました</h4></p>
 
 <p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
 gem install data-converterでインストールできます
@@ -1829,11 +1517,7 @@ gem install data-converterでインストールできます
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
 </span><span class='line'><span class="nb">require</span> <span class="s1">&#39;data-converter&#39;</span>
 </span><span class='line'>
 </span><span class='line'><span class="nb">puts</span> <span class="no">DataConverter</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span>
@@ -1856,8 +1540,6 @@ gem install data-converterでインストールできます
 </span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
 </span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
 </span><span class='line'><span class="sr">RESULT</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">            </span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1872,21 +1554,11 @@ gem install data-converterでインストールできます
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
     <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
     <updated>2011-10-08T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
-    <content type="html"><![CDATA[<hr />
-
-<p>  layout: post
-  title: SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました
-  date: 2011-10-08
-  comments: true
-  categories: Ruby,JavaScript,その他</p>
-
-<hr />
-
-<p>  こんばんは、ぼくです。</p>
+    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
 
 <p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
 

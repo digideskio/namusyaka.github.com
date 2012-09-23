@@ -1,14 +1,109 @@
-<hr />
 
-<p>  layout: post
-  title: ネタ
-  date: 2012-01-26
-  comments: true
-  categories: JavaScript</p>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ネタ - 法華経</title>
+  <meta name="author" content="namusyaka">
 
-<hr />
+  
+  <meta name="description" content="公開してなかったゴミみたいなコードを晒す会 両替pattern計算 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+(function(n, c) { var c = c.sort(), count = 0, l = n / c[0] + 1; if(c.length === 1 &hellip;">
+  
 
-<p>  公開してなかったゴミみたいなコードを晒す会</p>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/2012/01/26/github-jekyll/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ネタ</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T00:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>公開してなかったゴミみたいなコードを晒す会</p>
 
 <p>両替pattern計算</p>
 
@@ -25,11 +120,7 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">sort</span><span class="p">(),</span>
 </span><span class='line'>  <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>  <span class="nx">l</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">/</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
@@ -42,8 +133,6 @@
 </span><span class='line'>    <span class="nx">count</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">i</span> <span class="o">*</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">c</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
 </span><span class='line'><span class="p">})(</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
@@ -65,11 +154,7 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">styleSheets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="kd">var</span> <span class="nx">styleSheet</span> <span class="o">=</span> <span class="nx">styleSheets</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
@@ -85,9 +170,133 @@
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">namusyaka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T00:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2012/01/26/github-jekyll/" data-via="" data-counturl="http://namusyaka.github.com/blog/2012/01/26/github-jekyll/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/18/github-jekyll/" title="Previous Post: DOM操作においてinnerHTMLは使うべきか(追記)">&laquo; DOM操作においてinnerHTMLは使うべきか(追記)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/02/03/github-jekyll/" title="Next Post: CSSから検出した画像を予めloadしておくことで画像が遅れて表示されることを防ぎたい">CSSから検出した画像を予めloadしておくことで画像が遅れて表示されることを防ぎたい &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">esolangインタプリタの件</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

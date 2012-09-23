@@ -9,9 +9,12 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="layout: post title: いばら date: 2011-09-10 comments: true categories: Ruby,linux VPSを借りました。
+  <meta name="description" content="VPSを借りました。
 インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
-そして今作っているサービスですが、 &hellip;">
+そして今作っているサービスですが、かなりの負荷がかかりそうだということで、
+MemCacheとmod_rubyを導入してみました。
+かなり速くなったので満足しております。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,7 +75,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/09/10/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/09/10/github-jekyll/">いばら</a></h1>
     
     
       <p class="meta">
@@ -95,17 +98,7 @@
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: いばら
-  date: 2011-09-10
-  comments: true
-  categories: Ruby,linux</p>
-
-<hr />
-
-<p>  VPSを借りました。
+  <div class="entry-content"><p>VPSを借りました。
 インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
 そして今作っているサービスですが、かなりの負荷がかかりそうだということで、
 MemCacheとmod_rubyを導入してみました。
@@ -122,7 +115,7 @@ MemCacheとmod_rubyを導入してみました。
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/08/30/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/30/github-jekyll/">Spcamp2011のxss問題について</a></h1>
     
     
       <p class="meta">
@@ -145,17 +138,7 @@ MemCacheとmod_rubyを導入してみました。
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: spcamp2011のxss問題について
-  date: 2011-08-30
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  http://utf-8.jp/camp2011/ctf/inquiry.html</p>
+  <div class="entry-content"><p>http://utf-8.jp/camp2011/ctf/inquiry.html</p>
 
 <p>これです。
 id:hasegawayosukeさんが提示した問題ですね。
@@ -179,13 +162,7 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 その結果以下のようなURLになりましたとさ。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>
-</span><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -202,7 +179,7 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/08/23/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/23/github-jekyll/">あたりまえか</a></h1>
     
     
       <p class="meta">
@@ -225,27 +202,11 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: あたりまえか
-  date: 2011-08-23
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  さきほど公開したエントリーですがもっと高速化をすることが出来たので報告します。
+  <div class="entry-content"><p>さきほど公開したエントリーですがもっと高速化をすることが出来たので報告します。
 まず</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -263,11 +224,7 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
 </span><span class='line'>    <span class="nx">n</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span>
 </span><span class='line'>    <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">64</span> <span class="o">||</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="mi">91</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">96</span><span class="p">)</span> <span class="o">||</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">122</span><span class="p">)</span> <span class="o">?</span>
@@ -275,8 +232,6 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 </span><span class='line'>      <span class="o">:</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">((</span><span class="mi">97</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="mi">65</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">78</span><span class="p">)</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">+</span><span class="mi">13</span> <span class="o">:</span> <span class="nx">n</span> <span class="o">-</span> <span class="mi">13</span><span class="p">);</span>
 </span><span class='line'>  <span class="k">return</span> <span class="nx">s</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -289,19 +244,13 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'> <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>   <span class="nx">c</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
 </span><span class='line'>   <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">c</span> <span class="o">&amp;</span> <span class="mi">64</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">&amp;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">27</span><span class="p">)</span> <span class="o">?</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">c</span> <span class="o">+</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&amp;</span> <span class="mi">16</span> <span class="o">?</span> <span class="o">-</span><span class="mi">13</span> <span class="o">:</span> <span class="mi">13</span><span class="p">))</span> <span class="o">:</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 </span><span class='line'> <span class="p">}</span>
 </span><span class='line'> <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -360,11 +309,7 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 <span class='line-number'>47</span>
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span> <span class="o">:</span> <span class="s1">&#39;n&#39;</span> <span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">:</span> <span class="s1">&#39;o&#39;</span> <span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">:</span> <span class="s1">&#39;p&#39;</span> <span class="p">,</span> <span class="s1">&#39;d&#39;</span> <span class="o">:</span> <span class="s1">&#39;q&#39;</span> <span class="p">,</span> <span class="s1">&#39;e&#39;</span> <span class="o">:</span> <span class="s1">&#39;r&#39;</span> <span class="p">,</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span> <span class="o">:</span> <span class="s1">&#39;n&#39;</span> <span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">:</span> <span class="s1">&#39;o&#39;</span> <span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">:</span> <span class="s1">&#39;p&#39;</span> <span class="p">,</span> <span class="s1">&#39;d&#39;</span> <span class="o">:</span> <span class="s1">&#39;q&#39;</span> <span class="p">,</span> <span class="s1">&#39;e&#39;</span> <span class="o">:</span> <span class="s1">&#39;r&#39;</span> <span class="p">,</span>
 </span><span class='line'>   <span class="s1">&#39;f&#39;</span> <span class="o">:</span> <span class="s1">&#39;s&#39;</span> <span class="p">,</span> <span class="s1">&#39;g&#39;</span> <span class="o">:</span> <span class="s1">&#39;t&#39;</span> <span class="p">,</span> <span class="s1">&#39;h&#39;</span> <span class="o">:</span> <span class="s1">&#39;u&#39;</span> <span class="p">,</span> <span class="s1">&#39;i&#39;</span> <span class="o">:</span> <span class="s1">&#39;v&#39;</span> <span class="p">,</span> <span class="s1">&#39;j&#39;</span> <span class="o">:</span> <span class="s1">&#39;w&#39;</span> <span class="p">,</span> <span class="s1">&#39;k&#39;</span> <span class="o">:</span> <span class="s1">&#39;x&#39;</span> <span class="p">,</span> <span class="s1">&#39;l&#39;</span> <span class="o">:</span> <span class="s1">&#39;y&#39;</span> <span class="p">,</span>
 </span><span class='line'>   <span class="s1">&#39;m&#39;</span> <span class="o">:</span> <span class="s1">&#39;z&#39;</span> <span class="p">,</span> <span class="s1">&#39;n&#39;</span> <span class="o">:</span> <span class="s1">&#39;a&#39;</span> <span class="p">,</span> <span class="s1">&#39;o&#39;</span> <span class="o">:</span> <span class="s1">&#39;b&#39;</span> <span class="p">,</span> <span class="s1">&#39;p&#39;</span> <span class="o">:</span> <span class="s1">&#39;c&#39;</span> <span class="p">,</span> <span class="s1">&#39;q&#39;</span> <span class="o">:</span> <span class="s1">&#39;d&#39;</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span> <span class="o">:</span> <span class="s1">&#39;e&#39;</span> <span class="p">,</span> <span class="s1">&#39;s&#39;</span> <span class="o">:</span> <span class="s1">&#39;f&#39;</span> <span class="p">,</span>
 </span><span class='line'>   <span class="s1">&#39;t&#39;</span> <span class="o">:</span> <span class="s1">&#39;g&#39;</span> <span class="p">,</span> <span class="s1">&#39;u&#39;</span> <span class="o">:</span> <span class="s1">&#39;h&#39;</span> <span class="p">,</span> <span class="s1">&#39;v&#39;</span> <span class="o">:</span> <span class="s1">&#39;i&#39;</span> <span class="p">,</span> <span class="s1">&#39;w&#39;</span> <span class="o">:</span> <span class="s1">&#39;j&#39;</span> <span class="p">,</span> <span class="s1">&#39;x&#39;</span> <span class="o">:</span> <span class="s1">&#39;k&#39;</span> <span class="p">,</span> <span class="s1">&#39;y&#39;</span> <span class="o">:</span> <span class="s1">&#39;l&#39;</span> <span class="p">,</span> <span class="s1">&#39;z&#39;</span> <span class="o">:</span> <span class="s1">&#39;m&#39;</span> <span class="p">,</span>
@@ -413,8 +358,6 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
 </span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a:&quot;</span><span class="o">+</span><span class="nx">_a</span><span class="o">+</span><span class="s2">&quot;b:&quot;</span><span class="o">+</span><span class="nx">_b</span><span class="o">+</span><span class="s2">&quot;c:&quot;</span><span class="o">+</span><span class="nx">_c</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">//a:114b:139c:272</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -434,7 +377,7 @@ aとbは環境によって多少変わったりしそうですが基本的に連
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/08/20/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/20/github-jekyll/">勘違いしていた</a></h1>
     
     
       <p class="meta">
@@ -457,17 +400,7 @@ aとbは環境によって多少変わったりしそうですが基本的に連
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: 勘違いしていた
-  date: 2011-08-20
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  JavaScriptにおけるwithはリテラルでも走査してしまうので結果無駄な参照が多くなるから使わんほうが良いと思っていましたが、リテラルは走査対象外なようです。</p>
+  <div class="entry-content"><p>JavaScriptにおけるwithはリテラルでも走査してしまうので結果無駄な参照が多くなるから使わんほうが良いと思っていましたが、リテラルは走査対象外なようです。</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -475,18 +408,12 @@ aとbは環境によって多少変わったりしそうですが基本的に連
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
 </span><span class='line'><span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
 </span><span class='line'>  <span class="nx">b</span> <span class="o">:</span> <span class="s2">&quot;c&quot;</span>
 </span><span class='line'><span class="p">};</span>
 </span><span class='line'><span class="kd">with</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -503,7 +430,7 @@ aとbは環境によって多少変わったりしそうですが基本的に連
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/08/05/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/08/05/github-jekyll/">暑中見舞い</a></h1>
     
     
       <p class="meta">
@@ -526,17 +453,7 @@ aとbは環境によって多少変わったりしそうですが基本的に連
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: 暑中見舞い
-  date: 2011-08-05
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  あついですね</p>
+  <div class="entry-content"><p>あついですね</p>
 </div>
   
   
@@ -549,7 +466,7 @@ aとbは環境によって多少変わったりしそうですが基本的に連
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/07/16/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/07/16/github-jekyll/">Hokkaido.pmに参加しました</a></h1>
     
     
       <p class="meta">
@@ -572,18 +489,10 @@ aとbは環境によって多少変わったりしそうですが基本的に連
   </header>
 
 
-  <div class="entry-content"><hr />
+  <div class="entry-content"><h5>Hokkaido.pm！</h5>
 
-<p>  layout: post
-  title: Hokkaido.pmに参加しました
-  date: 2011-07-16
-  comments: true
-  categories: その他</p>
 
-<hr />
-
-<p>  <h5>Hokkaido.pm！</h5>
-以前から何らかの勉強会などに参加してみたいと思いつつもなかなか機会が無くて参加していませんでしたが、今回は思い切って参加してみました。</p>
+<p>以前から何らかの勉強会などに参加してみたいと思いつつもなかなか機会が無くて参加していませんでしたが、今回は思い切って参加してみました。</p>
 
 <h5>しかし</h5>
 
@@ -619,7 +528,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/07/11/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/07/11/github-jekyll/">Luilak Profileをリリースしました</a></h1>
     
     
       <p class="meta">
@@ -642,17 +551,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: Luilak Profileをリリースしました
-  date: 2011-07-11
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  URL : <a href="http://p.luilak.net">http://p.luilak.net</a></p>
+  <div class="entry-content"><p>URL : <a href="http://p.luilak.net">http://p.luilak.net</a></p>
 
 <p>タグ　を使って同じ趣味・特技を持つ人を探せる環境を想定して作りました。
 他のサービスも含めたコミュニケーションのキーとなるサービスを目指します。
@@ -670,7 +569,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/26/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/06/26/github-jekyll/">プレシャスなとき～</a></h1>
     
     
       <p class="meta">
@@ -693,17 +592,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: プレシャスなとき～
-  date: 2011-06-26
-  comments: true
-  categories:</p>
-
-<hr />
-
-<p>  き～み～の傘　あ～たたかい～</p>
+  <div class="entry-content"><p>き～み～の傘　あ～たたかい～</p>
 </div>
   
   
@@ -716,7 +605,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/20/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/06/20/github-jekyll/">Namusyaka関係のサービスが停止しておりますごめんなさい</a></h1>
     
     
       <p class="meta">
@@ -739,17 +628,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: namusyaka関係のサービスが停止しておりますごめんなさい
-  date: 2011-06-20
-  comments: true
-  categories: その他</p>
-
-<hr />
-
-<p>  レンタルサーバ料金を払い忘れてました.ごめんなさい.</p>
+  <div class="entry-content"><p>レンタルサーバ料金を払い忘れてました.ごめんなさい.</p>
 </div>
   
   
@@ -762,7 +641,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/06/13/github-jekyll/">Github Jekyll</a></h1>
+      <h1 class="entry-title"><a href="/blog/2011/06/13/github-jekyll/">Javascriptで画像スライドつくった</a></h1>
     
     
       <p class="meta">
@@ -785,17 +664,7 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   </header>
 
 
-  <div class="entry-content"><hr />
-
-<p>  layout: post
-  title: javascriptで画像スライドつくった
-  date: 2011-06-13
-  comments: true
-  categories: JavaScript</p>
-
-<hr />
-
-<p>  個人的に必要に迫られたので作りました.
+  <div class="entry-content"><p>個人的に必要に迫られたので作りました.
 001, 002のようにファイル名の数値がインクリメントされていくような形式の画像ファイルをスライドっぽくするだけです.</p>
 
 <p><a href="http://namusyaka.info/slide_img/">画像をスライドさせて楽しむツール</a></p>
@@ -826,23 +695,23 @@ debugしてないので.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/08/29/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/26/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/07/26/github-jekyll/">esolangインタプリタの件</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/20/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/06/27/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/04/11/github-jekyll/">Github Jekyll</a>
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>

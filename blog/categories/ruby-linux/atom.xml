@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby,linux | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/ruby-linux/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2012-09-23T15:03:12+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[いばら]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/09/10/github-jekyll/"/>
+    <updated>2011-09-10T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/09/10/github-jekyll</id>
+    <content type="html"><![CDATA[<p>VPSを借りました。
+インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
+そして今作っているサービスですが、かなりの負荷がかかりそうだということで、
+MemCacheとmod_rubyを導入してみました。
+かなり速くなったので満足しております。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2012-09-23T15:03:12+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rubyで例外クラスを動的に定義する]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/03/18/github-jekyll/"/>
+    <updated>2012-03-18T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/03/18/github-jekyll</id>
+    <content type="html"><![CDATA[<p>グローバルの場合。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Object.const_set(&#39;HogeError&#39;, Class.new(ArgumentError)) # 継承させたい例外クラスを渡す</span>
+</span><span class='line'><span class="sr">raise HogeError&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Hoge::Fugaのようなネストされた空間の場合。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;module Hoge</span>
+</span><span class='line'><span class="sr">  class Fuga&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;Piyo&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">test</span><span class="p">;</span> <span class="k">raise</span> <span class="no">Piyo</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Hoge::Fuga.test&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>色々使い道があるかとは思いますが、例えば同じ例外クラスを継承する独自例外クラスを何個も定義する場合は以下のように書けて便利です。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;module Foo</span>
+</span><span class='line'><span class="sr">  class Bar&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vc">@@error_class</span> <span class="o">=</span> <span class="sx">%w( Hoge Fuga Piyo )</span>
+</span><span class='line'><span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 例外を発生させるクラスメソッドを定義</span>
+</span><span class='line'><span class="k">class</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">self</span>
+</span><span class='line'>  <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">define_method</span> <span class="nb">name</span><span class="o">.</span><span class="n">downcase</span> <span class="k">do</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> error !&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Foo::Bar.hoge&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[地獄のミサワ用スクレイピングライブラリをつくった]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/02/27/github-jekyll/"/>
+    <updated>2012-02-27T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/02/27/github-jekyll</id>
+    <content type="html"><![CDATA[<p>nokogiriとかoptparse使ってみたくてつくりまひた。
+やたらと長いHashは、引数で受け取ったカテゴリが実在するかどうかをhttp-request飛ばして判断するようにすればなんとかなるとおもうけど、typo多そうだしやめておきまひた。
+だけどカテゴリ増えるごとにコード修正すんのも面倒なんですよねー。
+そのうち方針を変えるかもしれません。</p>
+
+<p><a href="https://github.com/namusyaka/Ruby4Misawa">Ruby4Misawa/Github</a>
+<a href="https://rubygems.org/gems/Ruby4Misawa">Ruby4Misawa/RubyGems</a></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- encoding: UTF-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;%w( uri open-uri optparse rubygems nokogiri ).each do | name |</span>
+</span><span class='line'><span class="sr">  require name</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Misawa</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  DOMAIN = &#39;http:/</span><span class="o">/</span><span class="n">jigokuno</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="s1">&#39;</span>
+</span><span class='line'><span class="s1">  CATEGORIES = {&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;&quot;cecil&quot; =&amp;gt; 79,</span>
+</span><span class='line'><span class="s1">&quot;D-Matt&quot; =&amp;gt; 25,</span>
+</span><span class='line'><span class="s1">&quot;KAZ&quot; =&amp;gt; 1,</span>
+</span><span class='line'><span class="s1">&quot;KOUNOIKE&quot; =&amp;gt; 29,</span>
+</span><span class='line'><span class="s1">&quot;masa&quot; =&amp;gt; 13,</span>
+</span><span class='line'><span class="s1">&quot;masao&quot; =&amp;gt; 53,</span>
+</span><span class='line'><span class="s1">&quot;NAKAYAN&quot; =&amp;gt; 8,</span>
+</span><span class='line'><span class="s1">&quot;SYUN&quot; =&amp;gt; 24,</span>
+</span><span class='line'><span class="s1">&quot;ルシフェル&quot; =&amp;gt; 14,</span>
+</span><span class='line'><span class="s1">&quot;あつしさん&quot; =&amp;gt; 64,</span>
+</span><span class='line'><span class="s1">&quot;あの御方&quot; =&amp;gt; 37,</span>
+</span><span class='line'><span class="s1">&quot;しょうへい&quot; =&amp;gt; 66,</span>
+</span><span class='line'><span class="s1">&quot;すなお&quot; =&amp;gt; 38,</span>
+</span><span class='line'><span class="s1">&quot;たばっち&quot; =&amp;gt; 52,</span>
+</span><span class='line'><span class="s1">&quot;ちんちんでか男&quot; =&amp;gt; 57,</span>
+</span><span class='line'><span class="s1">&quot;つっちー&quot; =&amp;gt; 7,</span>
+</span><span class='line'><span class="s1">&quot;てづっちゃん&quot; =&amp;gt; 67,</span>
+</span><span class='line'><span class="s1">&quot;とりっぴー&quot; =&amp;gt; 82,</span>
+</span><span class='line'><span class="s1">&quot;なかじ&quot; =&amp;gt; 28,</span>
+</span><span class='line'><span class="s1">&quot;のぶちゃん&quot; =&amp;gt; 22,</span>
+</span><span class='line'><span class="s1">&quot;のぼる&quot; =&amp;gt; 49,</span>
+</span><span class='line'><span class="s1">&quot;のりすけ&quot; =&amp;gt; 21,</span>
+</span><span class='line'><span class="s1">&quot;はしもっさん&quot; =&amp;gt; 44,</span>
+</span><span class='line'><span class="s1">&quot;はまちゃん&quot; =&amp;gt; 55,</span>
+</span><span class='line'><span class="s1">&quot;ぴーなっつ&quot; =&amp;gt; 58,</span>
+</span><span class='line'><span class="s1">&quot;まみのパパ&quot; =&amp;gt; 56,</span>
+</span><span class='line'><span class="s1">&quot;りきお&quot; =&amp;gt; 85,</span>
+</span><span class='line'><span class="s1">&quot;エ～イチ&quot; =&amp;gt; 83,</span>
+</span><span class='line'><span class="s1">&quot;キヨシロー&quot; =&amp;gt; 17,</span>
+</span><span class='line'><span class="s1">&quot;キング&quot; =&amp;gt; 84,</span>
+</span><span class='line'><span class="s1">&quot;コウヘイ&quot; =&amp;gt; 3,</span>
+</span><span class='line'><span class="s1">&quot;シュナイダー&quot; =&amp;gt; 34,</span>
+</span><span class='line'><span class="s1">&quot;ショップ店員&quot; =&amp;gt; 12,</span>
+</span><span class='line'><span class="s1">&quot;ジーンズ&quot; =&amp;gt; 36,</span>
+</span><span class='line'><span class="s1">&quot;ジェイ&quot; =&amp;gt; 10,</span>
+</span><span class='line'><span class="s1">&quot;ソドム&quot; =&amp;gt; 78,</span>
+</span><span class='line'><span class="s1">&quot;タケ&quot; =&amp;gt; 54,</span>
+</span><span class='line'><span class="s1">&quot;チーポー&quot; =&amp;gt; 35,</span>
+</span><span class='line'><span class="s1">&quot;デスピサロ&quot; =&amp;gt; 46,</span>
+</span><span class='line'><span class="s1">&quot;ドリモグ&quot; =&amp;gt; 40,</span>
+</span><span class='line'><span class="s1">&quot;ナイト&quot; =&amp;gt; 50,</span>
+</span><span class='line'><span class="s1">&quot;ハリソン・フォード&quot; =&amp;gt; 41,</span>
+</span><span class='line'><span class="s1">&quot;バイトリーダー&quot; =&amp;gt; 71,</span>
+</span><span class='line'><span class="s1">&quot;ファイナルボム&quot; =&amp;gt; 74,</span>
+</span><span class='line'><span class="s1">&quot;フェイク&quot; =&amp;gt; 32,</span>
+</span><span class='line'><span class="s1">&quot;マイク&quot; =&amp;gt; 65,</span>
+</span><span class='line'><span class="s1">&quot;ミラージュ&quot; =&amp;gt; 5,</span>
+</span><span class='line'><span class="s1">&quot;ラッシュさん&quot; =&amp;gt; 19,</span>
+</span><span class='line'><span class="s1">&quot;リアル&quot; =&amp;gt; 81,</span>
+</span><span class='line'><span class="s1">&quot;リチャード&quot; =&amp;gt; 80,</span>
+</span><span class='line'><span class="s1">&quot;リュウー&quot; =&amp;gt; 26,</span>
+</span><span class='line'><span class="s1">&quot;レオン&quot; =&amp;gt; 59,</span>
+</span><span class='line'><span class="s1">&quot;吉岡&quot; =&amp;gt; 6,</span>
+</span><span class='line'><span class="s1">&quot;久志&quot; =&amp;gt; 51,</span>
+</span><span class='line'><span class="s1">&quot;玉木宏&quot; =&amp;gt; 43,</span>
+</span><span class='line'><span class="s1">&quot;健二&quot; =&amp;gt; 70,</span>
+</span><span class='line'><span class="s1">&quot;佐伯さん&quot; =&amp;gt; 76,</span>
+</span><span class='line'><span class="s1">&quot;砂漠の狼&quot; =&amp;gt; 63,</span>
+</span><span class='line'><span class="s1">&quot;坂本竜馬の子孫&quot; =&amp;gt; 27,</span>
+</span><span class='line'><span class="s1">&quot;桜井&quot; =&amp;gt; 39,</span>
+</span><span class='line'><span class="s1">&quot;時任&quot; =&amp;gt; 42,</span>
+</span><span class='line'><span class="s1">&quot;実行委員&quot; =&amp;gt; 47,</span>
+</span><span class='line'><span class="s1">&quot;小松っち&quot; =&amp;gt; 75,</span>
+</span><span class='line'><span class="s1">&quot;松尾&quot; =&amp;gt; 23,</span>
+</span><span class='line'><span class="s1">&quot;水谷&quot; =&amp;gt; 11,</span>
+</span><span class='line'><span class="s1">&quot;袖まくり&quot; =&amp;gt; 60,</span>
+</span><span class='line'><span class="s1">&quot;太陽 &quot; =&amp;gt; 68,</span>
+</span><span class='line'><span class="s1">&quot;代官山&quot; =&amp;gt; 33,</span>
+</span><span class='line'><span class="s1">&quot;大嶽一史&quot; =&amp;gt; 77,</span>
+</span><span class='line'><span class="s1">&quot;拓真&quot; =&amp;gt; 31,</span>
+</span><span class='line'><span class="s1">&quot;達也の兄ちゃん&quot; =&amp;gt; 72,</span>
+</span><span class='line'><span class="s1">&quot;痴漢&quot; =&amp;gt; 15,</span>
+</span><span class='line'><span class="s1">&quot;中村健&quot; =&amp;gt; 4,</span>
+</span><span class='line'><span class="s1">&quot;田部&quot; =&amp;gt; 20,</span>
+</span><span class='line'><span class="s1">&quot;東大生&quot; =&amp;gt; 45,</span>
+</span><span class='line'><span class="s1">&quot;湯上谷&quot; =&amp;gt; 16,</span>
+</span><span class='line'><span class="s1">&quot;藤井&quot; =&amp;gt; 9,</span>
+</span><span class='line'><span class="s1">&quot;道明寺&quot; =&amp;gt; 61,</span>
+</span><span class='line'><span class="s1">&quot;風雲児達&quot; =&amp;gt; 86,</span>
+</span><span class='line'><span class="s1">&quot;北岡&quot; =&amp;gt; 62,</span>
+</span><span class='line'><span class="s1">&quot;野村&quot; =&amp;gt; 2,</span>
+</span><span class='line'><span class="s1">&quot;野茂&quot; =&amp;gt; 30,</span>
+</span><span class='line'><span class="s1">&quot;零&quot; =&amp;gt; 69,</span>
+</span><span class='line'><span class="s1">&quot;零&quot; =&amp;gt; 73,</span>
+</span><span class='line'><span class="s1">&quot;和田&quot; =&amp;gt; 48</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  }&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  attr_reader :category, :page&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  def initialize(category, page = 0)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;@category = CATEGORIES[category]</span>
+</span><span class='line'><span class="s1">@page = page =~ /^[0-9]+?\.\.[0-9]+?$/ ? eval(page) : page</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  def scrape&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;create_uri.inject([]) do | result, uri |</span>
+</span><span class='line'><span class="s1">  body = get_body(uri)</span>
+</span><span class='line'><span class="s1">  Nokogiri.HTML(body).css(&#39;</span><span class="n">img</span><span class="o">.</span><span class="n">pict</span><span class="s1">&#39;).map { | img | result &amp;lt;&amp;lt; img[&#39;</span><span class="n">src</span><span class="s1">&#39;] } if body</span>
+</span><span class='line'><span class="s1">  result</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  class &amp;lt;&amp;lt; self;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;def save_misawa(category, page)</span>
+</span><span class='line'><span class="s1">  misawa = self.new(category, page)</span>
+</span><span class='line'><span class="s1">  misawa.scrape.each_with_index do | src, i |</span>
+</span><span class='line'><span class="s1">    File.open(&quot;#{misawa.category}-#{i}.gif&quot;, &#39;</span><span class="n">w</span><span class="s1">&#39;) { | f | f.write(misawa.get_body(src)) }</span>
+</span><span class='line'><span class="s1">  end</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">def uri_misawa(category, page)</span>
+</span><span class='line'><span class="s1">  misawa = self.new(category, page)</span>
+</span><span class='line'><span class="s1">  misawa.scrape.each_with_index do | src, i |</span>
+</span><span class='line'><span class="s1">    puts &quot;#{misawa.category}-#{i} : #{src} &quot;</span>
+</span><span class='line'><span class="s1">  end</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">def method_missing(name, *args)</span>
+</span><span class='line'><span class="s1">  raise ArgumentError;</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  def get_body(uri)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;begin</span>
+</span><span class='line'><span class="s1">  open(URI.encode(uri)).read</span>
+</span><span class='line'><span class="s1">rescue OpenURI::HTTPError</span>
+</span><span class='line'><span class="s1">  return nil</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  def create_uri&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;if @page.is_a?(Range)</span>
+</span><span class='line'><span class="s1">  base = &quot;#{DOMAIN}/?cid=#{@category}&amp;amp;page=&quot;</span>
+</span><span class='line'><span class="s1">  @page.map { | i | &quot;#{base}#{i}&quot; }</span>
+</span><span class='line'><span class="s1">else</span>
+</span><span class='line'><span class="s1">  [&quot;#{DOMAIN}/?cid=#{@category}&amp;amp;page=#{@page}&quot;]</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;if $0 === &lt;strong&gt;FILE&lt;/strong&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  OptionParser.new do | opt |&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;arguments = {}</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">opt.on(&#39;</span><span class="o">-</span><span class="n">t</span> <span class="o">[</span><span class="no">TYPE</span><span class="o">]</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">type</span> <span class="o">[</span><span class="no">TYPE</span><span class="o">]</span><span class="s1">&#39;) do | value |</span>
+</span><span class='line'><span class="s1">  arguments[:type] = value</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">opt.on(&#39;</span><span class="o">-</span><span class="nb">p</span> <span class="o">[</span><span class="no">PAGE</span><span class="o">]</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">page</span> <span class="o">[</span><span class="no">PAGE</span><span class="o">]</span><span class="s1">&#39;) do | value |</span>
+</span><span class='line'><span class="s1">  arguments[:page] = value</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'><span class="s1">opt.on(&#39;</span><span class="o">-</span><span class="n">c</span> <span class="o">[</span><span class="no">CATEGORY</span><span class="o">]</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">category</span> <span class="o">[</span><span class="no">CATEGORY</span><span class="o">]</span><span class="s1">&#39;) do | value |</span>
+</span><span class='line'><span class="s1">  arguments[:category] = value</span>
+</span><span class='line'><span class="s1">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">opt.parse!(ARGV)</span>
+</span><span class='line'><span class="s1">Misawa.send(&quot;#{arguments[:type] || &#39;</span><span class="n">uri</span><span class="err">&#39;</span><span class="p">}</span><span class="n">_misawa</span><span class="s2">&quot;, arguments[:category], arguments[:page])</span>
+</span><span class='line'><span class="s2">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;  end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;end&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>使い方</h4>
+
+
+<p>インストールは以下の通り。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;gem install Ruby4Misawa&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>以下は実行例。
+ちなみにこれは、バイトリーダーの０～３ページまでに表示される画像を保存します。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ruby Ruby4Misawa.rb -t save -c バイトリーダー -p 0..3&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h5>簡単な解説(といってもREADMEの内容)</h5>
+
+
+<dl>
+<dt>-t [uri, save]
+<dd>uriは画像のURIを出力、saveは保存しまくる。permission関係でこける可能性はありけり。
+<dt>-c [カテゴリ名]
+<dd>ルシフェル やバイトリーダーのように指定。一つしか指定できないので注意。
+<dt>-p [対象ページ]
+<dd>1 や 0のような数値か、0..5のようにRange形式で指定
+<dd>&#8211;type, &#8211;category, &#8211;pageでも可
+<dd>ちなみに何も指定しないと地獄のミサワのトップページにあるミサワ画像(と思われるもの)を取ってくる
+</dl>
+
+
+<p>良いミサワライフを！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RubyのデータをHTMLに変換]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/"/>
+    <updated>2011-11-14T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/11/14/github-jekyll</id>
+    <content type="html"><![CDATA[<h4>data-converterってのをつくりました</h4>
+
+
+<p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
+gem install data-converterでインストールできます
+<a href="https://github.com/namusyaka/data-converter">github</a>
+<a href="https://rubygems.org/gems/data-converter">rubygems</a></p>
+
+<p>例:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;require &#39;rubygems&#39;</span>
+</span><span class='line'><span class="sr">require &#39;data-converter&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="no">DataConverter</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span>
+</span><span class='line'>  <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:c</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:d</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;&amp;lt;&gt;&amp;amp;</span><span class="se">\&quot;</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">})</span> <span class="c1">#=&gt; &amp;lt;&amp;lt;-RESULT&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dl</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dt</span><span class="o">&gt;</span><span class="n">a</span><span class="o">&lt;</span><span class="sr">/dt&gt;</span>
+</span><span class='line'><span class="sr">&lt;dd&gt;b&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dt</span><span class="o">&gt;</span><span class="n">c</span><span class="o">&lt;</span><span class="sr">/dt&gt;</span>
+</span><span class='line'><span class="sr">&lt;dd&gt;&lt;dl&gt;</span>
+</span><span class='line'><span class="sr">&lt;dt&gt;d&lt;/</span><span class="n">dt</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dd</span><span class="o">&gt;&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="c1">#039;&lt;/li&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/li&gt;</span>
+</span><span class='line'><span class="sr">&lt;li&gt;2&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/ul&gt;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;RESULT&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>はてなブログつくりました</h4>
+
+
+<p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
+技術系のこと以外ははてなブログを使おうと思います。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[じぇむずなのか]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/05/06/github-jekyll/"/>
+    <updated>2011-05-06T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/05/06/github-jekyll</id>
+    <content type="html"><![CDATA[<p>ずっとげむずだと思ってた.
+先日, 誰もmacbook airを授けてくれる気配がないので自分で買ったら何とRubyがデフォルトで入ってた, 嬉しい.
+ていうかPHP, Perl, Python, Javaなども入ってるようで改めてすばらしいと思いましたというはなし.</p>
+
+<p>しかしながら, gem install hogeがバージョンが古いと怒られて出来なかったので,gem update --systemしたらだめだった.
+何でだろと思って色々調べたら以下のように書くとオッケーらしい.
+Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+
+<p>無事できたのでよかったです.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rubygemsにライブラリ(モジュール)をあげてみた]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/04/20/github-jekyll/"/>
+    <updated>2011-04-20T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/04/20/github-jekyll</id>
+    <content type="html"><![CDATA[<p>CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
+http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
+を参考にRubygemsを始めてみました。</p>
+
+<p>まず、アカウントを作ります。
+めんどいので端折ります。</p>
+
+<p>そしてgemcutterをインストールします。
+Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+
+<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。
+Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+
+<p>とても簡単です。わーい。</p>
+
+<h4>公開したOperatorというモジュール</h4>
+
+
+<p>Rubygems https://rubygems.org/gems/Operator
+Github https://github.com/namusyaka/Operator</p>
+
+<p><a href="http://weble.org/2011/03/07/php-get-and-post-function">PHP で凄く簡単に GET/POST 送信ができる関数を作りました</a>にあった関数をみてて思いついたものです。
+get/postを簡単に出来るのはもちろん、responseを操作したい場面が多々あったのでそっちのメソッドも少し実装してます。
+構造的には
+-Operator
+--Operator::HTML
+--Operator::HTTP
+ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
+使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
+gemにあがっているので、以下を実行するとインストールできます。
+Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
+
+<p>具体的には以下のように使えます。
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  require &#39;rubygems&#39;</span>
+</span><span class='line'><span class="sr">  require &#39;Operator&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#namusyaka.infoのa要素href属性を抜き出したい場合</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">pick_attribute</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="c1">#指定ラインからのみ抽出したい場合は、第三引数に指定行をNumericかRangeで渡します。&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#後ろから読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">reverse_read</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;p line</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="c1">#前から読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">read_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;p line</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  end</span>
+</span><span class='line'><span class="sr">  op.close&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>がんばろう。</p>
+]]></content>
+  </entry>
+  
+</feed>
