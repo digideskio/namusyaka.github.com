@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -528,7 +528,7 @@
 </span><span class='line'><span class="s2">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>使い方</h4>
+<h2>使い方</h2>
 
 
 <p>インストールは以下の通り。
@@ -582,7 +582,7 @@
     <link href="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/"/>
     <updated>2011-11-14T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2011/11/14/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>data-converterってのをつくりました</h4>
+    <content type="html"><![CDATA[<h2>data-converterってのをつくりました</h2>
 
 
 <p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
@@ -653,7 +653,7 @@ gem install data-converterでインストールできます
 </span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>はてなブログつくりました</h4>
+<h2>はてなブログつくりました</h2>
 
 
 <p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
@@ -698,7 +698,7 @@ Liquid error: ClassNotFound: no lexer for alias 'ssh' found</p>
 
 <p>とても簡単です。わーい。</p>
 
-<h4>公開したOperatorというモジュール</h4>
+<h2>公開したOperatorというモジュール</h2>
 
 
 <p>Rubygems https://rubygems.org/gems/Operator

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript,Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript-ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -79,7 +79,7 @@
 クライアントはHTML,CSS,JavaScript。
 サーバサイドはRubyで処理するつもりです。</p>
 
-<h4>簡単にシステムを説明すると</h4>
+<h2>簡単にシステムを説明すると</h2>
 
 
 <p>・基本的に一度入室すると退室申請を出すまでチャットメンバーとして在籍し続ける。
@@ -91,7 +91,7 @@
 参考までにSSはっときます。
 [f:id:namusyaka:20100824231343p:image]</p>
 
-<h4>愚痴ですが</h4>
+<h2>愚痴ですが</h2>
 
 
 <p>PHPは美しくないとか気持ち悪いとか言ってた僕ですが文字コード関係を

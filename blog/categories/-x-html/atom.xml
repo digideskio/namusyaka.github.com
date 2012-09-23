@@ -4,7 +4,7 @@
   <title><![CDATA[Category: (X)HTML | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/-x-html/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -20,7 +20,7 @@
     <id>http://namusyaka.github.com/blog/2011/12/29/github-jekyll</id>
     <content type="html"><![CDATA[<p>以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
 
-<h4>HTMLのおはなし</h4>
+<h2>HTMLのおはなし</h2>
 
 
 <blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.2.1>
@@ -92,7 +92,8 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<h4>しかし</h4>
+<h2>しかし</h2>
+
 OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースにこけるようです(具体的には、cssが正しく反映されない、javascriptでこける)。
 要因としてはhtml要素,body要素,head要素が省略されていることにあったようですが、詳しいことは調べてないのでわかりません(もしかしたら、他にもあるかもしれません。誰か調べたら教えてください)。
 一つ言えるのは、<strong>これらの要素は省略できるけどしないほうが良い</strong>ってことですね。
@@ -108,7 +109,7 @@ OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースに�
     <link href="http://namusyaka.github.com/blog/2010/08/19/github-jekyll/"/>
     <updated>2010-08-19T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2010/08/19/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>最近</h4>
+    <content type="html"><![CDATA[<h2>最近</h2>
 
 
 <p>よく目にするのが、表示されるんだからHTMLは適当でいいじゃんｗｗｗ
@@ -123,7 +124,7 @@ HTMLとか簡単じゃね？出来ない奴いんの？ｗｗｗ
 
 <p>今更僕が異論を唱えたところでどうなるって話でもないんですが、このブログをみてくれている人には僕がHTMLを書く際気をつけることや、考え方について知ってもらいたいので書こうと思います。</p>
 
-<h4>まず気をつけていること</h4>
+<h2>まず気をつけていること</h2>
 
 
 
@@ -155,7 +156,7 @@ googleほどの技術力や思考力を自分が持っているという自信�
 物理要素で書かれていても、目の見えない人にしてみれば意味がないので、なるべく使うのは控えたいと思ってます。
 これに関しては、自分は目が見えるしｗｗｗｗ目見えない奴とかマイノリティだろｗｗｗｗｗとか言う人が多そうですし、実際そういう人を説得するのはめんどいので、その人の良心に任せるしかないと思ってます。</p>
 
-<h4>考え方</h4>
+<h2>考え方</h2>
 
 
 <p>とにかく僕はめんどくさかったり、だるいことが嫌いなんです。
@@ -168,7 +169,7 @@ HTMLはデザインを一切気にせず、サクッと書いて、CSSで各要�
 <p>言葉足らずなとこがある気がしますが、暑いので終わります。
 ミスとかあったら報告してくれると嬉しいです。</p>
 
-<h4>追記</h4>
+<h2>追記</h2>
 
 
 <p>めんどくさいことが嫌ならプログラミングするなよｗｗｗとか言わないでください。
@@ -192,7 +193,7 @@ DIV要素しか使ってないんじゃないの！？ってサイトがかな�
 <abbr title="視覚的な意味しかない要素">物理要素</abbr>※2(CENTER要素、FONT要素など)は、本来<abbr title="HyperText Markup Language">HTML</abbr>で使わなくていいものだというのが僕の持論だからですね。
 それに、デザイン面は全て<abbr title="Cascading Style Sheets">CSS</abbr>で・・・っていうのがW3C的な理想だし、実際に書く人間としてもその方が楽なんじゃないかと。</p>
 
-<h4>で、話はそれましたが</h4>
+<h2>で、話はそれましたが</h2>
 
 
 <p>DIV要素についてです。
@@ -200,7 +201,7 @@ DIV要素そのものには論理的な意味合いはないんですが、id属
 ですので、一般的な物理要素とはちょっと違うわけですね。
 一概に否定は出来ないってことです。</p>
 
-<h4>おまけ：物理要素として認識されているb要素について</h4>
+<h2>おまけ：物理要素として認識されているb要素について</h2>
 
 
 <p>以前に、某H氏とこのような話をしてたときに話題になったんですが、b要素ってのがありますよね？

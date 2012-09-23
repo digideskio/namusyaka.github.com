@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Najax | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/najax/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -28,7 +28,9 @@ Shift_JISにエンコードするために[http://nurucom-archives.hp.infoseek.c
 この関数が無ければ完成はしてないです。
 では個人的な批評と、今後実装していく予定のことについて。</p>
 
-<h4>批評</h4>
+<h2>批評</h2>
+
+
 
 
 <h5>評価できる点</h5>
@@ -46,14 +48,14 @@ Rubyの処理を減らすために色々考えたんですが、結局そこそ�
 途中までは自動ログインといっても名ばかりで、成りすましが余裕な状況だったので、それはまずいということで最初から作り直しました。
 この辺は経験の浅さなのかなと思います。</p>
 
-<h4>今後実装予定</h4>
+<h2>今後実装予定</h2>
 
 
 <p>色の変更は必ず実装します。
 だけど色を変更できるということで可視性が低下する恐れもあるので
 色変更無効(JavaScript)にするオプションも一緒に作ろうと思います。</p>
 
-<h4>では皆さん</h4>
+<h2>では皆さん</h2>
 
 
 <p>もしよかったら使ってください。

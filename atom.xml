@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -48,7 +48,7 @@
     <link href="http://namusyaka.github.com/blog/2012/07/20/github-jekyll/"/>
     <updated>2012-07-20T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/07/20/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>Esolangインタプリタの話</h4>
+    <content type="html"><![CDATA[<h2>Esolangインタプリタの話</h2>
 
 
 <p>Github : <a href="https://github.com/namusyaka/sandbox/tree/master/Esolang">sandbox/Esolang</a>
@@ -59,7 +59,7 @@
 とはいえ、実装に不安な点がないわけじゃないので意見等お待ちしています。
 (ちなみに、実際に使う場合等は&#8217;&lt;&#8217;や&#8217;+&#8217;のような記号にいちいち関数と関連づけて実行するよりも、switch文等で分岐させたほうが絶対的に速いです)</p>
 
-<h4>SeaSlug</h4>
+<h2>SeaSlug</h2>
 
 
 <p>サイト : <a href="http://seaslug.luilak.net/">SeaSlug</a>
@@ -75,13 +75,13 @@ VimとVimScriptのWEB実装みたいなやつです。
     <link href="http://namusyaka.github.com/blog/2012/06/27/github-jekyll/"/>
     <updated>2012-06-27T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/06/27/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>Mr.Easiness閉鎖の件</h4>
+    <content type="html"><![CDATA[<h2>Mr.Easiness閉鎖の件</h2>
 
 
 <p>タイトルにあるとおり閉鎖しました。
 理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
 
-<h4>近況</h4>
+<h2>近況</h2>
 
 
 <p>ぼちぼち稼ぎつつLuilakの方で色々やってます。
@@ -674,7 +674,7 @@ localStorageが使えないブラウザでは動きません。</p>
 
 
 
-<h4>使い方</h4>
+<h2>使い方</h2>
 
 
 <p>インストールは以下の通り。</p>
@@ -1254,7 +1254,7 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 この関数は再帰的に処理しているので、実際にはもっと速くなり得ると思います。
 しかし、<strong>innerHTMLも内容が小さければ小さいほど速度はあがっていく</strong>ので、局所的に使う分には問題ないんじゃないでしょうか。</p>
 
-<h4>追記</h4>
+<h2>追記</h2>
 
 
 <p>document.body.innerHTML+=がどうやらすげえ重いっぽい。
@@ -1417,7 +1417,7 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
     <id>http://namusyaka.github.com/blog/2011/12/29/github-jekyll</id>
     <content type="html"><![CDATA[<p>以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
 
-<h4>HTMLのおはなし</h4>
+<h2>HTMLのおはなし</h2>
 
 
 <blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.2.1>
@@ -1467,7 +1467,7 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
 
 
 
-<h4>しかし</h4>
+<h2>しかし</h2>
 
 
 <p>OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースにこけるようです(具体的には、cssが正しく反映されない、javascriptでこける)。
@@ -1484,7 +1484,7 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
     <link href="http://namusyaka.github.com/blog/2011/11/14/github-jekyll/"/>
     <updated>2011-11-14T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2011/11/14/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>data-converterってのをつくりました</h4>
+    <content type="html"><![CDATA[<h2>data-converterってのをつくりました</h2>
 
 
 <p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
@@ -1545,7 +1545,7 @@ gem install data-converterでインストールできます
 
 
 
-<h4>はてなブログつくりました</h4>
+<h2>はてなブログつくりました</h2>
 
 
 <p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
@@ -1562,7 +1562,7 @@ gem install data-converterでインストールできます
 
 <p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
 
-<h4>Webype(ウェバイプ)βとは</h4>
+<h2>Webype(ウェバイプ)βとは</h2>
 
 
 <p>・WebとSkypeチャットをつなぐパイプ的なサービス。
@@ -1571,13 +1571,13 @@ gem install data-converterでインストールできます
 ・その他、様々な機能がある。
 ・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
 
-<h4>なぜつくったか</h4>
+<h2>なぜつくったか</h2>
 
 
 <p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
 結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
 
-<h4>どう展開していくか</h4>
+<h2>どう展開していくか</h2>
 
 
 <p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
@@ -1588,7 +1588,7 @@ gem install data-converterでインストールできます
 ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
 また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
 
-<h4>作ってみた感想</h4>
+<h2>作ってみた感想</h2>
 
 
 <p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript]DOMにおけるメソッド呼び出しについて[完成版 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript-domにおけるメソッド呼び出しについて-完成版/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -20,7 +20,7 @@
     <id>http://namusyaka.github.com/blog/2011/03/04/github-jekyll</id>
     <content type="html"><![CDATA[<p>全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。</p>
 
-<h4>キャッシュしよう</h4>
+<h2>キャッシュしよう</h2>
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -43,7 +43,7 @@
 
 <p>こうすることで、DOMの重たいメソッドを何度も呼び出さずに済みます。いぇーい。</p>
 
-<h4><del>しかしそう甘くはないのがJavaScript</del><ins>甘かったのは俺だった</ins></h4>
+<h2><del>しかしそう甘くはないのがJavaScript</del><ins>甘かったのは俺だった</ins></h2>
 
 
 <p><del>なんと、結果をキャッシュをすることでスピードが落ちるブラウザが二つありました。</del>
@@ -162,7 +162,7 @@
 <del>IE・Firefoxをとるならキャッシュをせず、Opera・Chromeをとるならキャッシュをしようということになりますね。</del>
 <ins>どのブラウザでもキャッシュは有効です。</ins></p>
 
-<h4>追記 23:08</h4>
+<h2>追記 23:08</h2>
 
 
 <p>結果おかしいんじゃないかという異議を唱えられたので追記します！</p>
@@ -183,7 +183,7 @@ getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.n
 </dl>
 
 
-<h4>追記 3/5 15:15</h4>
+<h2>追記 3/5 15:15</h2>
 
 
 <p>どうやら、僕のベンチマークの取り方だとFirefoxとIEではdocument.getElementByIdが要素を見つけられず、nullを返しているようでした。

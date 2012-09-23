@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T15:03:12+09:00</updated>
+  <updated>2012-09-23T15:35:59+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -33,7 +33,7 @@
     <link href="http://namusyaka.github.com/blog/2012/07/20/github-jekyll/"/>
     <updated>2012-07-20T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/07/20/github-jekyll</id>
-    <content type="html"><![CDATA[<h4>Esolangインタプリタの話</h4>
+    <content type="html"><![CDATA[<h2>Esolangインタプリタの話</h2>
 
 
 <p>Github : <a href="https://github.com/namusyaka/sandbox/tree/master/Esolang">sandbox/Esolang</a>
@@ -44,7 +44,7 @@
 とはいえ、実装に不安な点がないわけじゃないので意見等お待ちしています。
 (ちなみに、実際に使う場合等は'&lt;'や'+'のような記号にいちいち関数と関連づけて実行するよりも、switch文等で分岐させたほうが絶対的に速いです)</p>
 
-<h4>SeaSlug</h4>
+<h2>SeaSlug</h2>
 
 
 <p>サイト : <a href="http://seaslug.luilak.net/">SeaSlug</a>
