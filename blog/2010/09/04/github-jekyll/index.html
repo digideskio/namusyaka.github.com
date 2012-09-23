@@ -1,0 +1,245 @@
+<hr />
+
+<p>  layout: post
+  title: JavaScriptでTwitter APIとGoogle Chart APIを使ってTwitterの情報に関する画像を生成する。
+  date: 2010-09-04
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  こんちわ。
+色々ツール作りました。
+<a href="http://namusyaka.sakura.ne.jp/">namusyaka(webサイト)</a>においてあります。
+感想とかくれたりすると嬉しいです。</p>
+
+<p>さて、今日は題名にもあるとおりJavaScriptでAPIを使って結構面白いことが出来るのでそれについて書こうと思います。
+同じような内容の記事を書いてる人、多分いると思いますがお許しください。</p>
+
+<h4>まず基盤となるJavaScript</h4>
+
+
+<p>を書きました。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">_d</span><span class="o">=</span><span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$c</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getUserInfo</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;twitter_user_image&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://chart.apis.google.com/chart?&quot;</span><span class="o">+</span><span class="err">☆</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://twitter.com/users/show/○○.json?&amp;callback=getUserInfo&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;p id=&quot;twitter_user_image&quot;&gt;&lt;/p&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>これだけではまだ何の意味もありません。
+一応簡単に説明します(大分前のつぶやき取得でしてなかった分も含めて)。
+まず、onload(ページ読み込み完了時)した時にscript要素を生成してhead要素の末尾に挿入します。【と思ってたんですが、仕様変更を途中でしたのを忘れてたのでonloadは今回とっちゃうことにします！】
+その時のscript要素src属性に入ってる値がTwitterさんが用意してくれたAPIなわけです。
+このAPIは、callbackに指定した関数の引数に必要情報をオブジェクト(json)として設定して返してくれるものです。
+よって、追加されたscript要素の中身は以下のようになっています。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">getUserInfo</span><span class="p">({</span><span class="nx">a</span><span class="o">:</span><span class="p">{</span><span class="nx">b</span><span class="o">:</span><span class="nx">c</span><span class="p">}})</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>{a:{b:c}}がTwitterAPIが返してくれるものだと思ってください。
+そして予めgetUserInfoという関数を定義しておくことで、これらの情報を扱えるわけです(しつこいですが、もらえる情報は引数だから)。</p>
+
+<h4>では詳しく解説</h4>
+
+
+<p>○○の部分はTwitterでのusernameを入力してください。
+僕の場合は「namusyaka」と入力します。
+TwitterIDでもいけた気がしますが。
+☆部分が今回のメインです。
+最初にGoogle Chart APIのパラメータについて。
+結構いっぱいあるんですが、めんどくさいので少しだけ。</p>
+
+<table>
+<caption>指定必須のパラメータ</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>意味</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cht</td>
+<td>グラフの形</td>
+<td>bhg(棒グラフ),p(円グラフ)、p3(3D円グラフ),etc</td>
+</tr>
+<tr>
+<td>chs</td>
+<td>画像サイズ</td>
+<td>横幅x縦幅(例)300x100</td>
+</tr>
+<tr>
+<td>chd</td>
+<td>グラフの数、数値</td>
+<td>(例)t:1,2,3</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<table>
+<caption>今回ぼくが使おうと思ってるパラメータ</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>意味</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chl</td>
+<td>各々の値の名前</td>
+<td>(例)A|B|C</td>
+</tr>
+<tr>
+<td>chco</td>
+<td>各々の値の色</td>
+<td>(例)ff0000|0000ff|00ff00</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>注意：chlの値で、ひらがな・カタカナはURIエンコードをすればいけるみたいですが漢字は無理っぽいです。
+これらを組み合わせて、cht=p3&amp;chs=300x100&amp;chd=1,2,3&amp;chl=A|B|C&amp;chco=ff0000|0000ff|00ff00というパラメータを最初のソースにある
+googleAPIのクエリー部分に設定します。
+設定すると。。。
+<img src="http://chart.apis.google.com/chart?cht=p3&chs=300x100&chd=t:1,2,3&chl=A|B|C&chco=ff0000|0000ff|00ff00" alt="グラフテスト画像"></p>
+
+<p>次にTwitter APIのオブジェクトについても色・数値関係のみ簡単に説明します。
+なお、最初に示したコードではgetUserInfo関数の引数にobjと書いてあるため、objを親オブジェクトとして書いていきます。</p>
+
+<table>
+<caption>Twitter APIで手に入れたオブジェクトで今回使うものたち</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フォロー数</td>
+<td>obj.friends_count</td>
+</tr>
+<tr>
+<td>フォロワー数</td>
+<td>obj.followers_count</td>
+</tr>
+<tr>
+<td>ツイート数</td>
+<td>obj.statuses_count</td>
+</tr>
+<tr>
+<td>お気に入り数</td>
+<td>obj.favourites_count</td>
+</tr>
+<tr>
+<td>背景色</td>
+<td>obj.profile_background_color</td>
+</tr>
+<tr>
+<td>文字色</td>
+<td>obj.profile_text_color</td>
+</tr>
+<tr>
+<td>リンク色</td>
+<td>obj.profile_link_color</td>
+</tr>
+<tr>
+<td>サイドバー背景色</td>
+<td>obj.profile_sidebar_fill_color</td>
+</tr>
+<tr>
+<td>サイドバー枠線色</td>
+<td>obj.profile_sidebar_border_color</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>これくらいですかね。
+では今まで書いてきた情報を元にぼくの全体ツイート数と、お気に入りツイート数の比率を3D円グラフで表示したいと思います。
+色は全体背景色とリンク色を採用。
+コードは以下の通り。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">_d</span><span class="o">=</span><span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$c</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getUserInfo</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;twitter_user_image&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://chart.apis.google.com/chart?cht=p3&amp;chs=400x120&amp;chd=t:&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">statuses_count</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">favourites_count</span><span class="o">+</span><span class="s2">&quot;&amp;chco=&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">profile_background_color</span><span class="o">+</span><span class="s2">&quot;|&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">profile_link_color</span><span class="o">+</span><span class="s2">&quot;&amp;chl=all tweets|favorite tweets&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://twitter.com/users/show/namusyaka.json?&amp;callback=getUserInfo&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;p id=&quot;twitter_user_image&quot;&gt;&lt;/p&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>このソースコードを貼り付けると<a href="http://namusyaka.sakura.ne.jp/gtest.html">こう表示されます。</a></p>
+
+<p>うーん、まぁ無駄に長くなってしまった感がありますがこれで終わりますさいなら。</p>
+
+<h4>追記</h4>
+
+
+<p>少しソースコードなど修正しました。
+これからは文章をちゃんと推敲しようと思いました。</p>
+
+<h4>またまた追記</h4>
+
+
+<p>このソースコードを貼り付けた位置に表示されるようにしました！
+何度もすみません！</p>

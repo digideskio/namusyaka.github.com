@@ -1,0 +1,1338 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>法華経</title>
+  <meta name="author" content="namusyaka">
+
+  
+  <meta name="description" content="layout: post title: Rubyで掲示板を割と簡単に作れるモジュールを作った&amp;今年がんばること date: 2011-04-04 comments: true categories: Ruby おひさしぶりです。
+ネットもつながりプログラミングをやりたい放題なので、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/page/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/04/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-04T00:00:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: Rubyで掲示板を割と簡単に作れるモジュールを作った&amp;今年がんばること
+  date: 2011-04-04
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  おひさしぶりです。
+ネットもつながりプログラミングをやりたい放題なので、今は意気揚々としています。</p>
+
+<h4>まず、今年がんばること</h4>
+
+
+<dl>
+  <dt>オープンソースに活動していく。</dt>
+  <dd>Github, Gist, ブログに今まで以上にコードをあげていきたい。</dd>
+  <dd>まだ無いが、実用的で汎用性の高いモジュールを作っていきたい。</dd>
+  <dt>Gitを使いこなせるようになる。</dt>
+  <dd>実用Gitを購入したので、読みながら頑張りたい。</dd>
+  <dt>Rubyに関する造詣を深める。</dt>
+  <dd>そのまんま東。</dd>
+  <dt>PerlとPythonを知る。</dt>
+  <dd>その上で一番自分に合った言語を決めたい。</dd>
+  <dt>ウェブサービスで一発あてる。</dt>
+  <dd>Twitter媒体に固執せずに、便利なものを作っていきたい。(なむぴたは順調に利用者が増えていってくれてるみたいですね＞＜)</dd>
+</dl>
+
+
+
+
+<h4>Rubyで掲示板を割と簡単に作れるモジュール</h4>
+
+
+<p>Crewと言います。
+簡単と言っても汎用性は低いですし、毎度のことながら設計ミスったなーと思ってます。
+<a href="https://github.com/namusyaka">ソース</a>
+<a href="http://namusyaka.info/bbs/">テスト</a></p>
+
+<p>デフォルトの設定(スレタテ、書き込み、読み込み)では、それぞれ三つのファイルが必要です。
+ファイル名は、config.ymlで変更できます。
+config.ymlは掲示板本体のディレクトリ内に設置してください。</p>
+
+<h5>スレタテ、書き込みをした後にそのファイルを表示するスクリプト</h5>
+
+
+<p>三つのファイルを書くのは面倒だし、githubにあがっているのでそっちをみてください。
+ここでは簡単にスレタテ、書き込み、読み込みをするスクリプトを書いてみます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;crew&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;cgi&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Hash</span> <span class="c1"># HashのvalueをCGI.unescape</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">decode_uri</span>
+</span><span class='line'>    <span class="nb">hash</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">each_pair</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">hash</span><span class="o">[</span><span class="n">key</span><span class="o">]</span> <span class="o">=</span> <span class="no">CGI</span><span class="o">.</span><span class="n">unescape</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nb">hash</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Crew</span><span class="o">::</span><span class="no">Action</span><span class="o">.</span><span class="n">start_up</span> <span class="c1"># datと過去ログ用のディレクトリを生成するだけです。</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># クエリーをhashに変換</span>
+</span><span class='line'><span class="n">post</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/[&amp;=]/</span><span class="p">)</span>
+</span><span class='line'><span class="n">post</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">length</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span class='line'><span class="n">post</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">[*</span><span class="n">post</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># config.ymlのstatusを取得。</span>
+</span><span class='line'><span class="c1"># 全部取得したい場合はCrew.config</span>
+</span><span class='line'><span class="n">status</span> <span class="o">=</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">get_status</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Crew:::Actionオブジェクトを生成。</span>
+</span><span class='line'><span class="n">action</span> <span class="o">=</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Action</span><span class="o">.</span><span class="n">new</span><span class="p">({</span>
+</span><span class='line'>  <span class="ss">:title</span>  <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;title&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:ip</span>     <span class="o">=&gt;</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:name</span>   <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;username&quot;</span><span class="o">]</span><span class="p">,</span><span class="err">　</span><span class="c1">#無くても可</span>
+</span><span class='line'>  <span class="ss">:text</span>   <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;text&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:e_mail</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;e_mail&quot;</span><span class="o">]</span><span class="err">　</span><span class="c1">#無くても可</span>
+</span><span class='line'><span class="p">}</span><span class="o">.</span><span class="n">decode_uri</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># スレタテ</span>
+</span><span class='line'><span class="c1"># 成功したら新しいファイル名を返す</span>
+</span><span class='line'><span class="n">new_file</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># 作ったファイルに同じ内容を書き込み</span>
+</span><span class='line'><span class="c1"># 失敗したらnil、成功したら0を返す</span>
+</span><span class='line'><span class="n">action</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_file</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;Content-Type:text/html</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="c1"># 作ったファイルの中身を返す。</span>
+</span><span class='line'><span class="c1"># 第二引数は読み込みたい分の数を指定する。</span>
+</span><span class='line'><span class="c1"># falseの場合は中身を全て、20を指定したら1と最新20件を返す。</span>
+</span><span class='line'><span class="c1"># レスポンスの一か所のみ欲しい場合はpick_threadを使う。</span>
+</span><span class='line'><span class="nb">print</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">get_thread</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="kp">false</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/25/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-25T00:00:00+09:00" pubdate data-updated="true">Mar 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: <h4>新生活</h4>
+  date: 2011-03-25
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  今月の二十日から一人暮らしをしてるんだけど、ネットがつながりません。
+今までネット中心の生活だったから本当に困りました。
+良い機会だから読んでない本を消化しようと試みるも一日で読み終わってしまいました。
+だからほかの娯楽、もとい夢中になれることが必要で、色々考えてるけど見つからないです。</p>
+
+<p>∴俺ってつまらない人間だなあと思ったという話。</p>
+
+<h4>プログラミング</h4>
+
+
+<p>いつも公式リファレンスなんかを読みながらプログラミングをするんですが、携帯でググりながらやるのは非常に面倒です。
+せっかくサーバーを借りたのに申し訳ないですね。</p>
+
+<p>来月の大学入学式が終わった時点でネットがつながってなかったらネットができる環境に移住したいと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/18/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-18T00:00:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 苦しくて
+  date: 2011-03-18
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  心を飾った今もーーあなたをー忘れらーれーなくーてーーーーー</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/16/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-16T00:00:00+09:00" pubdate data-updated="true">Mar 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 第二回givemacが開催されるようですね。
+  date: 2011-03-16
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  そこで僕もなにかイベントをやりたいなと思いまして、Givememacを開催することとしました。
+未来ある僕にmacをあげるという企画です。</p>
+
+<p>災害中に不謹慎かなとは思いましたが欲しいものは欲しいのです。</p>
+
+<h4>追記</h4>
+
+
+<p>仕事と就職先も募集してます。</p>
+
+<p>http://namusyaka.info/profile　に書いてある方法でコンタクトしてきてくれると嬉しいです。</p>
+
+<p><em>1300247135</em>[(X)HTML][その他]ハイパーテキスト</p>
+
+<h4>省略</h4>
+
+
+<p>Firefoxではhead要素とbody要素が省略されると、DOM操作(取得)をするjavascriptが操作対象以降に書いてあっても操作できないという問題がありますが、HTMLの文法上、head要素とbody要素は省略が可能です。
+この問題はonload内にDOM操作の処理を書くことで解決できます。</p>
+
+<h4>はてなスター</h4>
+
+
+<p>はてなスターは渋らずにどんどんつけていくと良いと思います。
+そこから自分のブログを見てくれる人も増えますし、良いこと尽くめです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/14/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-14T00:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 新生活について
+  date: 2011-03-14
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  何の希望もない</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/12/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-12T00:00:00+09:00" pubdate data-updated="true">Mar 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 地震の影響で電話やメールがつながりにくいですがSkypeが有効です。
+  date: 2011-03-12
+  comments: true
+  categories: その他,JScript</p>
+
+<hr />
+
+<p>  皆さん大変ですね。
+僕もなにかしてあげたいと思うんですが正直何をしたらいいか思い当たることがありません。</p>
+
+<p>ただSkypeが有効ということで、Skype関連のツールを作ってみました。
+JScriptを使っているのでWindows以外では動きません。</p>
+
+<p><a href="http://namusyaka.info/skype_recv.html">Skypeのチャットログを自動で保存していくツールwindows用</a>です。
+簡単に説明します。</p>
+
+<ul>
+<li>Skype4COMを使っている。</li>
+<li>インストールが必要(ツールページ先参照)。</li>
+<li>ソースは以下の通り。</li>
+</ul>
+
+
+<script src="https://gist.github.com/871793.js"> </script>
+
+
+<p><noscript></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">fso</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">skype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Skype4COM.Skype&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">wss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;WScript.Shell&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">Skype_MessageStatus</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">topic</span> <span class="o">=</span> <span class="s2">&quot;log/&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">Topic</span> <span class="o">||</span> <span class="s2">&quot;個人チャ&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">fso</span><span class="p">.</span><span class="nx">FolderExists</span><span class="p">(</span><span class="nx">topic</span><span class="p">))</span>
+</span><span class='line'>    <span class="nx">fso</span><span class="p">.</span><span class="nx">CreateFolder</span><span class="p">(</span><span class="nx">topic</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">status</span> <span class="o">==</span> <span class="nx">skype</span><span class="p">.</span><span class="nx">Convert</span><span class="p">.</span><span class="nx">TextToChatMessageStatus</span><span class="p">(</span><span class="s2">&quot;RECEIVED&quot;</span><span class="p">)</span> <span class="o">||</span>
+</span><span class='line'>  <span class="nx">status</span> <span class="o">==</span> <span class="nx">skype</span><span class="p">.</span><span class="nx">Convert</span><span class="p">.</span><span class="nx">TextToChatMessageStatus</span><span class="p">(</span><span class="s2">&quot;SENT&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Timestamp</span><span class="p">);</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="nx">fso</span><span class="p">.</span><span class="nx">OpenTextFile</span><span class="p">(</span><span class="nx">topic</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">WriteLine</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">FromDisplayName</span> <span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">body</span> <span class="o">+</span> <span class="s2">&quot; &lt;&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">WriteLine</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">fso</span><span class="p">.</span><span class="nx">FolderExists</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">))</span>
+</span><span class='line'>  <span class="nx">fso</span><span class="p">.</span><span class="nx">CreateFolder</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">WScript</span><span class="p">.</span><span class="nx">ConnectObject</span><span class="p">(</span><span class="nx">skype</span><span class="p">,</span> <span class="s2">&quot;Skype_&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">skype</span><span class="p">.</span><span class="nx">Attach</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nx">wss</span><span class="p">.</span><span class="nx">popup</span><span class="p">(</span><span class="s2">&quot;ログ受信を終了する場合はOKを押してください。&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">skype</span> <span class="o">=</span> <span class="nx">wss</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></noscript></p>
+
+<p>とりあえず僕もなにか役に立ちたいので、被災者のためにコードを書いていて手伝ってほしいという人がいれば遠慮なく言ってください。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/11/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-11T00:00:00+09:00" pubdate data-updated="true">Mar 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 便秘
+  date: 2011-03-11
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  女満別⇒羽田の便が欠航なのでTokyoいけなくなりました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/09/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-09T00:00:00+09:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: RubyでRSSを読んだりキャッシュしたりっていうクラスをつくった
+  date: 2011-03-09
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  classをほとんど使わない人間なのでどう設計したもんかと大分悩みましたが上手い答えは出ませんでした。
+これ以上悩んでも出そうにないのでとりあえず公開。</p>
+
+<p>まー小さいクラスです。</p>
+
+<script src="https://gist.github.com/861740.js"> </script>
+
+
+<p><noscript></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;net/http&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;time&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">version_1_2</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">RSSReader</span>
+</span><span class='line'>  <span class="vc">@@http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">cachefile</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@cachefile</span> <span class="o">=</span> <span class="n">cachefile</span>
+</span><span class='line'>    <span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@cachefile</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span>
+</span><span class='line'>    <span class="vi">@cache_time</span> <span class="o">=</span> <span class="n">file</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>    <span class="vi">@cache</span> <span class="o">=</span> <span class="n">file</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.file</span><span class="o">.</span><span class="n">length</span><span class="o">]</span> <span class="p">?</span> <span class="nb">eval</span><span class="p">(</span><span class="n">file</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.file</span><span class="o">.</span><span class="n">length</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">:</span> <span class="o">[]</span>
+</span><span class='line'>    <span class="vi">@target</span> <span class="o">=</span> <span class="n">target</span>
+</span><span class='line'>    <span class="vi">@time</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="vi">@updated</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:updated</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">check</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">list</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>    <span class="vi">@target</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="n">body</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">next</span> <span class="k">if</span> <span class="n">body</span><span class="o">.</span><span class="n">nil?</span>
+</span><span class='line'>        <span class="no">RSS</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>          <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>            <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:link</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">link</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>          <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="nb">hash</span>
+</span><span class='line'>          <span class="k">if</span> <span class="vi">@cache</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>            <span class="k">break</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>            <span class="vi">@updated</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">rescue</span>
+</span><span class='line'>        <span class="k">next</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">cachefile_write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@time</span><span class="si">}</span><span class="se">\n</span><span class="si">#{</span><span class="n">list</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">list</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">cache</span>
+</span><span class='line'>   <span class="k">return</span> <span class="vi">@cache</span> <span class="k">if</span> <span class="vi">@cache_time</span> <span class="o">&amp;&amp;</span> <span class="no">Time</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="vi">@cache_time</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1800</span> <span class="o">&gt;</span> <span class="vi">@time</span>
+</span><span class='line'>   <span class="k">return</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">proxy</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span><span class='line'>    <span class="vc">@@http</span> <span class="o">=</span> <span class="vc">@@http</span><span class="o">.</span><span class="n">Proxy</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">cachefile_write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span><span class='line'>    <span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">begin</span>
+</span><span class='line'>            <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@cachefile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">rescue</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span>
+</span><span class='line'>      <span class="k">rescue</span>
+</span><span class='line'>        <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
+</span><span class='line'>    <span class="vc">@@http</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="k">return</span> <span class="n">h</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">rss</span> <span class="o">=</span> <span class="no">RSSReader</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;list.dat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">)</span>
+</span><span class='line'><span class="n">list</span> <span class="o">=</span> <span class="n">rss</span><span class="o">.</span><span class="n">check</span>
+</span><span class='line'><span class="c1">#第二引数に渡したRSSから更新のあったもののみ出力したい。</span>
+</span><span class='line'><span class="n">rss</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#キャッシュが有効か確認した後、RSSの名前のみ取り出して一覧表示。</span>
+</span><span class='line'><span class="n">list</span> <span class="o">=</span> <span class="n">rss</span><span class="o">.</span><span class="n">cache</span> <span class="o">||</span> <span class="n">rss</span><span class="o">.</span><span class="n">check</span>
+</span><span class='line'><span class="n">list</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">h</span><span class="o">[</span><span class="ss">:title</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></noscript></p>
+
+<p>updatedはcheck,あるいはcacheが返す配列(要素は全てHashオブジェクト)の中で新たに更新があったindexを配列で返します。
+これに合わせてメール送信をすれば、それっぽいものが作れると思います。</p>
+
+<h4>追記</h4>
+
+
+<p>ちょいちょいアホなことをしてたので修正したのと、proxyメソッドを追加した。
+後cacheメソッドはキャッシュ時間を引数に渡すようにした。デフォルトは３０分。</p>
+
+<p><em>1299652755</em>[その他]クーリングオフ不可能法
+ガチでかしまし</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/06/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-06T00:00:00+09:00" pubdate data-updated="true">Mar 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: JavaScriptで画像を透過したり入れ替えたりする
+  date: 2011-03-06
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  jQueryとか使ったらアニメーション的なのも簡単なんだろうけどベタ書きだと結構めんどかったりするのかなーって思って実際に書いてみました。
+やってることは二つ。</p>
+
+<ul>
+<li>画像を透過していく。</li>
+<li>限界(勝手に決めた)まで達したら別画像に差し替える。</li>
+</ul>
+
+
+<p><a href="http://namusyaka.info/transmit/">テストページ</a>で確認してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="c1">//透過する関数。IE8, Firerox, Opera, Chrome, Safariで確認。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">imgElement</span><span class="p">,</span> <span class="nx">op</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="s1">&#39;alpha(opacity=&#39;</span> <span class="o">+</span> <span class="nx">op</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">MozOpacity</span> <span class="o">=</span> <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="nx">op</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//想像通りだろうけどsetInterval使ってます。単純。</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//テストページのHTMLに対応してる。</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_src</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;02.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;03.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;04.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;05.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;06.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;07.gif&#39;</span><span class="p">];</span><span class="c1">//入れ替えていく画像ファイルは配列で。</span>
+</span><span class='line'>  <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">_src</span><span class="p">[</span><span class="o">++</span><span class="nx">n</span> <span class="o">===</span> <span class="nx">_src</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="p">(</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="nx">n</span><span class="p">];</span>
+</span><span class='line'>    <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この場合ファイル名も数値だから簡単な文字列操作でいけたんだけど配列の方が使い勝手がいいのでこうしました。
+意外とっていうかちょっと考えれば当たり前ですが簡単でした。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/04/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-04T00:00:00+09:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: ・DOM操作をする場合の注意。
+  date: 2011-03-04
+  comments: true
+  categories: JavaScript]DOMにおけるメソッド呼び出しについて[完成版</p>
+
+<hr />
+
+<p>  全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。</p>
+
+<h4>キャッシュしよう</h4>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こうすることで、DOMの重たいメソッドを何度も呼び出さずに済みます。いぇーい。</p>
+
+<h4><del>しかしそう甘くはないのがJavaScript</del><ins>甘かったのは俺だった</ins></h4>
+
+
+<p><del>なんと、結果をキャッシュをすることでスピードが落ちるブラウザが二つありました。</del>
+<del>IEとFirefoxです。</del>
+とりあえず以下のソースでベンチをとってみました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;test&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="c">&lt;!--</span>
+</span><span class='line'><span class="c1">//修正しました。JavaScriptをHTML以降に書いていてもDOM操作をする場合はonload内に処理を記述する必要があります。(IE&amp;Firefox対策)</span>
+</span><span class='line'><span class="nx">onload</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">_$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="o">+</span><span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="nx">f</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span><span class="o">+</span><span class="nx">g</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>IE8</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>Chrome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>①</th>
+<td>1906</td>
+<td>270</td>
+<td>317</td>
+<td>119</td>
+</tr>
+<tr>
+<th>②</th>
+<td>583</td>
+<td>37</td>
+<td>72</td>
+<td>13</td>
+</tr>
+<tr>
+<th>③</th>
+<td>3464</td>
+<td>276</td>
+<td>335</td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>まず如何にIEが遅く、Chromeが速いかがわかる結果となりました。
+<del>結果をキャッシュしたものが裏目に出ているのが前述した通りIEとFirefox。</del>
+<ins>結果をキャッシュしているものが全てのブラウザで速くなりました。</ins>
+<del>IE・Firefoxをとるならキャッシュをせず、Opera・Chromeをとるならキャッシュをしようということになりますね。</del>
+<ins>どのブラウザでもキャッシュは有効です。</ins></p>
+
+<h4>追記 23:08</h4>
+
+
+<p>結果おかしいんじゃないかという異議を唱えられたので追記します！</p>
+
+<blockquote><p>http://jsperf.com/getelementbyid-cache>
+getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.ne.jp/namusyaka/20110304/1299228350 の計測データが一部おかしい感じがする。
+&lt;&lt;</p></blockquote>
+
+<p>即ち②の方がはやいんじゃねえかということでした。
+実際http://jsperf.com/getelementbyid-cacheで試してみると確かに2がIE8でもFirefoxでもfastestでした。
+見間違えたかなと思って再度IE8とFirefoxでベンチを取り直しましたが結果は変わらず・・・。
+友人にも同じベンチを取ってもらいましたが、僕と同じ結果でした。
+今何故そうなるのか原因を追究してます。わかる方がいたら教えてくださるとうれしいです＞＜</p>
+
+<dl>
+<dt>否定された可能性</dt>
+<dd>DOCTYPE宣言によるスイッチ => 結果変わらず</dd>
+</dl>
+
+
+<h4>追記 3/5 15:15</h4>
+
+
+<p>どうやら、僕のベンチマークの取り方だとFirefoxとIEではdocument.getElementByIdが要素を見つけられず、nullを返しているようでした。
+よって、結果をキャッシュ出来ていなかったわけですね。
+これは<strong>必要要素以降にJavaScriptを記述しておけば、問題なく取得できるであろう</strong>という僕の勘違いが招いた結果です＞＜
+<strong>DOM操作をする場合には必ずonload内に処理を記述するようにしましょう。</strong>
+また、head・body要素を記述した場合にはonloadを書かなくても成功したりするようですが、やはり一番確実なのはonload内に処理を記述することだと思います。
+結果は修正しておきます！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<hr />
+
+<p>  layout: post
+  title: りにゅーある
+  date: 2010-12-21
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  ぼくのWEBサイトをリニューアルしました。
+編集とか管理をしやすくするために色々考えてたんですが一通り実装は出来たので満足しております。</p>
+
+<p>そういえば最近本を書いた人の感想みたいなのをどこかで見たんですが、「本を書いた本人が一番勉強になる」みたいなことを言ってました。
+確かにそんな気がします。
+本を書く以上適当な知識ではやっていけないと思うから色々調べながらやる上で知識が身についていくってことなんでしょう。</p>
+
+<p>HTMLについては色々書きたいなー。</p>
+
+<p>ところで、自分自身を出力するプログラムの話を聞きました。
+簡単そうで意外と難しいです。
+具体的な方法としては以下のようなものがあります。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">a</span><span class="o">+</span><span class="s2">&quot;a()&quot;</span><span class="p">}</span><span class="nx">a</span><span class="p">()</span>
+</span><span class='line'><span class="c1">//javascript:function a(){return &quot;javascript:&quot;+a+&quot;a()&quot;}a()</span>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="o">+</span><span class="s2">&quot;()&quot;</span><span class="p">)})()</span>
+</span><span class='line'><span class="c1">//javascript:(function(){alert(&quot;javascript:&quot;+arguments.callee+&quot;()&quot;)})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>ちなみにぼくが思いついたのはAjaxで自分自身をにリクエストを送り、そのresponseTextをalertする方法でした。
+めんどくさいし長いのでsourceは省略します。</p>

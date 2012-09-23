@@ -1,0 +1,1281 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>法華経</title>
+  <meta name="author" content="namusyaka">
+
+  
+  <meta name="description" content="layout: post title: 自分の見ているページを悟られないようにするためのJavaScript。 date: 2010-11-07 comments: true categories: JavaScript エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/page/8/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/07/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-07T00:00:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 自分の見ているページを悟られないようにするためのJavaScript。
+  date: 2010-11-07
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします。</p>
+
+<p>以下のコードをそのページで実行します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">&quot;YouTube - Broadcast Yourself&quot;</span><span class="p">})()</span>
+</span><span class='line'><span class="cm">/*これをアドレス入力欄に入力して実行するとそのページの表示名がYouTube - Broadcast Yourselfに変わります。</span>
+</span><span class='line'><span class="cm">そのページ自体を開いておかなければただYouTubeを開いているように見えるのでかなり有効だと思います。*/</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>見られたくないページが複数ある場合。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;国会議事堂の全て&quot;</span><span class="p">,</span><span class="s2">&quot;フラワーホーンの飼育&quot;</span><span class="p">,</span><span class="s2">&quot;Twitter / ホーム&quot;</span><span class="p">],</span><span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">n</span><span class="p">]})()</span>
+</span><span class='line'><span class="cm">/*同じくアドレス入力欄に入力して実行すると変数aの配列の中身にあるタイトルにランダムで変更されます。もちろんタイトルを変えるのも、配列要素数を増やすのも減らすのも自由です。*/</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>毎回入力するのは面倒なのでブックマークレット形式にする場合。
+ブックマークレットのやり方は<a href="http://namusyaka.info/ukeru/">うけるthis参照</a>。
+<a href='javascript:(function(){document.getElementsByTagName("title")[0].innerHTML="YouTube - Broadcast Yourself"})()'>固定変更</a></p>
+
+<p><a href='javascript:(function(){var a=["国会議事堂の全て","フラワーホーンの飼育","Twitter / ホーム"],n=Math.floor(Math.random()*a.length);document.getElementsByTagName("title")[0].innerHTML=a[n]})()'>ランダム変更</a></p>
+
+<p>しょうもないなとは思いますが、個人的に使いたいと思う場面が結構あったので書かせていただきました。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/25/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-25T00:00:00+09:00" pubdate data-updated="true">Oct 25<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: チャベリでのURLを自動でリンクに変換するユーザースクリプト「URIchanger」
+  date: 2010-10-25
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  を書きました。
+<a href="http://namusyaka.info/chaberi1.html">URIchanger</a>と言います。</p>
+
+<p>あ、それとやっぱり落ち着かない気分なので敬語に戻そうと思います。</p>
+
+<h4>本題</h4>
+
+
+<p>チャベリでは、初回ページロード時の関数内容を記録して、一定時間ごとに現在の関数処理とそれが一致するかどうかを確認しています。
+一致しなければトップページに飛ばされてしまいます。
+つまり関数処理を変更できないということでした。</p>
+
+<p>ですが、一定時間ごとに関数チェックをしている処理というのはsetInterval関数を使っているので、これを止める必要がありました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="cm">/*foo()を第一引数に指定してあるsetIntervalのみ止める。*/</span>
+</span><span class='line'><span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span><span class="c1">//普通、制御する場合は変数代入をします。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span><span class='line'><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//forで無理矢理止めることが出来ます。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="c1">//必要な処理は再び書く。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こういう処理は稀だと思いますが、かなり勉強になりました。
+UserScriptを書く上で、もしかしたら今後も使うことがあるかもしれません。
+注意するべきなのは、<strong>clearIntervalに数値を渡すとsetTimeout関数も止めてしまうことがあるということです。</strong></p>
+
+<p>また、GreaseMonkeyで関数定義をしても、ローカル関数となってしまうので、URIスキームを用いる方法をとりました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="c1">//グローバル関数を定義する。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//これではチャベリのjsファイル上でhoge関数を呼び出せない。</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//よってURIスキームにてグローバル関数を定義。</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>完成版が以下の通りです</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">outprint</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">place</span><span class="p">,</span> <span class="nx">getmsg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> <span class="k">if</span> <span class="p">(</span><span class="nx">place</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">_element</span> <span class="o">=</span> <span class="nx">UseById</span><span class="p">(</span><span class="nx">place</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^&quot;])(https?\:\/\/[^ &lt;]*)/</span><span class="p">,</span><span class="s1">&#39;$1&lt;a href=&quot;$2&quot; target=&quot;_blank&quot;&gt;$2&lt;/a&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;setenter()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;win_resize()&quot;</span><span class="p">,</span><span class="mi">800</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span> <span class="s2">&quot;reload_ajbnr3()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;reload_overture_all()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;ChangeAdvAvatar()&quot;</span><span class="p">,</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とても勉強になりました。</p>
+
+<p>尚、このスクリプトを書く上で、<a href="http://hotoke.osonae.com">hotoke氏</a>に協力していただきました。
+ありがとうございました。</p>
+
+<h4>補足</h4>
+
+
+<p>チャベリの独自仕様に[link][/link]で囲むとチャベリ検索ページにつながるというものがあったみたいなので、それを考慮したスクリプトに変更しました。</p>
+
+<h4>更に補足</h4>
+
+
+<p>現存するsetIntervalを全て止める方法として</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こういうものがあったのでURIchangerのソースを変更しておきます。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/15/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-15T00:00:00+09:00" pubdate data-updated="true">Oct 15<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: あゝ無情
+  date: 2010-10-15
+  comments: true
+  categories:</p>
+
+<hr />
+
+<p>  毎回言ってるけど、WEBサービスを提供する上で一番大事なのは知名度だと思ってる。</p>
+
+<p>んで、pc起動してブラウザ起動してまず最初にすることはgoogleでnamusyakaと検索すること。
+何か僕が知名度を獲得したようなアクションがあれば検索結果の上位表示も大分変わっているはずだろうから、まずそれをチェックしてる。
+まぁ今のところ変化無し。</p>
+
+<p>残念。
+[f:id:namusyaka:20101015124448p:image]</p>
+
+<p>ちなみにbiddersのnamusyakaってのは僕じゃないです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/30/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-30T00:00:00+09:00" pubdate data-updated="true">Sep 30<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: JSにおける配列参照についての正しい解釈？
+  date: 2010-09-30
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  この前僕が書いたエントリーについてid:hirataraさんに色々教えてもらい
+更に<a href="http://d.hatena.ne.jp/hiratara/20100929/1285771862">それについてのエントリー</a>まで書いていただいたので一応報告。
+基本的には<a href="http://d.hatena.ne.jp/namusyaka/20100924 ">僕の前回の言っていること</a>で良いんですが、より掘り下げた解釈も含めてまとめると以下のような感じかと。</p>
+
+<ul>
+<li>配列はオブジェクト。</li>
+<li>[]アクセス演算子の中身は数値であっても内部的に文字列に変換される。</li>
+<li>また、配列オブジェクトにおけるインデックスは一般的には数値だが、文字列も使用可。</li>
+<li>文字列をインデックスに使用した場合は原則的にlengthプロパティは拾わない。</li>
+<li>上記の例外として数値と中身が等価な文字列をインデックスに使用した場合はlengthプロパティは拾う。(例):&#8221;0&#8221;
+っていうか配列のインデックスは基本この形と思われる。</li>
+<li>文字列をインデックスとした配列オブジェクトにおいてforでループさせたりする場合は当然のことながらin演算子を使う。</li>
+</ul>
+
+
+<p>だけど配列で文字列をインデックスとするくらいならオブジェクトリテラルを用いた連想配列の方が良いんじゃないかと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/28/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-28T00:00:00+09:00" pubdate data-updated="true">Sep 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 簡単つぶやきサービス「うけるthis」をリリース！！！
+  date: 2010-09-28
+  comments: true
+  categories:</p>
+
+<hr />
+
+<p>  <a href="http://namusyaka.info/ukeru/">リリースしました！！</a>
+なかなか面白いと思います。
+このページウケるわーと思ったら、簡単な手順で
+そのページのURLとコメントをつぶやくことが出来ます。</p>
+
+<p>細かい手順などは画像などで示してあります。</p>
+
+<p>よろしくお願いします。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/24/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-24T00:00:00+09:00" pubdate data-updated="true">Sep 24<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 配列参照について
+  date: 2010-09-24
+  comments: true
+  categories: JavaScript,Ruby</p>
+
+<hr />
+
+<p>  JavaScriptで配列参照をする場合。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="s2">&quot;0&quot;</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>二つの方法で参照することが出来ます。
+何故こういうことが出来るかというと、JavaScriptでは配列もオブジェクトとして扱うからなんだと思います。
+つまり中身が等価であれば以下のように文字列でも単純に識別子として使えるということです。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="o">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="o">:</span><span class="s2">&quot;b&quot;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="o">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="o">:</span><span class="s2">&quot;b&quot;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// &quot;b&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>んで、僕はこれに慣れていたのでRubyの純粋な配列参照で戸惑いました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="o">][</span><span class="s2">&quot;0&quot;</span><span class="o">]</span> <span class="c1">#=&gt; Error</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="o">][</span><span class="s2">&quot;0&quot;</span><span class="o">.</span><span class="n">to_i</span><span class="o">]</span> <span class="c1">#=&gt; &quot;a&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>つまり文字列を配列参照には使えず、数値に変換をする必要があったという話でした。
+まぁ当たり前といえば当たり前のことなんでしょうが、この問題に2分くらい思考が止まったので一応書いておこうと思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/20/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-20T00:00:00+09:00" pubdate data-updated="true">Sep 20<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: sakuraのレンタルサーバにrubygemsをインストールした後に色々インストールしようとしたらハマったので書く
+  date: 2010-09-20
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  タイトル通り、rubygemsインストールして色々やろーって思ってはじめたわけですがハマりました。
+あ、それと敬語って慣れないしブログだけ敬語っつーのもなんかアレなのでやめることにします。</p>
+
+<p><a href="http://d.hatena.ne.jp/ishimarum/20080929/1222689905">さくらのレンタルサーバーに RubyGems をインストールする手順</a></p>
+
+<p>これを見て進めたんだけど、現状と多少違う点があったので補足的な。
+僕自身sshを書くの初めてなんで出来る人からすると「何こいつこんなとこで引っかかってんの？」とか思われるかもしれないけどご了承。</p>
+
+<h4>cshrc編集について</h4>
+
+
+<p>主に以下に書かれている点に補足。</p>
+
+<blockquote><blockquote><p>% vi ~/.cshrc</p></blockquote></blockquote>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin)
+</code></pre>
+
+<p>この行を以下のように変更。</p>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin /home/User/bin)
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>それから、RubyGems のインストール先をホームディレクトリ以下に変更したので、環境変数 RUBYLIB と GEM_HOME のパスもこの ~/.cshrc で改めて定義しておく。</p>
+
+<pre><code>setenv RUBYLIB /home/User/lib
+
+setenv GEM_HOME /home/User/lib/ruby/gem
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>これが何をやっているのかは以下の文書に詳しく書いてある。
+&lt;&lt;</p>
+
+<p>まず</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>set pathの中身が大分違った。
+実際にはこんな感じ。</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>けどまぁサーバですし、毎回同じ環境なわけがないんで
+何も気にせず</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>を付け足して問題ない。(Userはログインユーザー名)</p>
+
+<p>んで、</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>を更にcshrcファイルに付け足してviコマンドのZZを叩いて終了。。。</p>
+
+<p>したかに思えた
+普通にエラーも出ず処理が終了したんで問題ないと思った。
+が！</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>どれだけこれを打ち込んでもエラーエラーエラー。
+流石になんかおかしいって気づく。</p>
+
+<p>んで、もっかいviコマンドでファイルを書き直したら今度は警告がでた。</p>
+
+<blockquote><blockquote><p>Read only file, not written.
+&lt;&lt;
+はい書き込みできないんだね。何故初回にこれが出なかったのか。
+まぁ何でかはわからんし、もしかしたら見落としてたのかも知れんけど
+とにかく原因がわかったのでftpで変更済cshrcファイルをうｐってEND.</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre></blockquote></blockquote>
+
+<p>はいおめでとー！</p>
+
+<p>空腹＋無知ってのが無駄に時間を食うはめになってしまった。
+上級者ならもっとエレガントにちゃちゃっと終わらせてくれそうです。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/17/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-17T00:00:00+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: Twitterに対する考え方
+  date: 2010-09-17
+  comments: true
+  categories:</p>
+
+<hr />
+
+<p>  Twitterがすごく流行ってます。
+実際に使っている人がいるんだから需要があるってことなんでしょう。</p>
+
+<h4>だけど</h4>
+
+
+<p>今ひとつコンセプトが明確じゃない気がするんですよね。
+ミニブログ　というのに分類されていたりするみたいですが、Twitterにハマる要因っていうのは大抵他の人とのつながりなわけじゃないですか。(それがゆるいかどうかは別にして)
+それってブログっていうよりかはSNSに近いよなーと。
+最近Twitterさん自身もそういう側面を認めるような発言をしたような気がします。</p>
+
+<h4>Twitterに固執する理由</h4>
+
+
+<p>しかし140文字っていう制限内でコミュニケーションをとる必要あるのかなと。
+どっかの党の総裁さんも140文字で何つぶやけばいいのかわかんね的発言をしてた気がするので僕と同じように気になる人はいるんだと思います。
+誰かと意思疎通をはかる上で字数制限なんてのは障害でしかないと思います。
+まぁ重要な用件とかはTwitterじゃなくメールとかメッセンジャーを使う人がほとんどだとは思うんですけどね。
+でもそれが出来てない人も多いんじゃないかとも思います。</p>
+
+<h4>つまり何がいいたいか</h4>
+
+
+<p>このご時世色んな素晴らしいサービスが無料で提供されてます。
+Twitterに固執せずに要所要所で使い分けることも大事ですよってことです。</p>
+
+<h4>あ、それと</h4>
+
+
+<p>新しいサービスを始めたんですよ。
+<a href="http://namusyaka.info/stats/">StatsPrinter</a>ってやつです。
+CSS設定も出来てかなり自由度があると思います。
+自己紹介用のパーツとして使ってみるといいんじゃないでしょうか。
+<a href="http://namusyaka.info/">こんなかんじで。</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/04/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-04T00:00:00+09:00" pubdate data-updated="true">Sep 4<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: JavaScriptでTwitter APIとGoogle Chart APIを使ってTwitterの情報に関する画像を生成する。
+  date: 2010-09-04
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  こんちわ。
+色々ツール作りました。
+<a href="http://namusyaka.sakura.ne.jp/">namusyaka(webサイト)</a>においてあります。
+感想とかくれたりすると嬉しいです。</p>
+
+<p>さて、今日は題名にもあるとおりJavaScriptでAPIを使って結構面白いことが出来るのでそれについて書こうと思います。
+同じような内容の記事を書いてる人、多分いると思いますがお許しください。</p>
+
+<h4>まず基盤となるJavaScript</h4>
+
+
+<p>を書きました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">_d</span><span class="o">=</span><span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$c</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getUserInfo</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;twitter_user_image&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://chart.apis.google.com/chart?&quot;</span><span class="o">+</span><span class="err">☆</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://twitter.com/users/show/○○.json?&amp;callback=getUserInfo&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;p id=&quot;twitter_user_image&quot;&gt;&lt;/p&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これだけではまだ何の意味もありません。
+一応簡単に説明します(大分前のつぶやき取得でしてなかった分も含めて)。
+まず、onload(ページ読み込み完了時)した時にscript要素を生成してhead要素の末尾に挿入します。【と思ってたんですが、仕様変更を途中でしたのを忘れてたのでonloadは今回とっちゃうことにします！】
+その時のscript要素src属性に入ってる値がTwitterさんが用意してくれたAPIなわけです。
+このAPIは、callbackに指定した関数の引数に必要情報をオブジェクト(json)として設定して返してくれるものです。
+よって、追加されたscript要素の中身は以下のようになっています。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">getUserInfo</span><span class="p">({</span><span class="nx">a</span><span class="o">:</span><span class="p">{</span><span class="nx">b</span><span class="o">:</span><span class="nx">c</span><span class="p">}})</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>{a:{b:c}}がTwitterAPIが返してくれるものだと思ってください。
+そして予めgetUserInfoという関数を定義しておくことで、これらの情報を扱えるわけです(しつこいですが、もらえる情報は引数だから)。</p>
+
+<h4>では詳しく解説</h4>
+
+
+<p>○○の部分はTwitterでのusernameを入力してください。
+僕の場合は「namusyaka」と入力します。
+TwitterIDでもいけた気がしますが。
+☆部分が今回のメインです。
+最初にGoogle Chart APIのパラメータについて。
+結構いっぱいあるんですが、めんどくさいので少しだけ。</p>
+
+<table>
+<caption>指定必須のパラメータ</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>意味</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cht</td>
+<td>グラフの形</td>
+<td>bhg(棒グラフ),p(円グラフ)、p3(3D円グラフ),etc</td>
+</tr>
+<tr>
+<td>chs</td>
+<td>画像サイズ</td>
+<td>横幅x縦幅(例)300x100</td>
+</tr>
+<tr>
+<td>chd</td>
+<td>グラフの数、数値</td>
+<td>(例)t:1,2,3</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+<table>
+<caption>今回ぼくが使おうと思ってるパラメータ</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>意味</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chl</td>
+<td>各々の値の名前</td>
+<td>(例)A|B|C</td>
+</tr>
+<tr>
+<td>chco</td>
+<td>各々の値の色</td>
+<td>(例)ff0000|0000ff|00ff00</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>注意：chlの値で、ひらがな・カタカナはURIエンコードをすればいけるみたいですが漢字は無理っぽいです。
+これらを組み合わせて、cht=p3&amp;chs=300x100&amp;chd=1,2,3&amp;chl=A|B|C&amp;chco=ff0000|0000ff|00ff00というパラメータを最初のソースにある
+googleAPIのクエリー部分に設定します。
+設定すると。。。
+<img src="http://chart.apis.google.com/chart?cht=p3&chs=300x100&chd=t:1,2,3&chl=A|B|C&chco=ff0000|0000ff|00ff00" alt="グラフテスト画像"></p>
+
+<p>次にTwitter APIのオブジェクトについても色・数値関係のみ簡単に説明します。
+なお、最初に示したコードではgetUserInfo関数の引数にobjと書いてあるため、objを親オブジェクトとして書いていきます。</p>
+
+<table>
+<caption>Twitter APIで手に入れたオブジェクトで今回使うものたち</caption>
+<thead>
+<tr>
+<th>種類</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フォロー数</td>
+<td>obj.friends_count</td>
+</tr>
+<tr>
+<td>フォロワー数</td>
+<td>obj.followers_count</td>
+</tr>
+<tr>
+<td>ツイート数</td>
+<td>obj.statuses_count</td>
+</tr>
+<tr>
+<td>お気に入り数</td>
+<td>obj.favourites_count</td>
+</tr>
+<tr>
+<td>背景色</td>
+<td>obj.profile_background_color</td>
+</tr>
+<tr>
+<td>文字色</td>
+<td>obj.profile_text_color</td>
+</tr>
+<tr>
+<td>リンク色</td>
+<td>obj.profile_link_color</td>
+</tr>
+<tr>
+<td>サイドバー背景色</td>
+<td>obj.profile_sidebar_fill_color</td>
+</tr>
+<tr>
+<td>サイドバー枠線色</td>
+<td>obj.profile_sidebar_border_color</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>これくらいですかね。
+では今まで書いてきた情報を元にぼくの全体ツイート数と、お気に入りツイート数の比率を3D円グラフで表示したいと思います。
+色は全体背景色とリンク色を採用。
+コードは以下の通り。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">_d</span><span class="o">=</span><span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$c</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">element</span><span class="p">)}</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">getUserInfo</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;twitter_user_image&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;img&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://chart.apis.google.com/chart?cht=p3&amp;chs=400x120&amp;chd=t:&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">statuses_count</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">favourites_count</span><span class="o">+</span><span class="s2">&quot;&amp;chco=&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">profile_background_color</span><span class="o">+</span><span class="s2">&quot;|&quot;</span><span class="o">+</span><span class="nx">obj</span><span class="p">.</span><span class="nx">profile_link_color</span><span class="o">+</span><span class="s2">&quot;&amp;chl=all tweets|favorite tweets&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$c</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://twitter.com/users/show/namusyaka.json?&amp;callback=getUserInfo&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;p id=&quot;twitter_user_image&quot;&gt;&lt;/p&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このソースコードを貼り付けると<a href="http://namusyaka.sakura.ne.jp/gtest.html">こう表示されます。</a></p>
+
+<p>うーん、まぁ無駄に長くなってしまった感がありますがこれで終わりますさいなら。</p>
+
+<h4>追記</h4>
+
+
+<p>少しソースコードなど修正しました。
+これからは文章をちゃんと推敲しようと思いました。</p>
+
+<h4>またまた追記</h4>
+
+
+<p>このソースコードを貼り付けた位置に表示されるようにしました！
+何度もすみません！</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/29/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-29T00:00:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: Najaxβ版完成。そして伝説へ
+  date: 2010-08-29
+  comments: true
+  categories: Najax</p>
+
+<hr />
+
+<p>  ついに出来ましたNajax。
+ホントは昨日できてたんですが、完全なログイン機能を実装するために最初から
+作り直したりしていました。
+文字コードも色々考えなければならなかったんですが、すごく勉強になりました。
+あ。
+Shift_JISにエンコードするために[http://nurucom-archives.hp.infoseek.co.jp/digital/index.html:ヌルコムアーカイブス・デジタル制作室さん]の関数を使わせていただいてます。
+本当にありがとうございました。
+この関数が無ければ完成はしてないです。
+では個人的な批評と、今後実装していく予定のことについて。</p>
+
+<h4>批評</h4>
+
+
+<h5>評価できる点</h5>
+
+
+<p>パフォーマンスを損なわないために、ファイルの末尾から必要部分だけ読み込ませたりするようにしたこともあり、読み込みにかかる時間はログが増えてもほとんど変わらないと思います。</p>
+
+<h5>改善すべき点やちょっとおかしいんじゃないのそれっていう点</h5>
+
+
+<p>JavaScriptはもっと軽量化も出来ると思うんですが、自動車学校終わってからにしようと思います。
+Rubyの処理を減らすために色々考えたんですが、結局そこそこの量になってしまった感があります。
+サーバサイドの処理の遅さは僕自身の技術力を映し出してると思って今後はもっとサーバサイドの処理もしっかり書けるようにしたいです。
+また、設計も正直微妙だった気がします。
+途中までは自動ログインといっても名ばかりで、成りすましが余裕な状況だったので、それはまずいということで最初から作り直しました。
+この辺は経験の浅さなのかなと思います。</p>
+
+<h4>今後実装予定</h4>
+
+
+<p>色の変更は必ず実装します。
+だけど色を変更できるということで可視性が低下する恐れもあるので
+色変更無効(JavaScript)にするオプションも一緒に作ろうと思います。</p>
+
+<h4>では皆さん</h4>
+
+
+<p>もしよかったら使ってください。
+ほぼ常に僕はログインしてると思います。
+http://namusyaka.sakura.ne.jp/najax/
+わかんない点とかあれば質問歓迎します。
+んじゃさいなら。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/9/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/7/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

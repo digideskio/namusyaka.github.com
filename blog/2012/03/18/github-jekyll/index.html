@@ -1,0 +1,100 @@
+<hr />
+
+<p>  layout: post
+  title: Rubyで例外クラスを動的に定義する
+  date: 2012-03-18
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  グローバルの場合。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;HogeError&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="c1"># 継承させたい例外クラスを渡す</span>
+</span><span class='line'><span class="k">raise</span> <span class="no">HogeError</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Hoge::Fugaのようなネストされた空間の場合。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Hoge</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Fuga</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;Piyo&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">test</span><span class="p">;</span> <span class="k">raise</span> <span class="no">Piyo</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Hoge</span><span class="o">::</span><span class="no">Fuga</span><span class="o">.</span><span class="n">test</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>色々使い道があるかとは思いますが、例えば同じ例外クラスを継承する独自例外クラスを何個も定義する場合は以下のように書けて便利です。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">Foo</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Bar</span>
+</span><span class='line'>    <span class="vc">@@error_class</span> <span class="o">=</span> <span class="sx">%w( Hoge Fuga Piyo )</span>
+</span><span class='line'>    <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># 例外を発生させるクラスメソッドを定義</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">define_method</span> <span class="nb">name</span><span class="o">.</span><span class="n">downcase</span> <span class="k">do</span>
+</span><span class='line'>          <span class="k">raise</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> error !&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Foo</span><span class="o">::</span><span class="no">Bar</span><span class="o">.</span><span class="n">hoge</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+

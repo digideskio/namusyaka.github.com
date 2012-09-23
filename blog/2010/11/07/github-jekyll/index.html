@@ -1,0 +1,54 @@
+<hr />
+
+<p>  layout: post
+  title: 自分の見ているページを悟られないようにするためのJavaScript。
+  date: 2010-11-07
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします。</p>
+
+<p>以下のコードをそのページで実行します。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">&quot;YouTube - Broadcast Yourself&quot;</span><span class="p">})()</span>
+</span><span class='line'><span class="cm">/*これをアドレス入力欄に入力して実行するとそのページの表示名がYouTube - Broadcast Yourselfに変わります。</span>
+</span><span class='line'><span class="cm">そのページ自体を開いておかなければただYouTubeを開いているように見えるのでかなり有効だと思います。*/</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>見られたくないページが複数ある場合。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;国会議事堂の全て&quot;</span><span class="p">,</span><span class="s2">&quot;フラワーホーンの飼育&quot;</span><span class="p">,</span><span class="s2">&quot;Twitter / ホーム&quot;</span><span class="p">],</span><span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">n</span><span class="p">]})()</span>
+</span><span class='line'><span class="cm">/*同じくアドレス入力欄に入力して実行すると変数aの配列の中身にあるタイトルにランダムで変更されます。もちろんタイトルを変えるのも、配列要素数を増やすのも減らすのも自由です。*/</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>毎回入力するのは面倒なのでブックマークレット形式にする場合。
+ブックマークレットのやり方は<a href="http://namusyaka.info/ukeru/">うけるthis参照</a>。
+<a href='javascript:(function(){document.getElementsByTagName("title")[0].innerHTML="YouTube - Broadcast Yourself"})()'>固定変更</a></p>
+
+<p><a href='javascript:(function(){var a=["国会議事堂の全て","フラワーホーンの飼育","Twitter / ホーム"],n=Math.floor(Math.random()*a.length);document.getElementsByTagName("title")[0].innerHTML=a[n]})()'>ランダム変更</a></p>
+
+<p>しょうもないなとは思いますが、個人的に使いたいと思う場面が結構あったので書かせていただきました。</p>

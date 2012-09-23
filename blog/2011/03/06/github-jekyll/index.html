@@ -1,0 +1,66 @@
+<hr />
+
+<p>  layout: post
+  title: JavaScriptで画像を透過したり入れ替えたりする
+  date: 2011-03-06
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  jQueryとか使ったらアニメーション的なのも簡単なんだろうけどベタ書きだと結構めんどかったりするのかなーって思って実際に書いてみました。
+やってることは二つ。</p>
+
+<ul>
+<li>画像を透過していく。</li>
+<li>限界(勝手に決めた)まで達したら別画像に差し替える。</li>
+</ul>
+
+
+<p><a href="http://namusyaka.info/transmit/">テストページ</a>で確認してください。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="c1">//透過する関数。IE8, Firerox, Opera, Chrome, Safariで確認。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">imgElement</span><span class="p">,</span> <span class="nx">op</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="s1">&#39;alpha(opacity=&#39;</span> <span class="o">+</span> <span class="nx">op</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">MozOpacity</span> <span class="o">=</span> <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="nx">op</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//想像通りだろうけどsetInterval使ってます。単純。</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//テストページのHTMLに対応してる。</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_src</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;02.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;03.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;04.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;05.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;06.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;07.gif&#39;</span><span class="p">];</span><span class="c1">//入れ替えていく画像ファイルは配列で。</span>
+</span><span class='line'>  <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">_src</span><span class="p">[</span><span class="o">++</span><span class="nx">n</span> <span class="o">===</span> <span class="nx">_src</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="p">(</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="nx">n</span><span class="p">];</span>
+</span><span class='line'>    <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>この場合ファイル名も数値だから簡単な文字列操作でいけたんだけど配列の方が使い勝手がいいのでこうしました。
+意外とっていうかちょっと考えれば当たり前ですが簡単でした。</p>

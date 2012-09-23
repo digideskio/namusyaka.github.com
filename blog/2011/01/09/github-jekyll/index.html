@@ -1,0 +1,37 @@
+<hr />
+
+<p>  layout: post
+  title: KeyEventの話
+  date: 2011-01-09
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<blockquote><p>https://developer.mozilla.org/ja/Javascript_Style_Guide></p></blockquote>
+
+<p>event.keyCode == 13 ではなく event.keyCode == KeyEvent.DOM_VK_RETURN のような DOM 定数を使用するのを忘れないでください。</p>
+
+<p>&lt;&lt;</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">).</span><span class="nx">onkeypress</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">((</span><span class="nx">e</span> <span class="o">||</span> <span class="nx">event</span><span class="p">).</span><span class="nx">keyCode</span><span class="o">==</span><span class="nx">KeyEvent</span><span class="p">.</span><span class="nx">DOM_VK_RETURN</span><span class="p">)</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//Chromeがalertされず。</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>http://www.w3.org/TR/DOM-Level-3-Events/
+ちなみに上の2010年最新版ではKeyEvent.DOM_VK_RETURNに相当するプロパティが見当たりません。
+"Enter"をプロパティ代わりに使う的なことが書いてあるようにも見えますが現段階ではそれも使えないしDOM3自体が未完成らしいです。
+最初の記事でMDCが言ってるのは2001年版のDOM3についての話だと思うので気にしないで無難に数値リテラル使った方がいいねという話でしたおしまい。</p>

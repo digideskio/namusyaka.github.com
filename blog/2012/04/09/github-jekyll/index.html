@@ -1,0 +1,61 @@
+<hr />
+
+<p>  layout: post
+  title: JavaScriptでWebページ用付箋ブックマークレット
+  date: 2012-04-09
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
+
+<p>実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。
+saveを入力するとlocalStorage上に現在のスクロール量が記録されます。
+scrollを入力するとlocalStorage上に記録されたスクロール量分、スクロールします。
+入力する英字は小文字・大文字どちらも可。
+localStorageが使えないブラウザでは動きません。</p>
+
+<iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-ydL73uv6fA" width="500"></iframe>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="sr">/save/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="sr">/scroll/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="p">})();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>追記 2012/04/11</p>
+
+<p>デフォルトの文字列を設定するようにした</p>

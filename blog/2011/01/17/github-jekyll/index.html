@@ -1,0 +1,102 @@
+<hr />
+
+<p>  layout: post
+  title: 文字列検索メソッドつくった・forとwhileはどっちが速いか。
+  date: 2011-01-17
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  あけましておめでとうございます。
+前回書き忘れたので。
+これからは早く市民になりたいですし、まめに書いていきたいところです。</p>
+
+<h4>searchメソッド</h4>
+
+
+<p>またNajaxを作ってます。
+ver 0.5は完成してますが洗練されたチャットとは言えないので作り直してます。
+それに伴って文字列検索メソッドが欲しくなりまして、色々調べたんですがRubyに僕の目当てのものが実装されてなかったので書きました。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">String</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="o">*</span><span class="n">string</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">target</span> <span class="o">=</span> <span class="nb">self</span>
+</span><span class='line'>    <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">string</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="k">while</span> <span class="n">i</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">i</span> <span class="o">+=</span> <span class="n">n</span><span class="o">.</span><span class="n">length</span>
+</span><span class='line'>        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">r</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&quot;うんこぶりぶりいいい&quot;</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;い&quot;</span><span class="p">)</span><span class="err">　</span><span class="c1">#=&gt; 3</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>対象文字列の中に引数文字列がいくつ存在しているかを数値で返します。</p>
+
+<h4>forとwhileどっちが速いか</h4>
+
+
+<p>どう考えてもwhileだろうと思って調べたら逆でした。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="n">d</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span>
+</span><span class='line'>  <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">puts</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span> <span class="o">-</span> <span class="n">d</span> <span class="c1">#=&gt; 5.2e-05</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">d</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">99</span> <span class="k">do</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">puts</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span> <span class="o">-</span> <span class="n">d</span> <span class="c1">#=&gt; 2.0e-05</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>forは出来る子でした。
+おしまい。</p>

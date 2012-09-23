@@ -1,0 +1,96 @@
+<hr />
+
+<p>  layout: post
+  title: Rubygemsにライブラリ(モジュール)をあげてみた
+  date: 2011-04-20
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
+http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
+を参考にRubygemsを始めてみました。</p>
+
+<p>まず、アカウントを作ります。
+めんどいので端折ります。</p>
+
+<p>そしてgemcutterをインストールします。</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
+</code></pre>
+
+<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
+</code></pre>
+
+<p>とても簡単です。わーい。</p>
+
+<h4>公開したOperatorというモジュール</h4>
+
+
+<p>Rubygems https://rubygems.org/gems/Operator
+Github https://github.com/namusyaka/Operator</p>
+
+<p><a href="http://weble.org/2011/03/07/php-get-and-post-function">PHP で凄く簡単に GET/POST 送信ができる関数を作りました</a>にあった関数をみてて思いついたものです。
+get/postを簡単に出来るのはもちろん、responseを操作したい場面が多々あったのでそっちのメソッドも少し実装してます。
+構造的には
+-Operator
+--Operator::HTML
+--Operator::HTTP
+ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
+使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
+gemにあがっているので、以下を実行するとインストールできます。</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
+</code></pre>
+
+<p>具体的には以下のように使えます。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;Operator&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#namusyaka.infoのa要素href属性を抜き出したい場合</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">pick_attribute</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="c1">#指定ラインからのみ抽出したい場合は、第三引数に指定行をNumericかRangeで渡します。</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#後ろから読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">reverse_read</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#前から読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">read_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>がんばろう。</p>

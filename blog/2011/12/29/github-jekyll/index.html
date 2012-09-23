@@ -1,0 +1,85 @@
+<hr />
+
+<p>  layout: post
+  title: HTML4.01における開始タグ・終了タグの省略について
+  date: 2011-12-29
+  comments: true
+  categories: (X)HTML</p>
+
+<hr />
+
+<p>  以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
+
+<h4>HTMLのおはなし</h4>
+
+
+<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.2.1>
+HTML要素型の中には、著者が終了タグを省略することを許容するものもある。(例えば、P要素型やLI要素型)。さらに一部の要素型は、開始タグの省略も許容する。例えば、 HEADや BODYがこれである。
+&lt;&lt;</p></blockquote>
+
+<p>HTML4.01ではbody要素, head要素は省略可能です。
+他にもhtml要素が省略できますし、終了タグの省略が可能な要素もあります。</p>
+
+<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.3.3>
+要素のタグが省略可能であるかどうか。要素名の次に2つのハイフンが現れていれば、これは開始タグも終了タグも共に必須であることを意味する。1つのハイフンの後に大文字Oがあるという組み合わせの場合、終了タグが省略可能であることを意味する。大文字Oが2つだった場合、開始タグと終了タグの両方が省略可能である。
+&lt;&lt;</p></blockquote>
+
+<p>例</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='dtd'><span class='line'>
+</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">P</span> <span class="nt">-</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="nt">--</span> <span class="nt">paragraph</span> <span class="nt">--</span><span class="k">&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 --&gt;</span>
+</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BR</span> <span class="nt">-</span> <span class="nt">O</span> <span class="kc">EMPTY</span>                 <span class="nt">--</span> <span class="nt">forced</span> <span class="nt">line</span> <span class="nt">break</span> <span class="nt">--</span><span class="k">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BODY</span> <span class="nt">O</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%block;</span><span class="o">|</span><span class="nt">SCRIPT</span><span class="o">)+</span> <span class="o">+(</span><span class="nt">INS</span><span class="o">|</span><span class="nt">DEL</span><span class="o">)</span> <span class="nt">--</span> <span class="nt">document</span> <span class="nt">body</span> <span class="nt">--</span><span class="k">&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- これは開始タグ、終了タグを両方省略できるということを意味します。 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>よって、以下のようなHTMLはW3C的にはValidです。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>test<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>柴咲コウだいすき
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<h4>しかし</h4>
+
+
+<p>OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースにこけるようです(具体的には、cssが正しく反映されない、javascriptでこける)。
+要因としてはhtml要素,body要素,head要素が省略されていることにあったようですが、詳しいことは調べてないのでわかりません(もしかしたら、他にもあるかもしれません。誰か調べたら教えてください)。
+一つ言えるのは、<strong>これらの要素は省略できるけどしないほうが良い</strong>ってことですね。
+終了タグの省略は問題ないようです。</p>
+
+<p>この事実で大打撃をうけた僕でした。</p>

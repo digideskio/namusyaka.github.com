@@ -1,0 +1,98 @@
+<hr />
+
+<p>  layout: post
+  title: sakuraのレンタルサーバにrubygemsをインストールした後に色々インストールしようとしたらハマったので書く
+  date: 2010-09-20
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  タイトル通り、rubygemsインストールして色々やろーって思ってはじめたわけですがハマりました。
+あ、それと敬語って慣れないしブログだけ敬語っつーのもなんかアレなのでやめることにします。</p>
+
+<p><a href="http://d.hatena.ne.jp/ishimarum/20080929/1222689905">さくらのレンタルサーバーに RubyGems をインストールする手順</a></p>
+
+<p>これを見て進めたんだけど、現状と多少違う点があったので補足的な。
+僕自身sshを書くの初めてなんで出来る人からすると「何こいつこんなとこで引っかかってんの？」とか思われるかもしれないけどご了承。</p>
+
+<h4>cshrc編集について</h4>
+
+
+<p>主に以下に書かれている点に補足。</p>
+
+<blockquote><blockquote><p>% vi ~/.cshrc</p></blockquote></blockquote>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin)
+</code></pre>
+
+<p>この行を以下のように変更。</p>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin /home/User/bin)
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>それから、RubyGems のインストール先をホームディレクトリ以下に変更したので、環境変数 RUBYLIB と GEM_HOME のパスもこの ~/.cshrc で改めて定義しておく。</p>
+
+<pre><code>setenv RUBYLIB /home/User/lib
+
+setenv GEM_HOME /home/User/lib/ruby/gem
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>これが何をやっているのかは以下の文書に詳しく書いてある。
+&lt;&lt;</p>
+
+<p>まず</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>set pathの中身が大分違った。
+実際にはこんな感じ。</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>けどまぁサーバですし、毎回同じ環境なわけがないんで
+何も気にせず</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>を付け足して問題ない。(Userはログインユーザー名)</p>
+
+<p>んで、</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>を更にcshrcファイルに付け足してviコマンドのZZを叩いて終了。。。</p>
+
+<p>したかに思えた
+普通にエラーも出ず処理が終了したんで問題ないと思った。
+が！</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre>
+
+<p>どれだけこれを打ち込んでもエラーエラーエラー。
+流石になんかおかしいって気づく。</p>
+
+<p>んで、もっかいviコマンドでファイルを書き直したら今度は警告がでた。</p>
+
+<blockquote><blockquote><p>Read only file, not written.
+&lt;&lt;
+はい書き込みできないんだね。何故初回にこれが出なかったのか。
+まぁ何でかはわからんし、もしかしたら見落としてたのかも知れんけど
+とにかく原因がわかったのでftpで変更済cshrcファイルをうｐってEND.</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'sshconfig' found
+</code></pre></blockquote></blockquote>
+
+<p>はいおめでとー！</p>
+
+<p>空腹＋無知ってのが無駄に時間を食うはめになってしまった。
+上級者ならもっとエレガントにちゃちゃっと終わらせてくれそうです。</p>

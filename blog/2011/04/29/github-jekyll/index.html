@@ -1,0 +1,183 @@
+<hr />
+
+<p>  layout: post
+  title: プログラミングのはなし
+  date: 2011-04-29
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  <h4>パフォーマンス</h4>
+どの言語でプログラミングをする場合も、美しく且つパフォーマンスが良いコードを書くのが良いというのはもはや当たり前のことだと思ってたんですが、どうも可視性という言葉をはき違えてわけのわからないコードの書き方を正当化しようとする輩がいるようなので思いの丈を述べようと思います。</p>
+
+<p>サーバサイドでは、プログラムの実行環境が一つなため、スペックなどを知ることが出来るし、それに比例して多少は冗長なコードを書いても大丈夫な場合がある(書いても良いということではない)。
+一方、クライアントサイドでは実行環境を特定することが不可能で、幅広いユーザーをカバーするためにサーバサイド以上にパフォーマンスにこだわる必要があると思います。</p>
+
+<h4>ところで可視性とは</h4>
+
+
+<p>意味: 関係する部分を目に見えるようにすること、状態が分かること。
+可視性は重要だと思います。
+見やすく美しい洗練されたコードというのは管理もしやすいので。</p>
+
+<p>はたして以下のようなコードは可視性に優れていると言えるでしょうか？</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">hoge</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()</span>
+</span><span class='line'>  <span class="nx">hoge</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>僕はそうは思いません。
+document.getSelectionは何も選択されていない場合空文字を返します。
+よって</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'>  <span class="nx">hoge</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>と書く方が、型変換の分が節約できているし、よりわかりやすくなったかと思います。
+しかし、JavaScriptの特性上、以下のように書くのが一番わかりやすく、簡単かと思います。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'>  <span class="o">!</span><span class="nx">hoge</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>JavaScriptでは空文字もfalseと認識するのでこう書くことが出来ます。</p>
+
+<p>当たり前のことですが、可視性のためだといって最初のような書き方をするのはいみがわかりません。
+僕は、コードを書くとき、可能な範囲で省略できるところは省略すべきだと思ってるし、その方が可視性(見やすさ)が高まると信じています。</p>
+
+<p>しかし僕の主張することがあまりにぶっ飛びすぎてる可能性もあるので、指摘等あったら遠慮なくしてください。
+コメントはちょっと。。という人はTwitterやmailでくださっても結構です。</p>
+
+<p><em>1304089085</em>[JavaScript][Ruby]簡単で便利なブックマークレットとrubyでrss-reader</p>
+
+<h4>bookmarklet</h4>
+
+
+<p>よくプログラミング言語を学ぶ上で練習として電卓を作る人がいますが、ブックマークレット・eval・window.promptを使うと簡単で便利な電卓が作れます。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;評価する式を入力してください。&quot;</span><span class="p">)))</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>また、自分で作ったスクリプトを任意のページに読み込ませるのもwindow.promptを使えば簡単です。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;追加するjsファイルのURL&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})()</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>簡単なことしかやってませんが手軽に便利なものを作れるのは、JavaScriptの利点だと思います。</p>
+
+<h4>以前つくったRSSReaderの汎用性高くしたver</h4>
+
+
+<p>Github : <a href="https://github.com/namusyaka/RSS-Reader">https://github.com/namusyaka/RSS-Reader</a>
+Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/gems/rss_reader</a></p>
+
+<p>installは以下</p>
+
+<pre><code>        Liquid error: ClassNotFound: no lexer for alias 'ssh' found
+</code></pre>
+
+<p>使用例:巡回してcacheが有効になっているか確認.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss_reader&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># cacheファイルがあるか確認. 無ければ生成.</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#RSS::Readerオブジェクト生成.</span>
+</span><span class='line'><span class="n">rss</span> <span class="o">=</span> <span class="no">RSS</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#巡回するURLの配列</span>
+</span><span class='line'><span class="n">url</span> <span class="o">=</span> <span class="sx">%w(</span>
+</span><span class='line'><span class="sx">  http://d.hatena.ne.jp/namusyaka/rss</span>
+</span><span class='line'><span class="sx">  http://blog.livedoor.jp/tei_soku/index.rdf</span>
+</span><span class='line'><span class="sx">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rss</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1">#前回までのcacheを残さない場合は, 第二引数でtrueを指定.</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># cacheには記録時間を数値オブジェクトで渡す。デフォルトは30分.</span>
+</span><span class='line'><span class="c1"># もし、以前ファイルを記録した時間から引数以上の時間が経過していた場合は、nil.</span>
+</span><span class='line'><span class="c1"># 見つからない場合もnil.</span>
+</span><span class='line'><span class="c1"># 内部的にはFile.ctimeを使った方がスマートだが, 個人的な理由で別の方法を使ってる.</span>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;キャッシュは有効&quot;</span> <span class="k">if</span> <span class="n">rss</span><span class="o">.</span><span class="n">cache</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+

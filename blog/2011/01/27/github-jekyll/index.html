@@ -1,0 +1,136 @@
+<hr />
+
+<p>  layout: post
+  title: dustの解説
+  date: 2011-01-27
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  先日から<a href="http://namusyaka.info/o.html">謎解き</a>を設置していましたが、ヒント無しで解けた人は三人いたようです。
+そのうち一人は僕の知り合いなので把握していますが、残り二人は誰だかわかりません。
+とりあえず、おめでとうございます。</p>
+
+<h4>解説</h4>
+
+
+<p>面倒なのでol要素で簡単に解説。</p>
+
+<ol>
+<li>徐にsourceを開く。</li>
+<li>徐にtips.jsを見つける。開く。</li>
+<li>とりあえずJavaScriptを読み解く。</li>
+<li>縦読みの謎を解く。</li>
+<li>JavaScriptで書かれたコードに反映して暗号化アルゴリズム名を見つける。</li>
+<li>「なむりんの顔見たいわっ！！」にそれをかます。</li>
+</ol>
+
+
+
+
+<h4>細かい解説</h4>
+
+
+<h5>3について</h5>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="s2">&quot;u&quot;</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="s2">&quot;n&quot;</span><span class="p">,</span><span class="nx">d</span><span class="o">=</span><span class="s2">&quot;12345&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="err">縦読み</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">)</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>普通に整理してしまっていいです。
+わからないメソッドなどは調べましょう。
+すると以下のようになります。(変数は省略)</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="err">縦読み</span><span class="p">(</span><span class="s2">&quot;fun&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<h5>4について</h5>
+
+
+<p>縦読みについては日本語部分をよく読み、怪しい縦読みはググることで解決すると思われます。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm">  このJSを使うべきだろう。答えを導くアルゴリズムはこの中にある。</span>
+</span><span class='line'><span class="cm">  わからなければちょっとなやんでみる。</span>
+</span><span class='line'><span class="cm">  よくみれば答が落ちとるかもしれん。</span>
+</span><span class='line'><span class="cm">  平成23年1月15日 満13歳(16進数)のなむりんより。</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>ちなみに縦読みすべき部分は「ろっと13」でした。
+ろっと13 => ロット13　=> ROT13とgoogleを駆使すれば辿ることが出来たはずです。</p>
+
+<blockquote><p>http://ja.wikipedia.org/wiki/ROT13>
+ROT13 または ROT-13、rot13 は単換字式暗号（シーザー暗号）の一つである。アルファベットを一文字毎に13文字後のアルファベットに置き換える。Aは Nに、 B は O に置き換えられ、以下同様である。
+&lt;&lt;
+つまりアルファベットを13個ずらす必要があったわけです。</p></blockquote>
+
+<h5>5について</h5>
+
+
+<p>以下のようになります。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="nx">ROT13</span><span class="p">(</span><span class="s2">&quot;fun&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// &quot;sha1&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<h5>6について</h5>
+
+
+<p>sha1で「なむりんの顔見たいわっ！！」のハッシュ値を割り出します。
+それが答えです。</p>
+
+<p>解説し終わったので画像は写メ(プリクラだけど)ではなくうんこを置いておきました。</p>
+
+<p>おしまい。</p>
+
+<h4>追記</h4>
+
+
+<p>写メは単なる謎解きのおまけなので、どうしても見たかったという人は連絡ください。
+見せるので。</p>

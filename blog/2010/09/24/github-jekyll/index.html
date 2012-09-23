@@ -1,0 +1,59 @@
+<hr />
+
+<p>  layout: post
+  title: 配列参照について
+  date: 2010-09-24
+  comments: true
+  categories: JavaScript,Ruby</p>
+
+<hr />
+
+<p>  JavaScriptで配列参照をする場合。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="s2">&quot;0&quot;</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>二つの方法で参照することが出来ます。
+何故こういうことが出来るかというと、JavaScriptでは配列もオブジェクトとして扱うからなんだと思います。
+つまり中身が等価であれば以下のように文字列でも単純に識別子として使えるということです。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="o">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="o">:</span><span class="s2">&quot;b&quot;</span><span class="p">}[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// &quot;a&quot;</span>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="o">:</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="o">:</span><span class="s2">&quot;b&quot;</span><span class="p">}[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">// &quot;b&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>んで、僕はこれに慣れていたのでRubyの純粋な配列参照で戸惑いました。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="o">][</span><span class="s2">&quot;0&quot;</span><span class="o">]</span> <span class="c1">#=&gt; Error</span>
+</span><span class='line'><span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="o">][</span><span class="s2">&quot;0&quot;</span><span class="o">.</span><span class="n">to_i</span><span class="o">]</span> <span class="c1">#=&gt; &quot;a&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>つまり文字列を配列参照には使えず、数値に変換をする必要があったという話でした。
+まぁ当たり前といえば当たり前のことなんでしょうが、この問題に2分くらい思考が止まったので一応書いておこうと思います。</p>

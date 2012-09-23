@@ -1,0 +1,132 @@
+<hr />
+
+<p>  layout: post
+  title: js-envについて &amp; navigator.mimeTypesについて[追記]
+  date: 2010-11-21
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  <h4>js-envについて</h4></p>
+
+<p>この度、JavaScriptもCGIでよく使うような環境変数参照っぽく色々参照できたら面白いなということでスクリプトを書いてみました。</p>
+
+<p><a href="http://namusyaka.info/env.html">js-env</a>
+<a href="https://github.com/namusyaka/js-env">github</a></p>
+
+<p>簡単に言うと、navigatorオブジェクトを環境変数形式に似せて扱いやすくするスクリプトで、ブラウザ情報やOS情報なんかをわかりやすく出力します。</p>
+
+<p>env.jsを呼び込むと以下のように書けるようになります。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_BROWSER&quot;</span><span class="p">])</span> <span class="c1">// browser,version</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_OS&quot;</span><span class="p">])</span> <span class="c1">// Windows or Mac　今のところ二つしか判定出来ません。</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_DISPLAY&quot;</span><span class="p">])</span> <span class="c1">// width*height</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_MIMETYPE&quot;</span><span class="p">](</span><span class="s2">&quot;xml&quot;</span><span class="p">))</span> <span class="c1">// true or false</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_PLUGIN&quot;</span><span class="p">](</span><span class="s2">&quot;Adobe&quot;</span><span class="p">))</span> <span class="c1">// true or false</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<h4>navigator.mimeTypesについて</h4>
+
+
+<p>しかし問題点があります。
+USER_MIMETYPEとUSER_PLUGINはメソッドで、それぞれ、navigator.mimeTypesオブジェクトとnavigator.pluginsオブジェクト内に引数と一致する文字列がないか検索する仕様なんですが・・・。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_MIMETYPE&quot;</span><span class="p">](</span><span class="s2">&quot;html&quot;</span><span class="p">))</span> <span class="c1">//false</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>IE以外だとfalseになってしまいます。</p>
+
+<p>IE以外だと、navigator.mimeTypesをfor inで走査して中身を調べても、text/htmlが見つかりません。
+しかし以下のように書くと参照することが出来てしまいます。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">[</span><span class="s2">&quot;text/html&quot;</span><span class="p">])</span> <span class="c1">//[object MimeType]</span>
+</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">.</span><span class="nx">namedItem</span><span class="p">(</span><span class="s2">&quot;text/html&quot;</span><span class="p">))</span> <span class="c1">//[object MimeType]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>一応、現在はこの仕組みを利用して、text/htmlと書くことでtrueを返すようにはしていますが、いまひとつしっくりきません。
+そもそもfor inでnavigator.mimeTypesを走査するとtext/htmlが見つからないにも関わらずnavigator.mimeTypes["text/html"]で参照できてしまうことがおかしいのではないでしょうか。
+もはや、Firefoxの独自仕様なのではないかという予想くらいしか現在出来ていません。</p>
+
+<p>もし、この問題についてわかる方が居れば教えて欲しいと思いエントリーを書かせていただきました。
+よろしくお願いします＞＜</p>
+
+<h4>追記　11/23 1:30</h4>
+
+
+<p>Firefoxに対してだけ言える事実。</p>
+
+<blockquote><p>https://developer.mozilla.org/en/DOM/window.navigator.mimeTypes>
+Notes</p></blockquote>
+
+<p>The zeroth element in mimeTypes (the "Mozilla Default Plug-in" MimeType object) has a type property of * instead of a typical MIME format like "image/x-macpaint"
+&lt;&lt;</p>
+
+<p>実際に試してみると・・・。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">type</span> <span class="c1">//application/pdf</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>a typical MIME format like "image/x-macpaint"に当てはまる結果が出力されてしまうという問題がありました。</p>
+
+<p>また、id:hirataraさんに教えていただいた以下のコードを検証。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>実行してみるとfalseですが、そのプロパティがDontEnumであることの裏付けにはなりません(存在しないプロパティに対してもfalseを返すため)。</p>
+
+<h5>その他、色々試してみた結果いえること</h5>
+
+
+<p>mimeTypesの[]演算子内に書かれた文字列はitem()かnamedItem()の引数になっている可能性があると言うこと。
+もしそうなら、デフォルトMIMEタイプの所在を探したり考えること自体が無駄である。</p>
+
+<p>id:hirataraさん、id:hotokediaryさん、ご協力ありがとうございました。</p>

@@ -1,0 +1,33 @@
+<hr />
+
+<p>  layout: post
+  title: 2chスレッドから指定IDのレスだけ抽出
+  date: 2011-05-09
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  記事のタイトル通り。
+便利。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">e</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">with</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">parentNode</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="o">--</span><span class="nx">i</span><span class="p">].</span><span class="nx">nextSibling</span><span class="p">),</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;ID入力&quot;</span><span class="p">),</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;dt&quot;</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+

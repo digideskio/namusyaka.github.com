@@ -1,0 +1,27 @@
+<hr />
+
+<p>  layout: post
+  title: トンヌラ
+  date: 2012-02-06
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  前の記事で書いた画像を予めloadの理屈について簡単に説明します。
+大抵のブラウザでは、ImageオブジェクトのsrcプロパティにURLを突っ込んだ時点でそれを取るRequestを飛ばします。
+要はその仕組みを利用し(一度loadした画像はブラウザがキャッシュする)、遅れて表示される等の問題を解消したかったわけです。
+以下のようなコードを実行し、Webコンソールとか見るとわかります。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">new</span> <span class="nx">Image</span><span class="p">()).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://example.com/hoge.png&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>が、IEではどうも毎回画像をloadしまくってるようなので意味ないんだなこれが。</p>

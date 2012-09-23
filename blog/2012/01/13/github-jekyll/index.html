@@ -1,0 +1,51 @@
+<hr />
+
+<p>  layout: post
+  title: getElementByIdについて
+  date: 2012-01-13
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
+window["foo"] が返す要素</p></blockquote>
+
+<pre><code>"foo" という名前を持つ a、applet、area、embed、form、frame、frameset、iframe、img、または object 要素、または
+"foo" という id を持つ HTML 要素
+</code></pre>
+
+<p>&lt;&lt;</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hoge</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// [object HTMLParagraphElement]</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;body&gt;</span>
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;hoge&quot;</span><span class="nt">&gt;</span>fuga<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+

@@ -1,0 +1,90 @@
+<hr />
+
+<p>  layout: post
+  title: RubyでFizzBuzzやった
+  date: 2011-02-13
+  comments: true
+  categories: Ruby</p>
+
+<hr />
+
+<p>  http://d.hatena.ne.jp/smileruby/20110131/1296458879
+を見てスゲーと思ったけどもう少し短く出来るなと思ったから書きました。
+Rubyにおける0がfalseだったらもう少し短くできたのに。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>
+</span><span class='line'><span class="sc">?d</span><span class="o">.</span><span class="n">times</span><span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;55文字</span>
+</span><span class='line'><span class="c1">#100まで評価しろよという場合は?dを101に変更</span>
+</span><span class='line'><span class="c1">#1から評価しろよという場合は以下の通り。</span>
+</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="sc">?d</span><span class="p">){</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;57文字</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>人のコード改造しただけだしわざわざ日記に書くことでもないかとも思いましたがせっかくなので。
+おしまい。</p>
+
+<p><em>1297584016</em>[その他][JavaScript][Ruby]人間やめようと思った
+アニメを見てると二次元が良い世界すぎて人間やめたくなるんですが何とかやめないでがんばってます。</p>
+
+<h4>更新</h4>
+
+
+<p>先日、二つほど作りました。知ってる人も多いかと思います。</p>
+
+<ol>
+<li><a href="http://yetchat.jpn.org/">YetCHAT</a></li>
+<li><a href="http://n.namusyaka.info/">なむぴた</a></li>
+</ol>
+
+
+
+
+<h5>YetCHATについて</h5>
+
+
+<p>株式会社Avionが運営するJetCHATというチャットがありました。
+JavaAppletで動くリアルタイムチャットで、脆弱性やバグ等、問題も多かったわけですが、とても人気があったように思います。
+しかし2009年以降、JetCHATのサーバーに不具合が生じ、チャットが使用できない期間が続いています。
+Avionが直して通常通り運営してくれるのが一番なんですが、二年経っても状況が変わらないため、代替として僕が作ったのがYetCHATです。
+本当はJavaAppletを使い、GUIを丸パクリする予定でしたが、sakuraのレンタルサーバーではサーブレットが使えないようなので、じゃあ初回起動が重くなるだけだから止めようということになり、Najaxをちょっと改造してGUIをHTML,CSS,JavaScriptで再現することにしました。
+画像等は余裕で著作権が発生してるらしいので、下手糞な手描きアイコンに変えました。
+残念なことに、代替とはいってもポーリングを使った疑似リアルタイムチャットですので、JetCHATほどのリアルタイム性は望めないでしょう。
+また、JetCHATで起こっていた二つの問題を解決しています。</p>
+
+<ul>
+<li>キック機能を実装していないので、キック魔が発生しない。</li>
+<li>廃止されていた伝言板を復活させた。</li>
+<li>色バグが発生しない。</li>
+</ul>
+
+
+<p>登録制度を作ろうかとも思いましたが、利用者がそんなにいないようなのでやめました。
+自分のサイトにこのチャットを設置したいという人がいれば連絡ください。
+最低でもCGI(Ruby)を動かせる環境が必要ですが。</p>
+
+<h4>なむぴたについて</h4>
+
+
+<p>老舗イメぴたが今年の三月いっぱいでサービスを終えるようなので、代わりのサービスを作ってみようと思ったのがきっかけです。
+ほとんどイメぴたと機能の差はないんですが、二つ変更した点や追加した機能があるので挙げます。</p>
+
+<ul>
+<li>イメぴたでは自動で画像をリサイズをしていたが、画像アップロード後にリサイズするかどうかを選択できるようにした。</li>
+<li>画像を表示するページに、Twitterでつぶやくリンク(PC,携帯両方対応)と、URLコピースペースを設けた。</li>
+</ul>
+
+
+<p>まぁこの程度なんですが、もしよければ使ってみてください。
+違法画像に関しては報告を受ければ対処するという姿勢で臨んでいきたいと思います。
+尚、画像有効期間は30日です。</p>
+
+<p>おしまい。</p>

@@ -1,0 +1,890 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>法華経</title>
+  <meta name="author" content="namusyaka">
+
+  
+  <meta name="description" content="layout: post title: いばら date: 2011-09-10 comments: true categories: Ruby,linux VPSを借りました。
+インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
+そして今作っているサービスですが、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://namusyaka.github.com/blog/page/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="法華経" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">法華経</a></h1>
+  
+    <h2>よろしくどうぞ</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:namusyaka.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/09/10/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-10T00:00:00+09:00" pubdate data-updated="true">Sep 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: いばら
+  date: 2011-09-10
+  comments: true
+  categories: Ruby,linux</p>
+
+<hr />
+
+<p>  VPSを借りました。
+インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
+そして今作っているサービスですが、かなりの負荷がかかりそうだということで、
+MemCacheとmod_rubyを導入してみました。
+かなり速くなったので満足しております。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/30/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-30T00:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: spcamp2011のxss問題について
+  date: 2011-08-30
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  http://utf-8.jp/camp2011/ctf/inquiry.html</p>
+
+<p>これです。
+id:hasegawayosukeさんが提示した問題ですね。
+実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、ネタバレしてしらけんのもアレかなと思ったので記事を書いてませんでした。
+まーでも、そろそろいいかなということでまとめます。
+まだ見たくないという人は見ないほうがいいとおもいます。</p>
+
+<p>====</p>
+
+<p>まずソースをみます。
+とりあえず何か怪しいとこないかなーということで眺めた結果、あれ？とおもう点発見。
+最後のif文でなぜかjQueryのhtmlメソッドにわざとらしく文字列結合でinput要素を渡してるんですね。
+あーこの辺っぽいなということで、クエリーのconfirmを1に設定して色々試します。</p>
+
+<p>色々試すといっても、メールアドレス以外は全角制限があるので大したことは出来ず、
+メールアドレスチェックの正規表現をよく見ると、&#8217;とか=とかが使えることがわかりました。</p>
+
+<p>これでなんとかメールアドレス確認部分を変更する事が出来た(&#8216;onmouseover=&#8217;this.value=location.href&#8217;など)んですが、location.hrefはencodeされた状態で出力されてしまうんですね。
+これは困ったぞということで調べた結果、location.hashというプロパティを使えば良いことがわかりました。
+location.hashは#以降がasciiである限りencodeされていない状態で出力してくれますね。
+その結果以下のようなURLになりましたとさ。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なんかもっとスマートな方法あるのかなと思ったけどこれでいいや。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/23/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-23T00:00:00+09:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: あたりまえか
+  date: 2011-08-23
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  さきほど公開したエントリーですがもっと高速化をすることが出来たので報告します。
+まず</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>の部分。
+空文字は自動で0にキャストされるので使っていましたがそれがコストになっていました。
+当たり前のことですね。</p>
+
+<p>よって、しっかりと型を定めて定義することで速度があがります。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">n</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span>
+</span><span class='line'>    <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">64</span> <span class="o">||</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="mi">91</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">96</span><span class="p">)</span> <span class="o">||</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">122</span><span class="p">)</span> <span class="o">?</span>
+</span><span class='line'>      <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span><span class='line'>      <span class="o">:</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">((</span><span class="mi">97</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="mi">65</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">78</span><span class="p">)</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">+</span><span class="mi">13</span> <span class="o">:</span> <span class="nx">n</span> <span class="o">-</span> <span class="mi">13</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">s</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>しかしこれより速くすることが可能です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">c</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">c</span> <span class="o">&amp;</span> <span class="mi">64</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">&amp;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">27</span><span class="p">)</span> <span class="o">?</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">c</span> <span class="o">+</span> <span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">&amp;</span> <span class="mi">16</span> <span class="o">?</span> <span class="o">-</span><span class="mi">13</span> <span class="o">:</span> <span class="mi">13</span><span class="p">))</span> <span class="o">:</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'> <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>論理演算の部分にbit演算などを用いることでかなり速くなります。
+結果的にこれが一番速かったです。</p>
+
+<p><em>1314090957</em>[JavaScript]ROT13いろいろ
+暇だったのでROT13のいろいろな方法でベンチとりました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span> <span class="o">:</span> <span class="s1">&#39;n&#39;</span> <span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">:</span> <span class="s1">&#39;o&#39;</span> <span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">:</span> <span class="s1">&#39;p&#39;</span> <span class="p">,</span> <span class="s1">&#39;d&#39;</span> <span class="o">:</span> <span class="s1">&#39;q&#39;</span> <span class="p">,</span> <span class="s1">&#39;e&#39;</span> <span class="o">:</span> <span class="s1">&#39;r&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;f&#39;</span> <span class="o">:</span> <span class="s1">&#39;s&#39;</span> <span class="p">,</span> <span class="s1">&#39;g&#39;</span> <span class="o">:</span> <span class="s1">&#39;t&#39;</span> <span class="p">,</span> <span class="s1">&#39;h&#39;</span> <span class="o">:</span> <span class="s1">&#39;u&#39;</span> <span class="p">,</span> <span class="s1">&#39;i&#39;</span> <span class="o">:</span> <span class="s1">&#39;v&#39;</span> <span class="p">,</span> <span class="s1">&#39;j&#39;</span> <span class="o">:</span> <span class="s1">&#39;w&#39;</span> <span class="p">,</span> <span class="s1">&#39;k&#39;</span> <span class="o">:</span> <span class="s1">&#39;x&#39;</span> <span class="p">,</span> <span class="s1">&#39;l&#39;</span> <span class="o">:</span> <span class="s1">&#39;y&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;m&#39;</span> <span class="o">:</span> <span class="s1">&#39;z&#39;</span> <span class="p">,</span> <span class="s1">&#39;n&#39;</span> <span class="o">:</span> <span class="s1">&#39;a&#39;</span> <span class="p">,</span> <span class="s1">&#39;o&#39;</span> <span class="o">:</span> <span class="s1">&#39;b&#39;</span> <span class="p">,</span> <span class="s1">&#39;p&#39;</span> <span class="o">:</span> <span class="s1">&#39;c&#39;</span> <span class="p">,</span> <span class="s1">&#39;q&#39;</span> <span class="o">:</span> <span class="s1">&#39;d&#39;</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span> <span class="o">:</span> <span class="s1">&#39;e&#39;</span> <span class="p">,</span> <span class="s1">&#39;s&#39;</span> <span class="o">:</span> <span class="s1">&#39;f&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;t&#39;</span> <span class="o">:</span> <span class="s1">&#39;g&#39;</span> <span class="p">,</span> <span class="s1">&#39;u&#39;</span> <span class="o">:</span> <span class="s1">&#39;h&#39;</span> <span class="p">,</span> <span class="s1">&#39;v&#39;</span> <span class="o">:</span> <span class="s1">&#39;i&#39;</span> <span class="p">,</span> <span class="s1">&#39;w&#39;</span> <span class="o">:</span> <span class="s1">&#39;j&#39;</span> <span class="p">,</span> <span class="s1">&#39;x&#39;</span> <span class="o">:</span> <span class="s1">&#39;k&#39;</span> <span class="p">,</span> <span class="s1">&#39;y&#39;</span> <span class="o">:</span> <span class="s1">&#39;l&#39;</span> <span class="p">,</span> <span class="s1">&#39;z&#39;</span> <span class="o">:</span> <span class="s1">&#39;m&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;A&#39;</span> <span class="o">:</span> <span class="s1">&#39;N&#39;</span> <span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="o">:</span> <span class="s1">&#39;O&#39;</span> <span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="o">:</span> <span class="s1">&#39;P&#39;</span> <span class="p">,</span> <span class="s1">&#39;D&#39;</span> <span class="o">:</span> <span class="s1">&#39;Q&#39;</span> <span class="p">,</span> <span class="s1">&#39;E&#39;</span> <span class="o">:</span> <span class="s1">&#39;R&#39;</span> <span class="p">,</span> <span class="s1">&#39;F&#39;</span> <span class="o">:</span> <span class="s1">&#39;S&#39;</span> <span class="p">,</span> <span class="s1">&#39;G&#39;</span> <span class="o">:</span> <span class="s1">&#39;T&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;H&#39;</span> <span class="o">:</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span> <span class="s1">&#39;I&#39;</span> <span class="o">:</span> <span class="s1">&#39;V&#39;</span> <span class="p">,</span> <span class="s1">&#39;J&#39;</span> <span class="o">:</span> <span class="s1">&#39;W&#39;</span> <span class="p">,</span> <span class="s1">&#39;K&#39;</span> <span class="o">:</span> <span class="s1">&#39;X&#39;</span> <span class="p">,</span> <span class="s1">&#39;L&#39;</span> <span class="o">:</span> <span class="s1">&#39;Y&#39;</span> <span class="p">,</span> <span class="s1">&#39;M&#39;</span> <span class="o">:</span> <span class="s1">&#39;Z&#39;</span> <span class="p">,</span> <span class="s1">&#39;N&#39;</span> <span class="o">:</span> <span class="s1">&#39;A&#39;</span> <span class="p">,</span> <span class="s1">&#39;O&#39;</span> <span class="o">:</span> <span class="s1">&#39;B&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;P&#39;</span> <span class="o">:</span> <span class="s1">&#39;C&#39;</span> <span class="p">,</span> <span class="s1">&#39;Q&#39;</span> <span class="o">:</span> <span class="s1">&#39;D&#39;</span> <span class="p">,</span> <span class="s1">&#39;R&#39;</span> <span class="o">:</span> <span class="s1">&#39;E&#39;</span> <span class="p">,</span> <span class="s1">&#39;S&#39;</span> <span class="o">:</span> <span class="s1">&#39;F&#39;</span> <span class="p">,</span> <span class="s1">&#39;T&#39;</span> <span class="o">:</span> <span class="s1">&#39;G&#39;</span> <span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="o">:</span> <span class="s1">&#39;H&#39;</span> <span class="p">,</span> <span class="s1">&#39;V&#39;</span> <span class="o">:</span> <span class="s1">&#39;I&#39;</span> <span class="p">,</span> <span class="s1">&#39;W&#39;</span> <span class="o">:</span> <span class="s1">&#39;J&#39;</span> <span class="p">,</span>
+</span><span class='line'>   <span class="s1">&#39;X&#39;</span> <span class="o">:</span> <span class="s1">&#39;K&#39;</span> <span class="p">,</span> <span class="s1">&#39;Y&#39;</span> <span class="o">:</span> <span class="s1">&#39;L&#39;</span> <span class="p">,</span> <span class="s1">&#39;Z&#39;</span> <span class="o">:</span> <span class="s1">&#39;M&#39;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//今日新しく書いたやつ</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">n</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">),</span>
+</span><span class='line'>    <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">64</span> <span class="o">||</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;=</span> <span class="mi">91</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;=</span> <span class="mi">96</span><span class="p">)</span> <span class="o">||</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">122</span><span class="p">)</span> <span class="o">?</span>
+</span><span class='line'>    <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">:</span>
+</span><span class='line'>    <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">((</span><span class="mi">97</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">110</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="mi">65</span> <span class="o">&lt;=</span> <span class="nx">n</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">78</span><span class="p">)</span> <span class="o">?</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">13</span> <span class="o">:</span> <span class="nx">n</span> <span class="o">-</span> <span class="mi">13</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">s</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">b</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//連想配列でやったやつ</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">s</span> <span class="o">+=</span> <span class="nx">hash</span><span class="p">[</span><span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">||</span> <span class="nx">str</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">s</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">c</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//hotokeが書いたやつ http://ahotoke.com/labs/js_scheme.html</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[a-z]/ig</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="k">return</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">()</span><span class="o">+</span><span class="p">(</span><span class="nx">c</span><span class="o">&lt;</span><span class="s2">&quot;n&quot;</span><span class="o">&amp;</span><span class="nx">c</span><span class="o">&gt;</span><span class="s2">&quot;M&quot;</span><span class="o">^</span><span class="nx">c</span><span class="o">&lt;</span><span class="s2">&quot;a&quot;</span><span class="o">?</span><span class="mi">13</span><span class="o">:-</span><span class="mi">13</span><span class="p">))})</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">_a</span><span class="p">,</span> <span class="nx">_b</span><span class="p">,</span> <span class="nx">_c</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">a</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+</span><span class='line'><span class="nx">_a</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">b</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+</span><span class='line'><span class="nx">_b</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="nx">c</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+</span><span class='line'><span class="nx">_c</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;a:&quot;</span><span class="o">+</span><span class="nx">_a</span><span class="o">+</span><span class="s2">&quot;b:&quot;</span><span class="o">+</span><span class="nx">_b</span><span class="o">+</span><span class="s2">&quot;c:&quot;</span><span class="o">+</span><span class="nx">_c</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//a:114b:139c:272</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>速度順に並べるとa>b>c。
+cは予想通りですね。
+aとbは環境によって多少変わったりしそうですが基本的に連想配列を使わず不等号などで計算したほうが速そうです。
+正直aは冗長な感じがするので、もっとちゃんと書けばより速度差が如実に表れてくると思います。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/20/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-20T00:00:00+09:00" pubdate data-updated="true">Aug 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 勘違いしていた
+  date: 2011-08-20
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  JavaScriptにおけるwithはリテラルでも走査してしまうので結果無駄な参照が多くなるから使わんほうが良いと思っていましたが、リテラルは走査対象外なようです。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span class='line'><span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">b</span> <span class="o">:</span> <span class="s2">&quot;c&quot;</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="kd">with</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/05/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-05T00:00:00+09:00" pubdate data-updated="true">Aug 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: 暑中見舞い
+  date: 2011-08-05
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  あついですね</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/16/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-16T00:00:00+09:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: Hokkaido.pmに参加しました
+  date: 2011-07-16
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  <h5>Hokkaido.pm！</h5>
+以前から何らかの勉強会などに参加してみたいと思いつつもなかなか機会が無くて参加していませんでしたが、今回は思い切って参加してみました。</p>
+
+<h5>しかし</h5>
+
+
+<p>寝坊＋道に迷うで開始時刻に間に合いませんでしたほんとにすいません。
+aloelightさんにはtwitterでご迷惑をおかけしました＞＜
+まさかマックスバリューが二つあるとは。
+ちょうどnekokakさん発表の前の休憩時間に到着することが出来たので、そこからはエディタで発表内容をまとめるなどして、聴いていました。</p>
+
+<h5>ワタシパールワカラナーイ</h5>
+
+
+<p>参加までにはある程度Perlを書けるようになっているつもりだったんですが無理でした。根性なしです。すいません。
+よって、正直きついだろうなと思っていましたが、nekokakさんのエンジニアの意識に関する発表やdont_cocoaさんのテスト駆動開発など、言語の垣根を越えて参考になるものが多く、Perl初心者、もといボクのようなPerlを全く知らないような人でも楽しめるような内容でした。</p>
+
+<h5>そして伝説へ</h5>
+
+
+<p>以前から交流があったhirataraさんとお会いすることが出来て感動でした。
+実用gitを持っていくつもりだったんですが寝坊というアクシデントですっかり頭からぶっ飛んでいてしまったのが残念です。
+近いうちにまたお会いできればなと思います。
+また、今回は金銭的な都合で懇親会に参加できませんでしたが、今度はぜひ参加させていただきたいです。
+Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつかれさまでした。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/11/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-11T00:00:00+09:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: Luilak Profileをリリースしました
+  date: 2011-07-11
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  URL : <a href="http://p.luilak.net">http://p.luilak.net</a></p>
+
+<p>タグ　を使って同じ趣味・特技を持つ人を探せる環境を想定して作りました。
+他のサービスも含めたコミュニケーションのキーとなるサービスを目指します。
+また、CSSを編集できる機能で、ユーザーごとの独自レイアウトを可能にしました。
+よろしくお願いします。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/26/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-26T00:00:00+09:00" pubdate data-updated="true">Jun 26<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: プレシャスなとき～
+  date: 2011-06-26
+  comments: true
+  categories:</p>
+
+<hr />
+
+<p>  き～み～の傘　あ～たたかい～</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/20/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-20T00:00:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: namusyaka関係のサービスが停止しておりますごめんなさい
+  date: 2011-06-20
+  comments: true
+  categories: その他</p>
+
+<hr />
+
+<p>  レンタルサーバ料金を払い忘れてました.ごめんなさい.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/13/github-jekyll/">Github Jekyll</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-13T00:00:00+09:00" pubdate data-updated="true">Jun 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><hr />
+
+<p>  layout: post
+  title: javascriptで画像スライドつくった
+  date: 2011-06-13
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  個人的に必要に迫られたので作りました.
+001, 002のようにファイル名の数値がインクリメントされていくような形式の画像ファイルをスライドっぽくするだけです.</p>
+
+<p><a href="http://namusyaka.info/slide_img/">画像をスライドさせて楽しむツール</a></p>
+
+<p>githubにもあがっているので修正大歓迎です.
+debugしてないので.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/29/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/26/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/20/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/06/27/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">Github Jekyll</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - namusyaka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

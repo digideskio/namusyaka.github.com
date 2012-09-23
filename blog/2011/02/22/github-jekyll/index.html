@@ -1,0 +1,153 @@
+<hr />
+
+<p>  layout: post
+  title: JavaScriptで簡易スライドショーをつくった
+  date: 2011-02-22
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  世の高校生たちは今日から春休みですか。
+僕と同い年の受験生たちは、もう大分落ち着いてきてるみたいですね。
+国立受験がまだちらほらって感じでしょうか。
+頑張ってください。</p>
+
+<h4>嗚呼　素晴らしきかな勉強会</h4>
+
+
+<p>Hokkaido.pmとかデブサミが話題にあがってますね。
+素晴らしいスライドが結構あったりして、機会があればぜひそういう集まりに参加したいです。</p>
+
+<h4>簡易スライドショーとは</h4>
+
+
+<ul>
+  <li>簡単なスライドショー用スクリプトです。</li>
+  <li>スライドショーといってもtextarea要素内の文字列を操作するだけです。</li>
+  <li>backで戻り、nextで進みます。</li>
+  <li>textarea要素内に、「=begin改行 スライド内容 改行=end」で一枚が出来上がります。</li>
+  <li>使用例は以下の通り。</li>
+  <li>http://namusyaka.info/slide.html で使用例を示している。</li>
+</ul>
+
+
+<p>HTML ></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- ひつようなもの１ 実際に表示させるスライド。CSSは自分で書きましょう。 --&gt;</span>
+</span><span class='line'><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;slide_display&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;space&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;remote&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;remote_list&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">id=</span><span class="s">&quot;back&quot;</span> <span class="na">value=</span><span class="s">&quot;back&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">id=</span><span class="s">&quot;next&quot;</span> <span class="na">value=</span><span class="s">&quot;next&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;speed&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/li&gt;</span>
+</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="c">&lt;!-- ひつようなもの２ textarea要素。display:noneつけとけばいいとおもいます。 --&gt;</span>
+</span><span class='line'><span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">&quot;slide&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;/textarea&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>JavaScript ></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="c1">// idは自分で変えるよろし。</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)},</span> <span class="nx">space</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">),</span> <span class="nx">speed</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;speed&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">slide</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;slide&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="nx">fpos</span> <span class="o">=</span> <span class="nx">lpos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">slide_show</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slideSubStr</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="nx">bottom</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">top</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">bottom</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">fpos</span> <span class="o">=</span> <span class="nx">top</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">lpos</span> <span class="o">=</span> <span class="nx">bottom</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">fpos</span><span class="p">,</span> <span class="nx">lpos</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">do</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">slide_show</span><span class="p">[</span><span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">slide</span><span class="p">.</span><span class="nx">slideSubStr</span><span class="p">(</span><span class="nx">slide</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;=begin&#39;</span><span class="p">,</span> <span class="nx">fpos</span><span class="p">),</span> <span class="nx">slide</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;=end&#39;</span><span class="p">,</span> <span class="nx">lpos</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nx">slide_show</span><span class="p">[</span><span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">capacity</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;1/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">===</span> <span class="nx">capacity</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="nx">r</span><span class="o">++</span><span class="p">];</span>
+</span><span class='line'>    <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">r</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;back&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="o">--</span><span class="nx">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>    <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">r</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+

@@ -1,0 +1,168 @@
+<hr />
+
+<p>  layout: post
+  title: チャベリでのURLを自動でリンクに変換するユーザースクリプト「URIchanger」
+  date: 2010-10-25
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  を書きました。
+<a href="http://namusyaka.info/chaberi1.html">URIchanger</a>と言います。</p>
+
+<p>あ、それとやっぱり落ち着かない気分なので敬語に戻そうと思います。</p>
+
+<h4>本題</h4>
+
+
+<p>チャベリでは、初回ページロード時の関数内容を記録して、一定時間ごとに現在の関数処理とそれが一致するかどうかを確認しています。
+一致しなければトップページに飛ばされてしまいます。
+つまり関数処理を変更できないということでした。</p>
+
+<p>ですが、一定時間ごとに関数チェックをしている処理というのはsetInterval関数を使っているので、これを止める必要がありました。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="cm">/*foo()を第一引数に指定してあるsetIntervalのみ止める。*/</span>
+</span><span class='line'><span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span><span class="c1">//普通、制御する場合は変数代入をします。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span><span class='line'><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//forで無理矢理止めることが出来ます。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="c1">//必要な処理は再び書く。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>こういう処理は稀だと思いますが、かなり勉強になりました。
+UserScriptを書く上で、もしかしたら今後も使うことがあるかもしれません。
+注意するべきなのは、<strong>clearIntervalに数値を渡すとsetTimeout関数も止めてしまうことがあるということです。</strong></p>
+
+<p>また、GreaseMonkeyで関数定義をしても、ローカル関数となってしまうので、URIスキームを用いる方法をとりました。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="c1">//グローバル関数を定義する。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//これではチャベリのjsファイル上でhoge関数を呼び出せない。</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//よってURIスキームにてグローバル関数を定義。</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>完成版が以下の通りです</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">outprint</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">place</span><span class="p">,</span> <span class="nx">getmsg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> <span class="k">if</span> <span class="p">(</span><span class="nx">place</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">_element</span> <span class="o">=</span> <span class="nx">UseById</span><span class="p">(</span><span class="nx">place</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^&quot;])(https?\:\/\/[^ &lt;]*)/</span><span class="p">,</span><span class="s1">&#39;$1&lt;a href=&quot;$2&quot; target=&quot;_blank&quot;&gt;$2&lt;/a&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;setenter()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;win_resize()&quot;</span><span class="p">,</span><span class="mi">800</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span> <span class="s2">&quot;reload_ajbnr3()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;reload_overture_all()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;ChangeAdvAvatar()&quot;</span><span class="p">,</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>とても勉強になりました。</p>
+
+<p>尚、このスクリプトを書く上で、<a href="http://hotoke.osonae.com">hotoke氏</a>に協力していただきました。
+ありがとうございました。</p>
+
+<h4>補足</h4>
+
+
+<p>チャベリの独自仕様に[link][/link]で囲むとチャベリ検索ページにつながるというものがあったみたいなので、それを考慮したスクリプトに変更しました。</p>
+
+<h4>更に補足</h4>
+
+
+<p>現存するsetIntervalを全て止める方法として</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>こういうものがあったのでURIchangerのソースを変更しておきます。</p>

@@ -1,0 +1,45 @@
+<hr />
+
+<p>  layout: post
+  title: spcamp2011のxss問題について
+  date: 2011-08-30
+  comments: true
+  categories: JavaScript</p>
+
+<hr />
+
+<p>  http://utf-8.jp/camp2011/ctf/inquiry.html</p>
+
+<p>これです。
+id:hasegawayosukeさんが提示した問題ですね。
+実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、ネタバレしてしらけんのもアレかなと思ったので記事を書いてませんでした。
+まーでも、そろそろいいかなということでまとめます。
+まだ見たくないという人は見ないほうがいいとおもいます。</p>
+
+<p>====</p>
+
+<p>まずソースをみます。
+とりあえず何か怪しいとこないかなーということで眺めた結果、あれ？とおもう点発見。
+最後のif文でなぜかjQueryのhtmlメソッドにわざとらしく文字列結合でinput要素を渡してるんですね。
+あーこの辺っぽいなということで、クエリーのconfirmを1に設定して色々試します。</p>
+
+<p>色々試すといっても、メールアドレス以外は全角制限があるので大したことは出来ず、
+メールアドレスチェックの正規表現をよく見ると、'とか=とかが使えることがわかりました。</p>
+
+<p>これでなんとかメールアドレス確認部分を変更する事が出来た('onmouseover='this.value=location.href'など)んですが、location.hrefはencodeされた状態で出力されてしまうんですね。
+これは困ったぞということで調べた結果、location.hashというプロパティを使えば良いことがわかりました。
+location.hashは#以降がasciiである限りencodeされていない状態で出力してくれますね。
+その結果以下のようなURLになりましたとさ。</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>
+</span><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>なんかもっとスマートな方法あるのかなと思ったけどこれでいいや。</p>
