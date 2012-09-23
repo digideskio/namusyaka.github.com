@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-09-23T16:07:52+09:00</updated>
+  <updated>2012-09-23T16:17:45+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello Octopress !]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/09/23/github-jekyll/"/>
+    <updated>2012-09-23T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/09/23/github-jekyll</id>
+    <content type="html"><![CDATA[<p>色々あってOctopressに移転しました。
+はてなのデータをOctopressにimportしたかったのでちょっとだけ汚いRuby書きました。
+Liquid error: getaddrinfo: nodename nor servname provided, or not known</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
@@ -1550,50 +1561,6 @@ gem install data-converterでインストールできます
 
 <p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
 技術系のこと以外ははてなブログを使おうと思います。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
-    <updated>2011-10-08T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
-    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
-
-<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
-
-<h2>Webype(ウェバイプ)βとは</h2>
-
-
-<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
-・完全無料。
-・独自CSSで自分のデザインを反映できる。
-・その他、様々な機能がある。
-・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
-
-<h2>なぜつくったか</h2>
-
-
-<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
-結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
-
-<h2>どう展開していくか</h2>
-
-
-<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
-開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
-
-<p>でもやっぱりお金欲しいよねって思うのが人情です。
-今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
-ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
-また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
-
-<h2>作ってみた感想</h2>
-
-
-<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
-初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
-当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
 ]]></content>
   </entry>
   

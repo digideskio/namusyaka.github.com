@@ -5,13 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>spcamp2011のxss問題について - 法華経</title>
+  <title>Hello Octopress ! - 法華経</title>
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="http://utf-8.jp/camp2011/ctf/inquiry.html これです。
-id:hasegawayosukeさんが提示した問題ですね。
-実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、 &hellip;">
+  <meta name="description" content="色々あってOctopressに移転しました。
+はてなのデータをOctopressにimportしたかったのでちょっとだけ汚いRuby書きました。
+Liquid error: getaddrinfo: nodename nor servname provided, or not known
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +21,7 @@ id:hasegawayosukeさんが提示した問題ですね。
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namusyaka.github.com/blog/2011/08/30/github-jekyll/">
+  <link rel="canonical" href="http://namusyaka.github.com/blog/2012/09/23/github-jekyll/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -69,7 +70,7 @@ id:hasegawayosukeさんが提示した問題ですね。
   
   <header>
     
-      <h1 class="entry-title">Spcamp2011のxss問題について</h1>
+      <h1 class="entry-title">Hello Octopress !</h1>
     
     
       <p class="meta">
@@ -85,42 +86,16 @@ id:hasegawayosukeさんが提示した問題ですね。
   
 
 
-<time datetime="2011-08-30T00:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
+<time datetime="2012-09-23T00:00:00+09:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>http://utf-8.jp/camp2011/ctf/inquiry.html</p>
-
-<p>これです。
-id:hasegawayosukeさんが提示した問題ですね。
-実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、ネタバレしてしらけんのもアレかなと思ったので記事を書いてませんでした。
-まーでも、そろそろいいかなということでまとめます。
-まだ見たくないという人は見ないほうがいいとおもいます。</p>
-
-<p>====</p>
-
-<p>まずソースをみます。
-とりあえず何か怪しいとこないかなーということで眺めた結果、あれ？とおもう点発見。
-最後のif文でなぜかjQueryのhtmlメソッドにわざとらしく文字列結合でinput要素を渡してるんですね。
-あーこの辺っぽいなということで、クエリーのconfirmを1に設定して色々試します。</p>
-
-<p>色々試すといっても、メールアドレス以外は全角制限があるので大したことは出来ず、
-メールアドレスチェックの正規表現をよく見ると、'とか=とかが使えることがわかりました。</p>
-
-<p>これでなんとかメールアドレス確認部分を変更する事が出来た('onmouseover='this.value=location.href'など)んですが、location.hrefはencodeされた状態で出力されてしまうんですね。
-これは困ったぞということで調べた結果、location.hashというプロパティを使えば良いことがわかりました。
-location.hashは#以降がasciiである限りencodeされていない状態で出力してくれますね。
-その結果以下のようなURLになりましたとさ。</p>
-
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-<p>なんかもっとスマートな方法あるのかなと思ったけどこれでいいや。</p>
+<div class="entry-content"><p>色々あってOctopressに移転しました。
+はてなのデータをOctopressにimportしたかったのでちょっとだけ汚いRuby書きました。
+Liquid error: getaddrinfo: nodename nor servname provided, or not known</p>
 </div>
 
 
@@ -143,12 +118,12 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
   
 
 
-<time datetime="2011-08-30T00:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
+<time datetime="2012-09-23T00:00:00+09:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/その他/'>その他</a>
   
 </span>
 
@@ -157,7 +132,7 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2011/08/30/github-jekyll/" data-via="namusyaka" data-counturl="http://namusyaka.github.com/blog/2011/08/30/github-jekyll/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2012/09/23/github-jekyll/" data-via="namusyaka" data-counturl="http://namusyaka.github.com/blog/2012/09/23/github-jekyll/" >Tweet</a>
   
   
   
@@ -168,10 +143,8 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/08/23/github-jekyll/" title="Previous Post: あたりまえか">&laquo; あたりまえか</a>
+        <a class="basic-alignment left" href="/blog/2012/08/29/github-jekyll/" title="Previous Post: チャベリ裏口に似たサービス「チャベリ勝手口」をつくった">&laquo; チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2011/09/10/github-jekyll/" title="Next Post: いばら">いばら &raquo;</a>
       
     </p>
   </footer>
