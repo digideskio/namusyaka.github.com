@@ -9,8 +9,10 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="Twitterでやらかしてしまったので反省などを込めて書きます。 http://journal.mycom.co.jp/news/2009/11/11/015/index.html>
-Thomas Fuchs氏が6 easy things you can do to improve your &hellip;">
+  <meta name="description" content="エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,220 +67,6 @@ Thomas Fuchs氏が6 easy things you can do to improve your &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/11/18/github-jekyll/">JavaScriptにおけるオブジェクト生成の高速化の話</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-18T00:00:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Twitterでやらかしてしまったので反省などを込めて書きます。</p>
-
-<blockquote><p>http://journal.mycom.co.jp/news/2009/11/11/015/index.html>
-Thomas Fuchs氏が6 easy things you can do to improve your JavaScript runtime performanceにおいてJavaScriptの実行パフォーマンスを改善するための6つのテクニックを紹介している。Thomas Fuchs氏はscript.aculo.usの開発者であるとともにPrototypeコアチームのメンバーも務めている。またRuby on Railsでコアチームで開発を担当していたこともある。</p></blockquote>
-
-<p>(中略)</p>
-
-<p>括弧で生成せずにnewを使う</p>
-
-<p>従来の{}といった生成方法ではなくnewを使って配列やオブジェクトを作成する。</p>
-
-<p>&lt;&lt;</p>
-
-<p>これを画像も載ってるし安心だ！と軽々しく信用したのが間違いでした。</p>
-
-<p>twitter:5259021506322432:detail</p>
-
-<p>twitter:5260223858089984:detail</p>
-
-<p>(どやっ。</p>
-
-<p>twitter:5262440476446720:detail</p>
-
-<p>はっはっは。そうだろうそうだろう。</p>
-
-<p>twitter:5268640643420160:detail</p>
-
-<p>あ？なんだこれは。と思い最初の記事を読み返す。</p>
-
-<blockquote><p>http://journal.mycom.co.jp/news/2009/11/11/015/index.html>
-Thomas Fuchs氏が6 easy things you can do to improve your JavaScript runtime performanceにおいてJavaScriptの実行パフォーマンスを改善するための6つのテクニックを紹介している。Thomas Fuchs氏はscript.aculo.usの開発者であるとともにPrototypeコアチームのメンバーも務めている。またRuby on Railsでコアチームで開発を担当していたこともある。</p></blockquote>
-
-<p>(中略)</p>
-
-<p>括弧で生成せずにnewを使う</p>
-
-<p>従来の{}といった生成方法ではなくnewを使って配列やオブジェクトを作成する。</p>
-
-<p>&lt;&lt;</p>
-
-<p>やはりそう書いてある。
-どういうことだ？と思って画像をクリックすると書いてあることとは全く別の結果がグラフ化されている。</p>
-
-<p>ヤバイ大ホラを吹いてしまったのではなかろうかと思いベンチマークをとり始める。</p>
-
-<h2>Object</h2>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">;</span>
-</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
-</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;new:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;literal:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<table>
-<tr>
-<th>方法</th>
-<th>IE8</th>
-<th>Firefox</th>
-<th>Opera</th>
-<th>GoogleChrome</th>
-</tr>
-<tr>
-<td>new演算子</td>
-<td>3171</td>
-<td>245</td>
-<td>2359</td>
-<td>287</td>
-</tr>
-<tr>
-<td>literal</td>
-<td>4273</td>
-<td>278</td>
-<td>2157</td>
-<td>168</td>
-</tr>
-</table>
-
-
-
-
-<h2>Array</h2>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">;</span>
-</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
-</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;new:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;literal:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<table>
-<tr>
-<th>方法</th>
-<th>IE8</th>
-<th>Firefox</th>
-<th>Opera</th>
-<th>GoogleChrome</th>
-</tr>
-<tr>
-<td>new演算子</td>
-<td>2594</td>
-<td>189</td>
-<td>2547</td>
-<td>95</td>
-</tr>
-<tr>
-<td>literal</td>
-<td>2953</td>
-<td>261</td>
-<td>2375</td>
-<td>78</td>
-</tr>
-</table>
-
-
-
-
-<h2>総評</h2>
-
-
-<p>いかがでしょうか。
-IE,Firefoxではnew演算子を使って生成した方が速く、Opera,Chromeではそれとは逆の結果になりました。
-エンジンとか環境で大分結果が変わりそうですね。
-こだわるレベルではないかなぁという感じです。</p>
-
-<p>id:hirataraさんにもご指摘いただきました。</p>
-
-<p>twitter:5274695070916608:detail</p>
-
-<p>twitter:5276528791257089:detail</p>
-
-<p>やはり技術関連の情報は一度自分で試してみるということが大事なんだと実感させられました。
-本当にすみませんでした。</p>
-
-<h2>おまけ</h2>
-
-
-<p>twitter:5267501558538240:detail</p>
-
-<p>これは酷い。
-ごめんねwsaplさん。</p>
-
-<p>最後にためになるエントリーがあったので紹介しておきます。</p>
-
-<p><a href="http://d.hatena.ne.jp/uupaa/20081005/1223196093">JavaScript の高速化その2 「全てを疑い、自分の目で確認すること」</a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1153,6 +941,86 @@ googleAPIのクエリー部分に設定します。
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/29/github-jekyll/">Najaxβ版完成。そして伝説へ</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-29T00:00:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ついに出来ましたNajax。
+ホントは昨日できてたんですが、完全なログイン機能を実装するために最初から
+作り直したりしていました。
+文字コードも色々考えなければならなかったんですが、すごく勉強になりました。
+あ。
+Shift_JISにエンコードするために[http://nurucom-archives.hp.infoseek.co.jp/digital/index.html:ヌルコムアーカイブス・デジタル制作室さん]の関数を使わせていただいてます。
+本当にありがとうございました。
+この関数が無ければ完成はしてないです。
+では個人的な批評と、今後実装していく予定のことについて。</p>
+
+<h2>批評</h2>
+
+
+
+
+<h5>評価できる点</h5>
+
+
+<p>パフォーマンスを損なわないために、ファイルの末尾から必要部分だけ読み込ませたりするようにしたこともあり、読み込みにかかる時間はログが増えてもほとんど変わらないと思います。</p>
+
+<h5>改善すべき点やちょっとおかしいんじゃないのそれっていう点</h5>
+
+
+<p>JavaScriptはもっと軽量化も出来ると思うんですが、自動車学校終わってからにしようと思います。
+Rubyの処理を減らすために色々考えたんですが、結局そこそこの量になってしまった感があります。
+サーバサイドの処理の遅さは僕自身の技術力を映し出してると思って今後はもっとサーバサイドの処理もしっかり書けるようにしたいです。
+また、設計も正直微妙だった気がします。
+途中までは自動ログインといっても名ばかりで、成りすましが余裕な状況だったので、それはまずいということで最初から作り直しました。
+この辺は経験の浅さなのかなと思います。</p>
+
+<h2>今後実装予定</h2>
+
+
+<p>色の変更は必ず実装します。
+だけど色を変更できるということで可視性が低下する恐れもあるので
+色変更無効(JavaScript)にするオプションも一緒に作ろうと思います。</p>
+
+<h2>では皆さん</h2>
+
+
+<p>もしよかったら使ってください。
+ほぼ常に僕はログインしてると思います。
+http://namusyaka.sakura.ne.jp/najax/
+わかんない点とかあれば質問歓迎します。
+んじゃさいなら。</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -1167,19 +1035,15 @@ googleAPIのクエリー部分に設定します。
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/nil' style='font-size: 107.5%'>nil(5)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 127.0%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 136.0%'>その他(24)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 125.5%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 134.5%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/nil'>nil (5)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (24)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/09/23/github-jekyll/">Hello Octopress !</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
@@ -1195,6 +1059,10 @@ googleAPIのクエリー部分に設定します。
     
       <li class="post">
         <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>

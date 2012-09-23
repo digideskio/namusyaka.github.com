@@ -9,10 +9,12 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="こんばんは、ぼくです。 この度、ぼくの団体Luilakが新たにサービスをリリースしたので、その報告と共に簡単な感想を述べようと思います。 Webype(ウェバイプ)βとは ・WebとSkypeチャットをつなぐパイプ的なサービス。
-・完全無料。
-・独自CSSで自分のデザインを反映できる。
-・その他、 &hellip;">
+  <meta name="description" content="VPSを借りました。
+インフラ関係の知識はほぼ皆無だったのでなかなか勉強になっております。
+そして今作っているサービスですが、かなりの負荷がかかりそうだということで、
+MemCacheとmod_rubyを導入してみました。
+かなり速くなったので満足しております。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,77 +69,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/08/github-jekyll/">SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-08T00:00:00+09:00" pubdate data-updated="true">Oct 8<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>こんばんは、ぼくです。</p>
-
-<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
-
-<h2>Webype(ウェバイプ)βとは</h2>
-
-
-<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
-・完全無料。
-・独自CSSで自分のデザインを反映できる。
-・その他、様々な機能がある。
-・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
-
-<h2>なぜつくったか</h2>
-
-
-<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
-結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
-
-<h2>どう展開していくか</h2>
-
-
-<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
-開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
-
-<p>でもやっぱりお金欲しいよねって思うのが人情です。
-今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
-ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
-また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
-
-<h2>作ってみた感想</h2>
-
-
-<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
-初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
-当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -707,6 +638,48 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/13/github-jekyll/">Javascriptで画像スライドつくった</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-13T00:00:00+09:00" pubdate data-updated="true">Jun 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>個人的に必要に迫られたので作りました.
+001, 002のようにファイル名の数値がインクリメントされていくような形式の画像ファイルをスライドっぽくするだけです.</p>
+
+<p><a href="http://namusyaka.info/slide_img/">画像をスライドさせて楽しむツール</a></p>
+
+<p>githubにもあがっているので修正大歓迎です.
+debugしてないので.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -721,19 +694,15 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/nil' style='font-size: 107.5%'>nil(5)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 127.0%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 136.0%'>その他(24)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 125.5%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 134.5%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/nil'>nil (5)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (24)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/09/23/github-jekyll/">Hello Octopress !</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
@@ -749,6 +718,10 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
     
       <li class="post">
         <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>

@@ -9,13 +9,10 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="http://d.hatena.ne.jp/smileruby/20110131/1296458879
-を見てスゲーと思ったけどもう少し短く出来るなと思ったから書きました。
-Rubyにおける0がfalseだったらもう少し短くできたのに。 1
-2
-3
-4
-?d.times{|i|p&quot &hellip;">
+  <meta name="description" content="ソーシャルネットワークが騒ぎ始められる前から実を言うとアカウントは持っていたわけだけど、友達もできないしつまんねーと思って何もいじってませんでした。
+しかし最近になってちょっとマークさんに興味が出てきたので調べてみました。
+ほうほうなかなかイカす奴じゃねーか。
+そして・・・ [f:id: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,117 +67,6 @@ Rubyにおける0がfalseだったらもう少し短くできたのに。 1
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/13/github-jekyll/">RubyでFizzBuzzやった</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-13T00:00:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://d.hatena.ne.jp/smileruby/20110131/1296458879
-を見てスゲーと思ったけどもう少し短く出来るなと思ったから書きました。
-Rubyにおける0がfalseだったらもう少し短くできたのに。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sc">?d</span><span class="o">.</span><span class="n">times</span><span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;55文字</span>
-</span><span class='line'><span class="c1">#100まで評価しろよという場合は?dを101に変更</span>
-</span><span class='line'><span class="c1">#1から評価しろよという場合は以下の通り。</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="sc">?d</span><span class="p">){</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;57文字</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>人のコード改造しただけだしわざわざ日記に書くことでもないかとも思いましたがせっかくなので。
-おしまい。</p>
-
-<h2>人間やめようと思った</h2>
-
-
-<p>アニメを見てると二次元が良い世界すぎて人間やめたくなるんですが何とかやめないでがんばってます。</p>
-
-<h2>更新</h2>
-
-
-<p>先日、二つほど作りました。知ってる人も多いかと思います。</p>
-
-<ol>
-<li><a href="http://yetchat.jpn.org/">YetCHAT</a></li>
-<li><a href="http://n.namusyaka.info/">なむぴた</a></li>
-</ol>
-
-
-
-
-<h5>YetCHATについて</h5>
-
-
-<p>株式会社Avionが運営するJetCHATというチャットがありました。
-JavaAppletで動くリアルタイムチャットで、脆弱性やバグ等、問題も多かったわけですが、とても人気があったように思います。
-しかし2009年以降、JetCHATのサーバーに不具合が生じ、チャットが使用できない期間が続いています。
-Avionが直して通常通り運営してくれるのが一番なんですが、二年経っても状況が変わらないため、代替として僕が作ったのがYetCHATです。
-本当はJavaAppletを使い、GUIを丸パクリする予定でしたが、sakuraのレンタルサーバーではサーブレットが使えないようなので、じゃあ初回起動が重くなるだけだから止めようということになり、Najaxをちょっと改造してGUIをHTML,CSS,JavaScriptで再現することにしました。
-画像等は余裕で著作権が発生してるらしいので、下手糞な手描きアイコンに変えました。
-残念なことに、代替とはいってもポーリングを使った疑似リアルタイムチャットですので、JetCHATほどのリアルタイム性は望めないでしょう。
-また、JetCHATで起こっていた二つの問題を解決しています。</p>
-
-<ul>
-<li>キック機能を実装していないので、キック魔が発生しない。</li>
-<li>廃止されていた伝言板を復活させた。</li>
-<li>色バグが発生しない。</li>
-</ul>
-
-
-<p>登録制度を作ろうかとも思いましたが、利用者がそんなにいないようなのでやめました。
-自分のサイトにこのチャットを設置したいという人がいれば連絡ください。
-最低でもCGI(Ruby)を動かせる環境が必要ですが。</p>
-
-<h2>なむぴたについて</h2>
-
-
-<p>老舗イメぴたが今年の三月いっぱいでサービスを終えるようなので、代わりのサービスを作ってみようと思ったのがきっかけです。
-ほとんどイメぴたと機能の差はないんですが、二つ変更した点や追加した機能があるので挙げます。</p>
-
-<ul>
-<li>イメぴたでは自動で画像をリサイズをしていたが、画像アップロード後にリサイズするかどうかを選択できるようにした。</li>
-<li>画像を表示するページに、Twitterでつぶやくリンク(PC,携帯両方対応)と、URLコピースペースを設けた。</li>
-</ul>
-
-
-<p>まぁこの程度なんですが、もしよければ使ってみてください。
-違法画像に関しては報告を受ければ対処するという姿勢で臨んでいきたいと思います。
-尚、画像有効期間は30日です。</p>
-
-<p>おしまい。</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -943,6 +829,220 @@ Notes</p></blockquote>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/18/github-jekyll/">JavaScriptにおけるオブジェクト生成の高速化の話</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-18T00:00:00+09:00" pubdate data-updated="true">Nov 18<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Twitterでやらかしてしまったので反省などを込めて書きます。</p>
+
+<blockquote><p>http://journal.mycom.co.jp/news/2009/11/11/015/index.html>
+Thomas Fuchs氏が6 easy things you can do to improve your JavaScript runtime performanceにおいてJavaScriptの実行パフォーマンスを改善するための6つのテクニックを紹介している。Thomas Fuchs氏はscript.aculo.usの開発者であるとともにPrototypeコアチームのメンバーも務めている。またRuby on Railsでコアチームで開発を担当していたこともある。</p></blockquote>
+
+<p>(中略)</p>
+
+<p>括弧で生成せずにnewを使う</p>
+
+<p>従来の{}といった生成方法ではなくnewを使って配列やオブジェクトを作成する。</p>
+
+<p>&lt;&lt;</p>
+
+<p>これを画像も載ってるし安心だ！と軽々しく信用したのが間違いでした。</p>
+
+<p>twitter:5259021506322432:detail</p>
+
+<p>twitter:5260223858089984:detail</p>
+
+<p>(どやっ。</p>
+
+<p>twitter:5262440476446720:detail</p>
+
+<p>はっはっは。そうだろうそうだろう。</p>
+
+<p>twitter:5268640643420160:detail</p>
+
+<p>あ？なんだこれは。と思い最初の記事を読み返す。</p>
+
+<blockquote><p>http://journal.mycom.co.jp/news/2009/11/11/015/index.html>
+Thomas Fuchs氏が6 easy things you can do to improve your JavaScript runtime performanceにおいてJavaScriptの実行パフォーマンスを改善するための6つのテクニックを紹介している。Thomas Fuchs氏はscript.aculo.usの開発者であるとともにPrototypeコアチームのメンバーも務めている。またRuby on Railsでコアチームで開発を担当していたこともある。</p></blockquote>
+
+<p>(中略)</p>
+
+<p>括弧で生成せずにnewを使う</p>
+
+<p>従来の{}といった生成方法ではなくnewを使って配列やオブジェクトを作成する。</p>
+
+<p>&lt;&lt;</p>
+
+<p>やはりそう書いてある。
+どういうことだ？と思って画像をクリックすると書いてあることとは全く別の結果がグラフ化されている。</p>
+
+<p>ヤバイ大ホラを吹いてしまったのではなかろうかと思いベンチマークをとり始める。</p>
+
+<h2>Object</h2>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">;</span>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;new:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;literal:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<table>
+<tr>
+<th>方法</th>
+<th>IE8</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>GoogleChrome</th>
+</tr>
+<tr>
+<td>new演算子</td>
+<td>3171</td>
+<td>245</td>
+<td>2359</td>
+<td>287</td>
+</tr>
+<tr>
+<td>literal</td>
+<td>4273</td>
+<td>278</td>
+<td>2157</td>
+<td>168</td>
+</tr>
+</table>
+
+
+
+
+<h2>Array</h2>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">o</span><span class="p">;</span>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;new:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">1000000</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">o</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;literal:&quot;</span><span class="o">+</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">t</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<table>
+<tr>
+<th>方法</th>
+<th>IE8</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>GoogleChrome</th>
+</tr>
+<tr>
+<td>new演算子</td>
+<td>2594</td>
+<td>189</td>
+<td>2547</td>
+<td>95</td>
+</tr>
+<tr>
+<td>literal</td>
+<td>2953</td>
+<td>261</td>
+<td>2375</td>
+<td>78</td>
+</tr>
+</table>
+
+
+
+
+<h2>総評</h2>
+
+
+<p>いかがでしょうか。
+IE,Firefoxではnew演算子を使って生成した方が速く、Opera,Chromeではそれとは逆の結果になりました。
+エンジンとか環境で大分結果が変わりそうですね。
+こだわるレベルではないかなぁという感じです。</p>
+
+<p>id:hirataraさんにもご指摘いただきました。</p>
+
+<p>twitter:5274695070916608:detail</p>
+
+<p>twitter:5276528791257089:detail</p>
+
+<p>やはり技術関連の情報は一度自分で試してみるということが大事なんだと実感させられました。
+本当にすみませんでした。</p>
+
+<h2>おまけ</h2>
+
+
+<p>twitter:5267501558538240:detail</p>
+
+<p>これは酷い。
+ごめんねwsaplさん。</p>
+
+<p>最後にためになるエントリーがあったので紹介しておきます。</p>
+
+<p><a href="http://d.hatena.ne.jp/uupaa/20081005/1223196093">JavaScript の高速化その2 「全てを疑い、自分の目で確認すること」</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -957,19 +1057,15 @@ Notes</p></blockquote>
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/nil' style='font-size: 107.5%'>nil(5)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 127.0%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 136.0%'>その他(24)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 125.5%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 134.5%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/nil'>nil (5)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (24)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/09/23/github-jekyll/">Hello Octopress !</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
@@ -985,6 +1081,10 @@ Notes</p></blockquote>
     
       <li class="post">
         <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>

@@ -9,12 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="ついに出来ましたNajax。
-ホントは昨日できてたんですが、完全なログイン機能を実装するために最初から
-作り直したりしていました。
-文字コードも色々考えなければならなかったんですが、すごく勉強になりました。
-あ。
-Shift_JISにエンコードするために[http://nurucom- &hellip;">
+  <meta name="description" content="Twitterなどではつぶやいたりしてるんですが、NajaxというGUIをSkypeに似せたWEBチャットを作っています。
+クライアントはHTML,CSS,JavaScript。
+サーバサイドはRubyで処理するつもりです。 簡単にシステムを説明すると ・ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,86 +66,6 @@ Shift_JISにエンコードするために[http://nurucom- &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/29/github-jekyll/">Najaxβ版完成。そして伝説へ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-29T00:00:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ついに出来ましたNajax。
-ホントは昨日できてたんですが、完全なログイン機能を実装するために最初から
-作り直したりしていました。
-文字コードも色々考えなければならなかったんですが、すごく勉強になりました。
-あ。
-Shift_JISにエンコードするために[http://nurucom-archives.hp.infoseek.co.jp/digital/index.html:ヌルコムアーカイブス・デジタル制作室さん]の関数を使わせていただいてます。
-本当にありがとうございました。
-この関数が無ければ完成はしてないです。
-では個人的な批評と、今後実装していく予定のことについて。</p>
-
-<h2>批評</h2>
-
-
-
-
-<h5>評価できる点</h5>
-
-
-<p>パフォーマンスを損なわないために、ファイルの末尾から必要部分だけ読み込ませたりするようにしたこともあり、読み込みにかかる時間はログが増えてもほとんど変わらないと思います。</p>
-
-<h5>改善すべき点やちょっとおかしいんじゃないのそれっていう点</h5>
-
-
-<p>JavaScriptはもっと軽量化も出来ると思うんですが、自動車学校終わってからにしようと思います。
-Rubyの処理を減らすために色々考えたんですが、結局そこそこの量になってしまった感があります。
-サーバサイドの処理の遅さは僕自身の技術力を映し出してると思って今後はもっとサーバサイドの処理もしっかり書けるようにしたいです。
-また、設計も正直微妙だった気がします。
-途中までは自動ログインといっても名ばかりで、成りすましが余裕な状況だったので、それはまずいということで最初から作り直しました。
-この辺は経験の浅さなのかなと思います。</p>
-
-<h2>今後実装予定</h2>
-
-
-<p>色の変更は必ず実装します。
-だけど色を変更できるということで可視性が低下する恐れもあるので
-色変更無効(JavaScript)にするオプションも一緒に作ろうと思います。</p>
-
-<h2>では皆さん</h2>
-
-
-<p>もしよかったら使ってください。
-ほぼ常に僕はログインしてると思います。
-http://namusyaka.sakura.ne.jp/najax/
-わかんない点とかあれば質問歓迎します。
-んじゃさいなら。</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -738,19 +655,15 @@ WEBデザインを近々したいな。
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/nil' style='font-size: 107.5%'>nil(5)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 127.0%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 136.0%'>その他(24)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 125.5%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 134.5%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/nil'>nil (5)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (24)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/09/23/github-jekyll/">Hello Octopress !</a>
-      </li>
     
       <li class="post">
         <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
@@ -766,6 +679,10 @@ WEBデザインを近々したいな。
     
       <li class="post">
         <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>
