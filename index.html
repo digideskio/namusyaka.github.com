@@ -138,6 +138,80 @@
 <p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
 Array.apply使えばいいんじゃねというと指摘されて、それもそうだなということで変更した。
 今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</p>
+
+<h2>移転</h2>
+
+
+<p>はてなダイアリーから移転した。
+hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状態で残したかったが、元々はてなダイアリーの書き方が汚かったのでかなりオレオレ仕様になってしまった。</p>
+
+<div><script src='https://gist.github.com/3769184.js?file='></script>
+<noscript><pre><code>require 'rexml/document'
+require 'erb'
+
+class HatenaToOctopress
+
+  @@octo_format = &lt;&lt;-MKDN
+---
+layout: post
+title: &lt;%= @item[:title] %&gt;
+date: &lt;%= @item[:date] %&gt;
+comments: true
+categories: &lt;%= @item[:categories].inspect %&gt;
+---
+&lt;%= @item[:body] %&gt;
+  MKDN
+
+  def initialize (data)
+    @data = data
+  end
+
+  def import
+    doc = REXML::Document.new(@data)
+    doc.elements.each(&quot;diary/day&quot;) do |day|
+      @item = {}
+      @item[:date] = day.attributes['date']
+      day.elements.each(&quot;body&quot;) do |body|
+        lines = body.text.split(/\n/)
+        params = lines[1].scan(/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/)[0]
+        @item[:categories] = params[0].split(&quot;][&quot;) if params[0]
+        @item[:title] = params[1]
+        @item[:body] = lines[1..-1].join(&quot;\n&quot;).gsub(/&gt;\|(.+?)\|(.+?)\|\|&lt;/m) do
+          &lt;&lt;-CODE
+{% codeblock lang:#{$1} %}
+#{$2}
+{% endcodeblock %}
+          CODE
+        end
+        # &lt;h4&gt;を直書きしていたためoctopressに合うよう置換, 一日に複数個日記を書いていた場合の見出しも同じく置換。
+        @item[:body].gsub!(/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/) { &quot;&lt;h2&gt;#{$1 || $2}&lt;/h2&gt;\n&quot; }
+      end
+      post ERB.new(@@octo_format).result(binding)
+    end
+  end
+
+  def self.read_file (path)
+    hatena2octo = self.new(File.read(path))
+    hatena2octo.import
+  end
+
+  private
+
+    def post (post_data)
+      path = &quot;source/_posts/#{@item[:date]}-github-jekyll.mkd&quot;
+
+      File.open(path, File.exist?(path) ? &quot;a&quot; : &quot;w&quot;) do |file|
+        file.write(post_data)
+      end
+    end
+end
+
+if $0 == __FILE__
+   HatenaToOctopress.read_file(&quot;hatena.xml&quot;)
+end</code></pre></noscript></div>
+
+
+
 </div>
   
   
