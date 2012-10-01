@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-10-01T19:32:47+09:00</updated>
+  <updated>2012-10-02T08:51:51+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -69,7 +69,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
-Array.apply使えばいいんじゃねというと指摘されて、それもそうだなということで変更した。
+Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
 今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</p>
 
 <h2>移転</h2>
