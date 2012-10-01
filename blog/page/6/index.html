@@ -9,10 +9,12 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="と高校生でもない僕が言うのは何かおかしいですが、僕も順調に高校に通っていたら昨日卒業でした。
-簡単に高校入学から今に至るまでを振り返ってみます。 高校いかねーのアホくさと思ったから高校入学。(2008年)
-高校いくのアホくさと思ったから高２で中退。(2009年9月頃)
-モンハン3発売。ハマる。 &hellip;">
+  <meta name="description" content="全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。 キャッシュしよう 1
+2
+3
+4
+var cache = {}, _d = document;
+function $(id) { return cache[id] || (cache[id] = _d &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +69,199 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/04/github-jekyll/">DOMにおけるメソッド呼び出しについて・DOM操作をする場合の注意。</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-04T00:00:00+09:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。</p>
+
+<h2>キャッシュしよう</h2>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こうすることで、DOMの重たいメソッドを何度も呼び出さずに済みます。いぇーい。</p>
+
+<h2><del>しかしそう甘くはないのがJavaScript</del><ins>甘かったのは俺だった</ins></h2>
+
+
+<p><del>なんと、結果をキャッシュをすることでスピードが落ちるブラウザが二つありました。</del>
+<del>IEとFirefoxです。</del>
+とりあえず以下のソースでベンチをとってみました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;test&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span><span class="c">&lt;!--</span>
+</span><span class='line'><span class="c1">//修正しました。JavaScriptをHTML以降に書いていてもDOM操作をする場合はonload内に処理を記述する必要があります。(IE&amp;Firefox対策)</span>
+</span><span class='line'><span class="nx">onload</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">_$</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">f</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">_$</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nx">e</span><span class="o">+</span><span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="nx">f</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span><span class="o">+</span><span class="nx">g</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//--&gt;</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>IE8</th>
+<th>Firefox</th>
+<th>Opera</th>
+<th>Chrome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>①</th>
+<td>1906</td>
+<td>270</td>
+<td>317</td>
+<td>119</td>
+</tr>
+<tr>
+<th>②</th>
+<td>583</td>
+<td>37</td>
+<td>72</td>
+<td>13</td>
+</tr>
+<tr>
+<th>③</th>
+<td>3464</td>
+<td>276</td>
+<td>335</td>
+<td>108</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>まず如何にIEが遅く、Chromeが速いかがわかる結果となりました。
+<del>結果をキャッシュしたものが裏目に出ているのが前述した通りIEとFirefox。</del>
+<ins>結果をキャッシュしているものが全てのブラウザで速くなりました。</ins>
+<del>IE・Firefoxをとるならキャッシュをせず、Opera・Chromeをとるならキャッシュをしようということになりますね。</del>
+<ins>どのブラウザでもキャッシュは有効です。</ins></p>
+
+<h2>追記 23:08</h2>
+
+
+<p>結果おかしいんじゃないかという異議を唱えられたので追記します！</p>
+
+<blockquote><p>http://jsperf.com/getelementbyid-cache>
+getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.ne.jp/namusyaka/20110304/1299228350 の計測データが一部おかしい感じがする。
+&lt;&lt;</p></blockquote>
+
+<p>即ち②の方がはやいんじゃねえかということでした。
+実際http://jsperf.com/getelementbyid-cacheで試してみると確かに2がIE8でもFirefoxでもfastestでした。
+見間違えたかなと思って再度IE8とFirefoxでベンチを取り直しましたが結果は変わらず・・・。
+友人にも同じベンチを取ってもらいましたが、僕と同じ結果でした。
+今何故そうなるのか原因を追究してます。わかる方がいたら教えてくださるとうれしいです＞＜</p>
+
+<dl>
+<dt>否定された可能性</dt>
+<dd>DOCTYPE宣言によるスイッチ => 結果変わらず</dd>
+</dl>
+
+
+<h2>追記 3/5 15:15</h2>
+
+
+<p>どうやら、僕のベンチマークの取り方だとFirefoxとIEではdocument.getElementByIdが要素を見つけられず、nullを返しているようでした。
+よって、結果をキャッシュ出来ていなかったわけですね。
+これは<strong>必要要素以降にJavaScriptを記述しておけば、問題なく取得できるであろう</strong>という僕の勘違いが招いた結果です＞＜
+<strong>DOM操作をする場合には必ずonload内に処理を記述するようにしましょう。</strong>
+また、head・body要素を記述した場合にはonloadを書かなくても成功したりするようですが、やはり一番確実なのはonload内に処理を記述することだと思います。
+結果は修正しておきます！</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1014,117 +1209,6 @@ CSSも活用するとかなり見やすくなるかと思います。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/13/github-jekyll/">RubyでFizzBuzzやった</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-13T00:00:00+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://d.hatena.ne.jp/smileruby/20110131/1296458879
-を見てスゲーと思ったけどもう少し短く出来るなと思ったから書きました。
-Rubyにおける0がfalseだったらもう少し短くできたのに。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sc">?d</span><span class="o">.</span><span class="n">times</span><span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;55文字</span>
-</span><span class='line'><span class="c1">#100まで評価しろよという場合は?dを101に変更</span>
-</span><span class='line'><span class="c1">#1から評価しろよという場合は以下の通り。</span>
-</span><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="sc">?d</span><span class="p">){</span><span class="o">|</span><span class="n">i</span><span class="o">|</span><span class="nb">p</span><span class="s2">&quot;</span><span class="si">#{</span><span class="o">[</span><span class="ss">:Fizz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">]</span><span class="si">}#{</span><span class="o">[</span><span class="ss">:Buzz</span><span class="o">][</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">[</span><span class="sr">/.+/</span><span class="o">]||</span><span class="n">i</span><span class="p">}</span> <span class="c1">#=&gt;57文字</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>人のコード改造しただけだしわざわざ日記に書くことでもないかとも思いましたがせっかくなので。
-おしまい。</p>
-
-<h2>人間やめようと思った</h2>
-
-
-<p>アニメを見てると二次元が良い世界すぎて人間やめたくなるんですが何とかやめないでがんばってます。</p>
-
-<h2>更新</h2>
-
-
-<p>先日、二つほど作りました。知ってる人も多いかと思います。</p>
-
-<ol>
-<li><a href="http://yetchat.jpn.org/">YetCHAT</a></li>
-<li><a href="http://n.namusyaka.info/">なむぴた</a></li>
-</ol>
-
-
-
-
-<h5>YetCHATについて</h5>
-
-
-<p>株式会社Avionが運営するJetCHATというチャットがありました。
-JavaAppletで動くリアルタイムチャットで、脆弱性やバグ等、問題も多かったわけですが、とても人気があったように思います。
-しかし2009年以降、JetCHATのサーバーに不具合が生じ、チャットが使用できない期間が続いています。
-Avionが直して通常通り運営してくれるのが一番なんですが、二年経っても状況が変わらないため、代替として僕が作ったのがYetCHATです。
-本当はJavaAppletを使い、GUIを丸パクリする予定でしたが、sakuraのレンタルサーバーではサーブレットが使えないようなので、じゃあ初回起動が重くなるだけだから止めようということになり、Najaxをちょっと改造してGUIをHTML,CSS,JavaScriptで再現することにしました。
-画像等は余裕で著作権が発生してるらしいので、下手糞な手描きアイコンに変えました。
-残念なことに、代替とはいってもポーリングを使った疑似リアルタイムチャットですので、JetCHATほどのリアルタイム性は望めないでしょう。
-また、JetCHATで起こっていた二つの問題を解決しています。</p>
-
-<ul>
-<li>キック機能を実装していないので、キック魔が発生しない。</li>
-<li>廃止されていた伝言板を復活させた。</li>
-<li>色バグが発生しない。</li>
-</ul>
-
-
-<p>登録制度を作ろうかとも思いましたが、利用者がそんなにいないようなのでやめました。
-自分のサイトにこのチャットを設置したいという人がいれば連絡ください。
-最低でもCGI(Ruby)を動かせる環境が必要ですが。</p>
-
-<h2>なむぴたについて</h2>
-
-
-<p>老舗イメぴたが今年の三月いっぱいでサービスを終えるようなので、代わりのサービスを作ってみようと思ったのがきっかけです。
-ほとんどイメぴたと機能の差はないんですが、二つ変更した点や追加した機能があるので挙げます。</p>
-
-<ul>
-<li>イメぴたでは自動で画像をリサイズをしていたが、画像アップロード後にリサイズするかどうかを選択できるようにした。</li>
-<li>画像を表示するページに、Twitterでつぶやくリンク(PC,携帯両方対応)と、URLコピースペースを設けた。</li>
-</ul>
-
-
-<p>まぁこの程度なんですが、もしよければ使ってみてください。
-違法画像に関しては報告を受ければ対処するという姿勢で臨んでいきたいと思います。
-尚、画像有効期間は30日です。</p>
-
-<p>おしまい。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1139,15 +1223,19 @@ Avionが直して通常通り運営してくれるのが一番なんですが、
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 106.0%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.5%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.5%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(40)</a> <a href='/blog/categories/jscript' style='font-size: 101.5%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.5%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.5%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.5%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 125.5%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 134.5%'>その他(23)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 124.8780487804878%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (40)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/01/github-jekyll/">JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a>
@@ -1163,10 +1251,6 @@ Avionが直して通常通り運営してくれるのが一番なんですが、
     
       <li class="post">
         <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/04/11/github-jekyll/">ぺージ内容を選択(しなくても可)してTwitterにつぶやくスクリプト。</a>
       </li>
     
   </ul>
