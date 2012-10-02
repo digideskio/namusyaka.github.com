@@ -9,13 +9,8 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="http://d.hatena.ne.jp/smileruby/20110131/1296458879
-を見てスゲーと思ったけどもう少し短く出来るなと思ったから書きました。
-Rubyにおける0がfalseだったらもう少し短くできたのに。 1
-2
-3
-4
-?d.times{|i|p&quot &hellip;">
+  <meta name="description" content="俺はなる。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +65,42 @@ Rubyにおける0がfalseだったらもう少し短くできたのに。 1
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/14/github-jekyll/">はてな市民に</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-14T00:00:00+09:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>俺はなる。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -815,134 +846,6 @@ ver 0.5は完成してますが洗練されたチャットとは言えないの�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/11/21/github-jekyll/">Js-envについて & navigator.mimeTypesについて[追記]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-21T00:00:00+09:00" pubdate data-updated="true">Nov 21<span>st</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>js-envについて</h2>
-
-
-<p>この度、JavaScriptもCGIでよく使うような環境変数参照っぽく色々参照できたら面白いなということでスクリプトを書いてみました。</p>
-
-<p><a href="http://namusyaka.info/env.html">js-env</a>
-<a href="https://github.com/namusyaka/js-env">github</a></p>
-
-<p>簡単に言うと、navigatorオブジェクトを環境変数形式に似せて扱いやすくするスクリプトで、ブラウザ情報やOS情報なんかをわかりやすく出力します。</p>
-
-<p>env.jsを呼び込むと以下のように書けるようになります。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_BROWSER&quot;</span><span class="p">])</span> <span class="c1">// browser,version</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_OS&quot;</span><span class="p">])</span> <span class="c1">// Windows or Mac　今のところ二つしか判定出来ません。</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_DISPLAY&quot;</span><span class="p">])</span> <span class="c1">// width*height</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_MIMETYPE&quot;</span><span class="p">](</span><span class="s2">&quot;xml&quot;</span><span class="p">))</span> <span class="c1">// true or false</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_PLUGIN&quot;</span><span class="p">](</span><span class="s2">&quot;Adobe&quot;</span><span class="p">))</span> <span class="c1">// true or false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h2>navigator.mimeTypesについて</h2>
-
-
-<p>しかし問題点があります。
-USER_MIMETYPEとUSER_PLUGINはメソッドで、それぞれ、navigator.mimeTypesオブジェクトとnavigator.pluginsオブジェクト内に引数と一致する文字列がないか検索する仕様なんですが・・・。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">ENV</span><span class="p">[</span><span class="s2">&quot;USER_MIMETYPE&quot;</span><span class="p">](</span><span class="s2">&quot;html&quot;</span><span class="p">))</span> <span class="c1">//false</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>IE以外だとfalseになってしまいます。</p>
-
-<p>IE以外だと、navigator.mimeTypesをfor inで走査して中身を調べても、text/htmlが見つかりません。
-しかし以下のように書くと参照することが出来てしまいます。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">[</span><span class="s2">&quot;text/html&quot;</span><span class="p">])</span> <span class="c1">//[object MimeType]</span>
-</span><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">.</span><span class="nx">namedItem</span><span class="p">(</span><span class="s2">&quot;text/html&quot;</span><span class="p">))</span> <span class="c1">//[object MimeType]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>一応、現在はこの仕組みを利用して、text/htmlと書くことでtrueを返すようにはしていますが、いまひとつしっくりきません。
-そもそもfor inでnavigator.mimeTypesを走査するとtext/htmlが見つからないにも関わらずnavigator.mimeTypes[&#8220;text/html&#8221;]で参照できてしまうことがおかしいのではないでしょうか。
-もはや、Firefoxの独自仕様なのではないかという予想くらいしか現在出来ていません。</p>
-
-<p>もし、この問題についてわかる方が居れば教えて欲しいと思いエントリーを書かせていただきました。
-よろしくお願いします＞＜</p>
-
-<h2>追記　11/23 1:30</h2>
-
-
-<p>Firefoxに対してだけ言える事実。</p>
-
-<blockquote><p>https://developer.mozilla.org/en/DOM/window.navigator.mimeTypes>
-Notes</p></blockquote>
-
-<p>The zeroth element in mimeTypes (the &#8220;Mozilla Default Plug-in&#8221; MimeType object) has a type property of * instead of a typical MIME format like &#8220;image/x-macpaint&#8221;
-&lt;&lt;</p>
-
-<p>実際に試してみると・・・。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">type</span> <span class="c1">//application/pdf</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>a typical MIME format like &#8220;image/x-macpaint&#8221;に当てはまる結果が出力されてしまうという問題がありました。</p>
-
-<p>また、id:hirataraさんに教えていただいた以下のコードを検証。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">mimeTypes</span><span class="p">.</span><span class="nx">propertyIsEnumerable</span><span class="p">(</span><span class="s2">&quot;text/html&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>実行してみるとfalseですが、そのプロパティがDontEnumであることの裏付けにはなりません(存在しないプロパティに対してもfalseを返すため)。</p>
-
-<h5>その他、色々試してみた結果いえること</h5>
-
-
-<p>mimeTypesの[]演算子内に書かれた文字列はitem()かnamedItem()の引数になっている可能性があると言うこと。
-もしそうなら、デフォルトMIMEタイプの所在を探したり考えること自体が無駄である。</p>
-
-<p>id:hirataraさん、id:hotokediaryさん、ご協力ありがとうございました。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -957,15 +860,19 @@ Notes</p></blockquote>
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 124.8780487804878%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 126.34146341463415%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/github-jekyll/">Ruby4Misawaをちょっと改良した件</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/01/github-jekyll/">JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい</a>
@@ -981,10 +888,6 @@ Notes</p></blockquote>
     
       <li class="post">
         <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
       </li>
     
   </ul>

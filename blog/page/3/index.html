@@ -9,10 +9,20 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="こんばんは、ぼくです。 この度、ぼくの団体Luilakが新たにサービスをリリースしたので、その報告と共に簡単な感想を述べようと思います。 Webype(ウェバイプ)βとは ・WebとSkypeチャットをつなぐパイプ的なサービス。
-・完全無料。
-・独自CSSで自分のデザインを反映できる。
-・その他、 &hellip;">
+  <meta name="description" content="data-converterってのをつくりました Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
+gem install data-converterでインストールできます
+github
+rubygems 例: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +77,107 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/11/14/github-jekyll/">RubyのデータをHTMLに変換</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-14T00:00:00+09:00" pubdate data-updated="true">Nov 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>data-converterってのをつくりました</h2>
+
+
+<p>Hashをdl要素に、Arrayをul要素に、それ以外はto_sかまして文字列にします
+gem install data-converterでインストールできます
+<a href="https://github.com/namusyaka/data-converter">github</a>
+<a href="https://rubygems.org/gems/data-converter">rubygems</a></p>
+
+<p>例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;data-converter&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="no">DataConverter</span><span class="o">.</span><span class="n">parse</span><span class="p">({</span>
+</span><span class='line'>  <span class="ss">:a</span> <span class="o">=&gt;</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:c</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:d</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;&lt;&gt;&amp;</span><span class="se">\&quot;</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'><span class="p">})</span> <span class="c1">#=&gt; &lt;&lt;-RESULT</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dl</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dt</span><span class="o">&gt;</span><span class="n">a</span><span class="o">&lt;</span><span class="sr">/dt&gt;</span>
+</span><span class='line'><span class="sr">&lt;dd&gt;b&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dt</span><span class="o">&gt;</span><span class="n">c</span><span class="o">&lt;</span><span class="sr">/dt&gt;</span>
+</span><span class='line'><span class="sr">&lt;dd&gt;&lt;dl&gt;</span>
+</span><span class='line'><span class="sr">&lt;dt&gt;d&lt;/</span><span class="n">dt</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">dd</span><span class="o">&gt;&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="c1">#039;&lt;/li&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/li&gt;</span>
+</span><span class='line'><span class="sr">&lt;li&gt;2&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/ul&gt;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">dd</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="sr">/dl&gt;</span>
+</span><span class='line'><span class="sr">RESULT</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>はてなブログつくりました</h2>
+
+
+<p><a href="http://namusyaka.hateblo.jp/">namusyakaぶろぐ</a>
+技術系のこと以外ははてなブログを使おうと思います。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -671,42 +782,6 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/20/github-jekyll/">Namusyaka関係のサービスが停止しておりますごめんなさい</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-20T00:00:00+09:00" pubdate data-updated="true">Jun 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>レンタルサーバ料金を払い忘れてました.ごめんなさい.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -721,15 +796,19 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 124.8780487804878%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 126.34146341463415%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/github-jekyll/">Ruby4Misawaをちょっと改良した件</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/01/github-jekyll/">JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい</a>
@@ -745,10 +824,6 @@ Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつか
     
       <li class="post">
         <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
       </li>
     
   </ul>

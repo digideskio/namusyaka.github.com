@@ -9,12 +9,15 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="全然はてぶもつかないしなんだよ畜生と思ったので役に立つ(であろう)エントリーを書こうと思います。 キャッシュしよう 1
+  <meta name="description" content="jQueryとか使ったらアニメーション的なのも簡単なんだろうけどベタ書きだと結構めんどかったりするのかなーって思って実際に書いてみました。
+やってることは二つ。 画像を透過していく。
+限界(勝手に決めた)まで達したら別画像に差し替える。 テストページで確認してください。 1
 2
 3
 4
-var cache = {}, _d = document;
-function $(id) { return cache[id] || (cache[id] = _d &hellip;">
+5
+6
+7 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +72,91 @@ function $(id) { return cache[id] || (cache[id] = _d &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/06/github-jekyll/">JavaScriptで画像を透過したり入れ替えたりする</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-06T00:00:00+09:00" pubdate data-updated="true">Mar 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>jQueryとか使ったらアニメーション的なのも簡単なんだろうけどベタ書きだと結構めんどかったりするのかなーって思って実際に書いてみました。
+やってることは二つ。</p>
+
+<ul>
+<li>画像を透過していく。</li>
+<li>限界(勝手に決めた)まで達したら別画像に差し替える。</li>
+</ul>
+
+
+<p><a href="http://namusyaka.info/transmit/">テストページ</a>で確認してください。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//透過する関数。IE8, Firerox, Opera, Chrome, Safariで確認。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">imgElement</span><span class="p">,</span> <span class="nx">op</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="s1">&#39;alpha(opacity=&#39;</span> <span class="o">+</span> <span class="nx">op</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">;</span>
+</span><span class='line'>  <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">MozOpacity</span> <span class="o">=</span> <span class="nx">imgElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span> <span class="o">=</span> <span class="nx">op</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//想像通りだろうけどsetInterval使ってます。単純。</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span><span class="c1">//テストページのHTMLに対応してる。</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_src</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;01.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;02.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;03.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;04.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;05.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;06.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;07.gif&#39;</span><span class="p">];</span><span class="c1">//入れ替えていく画像ファイルは配列で。</span>
+</span><span class='line'>  <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="mf">0.15</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">_src</span><span class="p">[</span><span class="o">++</span><span class="nx">n</span> <span class="o">===</span> <span class="nx">_src</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="p">(</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="nx">n</span><span class="p">];</span>
+</span><span class='line'>    <span class="nx">transmitImg</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">i</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>この場合ファイル名も数値だから簡単な文字列操作でいけたんだけど配列の方が使い勝手がいいのでこうしました。
+意外とっていうかちょっと考えれば当たり前ですが簡単でした。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1173,42 +1261,6 @@ CSSも活用するとかなり見やすくなるかと思います。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/14/github-jekyll/">はてな市民に</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-14T00:00:00+09:00" pubdate data-updated="true">Feb 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>俺はなる。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1223,15 +1275,19 @@ CSSも活用するとかなり見やすくなるかと思います。
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 124.8780487804878%'>Ruby(17)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.85365853658537%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.46341463414635%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.46341463414635%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(41)</a> <a href='/blog/categories/jscript' style='font-size: 101.46341463414635%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.46341463414635%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.46341463414635%'>Najax(1)</a> <a href='/blog/categories/python' style='font-size: 101.46341463414635%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 126.34146341463415%'>Ruby(18)</a> <a href='/blog/categories/その他' style='font-size: 133.65853658536585%'>その他(23)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (17)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (41)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (18)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/github-jekyll/">Ruby4Misawaをちょっと改良した件</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/10/01/github-jekyll/">JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい</a>
@@ -1247,10 +1303,6 @@ CSSも活用するとかなり見やすくなるかと思います。
     
       <li class="post">
         <a href="/blog/2012/07/20/github-jekyll/">JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a>
       </li>
     
   </ul>
