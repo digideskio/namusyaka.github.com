@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-10-02T17:39:13+09:00</updated>
+  <updated>2012-10-02T23:47:30+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -22,41 +22,137 @@
 一度配列に変換してforEach使うとかしなきゃいけないけど、forEach自体は古いブラウザでは動かない。
 というわけでサラッと書いた。</p>
 
-<p>{% codeblock lang:javascript %}
-var SubHTMLCollection = function (collection) {
-  this.collection = Array.apply(null, collection);
-  return this;
-};</p>
-
-<p>SubHTMLCollection.prototype = {
-  each : function (callback) {</p>
-
-<pre><code>for(var i = 0, element; element = this.collection[i]; ++i)
-  callback.call(this, element, i);
-</code></pre>
-
-<p>  },</p>
-
-<p>  reverseEach : function (callback) {</p>
-
-<pre><code>for(var i = this.collection.length - 1, element; element = this.collection[i]; --i)
-  callback.call(this, element, i);
-</code></pre>
-
-<p>  }
-};
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">SubHTMLCollection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">SubHTMLCollection</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">each</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">},</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">reverseEach</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
-Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
-今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</p>
+<del>Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
+今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</del>
+<ins>IE8以下のブラウザではapply(およびcall)の第二引数にHTMLCollection渡すとこけたので、forでなめて配列に変換するようにした。</ins></p>
 
 <h2>移転</h2>
 
 
 <p>はてなダイアリーから移転した。
 hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状態で残したかったが、元々はてなダイアリーの書き方が汚かったのでかなりオレオレ仕様になってしまった。
-{% gist 3769184 %}</p>
+<div><script src='https://gist.github.com/3769184.js?file='></script>
+<noscript><pre><code>require 'rexml/document'
+require 'erb'
+
+class HatenaToOctopress
+
+  @@octo_format = &lt;&lt;-MKDN
+---
+layout: post
+title: &lt;%= @item[:title] %&gt;
+date: &lt;%= @item[:date] %&gt;
+comments: true
+categories: &lt;%= @item[:categories].inspect %&gt;
+---
+&lt;%= @item[:body] %&gt;
+  MKDN
+
+  def initialize (data)
+    @data = data
+  end
+
+  def import
+    doc = REXML::Document.new(@data)
+    doc.elements.each(&quot;diary/day&quot;) do |day|
+      @item = {}
+      @item[:date] = day.attributes['date']
+      day.elements.each(&quot;body&quot;) do |body|
+        lines = body.text.split(/\n/)
+        params = lines[1].scan(/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/)[0]
+        @item[:categories] = params[0].split(&quot;][&quot;) if params[0]
+        @item[:title] = params[1]
+        @item[:body] = lines[1..-1].join(&quot;\n&quot;).gsub(/&gt;\|(.+?)\|(.+?)\|\|&lt;/m) do
+          &lt;&lt;-CODE
+{% codeblock lang:#{$1} %}
+#{$2}
+{% endcodeblock %}
+          CODE
+        end
+        # &lt;h4&gt;を直書きしていたためoctopressに合うよう置換, 一日に複数個日記を書いていた場合の見出しも同じく置換。
+        @item[:body].gsub!(/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/) { &quot;&lt;h2&gt;#{$1 || $2}&lt;/h2&gt;\n&quot; }
+      end
+      post ERB.new(@@octo_format).result(binding)
+    end
+  end
+
+  def self.read_file (path)
+    hatena2octo = self.new(File.read(path))
+    hatena2octo.import
+  end
+
+  private
+
+    def post (post_data)
+      path = &quot;source/_posts/#{@item[:date]}-github-jekyll.mkd&quot;
+
+      File.open(path, File.exist?(path) ? &quot;a&quot; : &quot;w&quot;) do |file|
+        file.write(post_data)
+      end
+    end
+end
+
+if $0 == __FILE__
+   HatenaToOctopress.read_file(&quot;hatena.xml&quot;)
+end</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   
@@ -112,45 +208,85 @@ VimとVimScriptのWEB実装みたいなやつです。
 <iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-xdP-qLWZNA" width="500"></iframe>
 
 
-<p>{% codeblock lang:javascript %}</p>
-
-<p>(function () {</p>
-
-<p>  var d = document, w = window;</p>
-
-<p>  function getSelectedText () {</p>
-
-<pre><code>if('\v' === 'v')
-  return d.selection.createRange().text;
-else
-  return ('getSelection' in w ? w : d).getSelection().toString();
-</code></pre>
-
-<p>  };</p>
-
-<p>  var title = d.getElementsByTagName('title')[0].innerHTML
-  ,   selectedText = getSelectedText()
-  ,   uri = location.href
-  ,   result = '';</p>
-
-<p>  if(selectedText)</p>
-
-<pre><code>result += '「' + selectedText + '」';
-</code></pre>
-
-<p>  if(title)</p>
-
-<pre><code>result += title + ' | ';
-</code></pre>
-
-<p>  result += uri;</p>
-
-<p>  w.open('http://twitter.com/home?status=' + encodeURIComponent(result));</p>
-
-<p>  return;
-})();</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">w</span> <span class="o">=</span> <span class="nb">window</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">function</span> <span class="nx">getSelectedText</span> <span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">if</span><span class="p">(</span><span class="s1">&#39;\v&#39;</span> <span class="o">===</span> <span class="s1">&#39;v&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">selection</span><span class="p">.</span><span class="nx">createRange</span><span class="p">().</span><span class="nx">text</span><span class="p">;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;getSelection&#39;</span> <span class="k">in</span> <span class="nx">w</span> <span class="o">?</span> <span class="nx">w</span> <span class="o">:</span> <span class="nx">d</span><span class="p">).</span><span class="nx">getSelection</span><span class="p">().</span><span class="nx">toString</span><span class="p">();</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span>
+</span><span class='line'>  <span class="p">,</span>   <span class="nx">selectedText</span> <span class="o">=</span> <span class="nx">getSelectedText</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">,</span>   <span class="nx">uri</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+</span><span class='line'>  <span class="p">,</span>   <span class="nx">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span><span class="p">(</span><span class="nx">selectedText</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">result</span> <span class="o">+=</span> <span class="s1">&#39;「&#39;</span> <span class="o">+</span> <span class="nx">selectedText</span> <span class="o">+</span> <span class="s1">&#39;」&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span><span class="p">(</span><span class="nx">title</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">result</span> <span class="o">+=</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; | &#39;</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">result</span> <span class="o">+=</span> <span class="nx">uri</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">w</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;http://twitter.com/home?status=&#39;</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="p">})();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
@@ -170,26 +306,47 @@ localStorageが使えないブラウザでは動きません。</p>
 <iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-ydL73uv6fA" width="500"></iframe>
 
 
-<p>{% codeblock lang:javascript %}</p>
-
-<p>(function () {</p>
-
-<p>  var todo = window.prompt('Save or Scroll', (window.localStorage.fusen) ? 'Scroll' : 'Save');</p>
-
-<p>  if(/save/i.test(todo))</p>
-
-<pre><code>window.localStorage.fusen = document.documentElement.scrollTop || document.body.scrollTop;
-</code></pre>
-
-<p>  else if(/scroll/i.test(todo))</p>
-
-<pre><code>window.scroll(0, localStorage.fusen || 0);
-</code></pre>
-
-<p>  return;
-})();</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span><span class="p">(</span><span class="sr">/save/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="sr">/scroll/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="p">})();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>追記 2012/04/11</p>
 

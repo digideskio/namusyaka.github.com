@@ -365,8 +365,12 @@ def hoge; rescue OpenURI::HTTPError; end;とか出来たわけで。</p>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">SubHTMLCollection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">collection</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">[];</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
 </span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
 </span><span class='line'><span class="p">};</span>
 </span><span class='line'>
@@ -385,8 +389,9 @@ def hoge; rescue OpenURI::HTTPError; end;とか出来たわけで。</p>
 
 
 <p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
-Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
-今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</p>
+<del>Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
+今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</del>
+<ins>IE8以下のブラウザではapply(およびcall)の第二引数にHTMLCollection渡すとこけたので、forでなめて配列に変換するようにした。</ins></p>
 
 <h2>移転</h2>
 
