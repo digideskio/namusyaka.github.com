@@ -7,7 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content=" レンタルサーバ料金を払い忘れてました.ごめんなさい. Jun 20th, 2011 その他 ">
+	<meta name="description" content=" き～み～の傘　あ～たたかい～ Jun 26th, 2011 ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,6 +88,37 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/06/26/github-jekyll/">プレシャスなとき～</a></h1>
+	<div class="entry-content">
+		<p>き～み～の傘　あ～たたかい～</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-26T00:00:00+09:00" pubdate data-updated="true">Jun 26<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -715,114 +746,6 @@ Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/04/20/github-jekyll/">Rubygemsにライブラリ(モジュール)をあげてみた</a></h1>
-	<div class="entry-content">
-		<p>CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
-http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
-を参考にRubygemsを始めてみました。</p>
-
-<p>まず、アカウントを作ります。
-めんどいので端折ります。</p>
-
-<p>そしてgemcutterをインストールします。
-Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
-
-<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。
-Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
-
-<p>とても簡単です。わーい。</p>
-
-<h2>公開したOperatorというモジュール</h2>
-
-
-<p>Rubygems https://rubygems.org/gems/Operator
-Github https://github.com/namusyaka/Operator</p>
-
-<p><a href="http://weble.org/2011/03/07/php-get-and-post-function">PHP で凄く簡単に GET/POST 送信ができる関数を作りました</a>にあった関数をみてて思いついたものです。
-get/postを簡単に出来るのはもちろん、responseを操作したい場面が多々あったのでそっちのメソッドも少し実装してます。
-構造的には
--Operator
-&#8211;Operator::HTML
-&#8211;Operator::HTTP
-ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
-使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
-gemにあがっているので、以下を実行するとインストールできます。
-Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
-
-<p>具体的には以下のように使えます。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
-</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;Operator&#39;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">#namusyaka.infoのa要素href属性を抜き出したい場合</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">pick_attribute</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="c1">#指定ラインからのみ抽出したい場合は、第三引数に指定行をNumericかRangeで渡します。</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">#後ろから読み込む</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">reverse_read</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">#前から読み込む</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">read_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
-</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">close</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>がんばろう。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-20T00:00:00+09:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
 
 
 </div>

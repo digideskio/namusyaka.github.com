@@ -7,9 +7,9 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="今個人的に作ろうと思ってるウェブサービスがあって、それに使えるモジュールを作成中
-ウェブルってブログの人が以前phpでget/postをしやすくするみたいな関数作ってたけど、それの拡張版的な感じ。
-メインはresponseの操作。 なんかいいアイデアがあればください～～。 Apr 18th, &hellip;">
+	<meta name="description" content="CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
+http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
+を参考にRubygemsを始めてみました。 まず、アカウントを作ります。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +90,114 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/04/20/github-jekyll/">Rubygemsにライブラリ(モジュール)をあげてみた</a></h1>
+	<div class="entry-content">
+		<p>CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
+http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
+を参考にRubygemsを始めてみました。</p>
+
+<p>まず、アカウントを作ります。
+めんどいので端折ります。</p>
+
+<p>そしてgemcutterをインストールします。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
+
+<p>後は作ったモジュール.gemspecをbuildして、pushするだけ。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
+
+<p>とても簡単です。わーい。</p>
+
+<h2>公開したOperatorというモジュール</h2>
+
+
+<p>Rubygems https://rubygems.org/gems/Operator
+Github https://github.com/namusyaka/Operator</p>
+
+<p><a href="http://weble.org/2011/03/07/php-get-and-post-function">PHP で凄く簡単に GET/POST 送信ができる関数を作りました</a>にあった関数をみてて思いついたものです。
+get/postを簡単に出来るのはもちろん、responseを操作したい場面が多々あったのでそっちのメソッドも少し実装してます。
+構造的には
+-Operator
+&#8211;Operator::HTML
+&#8211;Operator::HTTP
+ですが、HTTPはHTMLをスーパークラスにもつので基本的メソッドはHTMLで定義されています。
+使い分けは、コンストラクタに既に完成されたHTMLソースを渡す場合HTML、URLを渡す場合はHTTPにっていう想定。
+gemにあがっているので、以下を実行するとインストールできます。
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
+
+<p>具体的には以下のように使えます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'>  <span class="nb">require</span> <span class="s1">&#39;Operator&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">op</span> <span class="o">=</span> <span class="no">Operator</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;http://namusyaka.info/&quot;</span><span class="p">)</span> <span class="c1">#postする場合は第二引数にtrueを渡す。</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#namusyaka.infoのa要素href属性を抜き出したい場合</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">pick_attribute</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="c1">#指定ラインからのみ抽出したい場合は、第三引数に指定行をNumericかRangeで渡します。</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#後ろから読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">reverse_read</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#前から読み込む</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">read_line</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">op</span><span class="o">.</span><span class="n">close</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>がんばろう。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-20T00:00:00+09:00" pubdate data-updated="true">Apr 20<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -766,265 +874,6 @@ JScriptを使っているのでWindows以外では動きません。</p>
 
 
 	<a class='category' href='/blog/categories/その他/'>その他</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/03/09/github-jekyll/">RubyでRSSを読んだりキャッシュしたりっていうクラスをつくった</a></h1>
-	<div class="entry-content">
-		<p>classをほとんど使わない人間なのでどう設計したもんかと大分悩みましたが上手い答えは出ませんでした。
-これ以上悩んでも出そうにないのでとりあえず公開。</p>
-
-<p>まー小さいクラスです。</p>
-
-<script src="https://gist.github.com/861740.js"> </script>
-
-
-<p><noscript></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;net/http&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;uri&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;time&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">version_1_2</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">RSSReader</span>
-</span><span class='line'>  <span class="vc">@@http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">cachefile</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@cachefile</span> <span class="o">=</span> <span class="n">cachefile</span>
-</span><span class='line'>    <span class="n">file</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@cachefile</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span>
-</span><span class='line'>    <span class="vi">@cache_time</span> <span class="o">=</span> <span class="n">file</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-</span><span class='line'>    <span class="vi">@cache</span> <span class="o">=</span> <span class="n">file</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.file</span><span class="o">.</span><span class="n">length</span><span class="o">]</span> <span class="p">?</span> <span class="nb">eval</span><span class="p">(</span><span class="n">file</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.file</span><span class="o">.</span><span class="n">length</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="p">:</span> <span class="o">[]</span>
-</span><span class='line'>    <span class="vi">@target</span> <span class="o">=</span> <span class="n">target</span>
-</span><span class='line'>    <span class="vi">@time</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>    <span class="vi">@updated</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:updated</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">check</span>
-</span><span class='line'>    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="n">list</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>    <span class="vi">@target</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">begin</span>
-</span><span class='line'>        <span class="n">body</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">uri</span><span class="o">.</span><span class="n">port</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">next</span> <span class="k">if</span> <span class="n">body</span><span class="o">.</span><span class="n">nil?</span>
-</span><span class='line'>        <span class="no">RSS</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>          <span class="nb">hash</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>            <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:description</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:link</span> <span class="o">=&gt;</span> <span class="n">item</span><span class="o">.</span><span class="n">link</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>          <span class="n">list</span> <span class="o">&lt;&lt;</span> <span class="nb">hash</span>
-</span><span class='line'>          <span class="k">if</span> <span class="vi">@cache</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>            <span class="k">break</span>
-</span><span class='line'>          <span class="k">else</span>
-</span><span class='line'>            <span class="vi">@updated</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
-</span><span class='line'>            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>          <span class="k">end</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>      <span class="k">rescue</span>
-</span><span class='line'>        <span class="k">next</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">cachefile_write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@time</span><span class="si">}</span><span class="se">\n</span><span class="si">#{</span><span class="n">list</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">list</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">cache</span>
-</span><span class='line'>   <span class="k">return</span> <span class="vi">@cache</span> <span class="k">if</span> <span class="vi">@cache_time</span> <span class="o">&amp;&amp;</span> <span class="no">Time</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="vi">@cache_time</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1800</span> <span class="o">&gt;</span> <span class="vi">@time</span>
-</span><span class='line'>   <span class="k">return</span> <span class="kp">nil</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">proxy</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-</span><span class='line'>    <span class="vc">@@http</span> <span class="o">=</span> <span class="vc">@@http</span><span class="o">.</span><span class="n">Proxy</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">cachefile_write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</span><span class='line'>    <span class="kp">loop</span> <span class="k">do</span>
-</span><span class='line'>      <span class="k">begin</span>
-</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">begin</span>
-</span><span class='line'>            <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="vi">@cachefile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">rescue</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">end</span>
-</span><span class='line'>        <span class="no">Dir</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="s2">&quot;rss&quot;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">return</span>
-</span><span class='line'>      <span class="k">rescue</span>
-</span><span class='line'>        <span class="nb">sleep</span> <span class="mi">0</span><span class="o">.</span><span class="mo">01</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">recv</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
-</span><span class='line'>    <span class="vc">@@http</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="k">return</span> <span class="n">h</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rss</span> <span class="o">=</span> <span class="no">RSSReader</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;list.dat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">)</span>
-</span><span class='line'><span class="n">list</span> <span class="o">=</span> <span class="n">rss</span><span class="o">.</span><span class="n">check</span>
-</span><span class='line'><span class="c1">#第二引数に渡したRSSから更新のあったもののみ出力したい。</span>
-</span><span class='line'><span class="n">rss</span><span class="o">.</span><span class="n">updated</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#キャッシュが有効か確認した後、RSSの名前のみ取り出して一覧表示。</span>
-</span><span class='line'><span class="n">list</span> <span class="o">=</span> <span class="n">rss</span><span class="o">.</span><span class="n">cache</span> <span class="o">||</span> <span class="n">rss</span><span class="o">.</span><span class="n">check</span>
-</span><span class='line'><span class="n">list</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="n">h</span><span class="o">[</span><span class="ss">:title</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></noscript></p>
-
-<p>updatedはcheck,あるいはcacheが返す配列(要素は全てHashオブジェクト)の中で新たに更新があったindexを配列で返します。
-これに合わせてメール送信をすれば、それっぽいものが作れると思います。</p>
-
-<h2>追記</h2>
-
-
-<p>ちょいちょいアホなことをしてたので修正したのと、proxyメソッドを追加した。
-後cacheメソッドはキャッシュ時間を引数に渡すようにした。デフォルトは３０分。</p>
-
-<h2>クーリングオフ不可能法</h2>
-
-
-<p>ガチでかしまし</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-09T00:00:00+09:00" pubdate data-updated="true">Mar 9<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
 
 
 </div>

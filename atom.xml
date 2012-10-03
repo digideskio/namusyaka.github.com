@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-10-02T23:47:30+09:00</updated>
+  <updated>2012-10-03T12:00:14+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressのデザインテーマを変更する]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/10/03/github-jekyll/"/>
+    <updated>2012-10-03T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/10/03/github-jekyll</id>
+    <content type="html"><![CDATA[<p>Octopressは素晴らしいし、デフォルトのクラシックもかっこいいんだけど如何せん利用者がほとんどデフォルトのまま。
+かといってSCSSとかだるいし、自分独自とはいかないまでもデザインは変更したかった。
+そこで見つけたのがhttps://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
+ハイクオリティなテーマがいっぱいあるので、自分好みのやつを使えば良いと思う。
+使い方は書いてある通り。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
+</span><span class='line'>$ git clone GIT_URL .themes/THEME_NAME
+</span><span class='line'>$ rake install['THEME_NAME']
+</span><span class='line'>$ rake generate
+</span><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後は、http://localhost:4000/ でデザインの確認をしつつ、いい感じだとおもったらrake deploy。</p>
+
+<p>octopressいいね！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby4Misawaをちょっと改良した件]]></title>
@@ -1759,75 +1788,6 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 
 <p>requestを送りたい人達がいるチャットで#sendContactRequestToChatMembersと発言すれば自動で飛ばされます。
 効率的に女の子と仲良くなりたい人も使えると思います。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HTML4.01における開始タグ・終了タグの省略について]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/12/29/github-jekyll/"/>
-    <updated>2011-12-29T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/12/29/github-jekyll</id>
-    <content type="html"><![CDATA[<p>以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
-
-<h2>HTMLのおはなし</h2>
-
-
-<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.2.1>
-HTML要素型の中には、著者が終了タグを省略することを許容するものもある。(例えば、P要素型やLI要素型)。さらに一部の要素型は、開始タグの省略も許容する。例えば、 HEADや BODYがこれである。
-&lt;&lt;</p></blockquote>
-
-<p>HTML4.01ではbody要素, head要素は省略可能です。
-他にもhtml要素が省略できますし、終了タグの省略が可能な要素もあります。</p>
-
-<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.3.3>
-要素のタグが省略可能であるかどうか。要素名の次に2つのハイフンが現れていれば、これは開始タグも終了タグも共に必須であることを意味する。1つのハイフンの後に大文字Oがあるという組み合わせの場合、終了タグが省略可能であることを意味する。大文字Oが2つだった場合、開始タグと終了タグの両方が省略可能である。
-&lt;&lt;</p></blockquote>
-
-<p>例</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='dtd'><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">P</span> <span class="nt">-</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="nt">--</span> <span class="nt">paragraph</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 --&gt;</span>
-</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BR</span> <span class="nt">-</span> <span class="nt">O</span> <span class="kc">EMPTY</span>                 <span class="nt">--</span> <span class="nt">forced</span> <span class="nt">line</span> <span class="nt">break</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BODY</span> <span class="nt">O</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%block;</span><span class="o">|</span><span class="nt">SCRIPT</span><span class="o">)+</span> <span class="o">+(</span><span class="nt">INS</span><span class="o">|</span><span class="nt">DEL</span><span class="o">)</span> <span class="nt">--</span> <span class="nt">document</span> <span class="nt">body</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- これは開始タグ、終了タグを両方省略できるということを意味します。 --&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>よって、以下のようなHTMLはW3C的にはValidです。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;h1&gt;</span>test<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>柴咲コウだいすき
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h2>しかし</h2>
-
-
-<p>OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースにこけるようです(具体的には、cssが正しく反映されない、javascriptでこける)。
-要因としてはhtml要素,body要素,head要素が省略されていることにあったようですが、詳しいことは調べてないのでわかりません(もしかしたら、他にもあるかもしれません。誰か調べたら教えてください)。
-一つ言えるのは、<strong>これらの要素は省略できるけどしないほうが良い</strong>ってことですね。
-終了タグの省略は問題ないようです。</p>
-
-<p>この事実で大打撃をうけた僕でした。</p>
 ]]></content>
   </entry>
   

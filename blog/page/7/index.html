@@ -7,7 +7,21 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content=" 俺はなる。 Feb 14th, 2011 その他 ">
+	<meta name="description" content="正規表現は甘めですがね。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+javascript:(function(){ var _d = document; var array = _d.body.innerHTML.match(/(&quot;|&#39;)([^&quot &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,6 +102,79 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/02/18/github-jekyll/">HTML内に含まれる画像URLを取得して一覧表示するブックマークレット</a></h1>
+	<div class="entry-content">
+		<p>正規表現は甘めですがね。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/(&quot;|&#39;)([^&quot;&#39;]+?\.)(jpg|gif|png|bmp|jpeg)(&quot;|&#39;)/ig</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">array</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;見つからなかった。&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">exist</span> <span class="o">=</span> <span class="p">{};</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">exist</span><span class="p">[</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]])</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">_d</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;img src=&#39;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">exist</span><span class="p">[</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">_d</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+</span><span class='line'><span class="p">})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>追記</h2>
+
+
+<p>23:15分、ソース少し改造。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-18T00:00:00+09:00" pubdate data-updated="true">Feb 18<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -793,66 +880,6 @@ ver 0.5は完成してますが洗練されたチャットとは言えないの�
 
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2010/12/21/github-jekyll/">りにゅーある</a></h1>
-	<div class="entry-content">
-		<p>ぼくのWEBサイトをリニューアルしました。
-編集とか管理をしやすくするために色々考えてたんですが一通り実装は出来たので満足しております。</p>
-
-<p>そういえば最近本を書いた人の感想みたいなのをどこかで見たんですが、「本を書いた本人が一番勉強になる」みたいなことを言ってました。
-確かにそんな気がします。
-本を書く以上適当な知識ではやっていけないと思うから色々調べながらやる上で知識が身についていくってことなんでしょう。</p>
-
-<p>HTMLについては色々書きたいなー。</p>
-
-<p>ところで、自分自身を出力するプログラムの話を聞きました。
-簡単そうで意外と難しいです。
-具体的な方法としては以下のようなものがあります。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">a</span><span class="o">+</span><span class="s2">&quot;a()&quot;</span><span class="p">}</span><span class="nx">a</span><span class="p">()</span>
-</span><span class='line'><span class="c1">//javascript:function a(){return &quot;javascript:&quot;+a+&quot;a()&quot;}a()</span>
-</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="o">+</span><span class="s2">&quot;()&quot;</span><span class="p">)})()</span>
-</span><span class='line'><span class="c1">//javascript:(function(){alert(&quot;javascript:&quot;+arguments.callee+&quot;()&quot;)})()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ちなみにぼくが思いついたのはAjaxで自分自身をにリクエストを送り、そのresponseTextをalertする方法でした。
-めんどくさいし長いのでsourceは省略します。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-21T00:00:00+09:00" pubdate data-updated="true">Dec 21<span>st</span>, 2010</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/その他/'>その他</a>
 
 
 </div>

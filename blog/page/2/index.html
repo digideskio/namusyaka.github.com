@@ -7,8 +7,14 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="nokogiriとかoptparse使ってみたくてつくりまひた。
-やたらと長いHashは、引数で受け取ったカテゴリが実在するかどうかをhttp-request飛ばして判断するようにすればなんとかなるとおもうけど、typo多そうだしやめておきまひた。 &hellip;">
+	<meta name="description" content="グローバルの場合。 1
+2
+Object.const_set(&#39;HogeError&#39;, Class.new(ArgumentError)) # 継承させたい例外クラスを渡す
+raise HogeError Hoge::Fugaのようなネストされた空間の場合。 1
+2
+3
+4
+5 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,6 +95,112 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/03/18/github-jekyll/">Rubyで例外クラスを動的に定義する</a></h1>
+	<div class="entry-content">
+		<p>グローバルの場合。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Object</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;HogeError&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="c1"># 継承させたい例外クラスを渡す</span>
+</span><span class='line'><span class="k">raise</span> <span class="no">HogeError</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hoge::Fugaのようなネストされた空間の場合。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Hoge</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Fuga</span>
+</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;Piyo&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">test</span><span class="p">;</span> <span class="k">raise</span> <span class="no">Piyo</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Hoge</span><span class="o">::</span><span class="no">Fuga</span><span class="o">.</span><span class="n">test</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>色々使い道があるかとは思いますが、例えば同じ例外クラスを継承する独自例外クラスを何個も定義する場合は以下のように書けて便利です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Foo</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Bar</span>
+</span><span class='line'>    <span class="vc">@@error_class</span> <span class="o">=</span> <span class="sx">%w( Hoge Fuga Piyo )</span>
+</span><span class='line'>    <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># 例外を発生させるクラスメソッドを定義</span>
+</span><span class='line'>    <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span>
+</span><span class='line'>      <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">define_method</span> <span class="nb">name</span><span class="o">.</span><span class="n">downcase</span> <span class="k">do</span>
+</span><span class='line'>          <span class="k">raise</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> error !&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Foo</span><span class="o">::</span><span class="no">Bar</span><span class="o">.</span><span class="n">hoge</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-18T00:00:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1420,101 +1532,6 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 
 
 	<a class='category' href='/blog/categories/python/'>Python</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/12/29/github-jekyll/">HTML4.01における開始タグ・終了タグの省略について</a></h1>
-	<div class="entry-content">
-		<p>以前Twitterで少しつぶやきましたが、マジかよと思った事があったので紹介します。</p>
-
-<h2>HTMLのおはなし</h2>
-
-
-<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.2.1>
-HTML要素型の中には、著者が終了タグを省略することを許容するものもある。(例えば、P要素型やLI要素型)。さらに一部の要素型は、開始タグの省略も許容する。例えば、 HEADや BODYがこれである。
-&lt;&lt;</p></blockquote>
-
-<p>HTML4.01ではbody要素, head要素は省略可能です。
-他にもhtml要素が省略できますし、終了タグの省略が可能な要素もあります。</p>
-
-<blockquote><p>http://www.asahi-net.or.jp/~sd5a-ucd/rec-html401j/intro/sgmltut.html#h-3.3.3>
-要素のタグが省略可能であるかどうか。要素名の次に2つのハイフンが現れていれば、これは開始タグも終了タグも共に必須であることを意味する。1つのハイフンの後に大文字Oがあるという組み合わせの場合、終了タグが省略可能であることを意味する。大文字Oが2つだった場合、開始タグと終了タグの両方が省略可能である。
-&lt;&lt;</p></blockquote>
-
-<p>例</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='dtd'><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">P</span> <span class="nt">-</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="nt">--</span> <span class="nt">paragraph</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 --&gt;</span>
-</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BR</span> <span class="nt">-</span> <span class="nt">O</span> <span class="kc">EMPTY</span>                 <span class="nt">--</span> <span class="nt">forced</span> <span class="nt">line</span> <span class="nt">break</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">&lt;!ELEMENT</span> <span class="nt">BODY</span> <span class="nt">O</span> <span class="nt">O</span> <span class="o">(</span><span class="ni">%block;</span><span class="o">|</span><span class="nt">SCRIPT</span><span class="o">)+</span> <span class="o">+(</span><span class="nt">INS</span><span class="o">|</span><span class="nt">DEL</span><span class="o">)</span> <span class="nt">--</span> <span class="nt">document</span> <span class="nt">body</span> <span class="nt">--</span><span class="k">&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- これは開始タグ、終了タグを両方省略できるということを意味します。 --&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>よって、以下のようなHTMLはW3C的にはValidです。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;h1&gt;</span>test<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>柴咲コウだいすき
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<h2>しかし</h2>
-
-
-<p>OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースにこけるようです(具体的には、cssが正しく反映されない、javascriptでこける)。
-要因としてはhtml要素,body要素,head要素が省略されていることにあったようですが、詳しいことは調べてないのでわかりません(もしかしたら、他にもあるかもしれません。誰か調べたら教えてください)。
-一つ言えるのは、<strong>これらの要素は省略できるけどしないほうが良い</strong>ってことですね。
-終了タグの省略は問題ないようです。</p>
-
-<p>この事実で大打撃をうけた僕でした。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-12-29T00:00:00+09:00" pubdate data-updated="true">Dec 29<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/-x-html/'>(X)HTML</a>
 
 
 </div>

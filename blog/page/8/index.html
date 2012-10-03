@@ -7,8 +7,9 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="js-envについて この度、JavaScriptもCGIでよく使うような環境変数参照っぽく色々参照できたら面白いなということでスクリプトを書いてみました。 js-env
-github 簡単に言うと、navigatorオブジェクトを環境変数形式に似せて扱いやすくするスクリプトで、 &hellip;">
+	<meta name="description" content="ぼくのWEBサイトをリニューアルしました。
+編集とか管理をしやすくするために色々考えてたんですが一通り実装は出来たので満足しております。 そういえば最近本を書いた人の感想みたいなのをどこかで見たんですが、「本を書いた本人が一番勉強になる」みたいなことを言ってました。
+確かにそんな気がします。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,6 +90,66 @@ github 簡単に言うと、navigatorオブジェクトを環境変数形式に�
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2010/12/21/github-jekyll/">りにゅーある</a></h1>
+	<div class="entry-content">
+		<p>ぼくのWEBサイトをリニューアルしました。
+編集とか管理をしやすくするために色々考えてたんですが一通り実装は出来たので満足しております。</p>
+
+<p>そういえば最近本を書いた人の感想みたいなのをどこかで見たんですが、「本を書いた本人が一番勉強になる」みたいなことを言ってました。
+確かにそんな気がします。
+本を書く以上適当な知識ではやっていけないと思うから色々調べながらやる上で知識が身についていくってことなんでしょう。</p>
+
+<p>HTMLについては色々書きたいなー。</p>
+
+<p>ところで、自分自身を出力するプログラムの話を聞きました。
+簡単そうで意外と難しいです。
+具体的な方法としては以下のようなものがあります。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="kd">function</span> <span class="nx">a</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">a</span><span class="o">+</span><span class="s2">&quot;a()&quot;</span><span class="p">}</span><span class="nx">a</span><span class="p">()</span>
+</span><span class='line'><span class="c1">//javascript:function a(){return &quot;javascript:&quot;+a+&quot;a()&quot;}a()</span>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;javascript:&quot;</span><span class="o">+</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="o">+</span><span class="s2">&quot;()&quot;</span><span class="p">)})()</span>
+</span><span class='line'><span class="c1">//javascript:(function(){alert(&quot;javascript:&quot;+arguments.callee+&quot;()&quot;)})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ちなみにぼくが思いついたのはAjaxで自分自身をにリクエストを送り、そのresponseTextをalertする方法でした。
+めんどくさいし長いのでsourceは省略します。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-21T00:00:00+09:00" pubdate data-updated="true">Dec 21<span>st</span>, 2010</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -962,70 +1023,6 @@ Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p
 
 	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
 
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2010/09/17/github-jekyll/">Twitterに対する考え方</a></h1>
-	<div class="entry-content">
-		<p>Twitterがすごく流行ってます。
-実際に使っている人がいるんだから需要があるってことなんでしょう。</p>
-
-<h2>だけど</h2>
-
-
-<p>今ひとつコンセプトが明確じゃない気がするんですよね。
-ミニブログ　というのに分類されていたりするみたいですが、Twitterにハマる要因っていうのは大抵他の人とのつながりなわけじゃないですか。(それがゆるいかどうかは別にして)
-それってブログっていうよりかはSNSに近いよなーと。
-最近Twitterさん自身もそういう側面を認めるような発言をしたような気がします。</p>
-
-<h2>Twitterに固執する理由</h2>
-
-
-<p>しかし140文字っていう制限内でコミュニケーションをとる必要あるのかなと。
-どっかの党の総裁さんも140文字で何つぶやけばいいのかわかんね的発言をしてた気がするので僕と同じように気になる人はいるんだと思います。
-誰かと意思疎通をはかる上で字数制限なんてのは障害でしかないと思います。
-まぁ重要な用件とかはTwitterじゃなくメールとかメッセンジャーを使う人がほとんどだとは思うんですけどね。
-でもそれが出来てない人も多いんじゃないかとも思います。</p>
-
-<h2>つまり何がいいたいか</h2>
-
-
-<p>このご時世色んな素晴らしいサービスが無料で提供されてます。
-Twitterに固執せずに要所要所で使い分けることも大事ですよってことです。</p>
-
-<h2>あ、それと</h2>
-
-
-<p>新しいサービスを始めたんですよ。
-<a href="http://namusyaka.info/stats/">StatsPrinter</a>ってやつです。
-CSS設定も出来てかなり自由度があると思います。
-自己紹介用のパーツとして使ってみるといいんじゃないでしょうか。
-<a href="http://namusyaka.info/">こんなかんじで。</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-09-17T00:00:00+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2010</time></div>
-	<div class="tags">
 
 </div>
 	
