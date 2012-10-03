@@ -117,6 +117,42 @@
 
 <p>octopressいいね！</p>
 
+<h2>TypeScript</h2>
+
+
+<p>旨み成分分析したい。</p>
+
+<div><script src='https://gist.github.com/3826296.js?file='></script>
+<noscript><pre><code>var Hoge;
+(function (Hoge) {
+    var Fuga = (function () {
+        function Fuga(x) {
+            this.x = x;
+        }
+        Fuga.prototype.increment = function () {
+            return ++this.x;
+        };
+        Fuga.prototype.decrement = function () {
+            return --this.x;
+        };
+        return Fuga;
+    })();
+    function plus(n) {
+        var fuga = new Fuga(n);
+        return fuga.increment();
+    }
+    Hoge.plus = plus;
+    function minus(n) {
+        var fuga = new Fuga(n);
+        return fuga.decrement();
+    }
+    Hoge.minus = minus;
+})(Hoge || (Hoge = {}));
+</code></pre></noscript></div>
+
+
+<p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
+
 		
 		
 	</div>
