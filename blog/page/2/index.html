@@ -7,14 +7,9 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="グローバルの場合。 1
-2
-Object.const_set(&#39;HogeError&#39;, Class.new(ArgumentError)) # 継承させたい例外クラスを渡す
-raise HogeError Hoge::Fugaのようなネストされた空間の場合。 1
-2
-3
-4
-5 &hellip;">
+	<meta name="description" content=" 個人事業主にでもなろうかと思います。
+余裕ができたらLuilakを法人化します。
+よろしく。 Apr 6th, 2012 その他 ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -95,6 +90,43 @@ raise HogeError Hoge::Fugaのようなネストされた空間の場合。 1
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/04/06/github-jekyll/">大学やめます</a></h1>
+	<div class="entry-content">
+		<p>個人事業主にでもなろうかと思います。
+余裕ができたら<a herf="http://luilak.net">Luilak</a>を法人化します。
+よろしく。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-06T00:00:00+09:00" pubdate data-updated="true">Apr 6<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1455,83 +1487,6 @@ window[&#8220;foo&#8221;] が返す要素</p></blockquote>
 
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2012/01/02/github-jekyll/">Skypeチャットでコンタクトリストに追加されてないメンバーに承認リクエストを飛ばすscriptを書いた</a></h1>
-	<div class="entry-content">
-		<p>意識が高い学生のチャットに一人放り込まれた意識不明の学生namusyakaです。
-大成しそうな人ばっかりですし、コンタクトを共有したいのですが全員にリクエストを飛ばすのは正直だるいです。
-なのでコードを書きました。Skype4Pyが必要です。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># -*- coding: utf_8 -*-  </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">Skype4Py</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">time</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s">&#39;SENT&#39;</span> <span class="ow">and</span> <span class="n">msg</span><span class="o">.</span><span class="n">Body</span> <span class="o">==</span> <span class="s">u&quot;#sendContactRequestToChatMembers&quot;</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">members</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">Chat</span><span class="o">.</span><span class="n">Members</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">members</span><span class="o">.</span><span class="n">__len__</span><span class="p">()):</span>
-</span><span class='line'>      <span class="n">members</span><span class="o">.</span><span class="n">Item</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">SetBuddyStatusPendingAuthorization</span><span class="p">(</span><span class="s">u&quot;auto request&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">skype</span> <span class="o">=</span> <span class="n">Skype4Py</span><span class="o">.</span><span class="n">Skype</span><span class="p">()</span>
-</span><span class='line'><span class="n">skype</span><span class="o">.</span><span class="n">OnMessageStatus</span> <span class="o">=</span> <span class="n">post</span>
-</span><span class='line'><span class="n">skype</span><span class="o">.</span><span class="n">Attach</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>requestを送りたい人達がいるチャットで#sendContactRequestToChatMembersと発言すれば自動で飛ばされます。
-効率的に女の子と仲良くなりたい人も使えると思います。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-02T00:00:00+09:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/python/'>Python</a>
 
 
 </div>

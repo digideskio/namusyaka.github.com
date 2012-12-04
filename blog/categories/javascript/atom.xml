@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-10-03T19:48:11+09:00</updated>
+  <updated>2012-12-04T19:38:26+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/04/github-jekyll/"/>
+    <updated>2012-12-04T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/04/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://luilak.net/">Luilak</a>で、WhitespaceをJavaScriptに変換するライブラリを作った。</p>
+
+<p><a href="http://ws2js.luilak.net/">WS2JS</a></p>
+
+<p><a href="http://ws2js.luilak.net/interpreter.html">Whitespace インタプリタ</a></p>
+
+<p><a href="https://github.com/Luilak/WS2JS">Github</a></p>
+
+<p>インタプリタにはいくつかサンプルも用意してあって、なかなか面白いかと思う。</p>
+
+<p>一番気に入っているのはフィボナッチ。</p>
+
+<h2>簡単な説明</h2>
+
+<p>Usageにもあるが、WS2JS.convertにWhitespaceのコードを渡すとJavaScriptに変換されたコードの文字列が返る。</p>
+
+<p>したがって、それをevalすることでWhitespaceを実行するという仕組み。</p>
+
+<p>詳しい関数の説明などは<a href="http://ws2js.luilak.net/document.html">Document</a>を読んでください。</p>
+
+<h2>ちなみに</h2>
+
+<p>これは<a href="http://ksnctf.sweetduet.info/">某CTF</a>に触発されて作った。
+これを使えば、ある問題を簡単に解けるようになるかも。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい]]></title>
@@ -287,70 +319,6 @@ VimとVimScriptのWEB実装みたいなやつです。
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JavaScriptでWebページ用付箋ブックマークレット]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/04/09/github-jekyll/"/>
-    <updated>2012-04-09T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/04/09/github-jekyll</id>
-    <content type="html"><![CDATA[<p>長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
-
-<p>実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。
-saveを入力するとlocalStorage上に現在のスクロール量が記録されます。
-scrollを入力するとlocalStorage上に記録されたスクロール量分、スクロールします。
-入力する英字は小文字・大文字どちらも可。
-localStorageが使えないブラウザでは動きません。</p>
-
-<iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-ydL73uv6fA" width="500"></iframe>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">if</span><span class="p">(</span><span class="sr">/save/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="sr">/scroll/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span><span class="p">;</span>
-</span><span class='line'><span class="p">})();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>追記 2012/04/11</p>
-
-<p>デフォルトの文字列を設定するようにした</p>
 ]]></content>
   </entry>
   

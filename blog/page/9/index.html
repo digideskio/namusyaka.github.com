@@ -7,9 +7,8 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="Twitterがすごく流行ってます。
-実際に使っている人がいるんだから需要があるってことなんでしょう。 だけど 今ひとつコンセプトが明確じゃない気がするんですよね。
-ミニブログ　というのに分類されていたりするみたいですが、 &hellip;">
+	<meta name="description" content="タイトル通り、rubygemsインストールして色々やろーって思ってはじめたわけですがハマりました。
+あ、それと敬語って慣れないしブログだけ敬語っつーのもなんかアレなのでやめることにします。 さくらのレンタルサーバーに RubyGems をインストールする手順 これを見て進めたんだけど、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +89,116 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2010/09/20/github-jekyll/">Sakuraのレンタルサーバにrubygemsをインストールした後に色々インストールしようとしたらハマったので書く</a></h1>
+	<div class="entry-content">
+		<p>タイトル通り、rubygemsインストールして色々やろーって思ってはじめたわけですがハマりました。
+あ、それと敬語って慣れないしブログだけ敬語っつーのもなんかアレなのでやめることにします。</p>
+
+<p><a href="http://d.hatena.ne.jp/ishimarum/20080929/1222689905">さくらのレンタルサーバーに RubyGems をインストールする手順</a></p>
+
+<p>これを見て進めたんだけど、現状と多少違う点があったので補足的な。
+僕自身sshを書くの初めてなんで出来る人からすると「何こいつこんなとこで引っかかってんの？」とか思われるかもしれないけどご了承。</p>
+
+<h2>cshrc編集について</h2>
+
+
+<p>主に以下に書かれている点に補足。</p>
+
+<blockquote><blockquote><p>% vi ~/.cshrc</p></blockquote></blockquote>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin)
+</code></pre>
+
+<p>この行を以下のように変更。</p>
+
+<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin /home/User/bin)
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>それから、RubyGems のインストール先をホームディレクトリ以下に変更したので、環境変数 RUBYLIB と GEM_HOME のパスもこの ~/.cshrc で改めて定義しておく。</p>
+
+<pre><code>setenv RUBYLIB /home/User/lib
+
+setenv GEM_HOME /home/User/lib/ruby/gem
+
+（※/home/User の User はログインユーザー名で置き換える）
+</code></pre>
+
+<p>これが何をやっているのかは以下の文書に詳しく書いてある。
+&lt;&lt;</p>
+
+<p>まず
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
+
+<p>set pathの中身が大分違った。
+実際にはこんな感じ。
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
+
+<p>けどまぁサーバですし、毎回同じ環境なわけがないんで
+何も気にせず
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
+
+<p>を付け足して問題ない。(Userはログインユーザー名)</p>
+
+<p>んで、
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
+
+<p>を更にcshrcファイルに付け足してviコマンドのZZを叩いて終了。。。</p>
+
+<p>したかに思えた
+普通にエラーも出ず処理が終了したんで問題ないと思った。
+が！
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
+
+<p>どれだけこれを打ち込んでもエラーエラーエラー。
+流石になんかおかしいって気づく。</p>
+
+<p>んで、もっかいviコマンドでファイルを書き直したら今度は警告がでた。</p>
+
+<blockquote><blockquote><p>Read only file, not written.
+&lt;&lt;
+はい書き込みできないんだね。何故初回にこれが出なかったのか。
+まぁ何でかはわからんし、もしかしたら見落としてたのかも知れんけど
+とにかく原因がわかったのでftpで変更済cshrcファイルをうｐってEND.
+Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p></blockquote></blockquote>
+
+<p>はいおめでとー！</p>
+
+<p>空腹＋無知ってのが無駄に時間を食うはめになってしまった。
+上級者ならもっとエレガントにちゃちゃっと終わらせてくれそうです。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-09-20T00:00:00+09:00" pubdate data-updated="true">Sep 20<span>th</span>, 2010</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1018,42 +1127,12 @@ WEBデザインを近々したいな。
 	
 </div></article>
 
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2010/05/18/github-jekyll/">あｓｄｆ</a></h1>
-	<div class="entry-content">
-		<p>最近よくhatenaを見かけるので興味本位で作ってみた。
-自分のブログシステム(rubyで制作)はあるわけだけど、リピーターがついたらそっちに変えよう。、</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-18T00:00:00+09:00" pubdate data-updated="true">May 18<span>th</span>, 2010</time></div>
-	<div class="tags">
-
-</div>
-	
-</div></article>
-
 <nav id="pagenavi">
     
         <a href="/blog/page/8/" class="prev">Prev</a>
     
+    
+        <a href="/blog/page/10/" class="next">Next</a>
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>

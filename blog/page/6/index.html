@@ -7,30 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="classをほとんど使わない人間なのでどう設計したもんかと大分悩みましたが上手い答えは出ませんでした。
-これ以上悩んでも出そうにないのでとりあえず公開。 まー小さいクラスです。 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23 &hellip;">
+	<meta name="description" content=" 女満別⇒羽田の便が欠航なのでTokyoいけなくなりました。 Mar 11th, 2011 その他 ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -111,6 +88,41 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/03/11/github-jekyll/">便秘</a></h1>
+	<div class="entry-content">
+		<p>女満別⇒羽田の便が欠航なのでTokyoいけなくなりました。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-11T00:00:00+09:00" pubdate data-updated="true">Mar 11<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1299,173 +1311,6 @@ CSSも活用するとかなり見やすくなるかと思います。
 
 
 <time datetime="2011-02-23T00:00:00+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/02/22/github-jekyll/">JavaScriptで簡易スライドショーをつくった</a></h1>
-	<div class="entry-content">
-		<p>世の高校生たちは今日から春休みですか。
-僕と同い年の受験生たちは、もう大分落ち着いてきてるみたいですね。
-国立受験がまだちらほらって感じでしょうか。
-頑張ってください。</p>
-
-<h2>嗚呼　素晴らしきかな勉強会</h2>
-
-
-<p>Hokkaido.pmとかデブサミが話題にあがってますね。
-素晴らしいスライドが結構あったりして、機会があればぜひそういう集まりに参加したいです。</p>
-
-<h2>簡易スライドショーとは</h2>
-
-
-
-
-<ul>
-  <li>簡単なスライドショー用スクリプトです。</li>
-  <li>スライドショーといってもtextarea要素内の文字列を操作するだけです。</li>
-  <li>backで戻り、nextで進みます。</li>
-  <li>textarea要素内に、「=begin改行 スライド内容 改行=end」で一枚が出来上がります。</li>
-  <li>使用例は以下の通り。</li>
-  <li>http://namusyaka.info/slide.html で使用例を示している。</li>
-</ul>
-
-
-<p>HTML ></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- ひつようなもの１ 実際に表示させるスライド。CSSは自分で書きましょう。 --&gt;</span>
-</span><span class='line'><span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;slide_display&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;space&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;remote&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;remote_list&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">id=</span><span class="s">&quot;back&quot;</span> <span class="na">value=</span><span class="s">&quot;back&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;li&gt;&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">id=</span><span class="s">&quot;next&quot;</span> <span class="na">value=</span><span class="s">&quot;next&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;speed&quot;</span><span class="nt">&gt;&lt;/li&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/li&gt;</span>
-</span><span class='line'><span class="nt">&lt;/ul&gt;</span>
-</span><span class='line'><span class="c">&lt;!-- ひつようなもの２ textarea要素。display:noneつけとけばいいとおもいます。 --&gt;</span>
-</span><span class='line'><span class="nt">&lt;textarea</span> <span class="na">id=</span><span class="s">&quot;slide&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;/textarea&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>JavaScript ></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// idは自分で変えるよろし。</span>
-</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">_d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">$</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">)},</span> <span class="nx">space</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;space&#39;</span><span class="p">),</span> <span class="nx">speed</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;speed&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">slide</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;slide&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">,</span> <span class="nx">fpos</span> <span class="o">=</span> <span class="nx">lpos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">slide_show</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slideSubStr</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span> <span class="nx">bottom</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">top</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">bottom</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">fpos</span> <span class="o">=</span> <span class="nx">top</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">lpos</span> <span class="o">=</span> <span class="nx">bottom</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">fpos</span><span class="p">,</span> <span class="nx">lpos</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">do</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">slide_show</span><span class="p">[</span><span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">slide</span><span class="p">.</span><span class="nx">slideSubStr</span><span class="p">(</span><span class="nx">slide</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;=begin&#39;</span><span class="p">,</span> <span class="nx">fpos</span><span class="p">),</span> <span class="nx">slide</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;=end&#39;</span><span class="p">,</span> <span class="nx">lpos</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
-</span><span class='line'>  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="nx">slide_show</span><span class="p">[</span><span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">capacity</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;1/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">===</span> <span class="nx">capacity</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="nx">r</span><span class="o">++</span><span class="p">];</span>
-</span><span class='line'>    <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">r</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;back&#39;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">r</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>    <span class="nx">space</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">slide_show</span><span class="p">[</span><span class="o">--</span><span class="nx">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span><span class='line'>    <span class="nx">speed</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">r</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">capacity</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-22T00:00:00+09:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2011</time></div>
 	<div class="tags">
 
 

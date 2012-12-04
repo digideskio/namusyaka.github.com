@@ -7,9 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="CPANかっけーと思ったけどまだPerl書けないし、とりあえずRubyでやってみようということで、
-http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
-を参考にRubygemsを始めてみました。 まず、アカウントを作ります。 &hellip;">
+	<meta name="description" content="パフォーマンス どの言語でプログラミングをする場合も、美しく且つパフォーマンスが良いコードを書くのが良いというのはもはや当たり前のことだと思ってたんですが、どうも可視性という言葉をはき違えてわけのわからないコードの書き方を正当化しようとする輩がいるようなので思いの丈を述べようと思います。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +88,178 @@ http://d.hatena.ne.jp/Umeyashiki/20100430/1272642148
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/04/29/github-jekyll/">プログラミングのはなし</a></h1>
+	<div class="entry-content">
+		<h2>パフォーマンス</h2>
+
+
+<p>どの言語でプログラミングをする場合も、美しく且つパフォーマンスが良いコードを書くのが良いというのはもはや当たり前のことだと思ってたんですが、どうも可視性という言葉をはき違えてわけのわからないコードの書き方を正当化しようとする輩がいるようなので思いの丈を述べようと思います。</p>
+
+<p>サーバサイドでは、プログラムの実行環境が一つなため、スペックなどを知ることが出来るし、それに比例して多少は冗長なコードを書いても大丈夫な場合がある(書いても良いということではない)。
+一方、クライアントサイドでは実行環境を特定することが不可能で、幅広いユーザーをカバーするためにサーバサイド以上にパフォーマンスにこだわる必要があると思います。</p>
+
+<h2>ところで可視性とは</h2>
+
+
+<p>意味: 関係する部分を目に見えるようにすること、状態が分かること。
+可視性は重要だと思います。
+見やすく美しい洗練されたコードというのは管理もしやすいので。</p>
+
+<p>はたして以下のようなコードは可視性に優れていると言えるでしょうか？</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="kd">var</span> <span class="nx">hoge</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()</span>
+</span><span class='line'>  <span class="nx">hoge</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>僕はそうは思いません。
+document.getSelectionは何も選択されていない場合空文字を返します。
+よって</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nx">hoge</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>と書く方が、型変換の分が節約できているし、よりわかりやすくなったかと思います。
+しかし、JavaScriptの特性上、以下のように書くのが一番わかりやすく、簡単かと思います。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">!</span><span class="nx">hoge</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>JavaScriptでは空文字もfalseと認識するのでこう書くことが出来ます。</p>
+
+<p>当たり前のことですが、可視性のためだといって最初のような書き方をするのはいみがわかりません。
+僕は、コードを書くとき、可能な範囲で省略できるところは省略すべきだと思ってるし、その方が可視性(見やすさ)が高まると信じています。</p>
+
+<p>しかし僕の主張することがあまりにぶっ飛びすぎてる可能性もあるので、指摘等あったら遠慮なくしてください。
+コメントはちょっと。。という人はTwitterやmailでくださっても結構です。</p>
+
+<h2>簡単で便利なブックマークレットとrubyでrss-reader</h2>
+
+
+<h2>bookmarklet</h2>
+
+
+<p>よくプログラミング言語を学ぶ上で練習として電卓を作る人がいますが、ブックマークレット・eval・window.promptを使うと簡単で便利な電卓が作れます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;評価する式を入力してください。&quot;</span><span class="p">)))</span>
+</span><span class='line'><span class="p">})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>また、自分で作ったスクリプトを任意のページに読み込ませるのもwindow.promptを使えば簡単です。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)).</span><span class="nx">src</span><span class="o">=</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;追加するjsファイルのURL&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>簡単なことしかやってませんが手軽に便利なものを作れるのは、JavaScriptの利点だと思います。</p>
+
+<h2>以前つくったRSSReaderの汎用性高くしたver</h2>
+
+
+<p>Github : <a href="https://github.com/namusyaka/RSS-Reader">https://github.com/namusyaka/RSS-Reader</a>
+Rubygems : <a href="https://rubygems.org/gems/rss_reader">https://rubygems.org/gems/rss_reader</a></p>
+
+<p>installは以下
+Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
+
+<p>使用例:巡回してcacheが有効になっているか確認.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss_reader&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># cacheファイルがあるか確認. 無ければ生成.</span>
+</span><span class='line'><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#RSS::Readerオブジェクト生成.</span>
+</span><span class='line'><span class="n">rss</span> <span class="o">=</span> <span class="no">RSS</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;cache.dat&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#巡回するURLの配列</span>
+</span><span class='line'><span class="n">url</span> <span class="o">=</span> <span class="sx">%w(</span>
+</span><span class='line'><span class="sx">  http://d.hatena.ne.jp/namusyaka/rss</span>
+</span><span class='line'><span class="sx">  http://blog.livedoor.jp/tei_soku/index.rdf</span>
+</span><span class='line'><span class="sx">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rss</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1">#前回までのcacheを残さない場合は, 第二引数でtrueを指定.</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># cacheには記録時間を数値オブジェクトで渡す。デフォルトは30分.</span>
+</span><span class='line'><span class="c1"># もし、以前ファイルを記録した時間から引数以上の時間が経過していた場合は、nil.</span>
+</span><span class='line'><span class="c1"># 見つからない場合もnil.</span>
+</span><span class='line'><span class="c1"># 内部的にはFile.ctimeを使った方がスマートだが, 個人的な理由で別の方法を使ってる.</span>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;キャッシュは有効&quot;</span> <span class="k">if</span> <span class="n">rss</span><span class="o">.</span><span class="n">cache</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-29T00:00:00+09:00" pubdate data-updated="true">Apr 29<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -839,41 +1009,6 @@ JScriptを使っているのでWindows以外では動きません。</p>
 
 
 	<a class='category' href='/blog/categories/jscript/'>JScript</a>, <a class='category' href='/blog/categories/その他/'>その他</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/03/11/github-jekyll/">便秘</a></h1>
-	<div class="entry-content">
-		<p>女満別⇒羽田の便が欠航なのでTokyoいけなくなりました。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-11T00:00:00+09:00" pubdate data-updated="true">Mar 11<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/その他/'>その他</a>
 
 
 </div>

@@ -7,9 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="ぼくのWEBサイトをリニューアルしました。
-編集とか管理をしやすくするために色々考えてたんですが一通り実装は出来たので満足しております。 そういえば最近本を書いた人の感想みたいなのをどこかで見たんですが、「本を書いた本人が一番勉強になる」みたいなことを言ってました。
-確かにそんな気がします。 &hellip;">
+	<meta name="description" content="https://developer.mozilla.org/ja/Javascript_Style_Guide> event.keyCode == 13 ではなく event.keyCode == KeyEvent.DOM_VK_RETURN のような DOM &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +88,61 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/01/09/github-jekyll/">KeyEventの話</a></h1>
+	<div class="entry-content">
+		<blockquote><p>https://developer.mozilla.org/ja/Javascript_Style_Guide></p></blockquote>
+
+<p>event.keyCode == 13 ではなく event.keyCode == KeyEvent.DOM_VK_RETURN のような DOM 定数を使用するのを忘れないでください。</p>
+
+<p>&lt;&lt;</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">).</span><span class="nx">onkeypress</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">((</span><span class="nx">e</span> <span class="o">||</span> <span class="nx">event</span><span class="p">).</span><span class="nx">keyCode</span><span class="o">==</span><span class="nx">KeyEvent</span><span class="p">.</span><span class="nx">DOM_VK_RETURN</span><span class="p">)</span><span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//Chromeがalertされず。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>http://www.w3.org/TR/DOM-Level-3-Events/
+ちなみに上の2010年最新版ではKeyEvent.DOM_VK_RETURNに相当するプロパティが見当たりません。
+&#8220;Enter&#8221;をプロパティ代わりに使う的なことが書いてあるようにも見えますが現段階ではそれも使えないしDOM3自体が未完成らしいです。
+最初の記事でMDCが言ってるのは2001年版のDOM3についての話だと思うので気にしないで無難に数値リテラル使った方がいいねという話でしたおしまい。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-09T00:00:00+09:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -912,116 +965,6 @@ UserScriptを書く上で、もしかしたら今後も使うことがあるか�
 
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2010/09/20/github-jekyll/">Sakuraのレンタルサーバにrubygemsをインストールした後に色々インストールしようとしたらハマったので書く</a></h1>
-	<div class="entry-content">
-		<p>タイトル通り、rubygemsインストールして色々やろーって思ってはじめたわけですがハマりました。
-あ、それと敬語って慣れないしブログだけ敬語っつーのもなんかアレなのでやめることにします。</p>
-
-<p><a href="http://d.hatena.ne.jp/ishimarum/20080929/1222689905">さくらのレンタルサーバーに RubyGems をインストールする手順</a></p>
-
-<p>これを見て進めたんだけど、現状と多少違う点があったので補足的な。
-僕自身sshを書くの初めてなんで出来る人からすると「何こいつこんなとこで引っかかってんの？」とか思われるかもしれないけどご了承。</p>
-
-<h2>cshrc編集について</h2>
-
-
-<p>主に以下に書かれている点に補足。</p>
-
-<blockquote><blockquote><p>% vi ~/.cshrc</p></blockquote></blockquote>
-
-<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin)
-</code></pre>
-
-<p>この行を以下のように変更。</p>
-
-<pre><code>set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin /home/User/bin)
-
-（※/home/User の User はログインユーザー名で置き換える）
-</code></pre>
-
-<p>それから、RubyGems のインストール先をホームディレクトリ以下に変更したので、環境変数 RUBYLIB と GEM_HOME のパスもこの ~/.cshrc で改めて定義しておく。</p>
-
-<pre><code>setenv RUBYLIB /home/User/lib
-
-setenv GEM_HOME /home/User/lib/ruby/gem
-
-（※/home/User の User はログインユーザー名で置き換える）
-</code></pre>
-
-<p>これが何をやっているのかは以下の文書に詳しく書いてある。
-&lt;&lt;</p>
-
-<p>まず
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
-
-<p>set pathの中身が大分違った。
-実際にはこんな感じ。
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
-
-<p>けどまぁサーバですし、毎回同じ環境なわけがないんで
-何も気にせず
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
-
-<p>を付け足して問題ない。(Userはログインユーザー名)</p>
-
-<p>んで、
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
-
-<p>を更にcshrcファイルに付け足してviコマンドのZZを叩いて終了。。。</p>
-
-<p>したかに思えた
-普通にエラーも出ず処理が終了したんで問題ないと思った。
-が！
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p>
-
-<p>どれだけこれを打ち込んでもエラーエラーエラー。
-流石になんかおかしいって気づく。</p>
-
-<p>んで、もっかいviコマンドでファイルを書き直したら今度は警告がでた。</p>
-
-<blockquote><blockquote><p>Read only file, not written.
-&lt;&lt;
-はい書き込みできないんだね。何故初回にこれが出なかったのか。
-まぁ何でかはわからんし、もしかしたら見落としてたのかも知れんけど
-とにかく原因がわかったのでftpで変更済cshrcファイルをうｐってEND.
-Liquid error: ClassNotFound: no lexer for alias &#8216;sshconfig&#8217; found</p></blockquote></blockquote>
-
-<p>はいおめでとー！</p>
-
-<p>空腹＋無知ってのが無駄に時間を食うはめになってしまった。
-上級者ならもっとエレガントにちゃちゃっと終わらせてくれそうです。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-09-20T00:00:00+09:00" pubdate data-updated="true">Sep 20<span>th</span>, 2010</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
 
 
 </div>
