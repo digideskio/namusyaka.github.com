@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Whitespace | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/whitespace/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-10T10:20:07+09:00</updated>
+  <updated>2012-12-10T10:22:07+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -24,7 +24,7 @@
 
 <p>以前紹介した<a href="http://ws2js.luilak.net/interpreter.html">Whitespaceインタプリタ</a>のサンプルにも追加しておきました。</p>
 
-<p>鍵を一文字に設定するとシーザー暗号と同じになり、N一文字を設定するとROT13と同じ挙動になります。</p>
+<p>ちなみに、鍵を一文字に設定するとシーザー暗号と同じになり、N一文字を設定するとROT13と同じ挙動になります。</p>
 
 <p>また、鍵は大文字小文字を区別しません。</p>
 
