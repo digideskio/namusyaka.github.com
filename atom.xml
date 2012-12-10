@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-10T19:47:56+09:00</updated>
+  <updated>2012-12-10T20:30:49+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -22,7 +22,7 @@
 
 <p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
 
-<p>自分が原因ではないかと思っているのは以下。</p>
+<p>自分が思っている原因のいくつかを以下に挙げる。</p>
 
 <ul>
 <li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
