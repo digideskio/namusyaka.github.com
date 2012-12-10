@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-10T10:22:07+09:00</updated>
+  <updated>2012-12-10T19:47:56+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PiggerというWebサービスをつくっている話]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/11/github-jekyll/"/>
+    <updated>2012-12-11T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/11/github-jekyll</id>
+    <content type="html"><![CDATA[<h2>全然ウケないWebサービス</h2>
+
+<p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
+
+<p>自分が原因ではないかと思っているのは以下。</p>
+
+<ul>
+<li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
+<li>デスクトップアプリケーションはVector等で公開し、フィードバックを得られたり、広められたりするのに対し、Webサービスにはそれに相当するサービスがないっぽい。</li>
+</ul>
+
+
+<p>もちろん、自分の技術力や企画力など、他にも原因は考えられるが、仮に素晴らしい技術力・企画力を持っていたとしても上記のようなことが原因で上手くいかないケースがあるように思える。</p>
+
+<p>逆に、知名度が高い人であれば、言い方は悪いが特筆すべき点もないようなサービスでも(良い悪いは抜きにして)一定の評価を得ることが出来る。出来てしまう。</p>
+
+<p>無名開発者があまりに可哀想である(自分を含めて)。</p>
+
+<p>そういった問題を解決するものとして、Chrome Web Storeには期待していたが今一日本では注目されていないようだし、Mozillaも何かやってたけどようわからん。</p>
+
+<p>ツクログもイメージに近かったんだけど、盛況とは言えない状況なだけに残念。</p>
+
+<h2>自分でオンラインマーケット的なサービスを作ってみることにした</h2>
+
+<p>マーケットといっても名ばかりで、使用は完全に無料。</p>
+
+<p>開発者は自分のつくったWebサービスを公開して、ユーザーのフィードバックを待ったり、他の開発者のサービスにコメントをできるようにした。</p>
+
+<p>また、開発者は欲しいものリストを登録できるので、サービスを見たユーザーが何か贈ってくれるかもしれない。</p>
+
+<p>ありきたりではあるが、ランキングもトップに設置してみた。</p>
+
+<p>UUを参考に生成しているので、表示されているPVはランキングには影響しない。</p>
+
+<p>このサービス自体、特別何かコレ！といった機能を持つわけではないんだけど、持続的に一般ユーザーにみてもらえるようになれば、無名開発者にとっては凄くありがたいなと思っている。</p>
+
+<p>とりあえず今はベータ版という位置づけで、公式のリリース時にはデザインとか機能も大きく増やす予定。</p>
+
+<h2>開発</h2>
+
+<p>開発については色々思うことがあるので、後日また書く。</p>
+
+<h2>開発中だけど登録してくれるとうれしいな</h2>
+
+<p><a href="http://www.pigger.in/">Piggerβ</a></p>
+
+<p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Whitespaceでヴィジュネル暗号を実装した]]></title>
@@ -1482,308 +1537,6 @@ CSSスプライトとかやってないサイト用</p>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[DOM操作においてinnerHTMLは使うべきか(追記)]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/01/18/github-jekyll/"/>
-    <updated>2012-01-18T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/01/18/github-jekyll</id>
-    <content type="html"><![CDATA[<p>innerHTMLというプロパティがあります。
-HTMLを文字列の状態で突っ込むとそのまま反映してくれるという非常に楽で便利なものなんですが、残念なことに、遅い遅いと昔から言われていました。</p>
-
-<p>そうは言っても、document.createElementとかdocument.createTextNodeとかappendChildとか、だるいなあと思いますし、なかなかinnerHTMLの呪縛から逃れられずに早一年。
-ちょっとはっきりさせとくかということで、以下のような関数を作り、innerHTMLとどのくらい差が出るか比較してみました。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="c1">// Code</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">$1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>       <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'>         <span class="nx">element</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="nx">key</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>         <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>           <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>             <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span>
-</span><span class='line'>               <span class="nx">element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
-</span><span class='line'>         <span class="p">}</span> <span class="k">else</span>
-</span><span class='line'>           <span class="nx">element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
-</span><span class='line'>       <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
-</span><span class='line'>         <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1">// Usage</span>
-</span><span class='line'>    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$1</span><span class="p">([</span><span class="s1">&#39;iframe&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">src</span> <span class="o">:</span> <span class="s1">&#39;http://example.com&#39;</span><span class="p">,</span> <span class="nx">border</span> <span class="o">:</span> <span class="mi">0</span> <span class="p">},</span> <span class="s1">&#39;フレームを使用できないブラウザです。&#39;</span><span class="p">]));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><del>第一引数に要素名、第二引数に属性と属性値の連想配列、三つ目にはその要素のテキストノードを入れることを想定しています。</del>
-<del>ちなみにinnerHTMLも第二引数において使うことができます。</del>
-<ins>早速自分で書いた関数なのにミスった。</ins>
-<ins>引数は配列で渡します。</ins>
-<ins>第一要素目にエレメント名、第二要素目に属性と属性値の連想配列、第三要素目にエレメントのテキストノードを入れることを想定しています。</ins>
-<ins>ちなみにinnerHTMLも第二要素目において使うことができます。</ins></p>
-
-<p>そして実際のベンチマークコード</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">$1</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>       <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'>         <span class="nx">element</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="nx">key</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>         <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>           <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>             <span class="k">if</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span>
-</span><span class='line'>               <span class="nx">element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">]));</span>
-</span><span class='line'>         <span class="p">}</span> <span class="k">else</span>
-</span><span class='line'>           <span class="nx">element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
-</span><span class='line'>       <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
-</span><span class='line'>         <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>       <span class="k">return</span> <span class="nx">element</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>     <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">();</span>
-</span><span class='line'>     <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">$1</span><span class="p">(</span>
-</span><span class='line'>          <span class="p">[</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;a&#39;</span> <span class="p">},</span>
-</span><span class='line'>            <span class="p">[</span>
-</span><span class='line'>              <span class="p">[</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;b&#39;</span> <span class="p">},</span>
-</span><span class='line'>                <span class="p">[</span>
-</span><span class='line'>                  <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;c&#39;</span> <span class="p">},</span><span class="s1">&#39;hoge&#39;</span><span class="p">],</span>
-</span><span class='line'>                  <span class="p">[</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;d&#39;</span> <span class="p">},</span>
-</span><span class='line'>                    <span class="p">[</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;e&#39;</span> <span class="p">},</span>
-</span><span class='line'>                      <span class="p">[</span>
-</span><span class='line'>                        <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;f&#39;</span> <span class="p">},</span> <span class="s1">&#39;fuga&#39;</span><span class="p">],</span>
-</span><span class='line'>                        <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;g&#39;</span> <span class="p">},</span> <span class="s1">&#39;fugo&#39;</span><span class="p">],</span>
-</span><span class='line'>                        <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;h&#39;</span> <span class="p">},</span> <span class="s1">&#39;foo&#39;</span><span class="p">],</span>
-</span><span class='line'>                        <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;i&#39;</span> <span class="p">},</span> <span class="s1">&#39;bar&#39;</span><span class="p">],</span>
-</span><span class='line'>                        <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;j&#39;</span> <span class="p">},</span> <span class="s1">&#39;baz&#39;</span><span class="p">]</span>
-</span><span class='line'>                      <span class="p">]</span>
-</span><span class='line'>                    <span class="p">]</span>
-</span><span class='line'>                  <span class="p">]</span>
-</span><span class='line'>                <span class="p">]</span>
-</span><span class='line'>              <span class="p">],</span>
-</span><span class='line'>              <span class="p">[</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;k&#39;</span> <span class="p">},</span> <span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">type</span> <span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:</span> <span class="s1">&#39;1234&#39;</span> <span class="p">}]]</span>
-</span><span class='line'>            <span class="p">]</span>
-</span><span class='line'>          <span class="p">]</span>
-</span><span class='line'>        <span class="p">));</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>     <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">();</span>
-</span><span class='line'>     <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="s1">&#39;&lt;ul class=&quot;a&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;li class=&quot;b&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;c&quot;&gt;hoge&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;ul class=&quot;d&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;li class=&quot;e&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;f&quot;&gt;fuga&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;g&quot;&gt;fugo&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;h&quot;&gt;foo&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;i&quot;&gt;bar&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;p class=&quot;j&quot;&gt;baz&lt;/p&gt;\</span>
-</span><span class='line'><span class="s1">&lt;/li&gt;\</span>
-</span><span class='line'><span class="s1">&lt;/ul&gt;\</span>
-</span><span class='line'><span class="s1">&lt;/li&gt;\</span>
-</span><span class='line'><span class="s1">&lt;li class=&quot;k&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;input type=&quot;hidden&quot; value=&quot;1234&quot;&gt;\</span>
-</span><span class='line'><span class="s1">&lt;/li&gt;\</span>
-</span><span class='line'><span class="s1">&lt;/ul&gt;&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;$1 : &quot;</span> <span class="o">+</span> <span class="nx">e</span> <span class="o">+</span> <span class="s2">&quot;  innerHTML : &quot;</span> <span class="o">+</span> <span class="nx">h</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以下が結果です。</p>
-
-<p>|<em>|</em>IE9|<em>Firefox|</em>GoogleChrome|<em>Safari|</em>Opera|
-|<em>$1|118|19|12|6|13|
-|</em>innerHTML|3058|663|2150|939|387|</p>
-
-<p>数値の大小は違えど、innerHTMLよりも速くなりました。
-この関数は再帰的に処理しているので、実際にはもっと速くなり得ると思います。
-しかし、<strong>innerHTMLも内容が小さければ小さいほど速度はあがっていく</strong>ので、局所的に使う分には問題ないんじゃないでしょうか。</p>
-
-<h2>追記</h2>
-
-
-<p>document.body.innerHTML+=がどうやらすげえ重いっぽい。
-以下のようにすると、ほとんど差が無くなった。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">();</span>
-</span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nx">s</span> <span class="o">+=</span> <span class="s1">&#39;&lt;ul class=&quot;a&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;li class=&quot;b&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;c&quot;&gt;hoge&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;ul class=&quot;d&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;li class=&quot;e&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;f&quot;&gt;fuga&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;g&quot;&gt;fugo&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;h&quot;&gt;foo&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;i&quot;&gt;bar&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;p class=&quot;j&quot;&gt;baz&lt;/p&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;/li&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;/ul&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;/li&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;li class=&quot;k&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;input type=&quot;hidden&quot; value=&quot;1234&quot;&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;/li&gt;&#39;</span>
-</span><span class='line'>          <span class="nx">s</span><span class="o">+=</span><span class="s1">&#39;&lt;/ul&gt;&#39;</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>      <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()).</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">d</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>ぶっちゃけ、これだとちょっと意味合いが変わってしまってappendChildのメソッド実行回数分が明らかにコストだからナンセンス気味。
-言うほどinnerHTMLも悪くないかもしれない。正しく使えば。</p>
-
-<p>以下参考になるエントリー。
-[http://blog.livedoor.jp/dankogai/archives/50665647.html:title]
-[http://la.ma.la/blog/diary_200507070648.htm:title]</p>
 ]]></content>
   </entry>
   

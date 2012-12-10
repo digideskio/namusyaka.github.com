@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-10T10:22:07+09:00</updated>
+  <updated>2012-12-10T19:48:28+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PiggerというWebサービスをつくっている話]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/11/github-jekyll/"/>
+    <updated>2012-12-11T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/11/github-jekyll</id>
+    <content type="html"><![CDATA[<h2>全然ウケないWebサービス</h2>
+
+<p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
+
+<p>自分が原因ではないかと思っているのは以下。</p>
+
+<ul>
+<li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
+<li>デスクトップアプリケーションはVector等で公開し、フィードバックを得られたり、広められたりするのに対し、Webサービスにはそれに相当するサービスがないっぽい。</li>
+</ul>
+
+
+<p>もちろん、自分の技術力や企画力など、他にも原因は考えられるが、仮に素晴らしい技術力・企画力を持っていたとしても上記のようなことが原因で上手くいかないケースがあるように思える。</p>
+
+<p>逆に、知名度が高い人であれば、言い方は悪いが特筆すべき点もないようなサービスでも(良い悪いは抜きにして)一定の評価を得ることが出来る。出来てしまう。</p>
+
+<p>無名開発者があまりに可哀想である(自分を含めて)。</p>
+
+<p>そういった問題を解決するものとして、Chrome Web Storeには期待していたが今一日本では注目されていないようだし、Mozillaも何かやってたけどようわからん。</p>
+
+<p>ツクログもイメージに近かったんだけど、盛況とは言えない状況なだけに残念。</p>
+
+<h2>自分でオンラインマーケット的なサービスを作ってみることにした</h2>
+
+<p>マーケットといっても名ばかりで、使用は完全に無料。</p>
+
+<p>開発者は自分のつくったWebサービスを公開して、ユーザーのフィードバックを待ったり、他の開発者のサービスにコメントをできるようにした。</p>
+
+<p>また、開発者は欲しいものリストを登録できるので、サービスを見たユーザーが何か贈ってくれるかもしれない。</p>
+
+<p>ありきたりではあるが、ランキングもトップに設置してみた。</p>
+
+<p>UUを参考に生成しているので、表示されているPVはランキングには影響しない。</p>
+
+<p>このサービス自体、特別何かコレ！といった機能を持つわけではないんだけど、持続的に一般ユーザーにみてもらえるようになれば、無名開発者にとっては凄くありがたいなと思っている。</p>
+
+<p>とりあえず今はベータ版という位置づけで、公式のリリース時にはデザインとか機能も大きく増やす予定。</p>
+
+<h2>開発</h2>
+
+<p>開発については色々思うことがあるので、後日また書く。</p>
+
+<h2>開発中だけど登録してくれるとうれしいな</h2>
+
+<p><a href="http://www.pigger.in/">Piggerβ</a></p>
+
+<p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Whitespaceでヴィジュネル暗号を実装した]]></title>
@@ -73,61 +128,35 @@
 一度配列に変換してforEach使うとかしなきゃいけないけど、forEach自体は古いブラウザでは動かない。
 というわけでサラッと書いた。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">SubHTMLCollection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">SubHTMLCollection</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">each</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>  <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">},</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="nx">reverseEach</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>  <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:javascript %}
+var SubHTMLCollection = function (collection) {
+  this.collection = [];
+  for(var i = 0, element; element = collection[i]; ++i)</p>
+
+<pre><code>this.collection.push(element);
+</code></pre>
+
+<p>  return this;
+};</p>
+
+<p>SubHTMLCollection.prototype = {
+  each : function (callback) {</p>
+
+<pre><code>for(var i = 0, element; element = this.collection[i]; ++i)
+  callback.call(this, element, i);
+</code></pre>
+
+<p>  },</p>
+
+<p>  reverseEach : function (callback) {</p>
+
+<pre><code>for(var i = this.collection.length - 1, element; element = this.collection[i]; --i)
+  callback.call(this, element, i);
+</code></pre>
+
+<p>  }
+};
+{% endcodeblock %}</p>
 
 <p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
 <del>Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
@@ -139,71 +168,7 @@
 
 <p>はてなダイアリーから移転した。
 hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状態で残したかったが、元々はてなダイアリーの書き方が汚かったのでかなりオレオレ仕様になってしまった。
-<div><script src='https://gist.github.com/3769184.js?file='></script>
-<noscript><pre><code>require 'rexml/document'
-require 'erb'
-
-class HatenaToOctopress
-
-  @@octo_format = &lt;&lt;-MKDN
----
-layout: post
-title: &lt;%= @item[:title] %&gt;
-date: &lt;%= @item[:date] %&gt;
-comments: true
-categories: &lt;%= @item[:categories].inspect %&gt;
----
-&lt;%= @item[:body] %&gt;
-  MKDN
-
-  def initialize (data)
-    @data = data
-  end
-
-  def import
-    doc = REXML::Document.new(@data)
-    doc.elements.each(&quot;diary/day&quot;) do |day|
-      @item = {}
-      @item[:date] = day.attributes['date']
-      day.elements.each(&quot;body&quot;) do |body|
-        lines = body.text.split(/\n/)
-        params = lines[1].scan(/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/)[0]
-        @item[:categories] = params[0].split(&quot;][&quot;) if params[0]
-        @item[:title] = params[1]
-        @item[:body] = lines[1..-1].join(&quot;\n&quot;).gsub(/&gt;\|(.+?)\|(.+?)\|\|&lt;/m) do
-          &lt;&lt;-CODE
-{% codeblock lang:#{$1} %}
-#{$2}
-{% endcodeblock %}
-          CODE
-        end
-        # &lt;h4&gt;を直書きしていたためoctopressに合うよう置換, 一日に複数個日記を書いていた場合の見出しも同じく置換。
-        @item[:body].gsub!(/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/) { &quot;&lt;h2&gt;#{$1 || $2}&lt;/h2&gt;\n&quot; }
-      end
-      post ERB.new(@@octo_format).result(binding)
-    end
-  end
-
-  def self.read_file (path)
-    hatena2octo = self.new(File.read(path))
-    hatena2octo.import
-  end
-
-  private
-
-    def post (post_data)
-      path = &quot;source/_posts/#{@item[:date]}-github-jekyll.mkd&quot;
-
-      File.open(path, File.exist?(path) ? &quot;a&quot; : &quot;w&quot;) do |file|
-        file.write(post_data)
-      end
-    end
-end
-
-if $0 == __FILE__
-   HatenaToOctopress.read_file(&quot;hatena.xml&quot;)
-end</code></pre></noscript></div>
-</p>
+{% gist 3769184 %}</p>
 ]]></content>
   </entry>
   
@@ -219,33 +184,6 @@ end</code></pre></noscript></div>
 <a href="http://namusyaka.info/esolang/ook.html" target="_blank">Ook Interpreter</a></p>
 
 <p>手を抜いてるところはかわらないんですけどね</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JavaScriptでBrainf*ckやOok!やMONAmonaのインタプリタを実装&SeaSlugについて]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/07/20/github-jekyll/"/>
-    <updated>2012-07-20T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/07/20/github-jekyll</id>
-    <content type="html"><![CDATA[<h2>Esolangインタプリタの話</h2>
-
-
-<p>Github : <a href="https://github.com/namusyaka/sandbox/tree/master/Esolang">sandbox/Esolang</a>
-テスト(Firefoxでしか動作確認していない上にフリーズの危険性があるので注意) : <a href="http://namusyaka.info/esolang/esolang.html">Esolang</a></p>
-
-<p>何番煎じだよ感ありますが、現実逃避したくて書きました。
-難解言語と呼ばれるような言語は一つインタプリタを実装してしまえば、後はちょっといじるだけで良い場合が多いので色々実装してみると面白いと思います。
-とはいえ、実装に不安な点がないわけじゃないので意見等お待ちしています。
-(ちなみに、実際に使う場合等は'&lt;'や'+'のような記号にいちいち関数と関連づけて実行するよりも、switch文等で分岐させたほうが絶対的に速いです)</p>
-
-<h2>SeaSlug</h2>
-
-
-<p>サイト : <a href="http://seaslug.luilak.net/">SeaSlug</a>
-VimとVimScriptのWEB実装みたいなやつです。
-将来的にはウェブベースの統合開発環境だったりに組み込んで使いたいなと思っています。
-ところが七月中旬にはリリース予定だったのに、なかなか都合がつかなくて全然すすんでません。
-時間をうまく使える様になりたいなあ。</p>
 ]]></content>
   </entry>
   
