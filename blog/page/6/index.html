@@ -7,7 +7,9 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content=" 女満別⇒羽田の便が欠航なのでTokyoいけなくなりました。 Mar 11th, 2011 その他 ">
+	<meta name="description" content="皆さん大変ですね。
+僕もなにかしてあげたいと思うんですが正直何をしたらいいか思い当たることがありません。 ただSkypeが有効ということで、Skype関連のツールを作ってみました。
+JScriptを使っているのでWindows以外では動きません。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,6 +90,127 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/03/12/github-jekyll/">地震の影響で電話やメールがつながりにくいですがSkypeが有効です。</a></h1>
+	<div class="entry-content">
+		<p>皆さん大変ですね。
+僕もなにかしてあげたいと思うんですが正直何をしたらいいか思い当たることがありません。</p>
+
+<p>ただSkypeが有効ということで、Skype関連のツールを作ってみました。
+JScriptを使っているのでWindows以外では動きません。</p>
+
+<p><a href="http://namusyaka.info/skype_recv.html">Skypeのチャットログを自動で保存していくツールwindows用</a>です。
+簡単に説明します。</p>
+
+<ul>
+<li>Skype4COMを使っている。</li>
+<li>インストールが必要(ツールページ先参照)。</li>
+<li>ソースは以下の通り。</li>
+</ul>
+
+
+<script src="https://gist.github.com/871793.js"> </script>
+
+
+<p><noscript></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">fso</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">skype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Skype4COM.Skype&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">wss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;WScript.Shell&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">Skype_MessageStatus</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">topic</span> <span class="o">=</span> <span class="s2">&quot;log/&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">Topic</span> <span class="o">||</span> <span class="s2">&quot;個人チャ&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">fso</span><span class="p">.</span><span class="nx">FolderExists</span><span class="p">(</span><span class="nx">topic</span><span class="p">))</span>
+</span><span class='line'>    <span class="nx">fso</span><span class="p">.</span><span class="nx">CreateFolder</span><span class="p">(</span><span class="nx">topic</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">status</span> <span class="o">==</span> <span class="nx">skype</span><span class="p">.</span><span class="nx">Convert</span><span class="p">.</span><span class="nx">TextToChatMessageStatus</span><span class="p">(</span><span class="s2">&quot;RECEIVED&quot;</span><span class="p">)</span> <span class="o">||</span>
+</span><span class='line'>  <span class="nx">status</span> <span class="o">==</span> <span class="nx">skype</span><span class="p">.</span><span class="nx">Convert</span><span class="p">.</span><span class="nx">TextToChatMessageStatus</span><span class="p">(</span><span class="s2">&quot;SENT&quot;</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">Timestamp</span><span class="p">);</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="nx">fso</span><span class="p">.</span><span class="nx">OpenTextFile</span><span class="p">(</span><span class="nx">topic</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.txt&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">WriteLine</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">FromDisplayName</span> <span class="o">+</span> <span class="s2">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">body</span> <span class="o">+</span> <span class="s2">&quot; &lt;&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">WriteLine</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">today</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">fso</span><span class="p">.</span><span class="nx">FolderExists</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">))</span>
+</span><span class='line'>  <span class="nx">fso</span><span class="p">.</span><span class="nx">CreateFolder</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">WScript</span><span class="p">.</span><span class="nx">ConnectObject</span><span class="p">(</span><span class="nx">skype</span><span class="p">,</span> <span class="s2">&quot;Skype_&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">skype</span><span class="p">.</span><span class="nx">Attach</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nx">wss</span><span class="p">.</span><span class="nx">popup</span><span class="p">(</span><span class="s2">&quot;ログ受信を終了する場合はOKを押してください。&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">skype</span> <span class="o">=</span> <span class="nx">wss</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></noscript></p>
+
+<p>とりあえず僕もなにか役に立ちたいので、被災者のためにコードを書いていて手伝ってほしいという人がいれば遠慮なく言ってください。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-12T00:00:00+09:00" pubdate data-updated="true">Mar 12<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/jscript/'>JScript</a>, <a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1264,53 +1387,6 @@ CSSも活用するとかなり見やすくなるかと思います。
 
 
 <time datetime="2011-02-25T00:00:00+09:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/02/23/github-jekyll/">YAMLParserをJavaScriptで書こうと思ったが</a></h1>
-	<div class="entry-content">
-		<p>やめた。</p>
-
-<h2>instanceofの実装</h2>
-
-
-<p>配列はオブジェクトなので以下のようなことが起こります。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="c1">// true;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-23T00:00:00+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time></div>
 	<div class="tags">
 
 

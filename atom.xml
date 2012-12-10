@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-04T21:55:59+09:00</updated>
+  <updated>2012-12-10T10:14:12+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Whitespaceでヴィジュネル暗号を実装した]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/10/github-jekyll/"/>
+    <updated>2012-12-10T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/10/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://ja.wikipedia.org/wiki/%E3%83%B4%E3%82%A3%E3%82%B8%E3%83%A5%E3%83%8D%E3%83%AB%E6%9A%97%E5%8F%B7">ヴィジュネル暗号</a></p>
+
+<p><a href="http://ws2js.luilak.net/samples/vigenere.ws">Vigenere.ws</a></p>
+
+<p>以前紹介した<a href="http://ws2js.luilak.net/interpreter.html">Whitespaceインタプリタ</a>のサンプルにも追加しておきました。</p>
+
+<p>起業するって意気込んでいたくせに、こいつは一体何をやっているんだという話ですね。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った]]></title>
@@ -1765,49 +1780,6 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 <p>以下参考になるエントリー。
 [http://blog.livedoor.jp/dankogai/archives/50665647.html:title]
 [http://la.ma.la/blog/diary_200507070648.htm:title]</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[getElementByIdについて]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/01/13/github-jekyll/"/>
-    <updated>2012-01-13T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/01/13/github-jekyll</id>
-    <content type="html"><![CDATA[<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
-window[&#8220;foo&#8221;] が返す要素</p></blockquote>
-
-<pre><code>"foo" という名前を持つ a、applet、area、embed、form、frame、frameset、iframe、img、または object 要素、または
-"foo" という id を持つ HTML 要素
-</code></pre>
-
-<p>&lt;&lt;</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hoge</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// [object HTMLParagraphElement]</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;hoge&quot;</span><span class="nt">&gt;</span>fuga<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   

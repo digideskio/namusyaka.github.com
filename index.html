@@ -7,7 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="Luilakで、WhitespaceをJavaScriptに変換するライブラリを作った。 WS2JS Whitespace インタプリタ Github インタプリタにはいくつかサンプルも用意してあって、なかなか面白いかと思う。 一番気に入っているのはフィボナッチ。 簡単な説明 &hellip;">
+	<meta name="description" content=" ヴィジュネル暗号 Vigenere.ws 以前紹介したWhitespaceインタプリタのサンプルにも追加しておきました。 起業するって意気込んでいたくせに、こいつは一体何をやっているんだという話ですね。 Dec 10th, 2012 JavaScript, Whitespace ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +91,47 @@
 
 
     <article class="post">
+	<h1 class="title"><a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a></h1>
+	<div class="entry-content">
+		<p><a href="http://ja.wikipedia.org/wiki/%E3%83%B4%E3%82%A3%E3%82%B8%E3%83%A5%E3%83%8D%E3%83%AB%E6%9A%97%E5%8F%B7">ヴィジュネル暗号</a></p>
+
+<p><a href="http://ws2js.luilak.net/samples/vigenere.ws">Vigenere.ws</a></p>
+
+<p>以前紹介した<a href="http://ws2js.luilak.net/interpreter.html">Whitespaceインタプリタ</a>のサンプルにも追加しておきました。</p>
+
+<p>起業するって意気込んでいたくせに、こいつは一体何をやっているんだという話ですね。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-10T00:00:00+09:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/whitespace/'>Whitespace</a>
+
+
+</div>
+	
+</div></article>
+
+
+    <article class="post">
 	<h1 class="title"><a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a></h1>
 	<div class="entry-content">
 		<p><a href="http://luilak.net/">Luilak</a>で、WhitespaceをJavaScriptに変換するライブラリを作った。</p>
@@ -140,7 +181,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/whitespace/'>Whitespace</a>
 
 
 </div>
@@ -920,81 +961,6 @@ VimとVimScriptのWEB実装みたいなやつです。
 
 
 <time datetime="2012-04-11T00:00:00+09:00" pubdate data-updated="true">Apr 11<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2012/04/09/github-jekyll/">JavaScriptでWebページ用付箋ブックマークレット</a></h1>
-	<div class="entry-content">
-		<p>長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
-
-<p>実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。
-saveを入力するとlocalStorage上に現在のスクロール量が記録されます。
-scrollを入力するとlocalStorage上に記録されたスクロール量分、スクロールします。
-入力する英字は小文字・大文字どちらも可。
-localStorageが使えないブラウザでは動きません。</p>
-
-<iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-ydL73uv6fA" width="500"></iframe>
-
-
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="sr">/save/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
-</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="sr">/scroll/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
-</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
-</span><span class='line'><span class="p">})();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>追記 2012/04/11</p>
-
-<p>デフォルトの文字列を設定するようにした</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-09T00:00:00+09:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

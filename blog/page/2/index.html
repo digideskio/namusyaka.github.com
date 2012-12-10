@@ -7,9 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content=" 個人事業主にでもなろうかと思います。
-余裕ができたらLuilakを法人化します。
-よろしく。 Apr 6th, 2012 その他 ">
+	<meta name="description" content="長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。 実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +88,81 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/04/09/github-jekyll/">JavaScriptでWebページ用付箋ブックマークレット</a></h1>
+	<div class="entry-content">
+		<p>長文を読む機会が多くなってきたのは良いけど、どこまで読んだっけ？ってことが結構あるので作ってみました。</p>
+
+<p>実行するとpromptが表示され、scrollかsaveのどちらかを入力します(どちらにも該当しない場合には何も起こりません)。
+saveを入力するとlocalStorage上に現在のスクロール量が記録されます。
+scrollを入力するとlocalStorage上に記録されたスクロール量分、スクロールします。
+入力する英字は小文字・大文字どちらも可。
+localStorageが使えないブラウザでは動きません。</p>
+
+<iframe border="0" frameborder="0" height="130" src="http://let.st-hatelabo.com/namusyaka/let.iframe?embed=1&code_id=gYC-ydL73uv6fA" width="500"></iframe>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">todo</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;Save or Scroll&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;Scroll&#39;</span> <span class="o">:</span> <span class="s1">&#39;Save&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="sr">/save/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="sr">/scroll/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">todo</span><span class="p">))</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">fusen</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span><span class="p">;</span>
+</span><span class='line'><span class="p">})();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>追記 2012/04/11</p>
+
+<p>デフォルトの文字列を設定するようにした</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+09:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1414,75 +1487,6 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 
 
 <time datetime="2012-01-18T00:00:00+09:00" pubdate data-updated="true">Jan 18<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2012/01/13/github-jekyll/">getElementByIdについて</a></h1>
-	<div class="entry-content">
-		<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
-window[&#8220;foo&#8221;] が返す要素</p></blockquote>
-
-<pre><code>"foo" という名前を持つ a、applet、area、embed、form、frame、frameset、iframe、img、または object 要素、または
-"foo" という id を持つ HTML 要素
-</code></pre>
-
-<p>&lt;&lt;</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hoge</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// [object HTMLParagraphElement]</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;hoge&quot;</span><span class="nt">&gt;</span>fuga<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-13T00:00:00+09:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time></div>
 	<div class="tags">
 
 

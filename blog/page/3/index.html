@@ -7,20 +7,8 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="意識が高い学生のチャットに一人放り込まれた意識不明の学生namusyakaです。
-大成しそうな人ばっかりですし、コンタクトを共有したいのですが全員にリクエストを飛ばすのは正直だるいです。
-なのでコードを書きました。Skype4Pyが必要です。 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12 &hellip;">
+	<meta name="description" content="http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
+window[&#8220;foo&#8221;] が返す要素 "foo" という名前を持つ a、applet、area、embed、form、frame、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,6 +89,75 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/01/13/github-jekyll/">getElementByIdについて</a></h1>
+	<div class="entry-content">
+		<blockquote><p>http://msdn.microsoft.com/ja-jp/library/gg622942%28v=vs.85%29.aspx>
+window[&#8220;foo&#8221;] が返す要素</p></blockquote>
+
+<pre><code>"foo" という名前を持つ a、applet、area、embed、form、frame、frameset、iframe、img、または object 要素、または
+"foo" という id を持つ HTML 要素
+</code></pre>
+
+<p>&lt;&lt;</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">hoge</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// [object HTMLParagraphElement]</span>
+</span><span class='line'><span class="nt">&lt;/script&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;body&gt;</span>
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;hoge&quot;</span><span class="nt">&gt;</span>fuga<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-13T00:00:00+09:00" pubdate data-updated="true">Jan 13<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -822,67 +879,6 @@ aとbは環境によって多少変わったりしそうですが基本的に連
 
 
 <time datetime="2011-08-05T00:00:00+09:00" pubdate data-updated="true">Aug 5<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/その他/'>その他</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/07/16/github-jekyll/">Hokkaido.pmに参加しました</a></h1>
-	<div class="entry-content">
-		<h5>Hokkaido.pm！</h5>
-
-
-<p>以前から何らかの勉強会などに参加してみたいと思いつつもなかなか機会が無くて参加していませんでしたが、今回は思い切って参加してみました。</p>
-
-<h5>しかし</h5>
-
-
-<p>寝坊＋道に迷うで開始時刻に間に合いませんでしたほんとにすいません。
-aloelightさんにはtwitterでご迷惑をおかけしました＞＜
-まさかマックスバリューが二つあるとは。
-ちょうどnekokakさん発表の前の休憩時間に到着することが出来たので、そこからはエディタで発表内容をまとめるなどして、聴いていました。</p>
-
-<h5>ワタシパールワカラナーイ</h5>
-
-
-<p>参加までにはある程度Perlを書けるようになっているつもりだったんですが無理でした。根性なしです。すいません。
-よって、正直きついだろうなと思っていましたが、nekokakさんのエンジニアの意識に関する発表やdont_cocoaさんのテスト駆動開発など、言語の垣根を越えて参考になるものが多く、Perl初心者、もといボクのようなPerlを全く知らないような人でも楽しめるような内容でした。</p>
-
-<h5>そして伝説へ</h5>
-
-
-<p>以前から交流があったhirataraさんとお会いすることが出来て感動でした。
-実用gitを持っていくつもりだったんですが寝坊というアクシデントですっかり頭からぶっ飛んでいてしまったのが残念です。
-近いうちにまたお会いできればなと思います。
-また、今回は金銭的な都合で懇親会に参加できませんでしたが、今度はぜひ参加させていただきたいです。
-Hokkaido.pmの運営スタッフ・スピーカーの方々は本当におつかれさまでした。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-16T00:00:00+09:00" pubdate data-updated="true">Jul 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 
