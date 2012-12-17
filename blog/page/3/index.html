@@ -7,8 +7,20 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="innerHTMLというプロパティがあります。
-HTMLを文字列の状態で突っ込むとそのまま反映してくれるという非常に楽で便利なものなんですが、残念なことに、遅い遅いと昔から言われていました。 そうは言っても、document.createElementとかdocument. &hellip;">
+	<meta name="description" content="公開してなかったゴミみたいなコードを晒す会 両替pattern計算 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+(function(n, c) { var c = c.sort(), count = 0, l = n / c[0] + 1; if(c.length === 1 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,6 +101,111 @@ HTMLを文字列の状態で突っ込むとそのまま反映してくれると�
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/01/26/github-jekyll/">ネタ</a></h1>
+	<div class="entry-content">
+		<p>公開してなかったゴミみたいなコードを晒す会</p>
+
+<p>両替pattern計算</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">sort</span><span class="p">(),</span>
+</span><span class='line'>  <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">l</span> <span class="o">=</span> <span class="nx">n</span> <span class="o">/</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">n</span> <span class="o">%</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">count</span> <span class="o">+=</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">i</span> <span class="o">*</span> <span class="nx">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">c</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+</span><span class='line'><span class="p">})(</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>CSSから検出した画像を予めloadしておくことで画像が遅れて表示されるなどの現象をふせぎたい(IEいみないっぽい AND 改良の余地あり)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">styleSheets</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">styleSheets</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">styleSheets</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">styleSheet</span> <span class="o">=</span> <span class="nx">styleSheets</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">rules</span> <span class="o">=</span> <span class="nx">styleSheet</span><span class="p">.</span><span class="nx">rules</span> <span class="o">||</span> <span class="nx">styleSheet</span><span class="p">.</span><span class="nx">cssRules</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="o">++</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">rule</span> <span class="o">=</span> <span class="nx">rules</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">rule</span><span class="p">.</span><span class="nx">selectorText</span> <span class="o">&amp;&amp;</span> <span class="nx">rule</span><span class="p">.</span><span class="nx">selectorText</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">rule</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cssText</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/url\((?:&quot;|&#39;)?(.+?)(?:&quot;|&#39;)?\)/i</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-26T00:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1120,58 +1237,6 @@ aとbは環境によって多少変わったりしそうですが基本的に連
 
 
 <time datetime="2011-08-23T00:00:00+09:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/08/20/github-jekyll/">勘違いしていた</a></h1>
-	<div class="entry-content">
-		<p>JavaScriptにおけるwithはリテラルでも走査してしまうので結果無駄な参照が多くなるから使わんほうが良いと思っていましたが、リテラルは走査対象外なようです。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-</span><span class='line'><span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">b</span> <span class="o">:</span> <span class="s2">&quot;c&quot;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'><span class="kd">with</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-20T00:00:00+09:00" pubdate data-updated="true">Aug 20<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

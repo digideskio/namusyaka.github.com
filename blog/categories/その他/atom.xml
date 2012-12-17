@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-10T22:07:56+09:00</updated>
+  <updated>2012-12-17T19:22:04+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[PiggerというWebサービスをつくった男がいる]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/17/github-jekyll/"/>
+    <updated>2012-12-17T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/17/github-jekyll</id>
+    <content type="html"><![CDATA[<p>先日の記事で触れたPiggerを、正式にリリースした。</p>
+
+<h2>振り返り</h2>
+
+<p>記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。</p>
+
+<p>基本的に登録をしてくれる人はWeb開発者であり、メインのユーザーとなる非開発者の登録がほとんどと言っていいほど無かったのだ。</p>
+
+<p>加えて、開発者を含めたユーザーをPiggerに停めておく(あるいは、リピーターにするような)仕組みが全く無いというのも、持続的な成長という目標を(自分の中で)掲げている上での不安要素だった。</p>
+
+<p>そういった問題を解決すべく、<a href="http://www.pigger.in/pages/diff">いくつかの機能を追加</a>した。</p>
+
+<h2>デザイン</h2>
+
+<p>がらっと変わった。</p>
+
+<p>かなりTwitterや他のサービスを意識したようなデザインになってしまった。</p>
+
+<h2>果たしてこれで解決できるか</h2>
+
+<p>正直なところわからない。</p>
+
+<p>ただ、今後もPiggerは大事に作って行きたいと思っているので、ユーザーの意見や要望を積極的に取り入れて問題点を改善していくことができればいいかなと思っている。</p>
+
+<p>大ゴケしたらそれどころじゃないけども。</p>
+
+<h2>開発について</h2>
+
+<p>開発メンバーは珍しく自分一人。</p>
+
+<p>開発期間は一ヶ月半くらい。</p>
+
+<h3>システムの実装 &amp; 運用</h3>
+
+<p>システムは主にSinatra。</p>
+
+<p>データベース周りではActiveRecordを使った。</p>
+
+<p>また、Passengerを最近気に入っているので使っている。</p>
+
+<p>UI構築は例に依ってjQuery等は使わないで書いた。</p>
+
+<p>しかしある程度抽象化しないとそろそろきついので、シンプルなライブラリっぽいものはPiggerのために書くかもしれない。</p>
+
+<h3>その他</h3>
+
+<p>デザインセンスなさすぎしんどい。</p>
+
+<p>バグありそう。</p>
+
+<p>報告してくれたら直すので宜しくお願いします＞＜</p>
+
+<h2>総括</h2>
+
+<p>まず自分が必要だと思ったものを同じく必要としている人がいることが嬉しかった。</p>
+
+<p>PiggerはそういったWeb開発者の人達も、Webサービスを利用する人達も楽しめるようなプラットフォームにしていきたい(願望)。</p>
+
+<p>がんばります。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PiggerというWebサービスをつくっている話]]></title>
@@ -79,16 +146,13 @@
 ハイクオリティなテーマがいっぱいあるので、自分好みのやつを使えば良いと思う。
 使い方は書いてある通り。</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
-</span><span class='line'>$ git clone GIT_URL .themes/THEME_NAME
-</span><span class='line'>$ rake install['THEME_NAME']
-</span><span class='line'>$ rake generate
-</span><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+$ cd octopress
+$ git clone GIT_URL .themes/THEME_NAME
+$ rake install['THEME_NAME']
+$ rake generate
+$ rake preview
+{% endcodeblock %}</p>
 
 <p>後は、http://localhost:4000/ でデザインの確認をしつつ、いい感じだとおもったらrake deploy。</p>
 
@@ -102,34 +166,7 @@
 <p>見難いと思うけど上がTypeScriptから吐き出されたJavaScript。
 下がTypeScript。</p>
 
-<p><div><script src='https://gist.github.com/3826296.js?file='></script>
-<noscript><pre><code>var Hoge;
-(function (Hoge) {
-    var Fuga = (function () {
-        function Fuga(x) {
-            this.x = x;
-        }
-        Fuga.prototype.increment = function () {
-            return ++this.x;
-        };
-        Fuga.prototype.decrement = function () {
-            return --this.x;
-        };
-        return Fuga;
-    })();
-    function plus(n) {
-        var fuga = new Fuga(n);
-        return fuga.increment();
-    }
-    Hoge.plus = plus;
-    function minus(n) {
-        var fuga = new Fuga(n);
-        return fuga.decrement();
-    }
-    Hoge.minus = minus;
-})(Hoge || (Hoge = {}));
-</code></pre></noscript></div>
-</p>
+<p>{% gist 3826296 %}</p>
 
 <p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
 ]]></content>
@@ -170,17 +207,6 @@
 七月中旬にはリリース予定です。</p>
 
 <p>おわり。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[大学やめます]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/04/06/github-jekyll/"/>
-    <updated>2012-04-06T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/04/06/github-jekyll</id>
-    <content type="html"><![CDATA[<p>個人事業主にでもなろうかと思います。
-余裕ができたら<a herf="http://luilak.net">Luilak</a>を法人化します。
-よろしく。</p>
 ]]></content>
   </entry>
   

@@ -7,9 +7,10 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="まずはじめに 最近JavaScriptにハマってます。
-とにかくスキルを伸ばそうということで色々調べながら色々作ってます。 最近の活動ですが WEBONAではTwihomeを少し前に公開しました。
-メンバーも大分変わりましたが、WEB系の技術の大部分をカバーできるメンバーになったと思ってます。 &hellip;">
+	<meta name="description" content="僕は結構ネットサーフィンをする方なんですが、おっ？と思うレイアウトとかサービスがあると必ずソースを見てしまいます。(主にHTML)
+んで、すごい気になるのがDIV要素の数なんですよね。
+DIV要素しか使ってないんじゃないの！？ってサイトがかなり多いです。
+僕個人としては、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,6 +91,69 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2010/08/01/github-jekyll/">汎用的なDIV要素についての解釈</a></h1>
+	<div class="entry-content">
+		<p>僕は結構ネットサーフィンをする方なんですが、おっ？と思うレイアウトとかサービスがあると必ずソースを見てしまいます。(主に<abbr title="HyperText Markup Language">HTML</abbr>)
+んで、すごい気になるのがDIV要素の数なんですよね。
+DIV要素しか使ってないんじゃないの！？ってサイトがかなり多いです。
+僕個人としては、Validであれば<abbr title="HyperText Markup Language">HTML</abbr>はかまわないと思うんですが、それはあくまで他人のwebサイトを見るときの僕の中での評価基準であって、自分が書くときは<abbr title="論理的な意味が付加されている要素">論理要素</abbr>※1以外は(極力)使わないようにしています。
+<abbr title="視覚的な意味しかない要素">物理要素</abbr>※2(CENTER要素、FONT要素など)は、本来<abbr title="HyperText Markup Language">HTML</abbr>で使わなくていいものだというのが僕の持論だからですね。
+それに、デザイン面は全て<abbr title="Cascading Style Sheets">CSS</abbr>で・・・っていうのがW3C的な理想だし、実際に書く人間としてもその方が楽なんじゃないかと。</p>
+
+<h2>で、話はそれましたが</h2>
+
+
+<p>DIV要素についてです。
+DIV要素そのものには論理的な意味合いはないんですが、id属性やclass属性と併用することで論理構造を相手に明示的に知らせることが出来ます。
+ですので、一般的な物理要素とはちょっと違うわけですね。
+一概に否定は出来ないってことです。</p>
+
+<h2>おまけ：物理要素として認識されているb要素について</h2>
+
+
+<p>以前に、某H氏とこのような話をしてたときに話題になったんですが、b要素ってのがありますよね？
+事実上、<abbr title="Cascading Style Sheets">CSS</abbr>で
+<code>font-weight:bold</code>
+と書く場合と内容は等価であるとされています。
+つまり普通に考えればただの物理要素なんですが、太字にすること自体に意味がある場合もあるみたいです。
+例を挙げれば、数学のベクトルです。
+僕は数学にまったく興味がないのでよくわからないんですが、どうやらベクトルを示すアルファベットは太字であらわす慣習みたいなものがあるらしいです。
+そういう場合はb要素もアリなのかもわかりませんね。</p>
+
+<p>※1 論理的な意味が付加されている要素。
+※2 視覚的な意味しかない要素。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-08-01T00:00:00+09:00" pubdate data-updated="true">Aug 1<span>st</span>, 2010</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/-x-html/'>(X)HTML</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">

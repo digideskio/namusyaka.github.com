@@ -7,8 +7,13 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content=" オープンソースがすきです.
-bookmarkletsなど, これからはgithubにあげて, ブログで紹介って感じになると思います. 皆さんもgithubやりましょうそしてぼくをフォローしましょう. https://github.com/namusyaka May 7th, 2011 Git ">
+	<meta name="description" content="記事のタイトル通り。
+便利。 1
+2
+3
+4
+5
+javascript:(function(s,e,i){ while(i&lt;e.length)if(e[i++].innerHTML.indexOf(s)&lt;0) with(e[0].parentNode) removeChild(e &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,6 +94,57 @@ bookmarkletsなど, これからはgithubにあげて, ブログで紹介って�
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/05/09/github-jekyll/">2chスレッドから指定IDのレスだけ抽出</a></h1>
+	<div class="entry-content">
+		<p>記事のタイトル通り。
+便利。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">e</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="o">++</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">with</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">parentNode</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="o">--</span><span class="nx">i</span><span class="p">].</span><span class="nx">nextSibling</span><span class="p">),</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">prompt</span><span class="p">(</span><span class="s2">&quot;ID入力&quot;</span><span class="p">),</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;dt&quot;</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-09T00:00:00+09:00" pubdate data-updated="true">May 9<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -873,66 +929,6 @@ config.ymlは掲示板本体のディレクトリ内に設置してください�
 
 
 <time datetime="2011-03-18T00:00:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/その他/'>その他</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/03/16/github-jekyll/">第二回givemacが開催されるようですね。</a></h1>
-	<div class="entry-content">
-		<p>そこで僕もなにかイベントをやりたいなと思いまして、Givememacを開催することとしました。
-未来ある僕にmacをあげるという企画です。</p>
-
-<p>災害中に不謹慎かなとは思いましたが欲しいものは欲しいのです。</p>
-
-<h2>追記</h2>
-
-
-<p>仕事と就職先も募集してます。</p>
-
-<p>http://namusyaka.info/profile　に書いてある方法でコンタクトしてきてくれると嬉しいです。</p>
-
-<h2>ハイパーテキスト</h2>
-
-
-<h2>省略</h2>
-
-
-<p>Firefoxではhead要素とbody要素が省略されると、DOM操作(取得)をするjavascriptが操作対象以降に書いてあっても操作できないという問題がありますが、HTMLの文法上、head要素とbody要素は省略が可能です。
-この問題はonload内にDOM操作の処理を書くことで解決できます。</p>
-
-<h2>はてなスター</h2>
-
-
-<p>はてなスターは渋らずにどんどんつけていくと良いと思います。
-そこから自分のブログを見てくれる人も増えますし、良いこと尽くめです。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-16T00:00:00+09:00" pubdate data-updated="true">Mar 16<span>th</span>, 2011</time></div>
 	<div class="tags">
 
 

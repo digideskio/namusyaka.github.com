@@ -7,7 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="全然ウケないWebサービス 個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。 自分が思っている原因のいくつかを以下に挙げる。 Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。 &hellip;">
+	<meta name="description" content="先日の記事で触れたPiggerを、正式にリリースした。 振り返り 記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。 基本的に登録をしてくれる人はWeb開発者であり、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -88,6 +88,99 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2012/12/17/github-jekyll/">PiggerというWebサービスをつくった男がいる</a></h1>
+	<div class="entry-content">
+		<p>先日の記事で触れたPiggerを、正式にリリースした。</p>
+
+<h2>振り返り</h2>
+
+<p>記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。</p>
+
+<p>基本的に登録をしてくれる人はWeb開発者であり、メインのユーザーとなる非開発者の登録がほとんどと言っていいほど無かったのだ。</p>
+
+<p>加えて、開発者を含めたユーザーをPiggerに停めておく(あるいは、リピーターにするような)仕組みが全く無いというのも、持続的な成長という目標を(自分の中で)掲げている上での不安要素だった。</p>
+
+<p>そういった問題を解決すべく、<a href="http://www.pigger.in/pages/diff">いくつかの機能を追加</a>した。</p>
+
+<h2>デザイン</h2>
+
+<p>がらっと変わった。</p>
+
+<p>かなりTwitterや他のサービスを意識したようなデザインになってしまった。</p>
+
+<h2>果たしてこれで解決できるか</h2>
+
+<p>正直なところわからない。</p>
+
+<p>ただ、今後もPiggerは大事に作って行きたいと思っているので、ユーザーの意見や要望を積極的に取り入れて問題点を改善していくことができればいいかなと思っている。</p>
+
+<p>大ゴケしたらそれどころじゃないけども。</p>
+
+<h2>開発について</h2>
+
+<p>開発メンバーは珍しく自分一人。</p>
+
+<p>開発期間は一ヶ月半くらい。</p>
+
+<h3>システムの実装 &amp; 運用</h3>
+
+<p>システムは主にSinatra。</p>
+
+<p>データベース周りではActiveRecordを使った。</p>
+
+<p>また、Passengerを最近気に入っているので使っている。</p>
+
+<p>UI構築は例に依ってjQuery等は使わないで書いた。</p>
+
+<p>しかしある程度抽象化しないとそろそろきついので、シンプルなライブラリっぽいものはPiggerのために書くかもしれない。</p>
+
+<h3>その他</h3>
+
+<p>デザインセンスなさすぎしんどい。</p>
+
+<p>バグありそう。</p>
+
+<p>報告してくれたら直すので宜しくお願いします＞＜</p>
+
+<h2>総括</h2>
+
+<p>まず自分が必要だと思ったものを同じく必要としている人がいることが嬉しかった。</p>
+
+<p>PiggerはそういったWeb開発者の人達も、Webサービスを利用する人達も楽しめるようなプラットフォームにしていきたい(願望)。</p>
+
+<p>がんばります。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-17T00:00:00+09:00" pubdate data-updated="true">Dec 17<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -900,55 +993,6 @@ VimとVimScriptのWEB実装みたいなやつです。
 
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2012/06/27/github-jekyll/">Mr.Easiness閉鎖しましたってことと近況について</a></h1>
-	<div class="entry-content">
-		<h2>Mr.Easiness閉鎖の件</h2>
-
-
-<p>タイトルにあるとおり閉鎖しました。
-理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
-
-<h2>近況</h2>
-
-
-<p>ぼちぼち稼ぎつつLuilakの方で色々やってます。
-現在のメインプロジェクトはエディタ＋付属言語の開発です。
-自分達で作った言語でプログラミングをするというのは新鮮で面白いですね。
-七月中旬にはリリース予定です。</p>
-
-<p>おわり。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-27T00:00:00+09:00" pubdate data-updated="true">Jun 27<span>th</span>, 2012</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/その他/'>その他</a>
 
 
 </div>
