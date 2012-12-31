@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2012-12-17T19:53:03+09:00</updated>
+  <updated>2012-12-31T19:31:51+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -144,251 +144,129 @@
 そうそうカテゴリなんか増えんだろうと思って、予めスクレイピングして取っておいたカテゴリ用Hashをソースに直書きしていたんだけど
 久しぶりにミサワブログを見たらカテゴリが増えていた。
 毎度こっちで対応するのも面倒なので、スクリプトを実行する度にカテゴリ用Hashを取得するようにした。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;h1&gt;-&lt;em&gt;- encoding: UTF-8 -&lt;/em</span><span class="o">&gt;-&lt;</span><span class="sr">/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;%w(</span>
-</span><span class='line'><span class="sr">  uri</span>
-</span><span class='line'><span class="sr">  open-uri</span>
-</span><span class='line'><span class="sr">  kconv</span>
-</span><span class='line'><span class="sr">  optparse</span>
-</span><span class='line'><span class="sr">  rubygems</span>
-</span><span class='line'><span class="sr">  nokogiri</span>
-</span><span class='line'><span class="sr">).each { | name | require name }&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Misawa</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  class NotFoundError &amp;lt; ArgumentError; end;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;http://jigokuno.com/&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  @@categories = {}&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="no">DOMAIN</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">)</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;dl&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">dl</span><span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;if dl.children[0].inner_html.toutf8 == &#39;惚れさせ男子達&#39;</span>
-</span><span class='line'><span class="sr">  dl.children[2].children[1].children.to_a.delete_if{|node| node.class == Nokogiri::XML::Text}.each do |li|</span>
-</span><span class='line'><span class="sr">    a = li.child</span>
-</span><span class='line'><span class="sr">    @@categories[a.text.scan(/</span><span class="p">(</span><span class="o">.</span><span class="n">+</span><span class="sc">?)</span><span class="p">(</span><span class="sc">?:</span><span class="p">\(</span><span class="o">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="p">\))</span><span class="sc">?$</span><span class="o">/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="ss">:href</span><span class="o">].</span><span class="n">scan</span><span class="p">(</span><span class="sr">/cid=([0-9]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  attr_reader :category, :page&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;raise NotFoundError unless @@categories[category]</span>
-</span><span class='line'><span class="sr">@category = @@categories[category]</span>
-</span><span class='line'><span class="sr">@page = page =~ /</span><span class="o">^[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="sc">?\</span><span class="o">.</span><span class="p">\</span><span class="o">.</span><span class="n">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="o">]+</span><span class="sc">?$</span><span class="o">/</span> <span class="p">?</span> <span class="nb">eval</span><span class="p">(</span><span class="n">page</span><span class="p">)</span> <span class="p">:</span> <span class="n">page</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def scrape&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">create_uri</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span> <span class="n">result</span><span class="p">,</span> <span class="n">uri</span> <span class="o">|</span>
-</span><span class='line'>  <span class="n">body</span> <span class="o">=</span> <span class="n">get_body</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;img.pict&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span> <span class="n">img</span> <span class="o">|</span> <span class="n">result</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">img</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span> <span class="p">}</span> <span class="k">if</span> <span class="n">body</span>
-</span><span class='line'>  <span class="n">result</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  class &amp;lt;&amp;lt; self;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">save_misawa</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">misawa</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">misawa</span><span class="o">.</span><span class="n">scrape</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span> <span class="n">src</span><span class="p">,</span> <span class="n">i</span> <span class="o">|</span>
-</span><span class='line'>    <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">misawa</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">.gif&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span> <span class="n">f</span> <span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">misawa</span><span class="o">.</span><span class="n">get_body</span><span class="p">(</span><span class="n">src</span><span class="p">))</span> <span class="p">}</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">uri_misawa</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">misawa</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">misawa</span><span class="o">.</span><span class="n">scrape</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span> <span class="n">src</span><span class="p">,</span> <span class="n">i</span> <span class="o">|</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">misawa</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2"> : </span><span class="si">#{</span><span class="n">src</span><span class="si">}</span><span class="s2"> &quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def get_body(uri)&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">open</span><span class="p">(</span><span class="no">URI</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">uri</span><span class="p">))</span><span class="o">.</span><span class="n">read</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  def create_uri&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span> <span class="vi">@page</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Range</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">DOMAIN</span><span class="si">}</span><span class="s2">/?cid=</span><span class="si">#{</span><span class="vi">@category</span><span class="si">}</span><span class="s2">&amp;amp;page=&quot;</span>
-</span><span class='line'>  <span class="vi">@page</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span> <span class="n">i</span> <span class="o">|</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>  <span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">DOMAIN</span><span class="si">}</span><span class="s2">/?cid=</span><span class="si">#{</span><span class="vi">@category</span><span class="si">}</span><span class="s2">&amp;amp;page=</span><span class="si">#{</span><span class="vi">@page</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="vg">$0</span> <span class="o">===</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="no">FILE</span><span class="o">&lt;</span><span class="sr">/strong&gt;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="no">OptionParser</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span> <span class="n">opt</span> <span class="o">|&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;arguments = {}</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">opt.on(&#39;-t [TYPE]&#39;, &#39;--type [TYPE]&#39;) do | value |</span>
-</span><span class='line'><span class="sr">  arguments[:type] = value</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">opt.on(&#39;-p [PAGE]&#39;, &#39;--page [PAGE]&#39;) do | value |</span>
-</span><span class='line'><span class="sr">  arguments[:page] = value</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'><span class="sr">opt.on(&#39;-c [CATEGORY]&#39;, &#39;--category [CATEGORY]&#39;) do | value |</span>
-</span><span class='line'><span class="sr">  arguments[:category] = value</span>
-</span><span class='line'><span class="sr">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">opt.parse!(ARGV)</span>
-</span><span class='line'><span class="sr">Misawa.send(&quot;</span><span class="si">#{</span><span class="n">arguments</span><span class="o">[</span><span class="ss">:type</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;uri&#39;</span><span class="si">}</span><span class="sr">_misawa&quot;, arguments[:category], arguments[:page])</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<h1>-<em>- encoding: UTF-8 -</em>-</h1>
+
+<p>%w(
+  uri
+  open-uri
+  kconv
+  optparse
+  rubygems
+  nokogiri
+).each { | name | require name }</p>
+
+<p>class Misawa</p>
+
+<p>  class NotFoundError &lt; ArgumentError; end;</p>
+
+<p>  DOMAIN = 'http://jigokuno.com/'</p>
+
+<p>  @@categories = {}</p>
+
+<p>  Nokogiri.HTML(open(DOMAIN).read).css('dl').each do |dl|</p>
+
+<pre><code>if dl.children[0].inner_html.toutf8 == '惚れさせ男子達'
+  dl.children[2].children[1].children.to_a.delete_if{|node| node.class == Nokogiri::XML::Text}.each do |li|
+    a = li.child
+    @@categories[a.text.scan(/(.+?)(?:\([0-9]+\))?$/)[0][0]] = a[:href].scan(/cid=([0-9]+)/)[0][0]
+  end
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  attr_reader :category, :page</p>
+
+<p>  def initialize(category, page = 0)</p>
+
+<pre><code>raise NotFoundError unless @@categories[category]
+@category = @@categories[category]
+@page = page =~ /^[0-9]+?\.\.[0-9]+?$/ ? eval(page) : page
+</code></pre>
+
+<p>  end</p>
+
+<p>  def scrape</p>
+
+<pre><code>create_uri.inject([]) do | result, uri |
+  body = get_body(uri)
+  Nokogiri.HTML(body).css('img.pict').map { | img | result &lt;&lt; img['src'] } if body
+  result
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  class &lt;&lt; self;</p>
+
+<pre><code>def save_misawa(category, page)
+  misawa = self.new(category, page)
+  misawa.scrape.each_with_index do | src, i |
+    File.open("#{misawa.category}-#{i}.gif", 'w') { | f | f.write(misawa.get_body(src)) }
+  end
+end
+
+def uri_misawa(category, page)
+  misawa = self.new(category, page)
+  misawa.scrape.each_with_index do | src, i |
+    puts "#{misawa.category}-#{i} : #{src} "
+  end
+end
+
+def method_missing(name, *args)
+  raise ArgumentError;
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  def get_body(uri)</p>
+
+<pre><code>open(URI.encode(uri)).read
+</code></pre>
+
+<p>  end</p>
+
+<p>  def create_uri</p>
+
+<pre><code>if @page.is_a?(Range)
+  base = "#{DOMAIN}/?cid=#{@category}&amp;page="
+  @page.map { | i | "#{base}#{i}" }
+else
+  ["#{DOMAIN}/?cid=#{@category}&amp;page=#{@page}"]
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end</p>
+
+<p>if $0 === <strong>FILE</strong></p>
+
+<p>  OptionParser.new do | opt |</p>
+
+<pre><code>arguments = {}
+
+opt.on('-t [TYPE]', '--type [TYPE]') do | value |
+  arguments[:type] = value
+end
+opt.on('-p [PAGE]', '--page [PAGE]') do | value |
+  arguments[:page] = value
+end
+opt.on('-c [CATEGORY]', '--category [CATEGORY]') do | value |
+  arguments[:category] = value
+end
+
+opt.parse!(ARGV)
+Misawa.send("#{arguments[:type] || 'uri'}_misawa", arguments[:category], arguments[:page])
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+{% endcodeblock %}</p>
 
 <p>前述した点以外にも、今までHTTPリクエスト時に例外捕捉していたところを消したりした。
 今思えば、従来の通りに実装するとすればbeginとかendとか要らなかったなあ。
@@ -417,105 +295,56 @@ def hoge; rescue OpenURI::HTTPError; end;とか出来たわけで。</p>
     <updated>2012-03-18T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2012/03/18/github-jekyll</id>
     <content type="html"><![CDATA[<p>グローバルの場合。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Object.const_set(&#39;HogeError&#39;, Class.new(ArgumentError)) # 継承させたい例外クラスを渡す</span>
-</span><span class='line'><span class="sr">raise HogeError&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<p>Object.const_set('HogeError', Class.new(ArgumentError)) # 継承させたい例外クラスを渡す
+raise HogeError</p>
+
+<p>{% endcodeblock %}</p>
 
 <p>Hoge::Fugaのようなネストされた空間の場合。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;module Hoge</span>
-</span><span class='line'><span class="sr">  class Fuga&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;Piyo&#39;</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">test</span><span class="p">;</span> <span class="k">raise</span> <span class="no">Piyo</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Hoge::Fuga.test&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<p>module Hoge
+  class Fuga</p>
+
+<pre><code>self.const_set('Piyo', Class.new(ArgumentError))
+
+def self.test; raise Piyo; end;
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Hoge::Fuga.test</p>
+
+<p>{% endcodeblock %}</p>
 
 <p>色々使い道があるかとは思いますが、例えば同じ例外クラスを継承する独自例外クラスを何個も定義する場合は以下のように書けて便利です。
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;module Foo</span>
-</span><span class='line'><span class="sr">  class Bar&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="vc">@@error_class</span> <span class="o">=</span> <span class="sx">%w( Hoge Fuga Piyo )</span>
-</span><span class='line'><span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">error</span><span class="o">|</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="no">Class</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">))</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 例外を発生させるクラスメソッドを定義</span>
-</span><span class='line'><span class="k">class</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="nb">self</span>
-</span><span class='line'>  <span class="vc">@@error_class</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="nb">name</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">define_method</span> <span class="nb">name</span><span class="o">.</span><span class="n">downcase</span> <span class="k">do</span>
-</span><span class='line'>      <span class="k">raise</span> <span class="nb">self</span><span class="o">.</span><span class="n">const_get</span><span class="p">(</span><span class="nb">name</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2"> error !&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;Foo::Bar.hoge&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock lang:ruby %}</p>
+
+<p>module Foo
+  class Bar</p>
+
+<pre><code>@@error_class = %w( Hoge Fuga Piyo )
+@@error_class.each { |error| self.const_set(error, Class.new(ArgumentError)) }
+
+# 例外を発生させるクラスメソッドを定義
+class &lt;&lt; self
+  @@error_class.each do |name|
+    define_method name.downcase do
+      raise self.const_get(name), "#{name} error !"
+    end
+  end
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Foo::Bar.hoge</p>
+
+<p>{% endcodeblock %}</p>
 ]]></content>
   </entry>
   
