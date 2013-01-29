@@ -7,8 +7,7 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="そこで僕もなにかイベントをやりたいなと思いまして、Givememacを開催することとしました。
-未来ある僕にmacをあげるという企画です。 災害中に不謹慎かなとは思いましたが欲しいものは欲しいのです。 追記 仕事と就職先も募集してます。 http://namusyaka.info/profile &hellip;">
+	<meta name="description" content=" 心を飾った今もーーあなたをー忘れらーれーなくーてーーーーー Mar 18th, 2011 その他 ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -89,6 +88,41 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/03/18/github-jekyll/">苦しくて</a></h1>
+	<div class="entry-content">
+		<p>心を飾った今もーーあなたをー忘れらーれーなくーてーーーーー</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-18T00:00:00+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/その他/'>その他</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -1143,139 +1177,6 @@ getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.n
 
 
 	<a class='category' href='/blog/categories/c/'>C</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2011/02/28/github-jekyll/">JavaScriptで遺伝の形質パターン計算するやつつくった</a></h1>
-	<div class="entry-content">
-		<p>知り合いに生物Ⅰの遺伝が苦手な人がいて、もしかして需要あんのかなとおもったのでつくりました。
-しかしアルゴリズムチックなのはめんどくさいですねぇ。
-<a href="http://namusyaka.info/biology/">遺伝の形質パターンを計算するツール</a></p>
-
-<h2>主要部分の処理</h2>
-
-
-
-
-<script src="https://gist.github.com/869517.js"> </script>
-
-
-<p><noscript></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//配列にindexOfが使えるブラウザ(IE以外)ではこんな回りくどいことをしなくてもいい。</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">dontOverWrap</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">r</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">arr</span><span class="p">[</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">arr</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">function</span> <span class="nx">biology</span><span class="p">(</span><span class="nx">rg1</span><span class="p">,</span> <span class="nx">rg2</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="c1">//それぞれの引数から遺伝し得るであろう形質の組み合わせを生成する。</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">pattern</span><span class="o">=</span><span class="p">[[],</span> <span class="p">[],</span> <span class="p">[]];</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">argv</span> <span class="o">=</span> <span class="p">[</span><span class="nx">rg1</span><span class="p">,</span> <span class="nx">rg2</span><span class="p">],</span> <span class="nx">argpart</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]];</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">)</span>
-</span><span class='line'>      <span class="nx">argpart</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">argpart</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">],</span> <span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]];</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">argpart</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">);</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">c</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">array</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">l</span> <span class="o">&lt;</span> <span class="nx">argpart</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">l</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">array</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">argpart</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">l</span><span class="p">][</span><span class="o">!!</span><span class="p">(</span><span class="nx">k</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">c</span> <span class="o">&gt;&gt;&gt;</span> <span class="nx">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">pattern</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">dontOverWrap</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="c1">//それぞれ作った形質の組み合わせを更に組み合わせる。</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">pattern</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">pattern</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>      <span class="nx">pattern</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="nx">i</span><span class="p">].</span><span class="nx">push</span><span class="p">((</span><span class="nx">pattern</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">pattern</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="nx">n</span><span class="p">]).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="nx">b</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nx">pattern</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></noscript>
-アルゴリズムについても解説しようかと思いましたがめんどうなのでやめます。</p>
-
-<h2>対応</h2>
-
-
-<p>ここおかしいんだけど！ってところがあったら報告してください。対応します。
-ちなみに前回のエントリーで紹介したparseObject関数を使ってます。便利。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-28T00:00:00+09:00" pubdate data-updated="true">Feb 28<span>th</span>, 2011</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
 
 
 </div>

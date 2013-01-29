@@ -7,10 +7,10 @@
 	<meta name="author" content="namusyaka">
 
 	
-	<meta name="description" content="センスあるアイコンっていいなと思いますそこで
-僕のあの緑豚をいいかんじにかっこよくしてアイコンにしてくれる人を探してます。
-あ、それかamachangみたいに僕の顔を真似て描いてくれてもいいです。
-その場合はhttp://namusyaka.info/o.html　 &hellip;">
+	<meta name="description" content="Ruby愛好家っていうか、誕生石がルビーなのでRubyを使ってます。 Najax ver1 Najaxのver1が一旦完成しました。
+sourceはgithubにあげてあります。
+過去のバージョン等も含めた解説はNajaxのトップに書いておきました。
+何か気づいたことや、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +91,137 @@
 
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h1 class="title"><a href="/blog/2011/01/26/github-jekyll/">Rubyist</a></h1>
+	<div class="entry-content">
+		<p>Ruby愛好家っていうか、誕生石がルビーなのでRubyを使ってます。</p>
+
+<h2>Najax ver1</h2>
+
+
+<p>Najaxのver1が<strong>一旦</strong>完成しました。
+<a href="https://github.com/namusyaka/Najax-CHAT-ver1/">source</a>はgithubにあげてあります。
+過去のバージョン等も含めた解説は<a href="http://namusyaka.info/najax/">Najaxのトップ</a>に書いておきました。
+何か気づいたことや、不具合等あれば報告お願いします。
+ちなみに排他処理は甘めです。</p>
+
+<h2>YahooPipes(はてなダイアリーrss用)</h2>
+
+
+<p>便利だという話を聞いたので早速使ってみようと思ったら僕の持ってるアカウントでは何故だか登録できませんでした。まじうぜえきえろと思いましたが局所的な使い方をするだけなので自分でpipes代用品を書いてみました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;lib/simple_cgi.rb&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;net/http&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rss&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;time&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;Content-Type:text/javascript</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">query</span> <span class="o">=</span> <span class="no">SimpleCGI</span><span class="o">::</span><span class="n">query</span>
+</span><span class='line'><span class="n">log</span> <span class="o">=</span> <span class="no">File</span><span class="o">::</span><span class="nb">open</span><span class="p">(</span><span class="err">記録用ファイル名</span><span class="p">)</span><span class="o">.</span><span class="n">read</span>
+</span><span class='line'><span class="k">if</span> <span class="o">!</span><span class="p">(</span><span class="n">log</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="no">Time</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1800</span> <span class="o">&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">query</span><span class="o">[</span><span class="s2">&quot;callback&quot;</span><span class="o">]</span><span class="si">}#{</span><span class="n">log</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">src</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="n">array</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">version_1_2</span>
+</span><span class='line'>  <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;d.hatena.ne.jp&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">src</span> <span class="o">=</span> <span class="no">RSS</span><span class="o">::</span><span class="no">Parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/hatenaID/rss&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span><span class="o">.</span><span class="n">channel</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">src</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="sr">/&lt;(title|link|description|dc:creator|dc:date)&gt;([^&lt;]*?)&lt;\/([^&gt;]*?)&gt;/</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">array</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">c</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> : </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">c</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">c</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="no">Dir</span><span class="o">::</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">begin</span>
+</span><span class='line'>        <span class="no">File</span><span class="o">::</span><span class="nb">open</span><span class="p">(</span><span class="err">記録用ファイル名</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">new</span><span class="si">}</span><span class="se">\n</span><span class="s2">({</span><span class="si">#{</span><span class="n">array</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">})&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">rescue</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="no">Dir</span><span class="o">::</span><span class="n">unlink</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</span><span class='line'>   <span class="k">rescue</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">query</span><span class="o">[</span><span class="s2">&quot;callback&quot;</span><span class="o">]</span><span class="si">}</span><span class="s2">({</span><span class="si">#{</span><span class="n">array</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">})&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>見てわかる通りchannel要素の中身しかとってません。
+30分キャッシュし、jsonp形式で出力してます。
+<a href="http://labo.namusyaka.info/ruby_simple_cgi">simple_cgi</a>も公開してあります。
+まーぶっちゃけcgi.rbをrequireしても問題ないとは思います。</p>
+
+<p><a href="http://namusyaka.info">使用例</a></p>
+
+<p>おしまい。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-26T00:00:00+09:00" pubdate data-updated="true">Jan 26<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -968,46 +1099,6 @@ UserScriptを書く上で、もしかしたら今後も使うことがあるか�
 
 	<a class='category' href='/blog/categories/javascript/'>JavaScript</a>
 
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h1 class="title"><a href="/blog/2010/10/15/github-jekyll/">あゝ無情</a></h1>
-	<div class="entry-content">
-		<p>毎回言ってるけど、WEBサービスを提供する上で一番大事なのは知名度だと思ってる。</p>
-
-<p>んで、pc起動してブラウザ起動してまず最初にすることはgoogleでnamusyakaと検索すること。
-何か僕が知名度を獲得したようなアクションがあれば検索結果の上位表示も大分変わっているはずだろうから、まずそれをチェックしてる。
-まぁ今のところ変化無し。</p>
-
-<p>残念。
-[f:id:namusyaka:20101015124448p:image]</p>
-
-<p>ちなみにbiddersのnamusyakaってのは僕じゃないです。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-10-15T00:00:00+09:00" pubdate data-updated="true">Oct 15<span>th</span>, 2010</time></div>
-	<div class="tags">
 
 </div>
 	
