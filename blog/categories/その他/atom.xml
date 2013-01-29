@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-01-29T23:10:15+09:00</updated>
+  <updated>2013-01-29T23:12:51+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2ch SSのまとめのまとめ?アンテナ?を作った]]></title>
+    <link href="http://namusyaka.github.com/blog/2013/01/29/github-jekyll/"/>
+    <updated>2013-01-29T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/01/29/github-jekyll</id>
+    <content type="html"><![CDATA[<p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
+
+<p>既存のアンテナにカテゴライズもしてくれるモノがあったりするんだけど、スマホ対応されてなかったり、カテゴライズ自体が微妙だったりっていう理由でなかなか自分好みのものがなかった。</p>
+
+<h2>だから作った</h2>
+
+<p>「<a href="http://ss.namusyaka.info/" target="_blank">SSのまとめ(- -;*) | 2ch SSのまとめのまとめ</a>」</p>
+
+<h2>つくってみた感想</h2>
+
+<p>2chアンテナは乱立するのに対してSSまとめアンテナがなかなか出来ない理由がわかった。</p>
+
+<p>カテゴライズがなかなかに面倒だ。</p>
+
+<p>ブログごとに設定されたカテゴリを参考にカテゴライズしようかとも思ったけど、カテゴリの設定の仕方が意外とバラバラで、結局は登場人物から作品を割り出してカテゴライズすることにした。</p>
+
+<p>今後も試行錯誤しながら徐々に精度はあげていきたい。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PiggerというWebサービスをつくった男がいる]]></title>
@@ -214,29 +239,6 @@
 
 <p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
 早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/06/27/github-jekyll/"/>
-    <updated>2012-06-27T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/06/27/github-jekyll</id>
-    <content type="html"><![CDATA[<h2>Mr.Easiness閉鎖の件</h2>
-
-
-<p>タイトルにあるとおり閉鎖しました。
-理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
-
-<h2>近況</h2>
-
-
-<p>ぼちぼち稼ぎつつLuilakの方で色々やってます。
-現在のメインプロジェクトはエディタ＋付属言語の開発です。
-自分達で作った言語でプログラミングをするというのは新鮮で面白いですね。
-七月中旬にはリリース予定です。</p>
-
-<p>おわり。</p>
 ]]></content>
   </entry>
   

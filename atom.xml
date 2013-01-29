@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-01-29T23:10:15+09:00</updated>
+  <updated>2013-01-29T23:12:51+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -14,18 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Github Jekyll]]></title>
+    <title type="html"><![CDATA[2ch SSのまとめのまとめ?アンテナ?を作った]]></title>
     <link href="http://namusyaka.github.com/blog/2013/01/29/github-jekyll/"/>
     <updated>2013-01-29T00:00:00+09:00</updated>
     <id>http://namusyaka.github.com/blog/2013/01/29/github-jekyll</id>
-    <content type="html"><![CDATA[<p>layout: post
-title: &#8220;2ch SSのまとめのまとめ?アンテナ?を作った&#8221;
-date: 2013-01-29
-comments: true</p>
-
-<h2>categories: [&#8220;Ruby&#8221;, &#8220;その他&#8221;]</h2>
-
-<p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
+    <content type="html"><![CDATA[<p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
 
 <p>既存のアンテナにカテゴライズもしてくれるモノがあったりするんだけど、スマホ対応されてなかったり、カテゴライズ自体が微妙だったりっていう理由でなかなか自分好みのものがなかった。</p>
 
