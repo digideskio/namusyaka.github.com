@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-01-29T23:12:51+09:00</updated>
+  <updated>2013-02-04T21:35:41+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -246,33 +246,91 @@
 <p>見難いと思うけど上がTypeScriptから吐き出されたJavaScript。
 下がTypeScript。</p>
 
-<div><script src='https://gist.github.com/3826296.js?file='></script>
-<noscript><pre><code>var Hoge;
-(function (Hoge) {
-    var Fuga = (function () {
-        function Fuga(x) {
-            this.x = x;
-        }
-        Fuga.prototype.increment = function () {
-            return ++this.x;
-        };
-        Fuga.prototype.decrement = function () {
-            return --this.x;
-        };
-        return Fuga;
-    })();
-    function plus(n) {
-        var fuga = new Fuga(n);
-        return fuga.increment();
-    }
-    Hoge.plus = plus;
-    function minus(n) {
-        var fuga = new Fuga(n);
-        return fuga.decrement();
-    }
-    Hoge.minus = minus;
-})(Hoge || (Hoge = {}));
-</code></pre></noscript></div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Hoge</span><span class="p">;</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">Hoge</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">Fuga</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">function</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">increment</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">++</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">};</span>
+</span><span class='line'>        <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">decrement</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="o">--</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">};</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">Fuga</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">})();</span>
+</span><span class='line'>    <span class="kd">function</span> <span class="nx">plus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">increment</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">Hoge</span><span class="p">.</span><span class="nx">plus</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">;</span>
+</span><span class='line'>    <span class="kd">function</span> <span class="nx">minus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">decrement</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">Hoge</span><span class="p">.</span><span class="nx">minus</span> <span class="o">=</span> <span class="nx">minus</span><span class="p">;</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">Hoge</span> <span class="o">||</span> <span class="p">(</span><span class="nx">Hoge</span> <span class="o">=</span> <span class="p">{}));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>module Hoge {
+</span><span class='line'>  class Fuga {
+</span><span class='line'>    constructor(public x: number) {}
+</span><span class='line'>    increment() { return ++this.x }
+</span><span class='line'>    decrement() { return --this.x }
+</span><span class='line'>  }
+</span><span class='line'>  export function plus (n: number) {
+</span><span class='line'>    var fuga = new Fuga(n);
+</span><span class='line'>    return fuga.increment();
+</span><span class='line'>  }
+</span><span class='line'>  export function minus (n: number) {
+</span><span class='line'>    var fuga = new Fuga(n);
+</span><span class='line'>    return fuga.decrement();
+</span><span class='line'>  }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
 
 
 <p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
@@ -561,70 +619,129 @@ def hoge; rescue OpenURI::HTTPError; end;とか出来たわけで。</p>
 <p>はてなダイアリーから移転した。
 hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状態で残したかったが、元々はてなダイアリーの書き方が汚かったのでかなりオレオレ仕様になってしまった。</p>
 
-<div><script src='https://gist.github.com/3769184.js?file='></script>
-<noscript><pre><code>require 'rexml/document'
-require 'erb'
-
-class HatenaToOctopress
-
-  @@octo_format = &lt;&lt;-MKDN
----
-layout: post
-title: &lt;%= @item[:title] %&gt;
-date: &lt;%= @item[:date] %&gt;
-comments: true
-categories: &lt;%= @item[:categories].inspect %&gt;
----
-&lt;%= @item[:body] %&gt;
-  MKDN
-
-  def initialize (data)
-    @data = data
-  end
-
-  def import
-    doc = REXML::Document.new(@data)
-    doc.elements.each(&quot;diary/day&quot;) do |day|
-      @item = {}
-      @item[:date] = day.attributes['date']
-      day.elements.each(&quot;body&quot;) do |body|
-        lines = body.text.split(/\n/)
-        params = lines[1].scan(/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/)[0]
-        @item[:categories] = params[0].split(&quot;][&quot;) if params[0]
-        @item[:title] = params[1]
-        @item[:body] = lines[1..-1].join(&quot;\n&quot;).gsub(/&gt;\|(.+?)\|(.+?)\|\|&lt;/m) do
-          &lt;&lt;-CODE
-{% codeblock lang:#{$1} %}
-#{$2}
-{% endcodeblock %}
-          CODE
-        end
-        # &lt;h4&gt;を直書きしていたためoctopressに合うよう置換, 一日に複数個日記を書いていた場合の見出しも同じく置換。
-        @item[:body].gsub!(/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/) { &quot;&lt;h2&gt;#{$1 || $2}&lt;/h2&gt;\n&quot; }
-      end
-      post ERB.new(@@octo_format).result(binding)
-    end
-  end
-
-  def self.read_file (path)
-    hatena2octo = self.new(File.read(path))
-    hatena2octo.import
-  end
-
-  private
-
-    def post (post_data)
-      path = &quot;source/_posts/#{@item[:date]}-github-jekyll.mkd&quot;
-
-      File.open(path, File.exist?(path) ? &quot;a&quot; : &quot;w&quot;) do |file|
-        file.write(post_data)
-      end
-    end
-end
-
-if $0 == __FILE__
-   HatenaToOctopress.read_file(&quot;hatena.xml&quot;)
-end</code></pre></noscript></div>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rexml/document&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">HatenaToOctopress</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vc">@@octo_format</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="no">MKDN</span>
+</span><span class='line'><span class="sh">---</span>
+</span><span class='line'><span class="sh">layout: post</span>
+</span><span class='line'><span class="sh">title: &lt;%= @item[:title] %&gt;</span>
+</span><span class='line'><span class="sh">date: &lt;%= @item[:date] %&gt;</span>
+</span><span class='line'><span class="sh">comments: true</span>
+</span><span class='line'><span class="sh">categories: &lt;%= @item[:categories] ? @item[:categories].inspect : &#39;&#39; %&gt;</span>
+</span><span class='line'><span class="sh">---</span>
+</span><span class='line'><span class="sh">&lt;%= @item[:body] %&gt;</span>
+</span><span class='line'><span class="no">  MKDN</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@data</span> <span class="o">=</span> <span class="n">data</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">import</span>
+</span><span class='line'>    <span class="n">doc</span> <span class="o">=</span> <span class="no">REXML</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vi">@data</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">doc</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="s2">&quot;diary/day&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">day</span><span class="o">|</span>
+</span><span class='line'>      <span class="vi">@item</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>      <span class="vi">@item</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">attributes</span><span class="o">[</span><span class="s1">&#39;date&#39;</span><span class="o">]</span>
+</span><span class='line'>      <span class="n">day</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">body</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">lines</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">params</span> <span class="o">=</span> <span class="n">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">scan</span><span class="p">(</span><span class="sr">/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:categories</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;][&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:title</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:body</span><span class="o">]</span> <span class="o">=</span> <span class="n">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/&gt;\|(.+?)\|(.+?)\|\|&lt;/m</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>          <span class="o">&lt;&lt;-</span><span class="no">CODE</span>
+</span><span class='line'><span class="sh">\{\% codeblock lang:#{$1} \%\}</span>
+</span><span class='line'><span class="sh">#{$2}</span>
+</span><span class='line'><span class="sh">\{\% endcodeblock \%\}</span>
+</span><span class='line'><span class="no">          CODE</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:body</span><span class="o">].</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;&lt;h2&gt;</span><span class="si">#{</span><span class="vg">$1</span> <span class="o">||</span> <span class="vg">$2</span><span class="si">}</span><span class="s2">&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">}</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">post</span> <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vc">@@octo_format</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">read_file</span> <span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">hatena2octo</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">hatena2octo</span><span class="o">.</span><span class="n">import</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">post</span> <span class="p">(</span><span class="n">post_data</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;source/_posts/</span><span class="si">#{</span><span class="vi">@item</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span><span class="si">}</span><span class="s2">-github-jekyll.mkd&quot;</span>
+</span><span class='line'>      <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="p">?</span> <span class="s2">&quot;a&quot;</span> <span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">post_data</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="vg">$0</span> <span class="o">==</span> <span class="bp">__FILE__</span>
+</span><span class='line'>   <span class="no">HatenaToOctopress</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;hatena.xml&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
