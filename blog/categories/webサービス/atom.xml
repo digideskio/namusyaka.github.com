@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Webサービス | 法華経]]></title>
+  <link href="http://namusyaka.github.com/blog/categories/webサービス/atom.xml" rel="self"/>
+  <link href="http://namusyaka.github.com/"/>
+  <updated>2013-02-05T15:37:47+09:00</updated>
+  <id>http://namusyaka.github.com/</id>
+  <author>
+    <name><![CDATA[namusyaka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[2ch SSのまとめのまとめ?アンテナ?を作った]]></title>
+    <link href="http://namusyaka.github.com/blog/2013/01/29/github-jekyll/"/>
+    <updated>2013-01-29T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/01/29/github-jekyll</id>
+    <content type="html"><![CDATA[<p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
+
+<p>既存のアンテナにカテゴライズもしてくれるモノがあったりするんだけど、スマホ対応されてなかったり、カテゴライズ自体が微妙だったりっていう理由でなかなか自分好みのものがなかった。</p>
+
+<h2>だから作った</h2>
+
+<p>「<a href="http://ss.namusyaka.info/" target="_blank">SSのまとめ(- -;*) | 2ch SSのまとめのまとめ</a>」</p>
+
+<h2>つくってみた感想</h2>
+
+<p>2chアンテナは乱立するのに対してSSまとめアンテナがなかなか出来ない理由がわかった。</p>
+
+<p>カテゴライズがなかなかに面倒だ。</p>
+
+<p>ブログごとに設定されたカテゴリを参考にカテゴライズしようかとも思ったけど、カテゴリの設定の仕方が意外とバラバラで、結局は登場人物から作品を割り出してカテゴライズすることにした。</p>
+
+<p>今後も試行錯誤しながら徐々に精度はあげていきたい。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PiggerというWebサービスをつくった男がいる]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/17/github-jekyll/"/>
+    <updated>2012-12-17T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/17/github-jekyll</id>
+    <content type="html"><![CDATA[<p>先日の記事で触れた<a href="http://www.pigger.in/">Pigger</a>を、正式にリリースした。</p>
+
+<h2>振り返り</h2>
+
+<p>記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。</p>
+
+<p>基本的に登録をしてくれる人はWeb開発者であり、メインのユーザーとなる非開発者の登録がほとんどと言っていいほど無かったのだ。</p>
+
+<p>加えて、開発者を含めたユーザーをPiggerに停めておく(あるいは、リピーターにするような)仕組みが全く無いというのも、持続的な成長という目標を(自分の中で)掲げている上での不安要素だった。</p>
+
+<p>そういった問題を解決すべく、<a href="http://www.pigger.in/pages/diff">いくつかの機能を追加</a>した。</p>
+
+<h2>デザイン</h2>
+
+<p>がらっと変わった。</p>
+
+<p>かなりTwitterや他のサービスを意識したようなデザインになってしまった。</p>
+
+<h2>果たしてこれで解決できるか</h2>
+
+<p>正直なところわからない。</p>
+
+<p>ただ、今後もPiggerは大事に作って行きたいと思っているので、ユーザーの意見や要望を積極的に取り入れて問題点を改善していくことができればいいかなと思っている。</p>
+
+<p>大ゴケしたらそれどころじゃないけども。</p>
+
+<h2>開発について</h2>
+
+<p>開発メンバーは珍しく自分一人。</p>
+
+<p>開発期間は一ヶ月半くらい。</p>
+
+<h3>システムの実装 &amp; 運用</h3>
+
+<p>システムは主にSinatra。</p>
+
+<p>データベース周りではActiveRecordを使った。</p>
+
+<p>また、Passengerを最近気に入っているので使っている。</p>
+
+<p>UI構築は例に依ってjQuery等は使わないで書いた。</p>
+
+<p>しかしある程度抽象化しないとそろそろきついので、シンプルなライブラリっぽいものはPiggerのために書くかもしれない。</p>
+
+<h3>その他</h3>
+
+<p>デザインセンスなさすぎしんどい。</p>
+
+<p>バグありそう。</p>
+
+<p>報告してくれたら直すので宜しくお願いします＞＜</p>
+
+<h2>総括</h2>
+
+<p>まず自分が必要だと思ったものを同じく必要としている人がいることが嬉しかった。</p>
+
+<p>PiggerはそういったWeb開発者の人達も、Webサービスを利用する人達も楽しめるようなプラットフォームにしていきたい(願望)。</p>
+
+<p>がんばります。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PiggerというWebサービスをつくっている話]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/11/github-jekyll/"/>
+    <updated>2012-12-11T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/11/github-jekyll</id>
+    <content type="html"><![CDATA[<h2>全然ウケないWebサービス</h2>
+
+<p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
+
+<p>自分が思っている原因のいくつかを以下に挙げる。</p>
+
+<ul>
+<li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
+<li>デスクトップアプリケーションはVector等で公開し、フィードバックを得られたり、広められたりするのに対し、Webサービスにはそれに相当するサービスがないっぽい。</li>
+</ul>
+
+
+<p>もちろん、自分の技術力や企画力など、他にも原因は考えられるが、仮に素晴らしい技術力・企画力を持っていたとしても上記のようなことが原因で上手くいかないケースがあるように思える。</p>
+
+<p>逆に、知名度が高い人であれば、言い方は悪いが特筆すべき点もないようなサービスでも(良い悪いは抜きにして)一定の評価を得ることが出来る。出来てしまう。</p>
+
+<p>無名開発者があまりに可哀想である(自分を含めて)。</p>
+
+<p>そういった問題を解決するものとして、Chrome Web Storeには期待していたが今一日本では注目されていないようだし、Mozillaも何かやってたけどようわからん。</p>
+
+<p>ツクログもイメージに近かったんだけど、盛況とは言えない状況なだけに残念。</p>
+
+<h2>自分でオンラインマーケット的なサービスを作ってみることにした</h2>
+
+<p>マーケットといっても名ばかりで、使用は完全に無料。</p>
+
+<p>開発者は自分のつくったWebサービスを公開して、ユーザーのフィードバックを待ったり、他の開発者のサービスにコメントをできるようにした。</p>
+
+<p>また、開発者は欲しいものリストを登録できるので、サービスを見たユーザーが何か贈ってくれるかもしれない。</p>
+
+<p>ありきたりではあるが、ランキングもトップに設置してみた。</p>
+
+<p>UUを参考に生成しているので、表示されているPVはランキングには影響しない。</p>
+
+<p>このサービス自体、特別何かコレ！といった機能を持つわけではないんだけど、持続的に一般ユーザーにみてもらえるようになれば、無名開発者にとっては凄くありがたいなと思っている。</p>
+
+<p>とりあえず今はベータ版という位置づけで、公式のリリース時にはデザインは大きく変更して、機能も増やす予定。</p>
+
+<h2>開発</h2>
+
+<p>開発については色々思うことがあるので、後日また書く。</p>
+
+<h2>開発中だけど登録してくれるとうれしいな</h2>
+
+<p><a href="http://www.pigger.in/">Piggerβ</a></p>
+
+<p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/12/04/github-jekyll/"/>
+    <updated>2012-12-04T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/12/04/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://luilak.net/">Luilak</a>で、WhitespaceをJavaScriptに変換するライブラリを作った。</p>
+
+<p><a href="http://ws2js.luilak.net/">WS2JS</a></p>
+
+<p><a href="http://ws2js.luilak.net/interpreter.html">Whitespace インタプリタ</a></p>
+
+<p><a href="https://github.com/Luilak/WS2JS">Github</a></p>
+
+<p>インタプリタにはいくつかサンプルも用意してあって、なかなか面白いかと思う。</p>
+
+<p>一番気に入っているのはフィボナッチ。</p>
+
+<h2>簡単な説明</h2>
+
+<p>Usageにもあるが、WS2JS.convertにWhitespaceのコードを渡すとJavaScriptに変換されたコードの文字列が返る。</p>
+
+<p>それをevalすることでWhitespaceを実行するという仕組み。</p>
+
+<p>詳しい関数の説明などは<a href="http://ws2js.luilak.net/document.html">Document</a>を読んでください。</p>
+
+<h2>ちなみに</h2>
+
+<p>これは<a href="http://ksnctf.sweetduet.info/">某CTF</a>に触発されて作った。
+これを使えば、ある問題を簡単に解けるようになるかも。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/08/29/github-jekyll/"/>
+    <updated>2012-08-29T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/08/29/github-jekyll</id>
+    <content type="html"><![CDATA[<p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
+チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
+
+<p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
+
+<p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
+早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
+]]></content>
+  </entry>
+  
+</feed>

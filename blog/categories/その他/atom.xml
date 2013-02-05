@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-02-04T21:37:57+09:00</updated>
+  <updated>2013-02-05T15:37:47+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -14,257 +14,122 @@
 
   
   <entry>
-    <title type="html"><![CDATA[2ch SSのまとめのまとめ?アンテナ?を作った]]></title>
-    <link href="http://namusyaka.github.com/blog/2013/01/29/github-jekyll/"/>
-    <updated>2013-01-29T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2013/01/29/github-jekyll</id>
-    <content type="html"><![CDATA[<p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
+    <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/06/27/github-jekyll/"/>
+    <updated>2012-06-27T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/06/27/github-jekyll</id>
+    <content type="html"><![CDATA[<h2>Mr.Easiness閉鎖の件</h2>
 
-<p>既存のアンテナにカテゴライズもしてくれるモノがあったりするんだけど、スマホ対応されてなかったり、カテゴライズ自体が微妙だったりっていう理由でなかなか自分好みのものがなかった。</p>
 
-<h2>だから作った</h2>
+<p>タイトルにあるとおり閉鎖しました。
+理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
 
-<p>「<a href="http://ss.namusyaka.info/" target="_blank">SSのまとめ(- -;*) | 2ch SSのまとめのまとめ</a>」</p>
+<h2>近況</h2>
 
-<h2>つくってみた感想</h2>
 
-<p>2chアンテナは乱立するのに対してSSまとめアンテナがなかなか出来ない理由がわかった。</p>
+<p>ぼちぼち稼ぎつつLuilakの方で色々やってます。
+現在のメインプロジェクトはエディタ＋付属言語の開発です。
+自分達で作った言語でプログラミングをするというのは新鮮で面白いですね。
+七月中旬にはリリース予定です。</p>
 
-<p>カテゴライズがなかなかに面倒だ。</p>
-
-<p>ブログごとに設定されたカテゴリを参考にカテゴライズしようかとも思ったけど、カテゴリの設定の仕方が意外とバラバラで、結局は登場人物から作品を割り出してカテゴライズすることにした。</p>
-
-<p>今後も試行錯誤しながら徐々に精度はあげていきたい。</p>
+<p>おわり。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[PiggerというWebサービスをつくった男がいる]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/12/17/github-jekyll/"/>
-    <updated>2012-12-17T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/12/17/github-jekyll</id>
-    <content type="html"><![CDATA[<p>先日の記事で触れた<a href="http://www.pigger.in/">Pigger</a>を、正式にリリースした。</p>
-
-<h2>振り返り</h2>
-
-<p>記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。</p>
-
-<p>基本的に登録をしてくれる人はWeb開発者であり、メインのユーザーとなる非開発者の登録がほとんどと言っていいほど無かったのだ。</p>
-
-<p>加えて、開発者を含めたユーザーをPiggerに停めておく(あるいは、リピーターにするような)仕組みが全く無いというのも、持続的な成長という目標を(自分の中で)掲げている上での不安要素だった。</p>
-
-<p>そういった問題を解決すべく、<a href="http://www.pigger.in/pages/diff">いくつかの機能を追加</a>した。</p>
-
-<h2>デザイン</h2>
-
-<p>がらっと変わった。</p>
-
-<p>かなりTwitterや他のサービスを意識したようなデザインになってしまった。</p>
-
-<h2>果たしてこれで解決できるか</h2>
-
-<p>正直なところわからない。</p>
-
-<p>ただ、今後もPiggerは大事に作って行きたいと思っているので、ユーザーの意見や要望を積極的に取り入れて問題点を改善していくことができればいいかなと思っている。</p>
-
-<p>大ゴケしたらそれどころじゃないけども。</p>
-
-<h2>開発について</h2>
-
-<p>開発メンバーは珍しく自分一人。</p>
-
-<p>開発期間は一ヶ月半くらい。</p>
-
-<h3>システムの実装 &amp; 運用</h3>
-
-<p>システムは主にSinatra。</p>
-
-<p>データベース周りではActiveRecordを使った。</p>
-
-<p>また、Passengerを最近気に入っているので使っている。</p>
-
-<p>UI構築は例に依ってjQuery等は使わないで書いた。</p>
-
-<p>しかしある程度抽象化しないとそろそろきついので、シンプルなライブラリっぽいものはPiggerのために書くかもしれない。</p>
-
-<h3>その他</h3>
-
-<p>デザインセンスなさすぎしんどい。</p>
-
-<p>バグありそう。</p>
-
-<p>報告してくれたら直すので宜しくお願いします＞＜</p>
-
-<h2>総括</h2>
-
-<p>まず自分が必要だと思ったものを同じく必要としている人がいることが嬉しかった。</p>
-
-<p>PiggerはそういったWeb開発者の人達も、Webサービスを利用する人達も楽しめるようなプラットフォームにしていきたい(願望)。</p>
-
-<p>がんばります。</p>
+    <title type="html"><![CDATA[大学やめます]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/04/06/github-jekyll/"/>
+    <updated>2012-04-06T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/04/06/github-jekyll</id>
+    <content type="html"><![CDATA[<p>個人事業主にでもなろうかと思います。
+余裕ができたら<a herf="http://luilak.net">Luilak</a>を法人化します。
+よろしく。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[PiggerというWebサービスをつくっている話]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/12/11/github-jekyll/"/>
-    <updated>2012-12-11T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/12/11/github-jekyll</id>
-    <content type="html"><![CDATA[<h2>全然ウケないWebサービス</h2>
-
-<p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
-
-<p>自分が思っている原因のいくつかを以下に挙げる。</p>
-
-<ul>
-<li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
-<li>デスクトップアプリケーションはVector等で公開し、フィードバックを得られたり、広められたりするのに対し、Webサービスにはそれに相当するサービスがないっぽい。</li>
-</ul>
+    <title type="html"><![CDATA[キーワード解析に重点をおいたTwitterプロフィールサービス「Twihomeβ」をリリースしました。]]></title>
+    <link href="http://namusyaka.github.com/blog/2012/02/17/github-jekyll/"/>
+    <updated>2012-02-17T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2012/02/17/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://twihome.jp/">TwihomeURL</a></p>
 
 
-<p>もちろん、自分の技術力や企画力など、他にも原因は考えられるが、仮に素晴らしい技術力・企画力を持っていたとしても上記のようなことが原因で上手くいかないケースがあるように思える。</p>
+<p>大昔に作ったtwihome.jpn.orgのリメイクを作ろうぜということで<a href="http://luilak.net">Luilak</a>で開発しました。
+確か去年の年末くらいから開発し始めましたが、色々あって公開にやたらと時間がかかった挙げ句、機能も相当縮小してリリースすることになってしまったのが残念です。
+ただ、プロフィールサービスも色々ある中、気になるキーワードをよく使うユーザーを検索してつながりを拡げられる(かもしれない)っていうのは新しいんじゃないかと思うわけで、短期間で修正しまくった割にはそこそこ満足しています。
+そのうちGithubで全ソース公開するかもしれません。
+以下、簡単な説明</p>
 
-<p>逆に、知名度が高い人であれば、言い方は悪いが特筆すべき点もないようなサービスでも(良い悪いは抜きにして)一定の評価を得ることが出来る。出来てしまう。</p>
+<dl>
+<dt>機能
+<dd>最近のキーワードを解析してそれに関する情報の表示
+<dd>同じキーワードを持つユーザーの検索
+<dd>スマホ対応
+<dd>各ユーザーのPV表示
 
-<p>無名開発者があまりに可哀想である(自分を含めて)。</p>
+<dt>運用環境
+<dd>さくらのVPS512
 
-<p>そういった問題を解決するものとして、Chrome Web Storeには期待していたが今一日本では注目されていないようだし、Mozillaも何かやってたけどようわからん。</p>
+<dt>感想
+<dd>デザイン、フロントエンド、バックエンドと担当しましたが、未だに色々発見があって楽しいです。
+<dd>このサービスでテンプレートエンジンを初めて使ってみて、便利だなあと感動できたことが一番の収穫ですかね。
 
-<p>ツクログもイメージに近かったんだけど、盛況とは言えない状況なだけに残念。</p>
+</dl>
 
-<h2>自分でオンラインマーケット的なサービスを作ってみることにした</h2>
-
-<p>マーケットといっても名ばかりで、使用は完全に無料。</p>
-
-<p>開発者は自分のつくったWebサービスを公開して、ユーザーのフィードバックを待ったり、他の開発者のサービスにコメントをできるようにした。</p>
-
-<p>また、開発者は欲しいものリストを登録できるので、サービスを見たユーザーが何か贈ってくれるかもしれない。</p>
-
-<p>ありきたりではあるが、ランキングもトップに設置してみた。</p>
-
-<p>UUを参考に生成しているので、表示されているPVはランキングには影響しない。</p>
-
-<p>このサービス自体、特別何かコレ！といった機能を持つわけではないんだけど、持続的に一般ユーザーにみてもらえるようになれば、無名開発者にとっては凄くありがたいなと思っている。</p>
-
-<p>とりあえず今はベータ版という位置づけで、公式のリリース時にはデザインは大きく変更して、機能も増やす予定。</p>
-
-<h2>開発</h2>
-
-<p>開発については色々思うことがあるので、後日また書く。</p>
-
-<h2>開発中だけど登録してくれるとうれしいな</h2>
-
-<p><a href="http://www.pigger.in/">Piggerβ</a></p>
-
-<p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Octopressのデザインテーマを変更する]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/10/03/github-jekyll/"/>
-    <updated>2012-10-03T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/10/03/github-jekyll</id>
-    <content type="html"><![CDATA[<p>Octopressは素晴らしいし、デフォルトのクラシックもかっこいいんだけど如何せん利用者がほとんどデフォルトのまま。
-かといってSCSSとかだるいし、自分独自とはいかないまでもデザインは変更したかった。
-そこで見つけたのがhttps://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
-ハイクオリティなテーマがいっぱいあるので、自分好みのやつを使えば良いと思う。
-使い方は書いてある通り。</p>
+    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
+    <updated>2011-10-08T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
+    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
 
-<p>{% codeblock %}
-$ cd octopress
-$ git clone GIT_URL .themes/THEME_NAME
-$ rake install['THEME_NAME']
-$ rake generate
-$ rake preview
-{% endcodeblock %}</p>
+<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
 
-<p>後は、http://localhost:4000/ でデザインの確認をしつつ、いい感じだとおもったらrake deploy。</p>
-
-<p>octopressいいね！</p>
-
-<h2>TypeScript</h2>
+<h2>Webype(ウェバイプ)βとは</h2>
 
 
-<p>旨み成分分析したい。</p>
+<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
+・完全無料。
+・独自CSSで自分のデザインを反映できる。
+・その他、様々な機能がある。
+・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
 
-<p>見難いと思うけど上がTypeScriptから吐き出されたJavaScript。
-下がTypeScript。</p>
+<h2>なぜつくったか</h2>
 
-<p>{% codeblock lang:javascript %}
-var Hoge;
-(function (Hoge) {</p>
 
-<pre><code>var Fuga = (function () {
-    function Fuga(x) {
-        this.x = x;
-    }
-    Fuga.prototype.increment = function () {
-        return ++this.x;
-    };
-    Fuga.prototype.decrement = function () {
-        return --this.x;
-    };
-    return Fuga;
-})();
-function plus(n) {
-    var fuga = new Fuga(n);
-    return fuga.increment();
-}
-Hoge.plus = plus;
-function minus(n) {
-    var fuga = new Fuga(n);
-    return fuga.decrement();
-}
-Hoge.minus = minus;
-</code></pre>
+<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
+結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
 
-<p>})(Hoge || (Hoge = {}));
-{% endcodeblock %}</p>
+<h2>どう展開していくか</h2>
 
-<p>{% codeblock %}
-module Hoge {
-  class Fuga {</p>
 
-<pre><code>constructor(public x: number) {}
-increment() { return ++this.x }
-decrement() { return --this.x }
-</code></pre>
+<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
+開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
 
-<p>  }
-  export function plus (n: number) {</p>
+<p>でもやっぱりお金欲しいよねって思うのが人情です。
+今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
+ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
+また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
 
-<pre><code>var fuga = new Fuga(n);
-return fuga.increment();
-</code></pre>
+<h2>作ってみた感想</h2>
 
-<p>  }
-  export function minus (n: number) {</p>
 
-<pre><code>var fuga = new Fuga(n);
-return fuga.decrement();
-</code></pre>
-
-<p>  }
-}
-{% endcodeblock %}</p>
-
-<p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
+<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
+初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
+当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[チャベリ裏口に似たサービス「チャベリ勝手口」をつくった]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/08/29/github-jekyll/"/>
-    <updated>2012-08-29T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/08/29/github-jekyll</id>
-    <content type="html"><![CDATA[<p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
-チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
-
-<p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
-
-<p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
-早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
+    <title type="html"><![CDATA[暑中見舞い]]></title>
+    <link href="http://namusyaka.github.com/blog/2011/08/05/github-jekyll/"/>
+    <updated>2011-08-05T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2011/08/05/github-jekyll</id>
+    <content type="html"><![CDATA[<p>あついですね</p>
 ]]></content>
   </entry>
   

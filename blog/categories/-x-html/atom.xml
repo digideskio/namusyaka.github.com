@@ -4,7 +4,7 @@
   <title><![CDATA[Category: (X)HTML | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/-x-html/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-02-04T21:37:57+09:00</updated>
+  <updated>2013-02-05T15:37:47+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -35,36 +35,61 @@ HTML要素型の中には、著者が終了タグを省略することを許容�
 &lt;&lt;</p></blockquote>
 
 <p>例
-{% codeblock lang:dtd %}</p>
-
-<p>&lt;!ELEMENT P - O (%inline;)*            -- paragraph --></p>
-
-<!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 -->
-
-
-<p>&lt;!ELEMENT BR - O EMPTY                 -- forced line break --></p>
-
-<p>&lt;!ELEMENT BODY O O (%block;|SCRIPT)+ +(INS|DEL) -- document body --></p>
-
-<!-- これは開始タグ、終了タグを両方省略できるということを意味します。 -->
-
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='dtd'><span class='line'><span class="err">&lt;/p</span><span class="k">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p</span><span class="k">&gt;</span><span class="ni">&amp;lt;</span><span class="err">!ELEMENT</span> <span class="err">P</span> <span class="err">-</span> <span class="err">O</span> <span class="o">(</span><span class="ni">%inline;</span><span class="o">)*</span>            <span class="err">--</span> <span class="err">paragraph</span> <span class="err">--</span><span class="k">&gt;</span><span class="err">&lt;/p</span><span class="k">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- Pという要素名の後ろに - Oという文字列があります。これは終了タグが省略できることを意味します。空要素も同じ書き方をされます。 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p</span><span class="k">&gt;</span><span class="ni">&amp;lt;</span><span class="err">!ELEMENT</span> <span class="err">BR</span> <span class="err">-</span> <span class="err">O</span> <span class="err">EMPTY</span>                 <span class="err">--</span> <span class="err">forced</span> <span class="err">line</span> <span class="err">break</span> <span class="err">--</span><span class="k">&gt;</span><span class="err">&lt;/p</span><span class="k">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p</span><span class="k">&gt;</span><span class="ni">&amp;lt;</span><span class="err">!ELEMENT</span> <span class="err">BODY</span> <span class="err">O</span> <span class="err">O</span> <span class="o">(</span><span class="ni">%block;</span><span class="o">|</span><span class="err">SCRIPT</span><span class="o">)+</span> <span class="o">+(</span><span class="err">INS</span><span class="o">|</span><span class="err">DEL</span><span class="o">)</span> <span class="err">--</span> <span class="err">document</span> <span class="err">body</span> <span class="err">--</span><span class="k">&gt;</span><span class="err">&lt;/p</span><span class="k">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- これは開始タグ、終了タグを両方省略できるということを意味します。 --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;p</span><span class="k">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>よって、以下のようなHTMLはW3C的にはValidです。</p>
 
-<p>{% codeblock lang:html %}</p>
-
-<p>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>test</title></p>
-
-<h1>test</h1>
-
-
-<p>柴咲コウだいすき
-
-{% endcodeblock %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;title&gt;</span>test<span class="nt">&lt;/title&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;h1&gt;</span>test<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>柴咲コウだいすき
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <h2>しかし</h2>
@@ -92,49 +117,93 @@ OpenSUSE12.1環境で用いられるブラウザではこのHTMLのパースに�
 
 
 <p><noscript>
-{% codeblock lang:javascript %}</p>
-
-<p>function parseObject(obj) {
-  var <em>d = document, create = function(element) {return </em>d.createElement(element)}
-  switch(obj.constructor) {</p>
-
-<pre><code>case Array:
-  var list = create('ul');
-  break
-case Object:
-  var list = create('dl');
-  break
-default:
-  return _d.createTextNode(obj)
-</code></pre>
-
-<p>  }
-  switch(list.tagName) {</p>
-
-<pre><code>case 'UL':
-  for(var i in obj) {
-    if(obj[i] instanceof Object)
-      list.appendChild(create('li')).appendChild(arguments.callee(obj[i]))
-    else
-      list.appendChild(create('li')).innerHTML = obj[i];
-  }
-  break
-case 'DL':
-  for(var i in obj) {
-    list.appendChild(create('dt')).innerHTML = i;
-    if(obj[i] instanceof Object)
-      list.appendChild(create('dd')).appendChild(arguments.callee(obj[i]));
-    else
-      list.appendChild(create('dd')).innerHTML =obj[i]
-  }
-  break
-</code></pre>
-
-<p>  }
-  return list
-}</p>
-
-<p>{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">parseObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">d</span> <span class="o">=</span> <span class="nb">document</span><span class="p">,</span> <span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="o">&lt;</span><span class="err">/em&gt;d.createElement(element)}</span>
+</span><span class='line'>  <span class="k">switch</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">constructor</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">case</span> <span class="nb">Array</span><span class="o">:</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">create</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">case</span> <span class="nb">Object</span><span class="o">:</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dl&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">default</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">_d</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">switch</span><span class="p">(</span><span class="nx">list</span><span class="p">.</span><span class="nx">tagName</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">case</span> <span class="s1">&#39;UL&#39;</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="k">case</span> <span class="s1">&#39;DL&#39;</span><span class="o">:</span>
+</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">)).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="nx">list</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;dd&#39;</span><span class="p">)).</span><span class="nx">innerHTML</span> <span class="o">=</span><span class="nx">obj</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">break</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">list</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p></noscript>
 CSSも活用するとかなり見やすくなるかと思います。
