@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>法華経</title>
+  <title>私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか - 法華経</title>
   <meta name="author" content="namusyaka">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://namusyaka.github.com/">
+  <link rel="canonical" href="http://namusyaka.github.com/blog/2013/08/10/github-jekyll/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a></h1>
+      <h1 class="entry-title">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</h1>
     
     
       <p class="meta">
@@ -105,7 +102,7 @@
   </header>
 
 
-  <div class="entry-content"><p>タイトルは大げさですみません。</p>
+<div class="entry-content"><p>タイトルは大げさですみません。</p>
 
 <p>Padrino Contributorの先輩である<a href="http://twitter.com/tyabe">@tyabeさん</a>から<a href="http://tyabe.hatenablog.com/entry/2013/08/09/000000">解説の要請</a>をいただいたので、うろ覚えですが解説していきます。</p>
 
@@ -133,7 +130,7 @@
 
 <p>キャプチャ用のオプションなどはrouteメソッド内の以下の部分が肝のようでした。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -145,7 +142,7 @@
 </span><span class='line'>              <span class="kp">true</span>
 </span><span class='line'>            <span class="k">end</span>
 </span><span class='line'>          <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>ここでrouteに対してadd_match_withでオプションを渡しているようです。</p>
@@ -158,7 +155,7 @@
 
 <p><a href="https://github.com/joshbuddy/http_router/blob/master/lib/http_router.rb">http_router.rb</a>を探してもadd_match_withなんでメソッドはないので得意のヘルパーだろうなと思い、<a href="https://github.com/joshbuddy/http_router/blob/master/lib/http_router/route_helper.rb">route_helper.rb</a>を探すと案の定ありました。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -166,7 +163,7 @@
 </span><span class='line'>      <span class="vi">@match_with</span> <span class="o">||=</span> <span class="p">{}</span>
 </span><span class='line'>      <span class="vi">@match_with</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="n">matchers</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>このコード自体には何の問題も無く、やっぱりマッチングがおかしいんだよね〜ということで、match_withをコード内から探していくとmatches_withというメソッドがroute.rbで見つかります。</p>
@@ -179,13 +176,13 @@
 
 <p>add_spanning_matchは<code>/lib/http_router/node.rb</code>にあるようで、以下のコードになります。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">add_spanning_match</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span> <span class="n">matching_indicies</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">splitting_indicies</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
 </span><span class='line'>      <span class="n">add</span><span class="p">(</span><span class="no">SpanningRegex</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vi">@router</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="n">regexp</span><span class="p">,</span> <span class="n">matching_indicies</span><span class="p">,</span> <span class="n">splitting_indicies</span><span class="p">))</span>
 </span><span class='line'>    <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>ついに黒幕が正体を現しました。SpanningRegex、こいつです。</p>
@@ -198,7 +195,7 @@
 
 <p>以下のようなコードをpadrino-core/application/routing.rbに書きます(実はデバッグ時のコードは消しちゃって残ってないので再現になります…)。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -218,7 +215,7 @@
 </span><span class='line'>      <span class="vi">@compiled</span> <span class="o">=</span> <span class="kp">true</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>余談ですが、http_routerではrouteを追加するごとに、<code>to_code</code>で生成されるコードが増えていきます。地獄です。</p>
@@ -227,7 +224,7 @@
 
 <p>適当に作ったpadrino-appのapp/app.rbを以下のようにして、padrino sでデバッグ開始です(mock_appとか使ってテストした方が早かったと今になって思う)。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -255,12 +252,12 @@
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>適当に<code>/</code>などにアクセスすると以下のような出力が得られます(実際の出力は見難かったので少し整形しています)。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -618,7 +615,7 @@
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">globbed_params7</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>凄まじいですね！</p>
@@ -641,7 +638,7 @@
 
 <p>part3の中身がおかしいことは明らかなので、以下のモンキーパッチをrouting.rbに書いて、中身を調べます。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -667,7 +664,7 @@
 </span><span class='line'><span class="s2">      end&quot;</span>
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>すると中身が判明し、<code>"part3 is 5/boing/2"</code>と出ます(本当は中身がおかしいにしても5が出力されるべきなんですが、前述したどう考えてもおかしい部分のせいでこうなっています)。</p>
@@ -680,7 +677,7 @@
 
 <p>以下のコードです。</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -722,7 +719,7 @@
 </span><span class='line'>    <span class="k">end</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p><code>params_count.size</code>は明らかにおかしい(Fixnum#sizeをこの場面で使うことはないだろうと思った)ので、.size部分を消したものをモンキーパッチとして、routing.rbに追加してやるとしっかり帳尻が合い、</p>
@@ -751,74 +748,16 @@
 
 <p>自分も少しでもPadrinoに協力できるようにがんばります！</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">namusyaka</span></span>
 
-<time datetime="2013-01-29T00:00:00+09:00" pubdate data-updated="true">Jan 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>2ch SS、意外と暇つぶしになって素晴らしいがブログ毎に読むのは面倒だし、何より興味のないSSは全く読みたく無い。</p>
-
-<p>既存のアンテナにカテゴライズもしてくれるモノがあったりするんだけど、スマホ対応されてなかったり、カテゴライズ自体が微妙だったりっていう理由でなかなか自分好みのものがなかった。</p>
-
-<h2>だから作った</h2>
-
-<p>「<a href="http://ss.namusyaka.info/" target="_blank">SSのまとめ(- -;*) | 2ch SSのまとめのまとめ</a>」</p>
-
-<h2>つくってみた感想</h2>
-
-<p>2chアンテナは乱立するのに対してSSまとめアンテナがなかなか出来ない理由がわかった。</p>
-
-<p>カテゴライズがなかなかに面倒だ。</p>
-
-<p>ブログごとに設定されたカテゴリを参考にカテゴライズしようかとも思ったけど、カテゴリの設定の仕方が意外とバラバラで、結局は登場人物から作品を割り出してカテゴライズすることにした。</p>
-
-<p>今後も試行錯誤しながら徐々に精度はあげていきたい。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/17/github-jekyll/">PiggerというWebサービスをつくった男がいる</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -830,934 +769,41 @@
   
 
 
-<time datetime="2012-12-17T00:00:00+09:00" pubdate data-updated="true">Dec 17<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>先日の記事で触れた<a href="http://www.pigger.in/">Pigger</a>を、正式にリリースした。</p>
-
-<h2>振り返り</h2>
-
-<p>記事もPiggerのサイトも反響があって非常に嬉しかったが、同時にこのままだと確実に失敗するだろうなということが頭の中にあった。</p>
-
-<p>基本的に登録をしてくれる人はWeb開発者であり、メインのユーザーとなる非開発者の登録がほとんどと言っていいほど無かったのだ。</p>
-
-<p>加えて、開発者を含めたユーザーをPiggerに停めておく(あるいは、リピーターにするような)仕組みが全く無いというのも、持続的な成長という目標を(自分の中で)掲げている上での不安要素だった。</p>
-
-<p>そういった問題を解決すべく、<a href="http://www.pigger.in/pages/diff">いくつかの機能を追加</a>した。</p>
-
-<h2>デザイン</h2>
-
-<p>がらっと変わった。</p>
-
-<p>かなりTwitterや他のサービスを意識したようなデザインになってしまった。</p>
-
-<h2>果たしてこれで解決できるか</h2>
-
-<p>正直なところわからない。</p>
-
-<p>ただ、今後もPiggerは大事に作って行きたいと思っているので、ユーザーの意見や要望を積極的に取り入れて問題点を改善していくことができればいいかなと思っている。</p>
-
-<p>大ゴケしたらそれどころじゃないけども。</p>
-
-<h2>開発について</h2>
-
-<p>開発メンバーは珍しく自分一人。</p>
-
-<p>開発期間は一ヶ月半くらい。</p>
-
-<h3>システムの実装 &amp; 運用</h3>
-
-<p>システムは主にSinatra。</p>
-
-<p>データベース周りではActiveRecordを使った。</p>
-
-<p>また、Passengerを最近気に入っているので使っている。</p>
-
-<p>UI構築は例に依ってjQuery等は使わないで書いた。</p>
-
-<p>しかしある程度抽象化しないとそろそろきついので、シンプルなライブラリっぽいものはPiggerのために書くかもしれない。</p>
-
-<h3>その他</h3>
-
-<p>デザインセンスなさすぎしんどい。</p>
-
-<p>バグありそう。</p>
-
-<p>報告してくれたら直すので宜しくお願いします＞＜</p>
-
-<h2>総括</h2>
-
-<p>まず自分が必要だと思ったものを同じく必要としている人がいることが嬉しかった。</p>
-
-<p>PiggerはそういったWeb開発者の人達も、Webサービスを利用する人達も楽しめるようなプラットフォームにしていきたい(願望)。</p>
-
-<p>がんばります。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-08-10T00:00:00+09:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/11/github-jekyll/">PiggerというWebサービスをつくっている話</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/padrino/'>Padrino</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
 
 
-<time datetime="2012-12-11T00:00:00+09:00" pubdate data-updated="true">Dec 11<span>th</span>, 2012</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>全然ウケないWebサービス</h2>
-
-<p>個人でWebサービスを作っている人ならわかるかと思うが、せっかくWebサービスを作ってもほとんど人に見られずに終わるということが往々にしてある。</p>
-
-<p>自分が思っている原因のいくつかを以下に挙げる。</p>
-
-<ul>
-<li>Webは開発のハードルが低い。故に参入しやすい。故に競合が多い。</li>
-<li>デスクトップアプリケーションはVector等で公開し、フィードバックを得られたり、広められたりするのに対し、Webサービスにはそれに相当するサービスがないっぽい。</li>
-</ul>
-
-
-<p>もちろん、自分の技術力や企画力など、他にも原因は考えられるが、仮に素晴らしい技術力・企画力を持っていたとしても上記のようなことが原因で上手くいかないケースがあるように思える。</p>
-
-<p>逆に、知名度が高い人であれば、言い方は悪いが特筆すべき点もないようなサービスでも(良い悪いは抜きにして)一定の評価を得ることが出来る。出来てしまう。</p>
-
-<p>無名開発者があまりに可哀想である(自分を含めて)。</p>
-
-<p>そういった問題を解決するものとして、Chrome Web Storeには期待していたが今一日本では注目されていないようだし、Mozillaも何かやってたけどようわからん。</p>
-
-<p>ツクログもイメージに近かったんだけど、盛況とは言えない状況なだけに残念。</p>
-
-<h2>自分でオンラインマーケット的なサービスを作ってみることにした</h2>
-
-<p>マーケットといっても名ばかりで、使用は完全に無料。</p>
-
-<p>開発者は自分のつくったWebサービスを公開して、ユーザーのフィードバックを待ったり、他の開発者のサービスにコメントをできるようにした。</p>
-
-<p>また、開発者は欲しいものリストを登録できるので、サービスを見たユーザーが何か贈ってくれるかもしれない。</p>
-
-<p>ありきたりではあるが、ランキングもトップに設置してみた。</p>
-
-<p>UUを参考に生成しているので、表示されているPVはランキングには影響しない。</p>
-
-<p>このサービス自体、特別何かコレ！といった機能を持つわけではないんだけど、持続的に一般ユーザーにみてもらえるようになれば、無名開発者にとっては凄くありがたいなと思っている。</p>
-
-<p>とりあえず今はベータ版という位置づけで、公式のリリース時にはデザインは大きく変更して、機能も増やす予定。</p>
-
-<h2>開発</h2>
-
-<p>開発については色々思うことがあるので、後日また書く。</p>
-
-<h2>開発中だけど登録してくれるとうれしいな</h2>
-
-<p><a href="http://www.pigger.in/">Piggerβ</a></p>
-
-<p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
+      <div class="sharing">
+  <a href="http://b.hatena.ne.jp/entry/http://namusyaka.github.com/blog/2013/08/10/github-jekyll/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://namusyaka.github.com/blog/2013/08/10/github-jekyll/" data-via="namusyaka" data-counturl="http://namusyaka.github.com/blog/2013/08/10/github-jekyll/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-10T00:00:00+09:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://ja.wikipedia.org/wiki/%E3%83%B4%E3%82%A3%E3%82%B8%E3%83%A5%E3%83%8D%E3%83%AB%E6%9A%97%E5%8F%B7">ヴィジュネル暗号</a></p>
-
-<p><a href="http://ws2js.luilak.net/samples/vigenere.ws">Vigenere.ws</a></p>
-
-<p>以前紹介した<a href="http://ws2js.luilak.net/interpreter.html">Whitespaceインタプリタ</a>のサンプルにも追加しておきました。</p>
-
-<p>ちなみに、鍵を一文字に設定するとシーザー暗号と同じになり、N一文字を設定するとROT13と同じ挙動になります。</p>
-
-<p>また、鍵は大文字小文字を区別しません。</p>
-
-<p>起業するって意気込んでいたくせに、こいつは一体何をやっているんだという話ですね。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2013/01/29/github-jekyll/" title="Previous Post: 2ch SSのまとめのまとめ?アンテナ?を作った">&laquo; 2ch SSのまとめのまとめ?アンテナ?を作った</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-04T00:00:00+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://luilak.net/">Luilak</a>で、WhitespaceをJavaScriptに変換するライブラリを作った。</p>
-
-<p><a href="http://ws2js.luilak.net/">WS2JS</a></p>
-
-<p><a href="http://ws2js.luilak.net/interpreter.html">Whitespace インタプリタ</a></p>
-
-<p><a href="https://github.com/Luilak/WS2JS">Github</a></p>
-
-<p>インタプリタにはいくつかサンプルも用意してあって、なかなか面白いかと思う。</p>
-
-<p>一番気に入っているのはフィボナッチ。</p>
-
-<h2>簡単な説明</h2>
-
-<p>Usageにもあるが、WS2JS.convertにWhitespaceのコードを渡すとJavaScriptに変換されたコードの文字列が返る。</p>
-
-<p>それをevalすることでWhitespaceを実行するという仕組み。</p>
-
-<p>詳しい関数の説明などは<a href="http://ws2js.luilak.net/document.html">Document</a>を読んでください。</p>
-
-<h2>ちなみに</h2>
-
-<p>これは<a href="http://ksnctf.sweetduet.info/">某CTF</a>に触発されて作った。
-これを使えば、ある問題を簡単に解けるようになるかも。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/03/github-jekyll/">Octopressのデザインテーマを変更する</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-03T00:00:00+09:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Octopressは素晴らしいし、デフォルトのクラシックもかっこいいんだけど如何せん利用者がほとんどデフォルトのまま。
-かといってSCSSとかだるいし、自分独自とはいかないまでもデザインは変更したかった。
-そこで見つけたのがhttps://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
-ハイクオリティなテーマがいっぱいあるので、自分好みのやつを使えば良いと思う。
-使い方は書いてある通り。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
-</span><span class='line'>$ git clone GIT_URL .themes/THEME_NAME
-</span><span class='line'>$ rake install['THEME_NAME']
-</span><span class='line'>$ rake generate
-</span><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-<p>後は、http://localhost:4000/ でデザインの確認をしつつ、いい感じだとおもったらrake deploy。</p>
-
-<p>octopressいいね！</p>
-
-<h2>TypeScript</h2>
-
-
-<p>旨み成分分析したい。</p>
-
-<p>見難いと思うけど上がTypeScriptから吐き出されたJavaScript。
-下がTypeScript。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Hoge</span><span class="p">;</span>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">Hoge</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">Fuga</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">function</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>        <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">increment</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="o">++</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">};</span>
-</span><span class='line'>        <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">decrement</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="o">--</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">};</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">Fuga</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">})();</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">plus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">increment</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">Hoge</span><span class="p">.</span><span class="nx">plus</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">;</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">minus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">decrement</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">Hoge</span><span class="p">.</span><span class="nx">minus</span> <span class="o">=</span> <span class="nx">minus</span><span class="p">;</span>
-</span><span class='line'><span class="p">})(</span><span class="nx">Hoge</span> <span class="o">||</span> <span class="p">(</span><span class="nx">Hoge</span> <span class="o">=</span> <span class="p">{}));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>module Hoge {
-</span><span class='line'>  class Fuga {
-</span><span class='line'>    constructor(public x: number) {}
-</span><span class='line'>    increment() { return ++this.x }
-</span><span class='line'>    decrement() { return --this.x }
-</span><span class='line'>  }
-</span><span class='line'>  export function plus (n: number) {
-</span><span class='line'>    var fuga = new Fuga(n);
-</span><span class='line'>    return fuga.increment();
-</span><span class='line'>  }
-</span><span class='line'>  export function minus (n: number) {
-</span><span class='line'>    var fuga = new Fuga(n);
-</span><span class='line'>    return fuga.decrement();
-</span><span class='line'>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/02/github-jekyll/">Ruby4Misawaをちょっと改良した件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-02T00:00:00+09:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以前公開したしょうもない作品の中にRuby4Misawaというものがある。
-そうそうカテゴリなんか増えんだろうと思って、予めスクレイピングして取っておいたカテゴリ用Hashをソースに直書きしていたんだけど
-久しぶりにミサワブログを見たらカテゴリが増えていた。
-毎度こっちで対応するのも面倒なので、スクリプトを実行する度にカテゴリ用Hashを取得するようにした。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># -*- encoding: UTF-8 -*-</span>
-</span><span class='line'>
-</span><span class='line'><span class="sx">%w(</span>
-</span><span class='line'><span class="sx">  uri</span>
-</span><span class='line'><span class="sx">  open-uri</span>
-</span><span class='line'><span class="sx">  kconv</span>
-</span><span class='line'><span class="sx">  optparse</span>
-</span><span class='line'><span class="sx">  rubygems</span>
-</span><span class='line'><span class="sx">  nokogiri</span>
-</span><span class='line'><span class="sx">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span> <span class="nb">name</span> <span class="o">|</span> <span class="nb">require</span> <span class="nb">name</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Misawa</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">NotFoundError</span> <span class="o">&lt;</span> <span class="no">ArgumentError</span><span class="p">;</span> <span class="k">end</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="no">DOMAIN</span> <span class="o">=</span> <span class="s1">&#39;http://jigokuno.com/&#39;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vc">@@categories</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="no">DOMAIN</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">)</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;dl&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">dl</span><span class="o">|</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">dl</span><span class="o">.</span><span class="n">children</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">inner_html</span><span class="o">.</span><span class="n">toutf8</span> <span class="o">==</span> <span class="s1">&#39;惚れさせ男子達&#39;</span>
-</span><span class='line'>      <span class="n">dl</span><span class="o">.</span><span class="n">children</span><span class="o">[</span><span class="mi">2</span><span class="o">].</span><span class="n">children</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">children</span><span class="o">.</span><span class="n">to_a</span><span class="o">.</span><span class="n">delete_if</span><span class="p">{</span><span class="o">|</span><span class="n">node</span><span class="o">|</span> <span class="n">node</span><span class="o">.</span><span class="n">class</span> <span class="o">==</span> <span class="no">Nokogiri</span><span class="o">::</span><span class="no">XML</span><span class="o">::</span><span class="no">Text</span><span class="p">}</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">li</span><span class="o">|</span>
-</span><span class='line'>        <span class="n">a</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">child</span>
-</span><span class='line'>        <span class="vc">@@categories</span><span class="o">[</span><span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="sr">/(.+?)(?:\([0-9]+\))?$/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="ss">:href</span><span class="o">].</span><span class="n">scan</span><span class="p">(</span><span class="sr">/cid=([0-9]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:category</span><span class="p">,</span> <span class="ss">:page</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">raise</span> <span class="no">NotFoundError</span> <span class="k">unless</span> <span class="vc">@@categories</span><span class="o">[</span><span class="n">category</span><span class="o">]</span>
-</span><span class='line'>    <span class="vi">@category</span> <span class="o">=</span> <span class="vc">@@categories</span><span class="o">[</span><span class="n">category</span><span class="o">]</span>
-</span><span class='line'>    <span class="vi">@page</span> <span class="o">=</span> <span class="n">page</span> <span class="o">=~</span> <span class="sr">/^[0-9]+?\.\.[0-9]+?$/</span> <span class="p">?</span> <span class="nb">eval</span><span class="p">(</span><span class="n">page</span><span class="p">)</span> <span class="p">:</span> <span class="n">page</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">scrape</span>
-</span><span class='line'>    <span class="n">create_uri</span><span class="o">.</span><span class="n">inject</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span> <span class="n">result</span><span class="p">,</span> <span class="n">uri</span> <span class="o">|</span>
-</span><span class='line'>      <span class="n">body</span> <span class="o">=</span> <span class="n">get_body</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
-</span><span class='line'>      <span class="no">Nokogiri</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;img.pict&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span> <span class="n">img</span> <span class="o">|</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">img</span><span class="o">[</span><span class="s1">&#39;src&#39;</span><span class="o">]</span> <span class="p">}</span> <span class="k">if</span> <span class="n">body</span>
-</span><span class='line'>      <span class="n">result</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">class</span> <span class="o">&lt;&lt;</span> <span class="nb">self</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">save_misawa</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">misawa</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">misawa</span><span class="o">.</span><span class="n">scrape</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span> <span class="n">src</span><span class="p">,</span> <span class="n">i</span> <span class="o">|</span>
-</span><span class='line'>        <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">misawa</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">.gif&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span> <span class="n">f</span> <span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">misawa</span><span class="o">.</span><span class="n">get_body</span><span class="p">(</span><span class="n">src</span><span class="p">))</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">uri_misawa</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">misawa</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">page</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">misawa</span><span class="o">.</span><span class="n">scrape</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span> <span class="n">src</span><span class="p">,</span> <span class="n">i</span> <span class="o">|</span>
-</span><span class='line'>        <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">misawa</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2"> : </span><span class="si">#{</span><span class="n">src</span><span class="si">}</span><span class="s2"> &quot;</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">get_body</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
-</span><span class='line'>    <span class="nb">open</span><span class="p">(</span><span class="no">URI</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">uri</span><span class="p">))</span><span class="o">.</span><span class="n">read</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">create_uri</span>
-</span><span class='line'>    <span class="k">if</span> <span class="vi">@page</span><span class="o">.</span><span class="n">is_a?</span><span class="p">(</span><span class="no">Range</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">DOMAIN</span><span class="si">}</span><span class="s2">/?cid=</span><span class="si">#{</span><span class="vi">@category</span><span class="si">}</span><span class="s2">&amp;page=&quot;</span>
-</span><span class='line'>      <span class="vi">@page</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span> <span class="n">i</span> <span class="o">|</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">base</span><span class="si">}#{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="o">[</span><span class="s2">&quot;</span><span class="si">#{</span><span class="no">DOMAIN</span><span class="si">}</span><span class="s2">/?cid=</span><span class="si">#{</span><span class="vi">@category</span><span class="si">}</span><span class="s2">&amp;page=</span><span class="si">#{</span><span class="vi">@page</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">]</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="vg">$0</span> <span class="o">===</span> <span class="bp">__FILE__</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="no">OptionParser</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span> <span class="n">opt</span> <span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">arguments</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">opt</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;-t [TYPE]&#39;</span><span class="p">,</span> <span class="s1">&#39;--type [TYPE]&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span> <span class="n">value</span> <span class="o">|</span>
-</span><span class='line'>      <span class="n">arguments</span><span class="o">[</span><span class="ss">:type</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">opt</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;-p [PAGE]&#39;</span><span class="p">,</span> <span class="s1">&#39;--page [PAGE]&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span> <span class="n">value</span> <span class="o">|</span>
-</span><span class='line'>      <span class="n">arguments</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="n">opt</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;-c [CATEGORY]&#39;</span><span class="p">,</span> <span class="s1">&#39;--category [CATEGORY]&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span> <span class="n">value</span> <span class="o">|</span>
-</span><span class='line'>      <span class="n">arguments</span><span class="o">[</span><span class="ss">:category</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">opt</span><span class="o">.</span><span class="n">parse!</span><span class="p">(</span><span class="no">ARGV</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">Misawa</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">arguments</span><span class="o">[</span><span class="ss">:type</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;uri&#39;</span><span class="si">}</span><span class="s2">_misawa&quot;</span><span class="p">,</span> <span class="n">arguments</span><span class="o">[</span><span class="ss">:category</span><span class="o">]</span><span class="p">,</span> <span class="n">arguments</span><span class="o">[</span><span class="ss">:page</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>前述した点以外にも、今までHTTPリクエスト時に例外捕捉していたところを消したりした。
-今思えば、従来の通りに実装するとすればbeginとかendとか要らなかったなあ。
-def hoge; rescue OpenURI::HTTPError; end;とか出来たわけで。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/01/github-jekyll/">JavaScriptのHTMLCollectionに対してforEachみたいなのをしたい</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-01T00:00:00+09:00" pubdate data-updated="true">Oct 1<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>HTMLCollectionにはitem, namedItemといったメソッドしか無く、for文で走査するか、タイトルのようなことをやろうと思ったら
-一度配列に変換してforEach使うとかしなきゃいけないけど、forEach自体は古いブラウザでは動かない。
-というわけでサラッと書いた。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">SubHTMLCollection</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">collection</span> <span class="o">=</span> <span class="p">[];</span>
-</span><span class='line'>  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">SubHTMLCollection</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">each</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>      <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">},</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">reverseEach</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">element</span><span class="p">;</span> <span class="nx">element</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collection</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'>      <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>どっかで見たArray.sliceというようなクラスメソッド的な使い方、普通に出来ると思ってたんだけどChromeでこけたのでArray.prototype.slice.call使う事にしたら
-<del>Array.apply使えばいいんじゃねと指摘されて、それもそうだなということで変更した。
-今回のケースは問題ないが、Array.applyを使って配列に変換する場合は変換前のオブジェクトの要素数が一つ(length等は除く)で、尚かつそれが数値である場合に正常な変換が出来ないので注意したい。</del>
-<ins>IE8以下のブラウザではapply(およびcall)の第二引数にHTMLCollection渡すとこけたので、forでなめて配列に変換するようにした。</ins></p>
-
-<h2>移転</h2>
-
-
-<p>はてなダイアリーから移転した。
-hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状態で残したかったが、元々はてなダイアリーの書き方が汚かったのでかなりオレオレ仕様になってしまった。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rexml/document&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">HatenaToOctopress</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vc">@@octo_format</span> <span class="o">=</span> <span class="o">&lt;&lt;-</span><span class="no">MKDN</span>
-</span><span class='line'><span class="sh">---</span>
-</span><span class='line'><span class="sh">layout: post</span>
-</span><span class='line'><span class="sh">title: &lt;%= @item[:title] %&gt;</span>
-</span><span class='line'><span class="sh">date: &lt;%= @item[:date] %&gt;</span>
-</span><span class='line'><span class="sh">comments: true</span>
-</span><span class='line'><span class="sh">categories: &lt;%= @item[:categories] ? @item[:categories].inspect : &#39;&#39; %&gt;</span>
-</span><span class='line'><span class="sh">---</span>
-</span><span class='line'><span class="sh">&lt;%= @item[:body] %&gt;</span>
-</span><span class='line'><span class="no">  MKDN</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</span><span class='line'>    <span class="vi">@data</span> <span class="o">=</span> <span class="n">data</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">import</span>
-</span><span class='line'>    <span class="n">doc</span> <span class="o">=</span> <span class="no">REXML</span><span class="o">::</span><span class="no">Document</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vi">@data</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">doc</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="s2">&quot;diary/day&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">day</span><span class="o">|</span>
-</span><span class='line'>      <span class="vi">@item</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>      <span class="vi">@item</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span> <span class="o">=</span> <span class="n">day</span><span class="o">.</span><span class="n">attributes</span><span class="o">[</span><span class="s1">&#39;date&#39;</span><span class="o">]</span>
-</span><span class='line'>      <span class="n">day</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">body</span><span class="o">|</span>
-</span><span class='line'>        <span class="n">lines</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/\n/</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">params</span> <span class="o">=</span> <span class="n">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">scan</span><span class="p">(</span><span class="sr">/^\*[0-9]{10}\*(?:\[(.*)\])?(.+?)$/</span><span class="p">)</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:categories</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;][&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
-</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:title</span><span class="o">]</span> <span class="o">=</span> <span class="n">params</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:body</span><span class="o">]</span> <span class="o">=</span> <span class="n">lines</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/&gt;\|(.+?)\|(.+?)\|\|&lt;/m</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>          <span class="o">&lt;&lt;-</span><span class="no">CODE</span>
-</span><span class='line'><span class="sh">\{\% codeblock lang:#{$1} \%\}</span>
-</span><span class='line'><span class="sh">#{$2}</span>
-</span><span class='line'><span class="sh">\{\% endcodeblock \%\}</span>
-</span><span class='line'><span class="no">          CODE</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>        <span class="vi">@item</span><span class="o">[</span><span class="ss">:body</span><span class="o">].</span><span class="n">gsub!</span><span class="p">(</span><span class="sr">/&lt;h4&gt;(.+?)&lt;\/h4&gt;|\*[0-9]{10}\*(?:\[.*\])?(.+?)\n/</span><span class="p">)</span> <span class="p">{</span> <span class="s2">&quot;&lt;h2&gt;</span><span class="si">#{</span><span class="vg">$1</span> <span class="o">||</span> <span class="vg">$2</span><span class="si">}</span><span class="s2">&lt;/h2&gt;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>      <span class="n">post</span> <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vc">@@octo_format</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">read_file</span> <span class="p">(</span><span class="n">path</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">hatena2octo</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
-</span><span class='line'>    <span class="n">hatena2octo</span><span class="o">.</span><span class="n">import</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">post</span> <span class="p">(</span><span class="n">post_data</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;source/_posts/</span><span class="si">#{</span><span class="vi">@item</span><span class="o">[</span><span class="ss">:date</span><span class="o">]</span><span class="si">}</span><span class="s2">-github-jekyll.mkd&quot;</span>
-</span><span class='line'>      <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="p">?</span> <span class="s2">&quot;a&quot;</span> <span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
-</span><span class='line'>        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">post_data</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="vg">$0</span> <span class="o">==</span> <span class="bp">__FILE__</span>
-</span><span class='line'>   <span class="no">HatenaToOctopress</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;hatena.xml&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/29/github-jekyll/">チャベリ裏口に似たサービス「チャベリ勝手口」をつくった</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-29T00:00:00+09:00" pubdate data-updated="true">Aug 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>手抜きなのであまり優れたユーザビリティとはいえないんですが公開します。
-チャベリ裏口と違うのはch0.chaberi.comを取得するというところでしょうか。</p>
-
-<p><a href="http://chaberi.namusyaka.info/">チャベリ勝手口α</a></p>
-
-<p>個人サービスとはいえ、いい加減なんでもかんでも数時間で作っちゃおうとする癖直したいですね。
-早く動くところがみたいという欲望が先行してクオリティもヘチマも無いようなことになります。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -1798,7 +844,7 @@ hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状�
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/namusyaka">@namusyaka</a> on GitHub
@@ -1828,7 +874,7 @@ hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状�
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -1847,6 +893,7 @@ hatena.xmlをoctopress用へ変換するスクリプトを汎用性のある状�
 
   
 </aside>
+
 
     </div>
   </div>

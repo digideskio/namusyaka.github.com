@@ -9,8 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="毎回言ってるけど、WEBサービスを提供する上で一番大事なのは知名度だと思ってる。 んで、pc起動してブラウザ起動してまず最初にすることはgoogleでnamusyakaと検索すること。
-何か僕が知名度を獲得したようなアクションがあれば検索結果の上位表示も大分変わっているはずだろうから、 &hellip;">
+  <meta name="description" content="を書きました。
+URIchangerと言います。 あ、それとやっぱり落ち着かない気分なので敬語に戻そうと思います。 本題 チャベリでは、初回ページロード時の関数内容を記録して、一定時間ごとに現在の関数処理とそれが一致するかどうかを確認しています。
+一致しなければトップページに飛ばされてしまいます &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,175 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/10/25/github-jekyll/">チャベリでのURLを自動でリンクに変換するユーザースクリプト「URIchanger」</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-25T00:00:00+09:00" pubdate data-updated="true">Oct 25<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>を書きました。
+<a href="http://namusyaka.info/chaberi1.html">URIchanger</a>と言います。</p>
+
+<p>あ、それとやっぱり落ち着かない気分なので敬語に戻そうと思います。</p>
+
+<h2>本題</h2>
+
+
+<p>チャベリでは、初回ページロード時の関数内容を記録して、一定時間ごとに現在の関数処理とそれが一致するかどうかを確認しています。
+一致しなければトップページに飛ばされてしまいます。
+つまり関数処理を変更できないということでした。</p>
+
+<p>ですが、一定時間ごとに関数チェックをしている処理というのはsetInterval関数を使っているので、これを止める必要がありました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="cm">/*foo()を第一引数に指定してあるsetIntervalのみ止める。*/</span>
+</span><span class='line'><span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span><span class="c1">//普通、制御する場合は変数代入をします。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span><span class='line'><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//forで無理矢理止めることが出来ます。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;foo()&quot;</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="c1">//必要な処理は再び書く。</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;bar()&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;hoge()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こういう処理は稀だと思いますが、かなり勉強になりました。
+UserScriptを書く上で、もしかしたら今後も使うことがあるかもしれません。
+注意するべきなのは、<strong>clearIntervalに数値を渡すとsetTimeout関数も止めてしまうことがあるということです。</strong></p>
+
+<p>また、GreaseMonkeyで関数定義をしても、ローカル関数となってしまうので、URIスキームを用いる方法をとりました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//グローバル関数を定義する。</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//これではチャベリのjsファイル上でhoge関数を呼び出せない。</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">hoge</span><span class="p">(){</span><span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">}</span><span class="c1">//よってURIスキームにてグローバル関数を定義。</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>完成版が以下の通りです</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span><span class='line'><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s1">&#39;javascript:&#39;</span><span class="o">+</span><span class="kd">function</span> <span class="nx">outprint</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">place</span><span class="p">,</span> <span class="nx">getmsg</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> <span class="k">if</span> <span class="p">(</span><span class="nx">place</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">_element</span> <span class="o">=</span> <span class="nx">UseById</span><span class="p">(</span><span class="nx">place</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>   <span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="s2">&quot;0px&quot;</span><span class="p">;</span>
+</span><span class='line'>   <span class="nx">element</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">getmsg</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^&quot;])(https?\:\/\/[^ &lt;]*)/</span><span class="p">,</span><span class="s1">&#39;$1&lt;a href=&quot;$2&quot; target=&quot;_blank&quot;&gt;$2&lt;/a&gt;&#39;</span><span class="p">)</span>
+</span><span class='line'>   <span class="nx">_element</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;setenter()&quot;</span><span class="p">,</span><span class="mi">700</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setTimeout</span><span class="p">(</span><span class="s2">&quot;win_resize()&quot;</span><span class="p">,</span><span class="mi">800</span><span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span> <span class="s2">&quot;reload_ajbnr3()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;reload_overture_all()&quot;</span><span class="p">,</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="p">);</span>
+</span><span class='line'><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;ChangeAdvAvatar()&quot;</span><span class="p">,</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">3</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とても勉強になりました。</p>
+
+<p>尚、このスクリプトを書く上で、<a href="http://hotoke.osonae.com">hotoke氏</a>に協力していただきました。
+ありがとうございました。</p>
+
+<h2>補足</h2>
+
+
+<p>チャベリの独自仕様に[link][/link]で囲むとチャベリ検索ページにつながるというものがあったみたいなので、それを考慮したスクリプトに変更しました。</p>
+
+<h2>更に補足</h2>
+
+
+<p>現存するsetIntervalを全て止める方法として</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">t</span><span class="o">=</span><span class="nx">setInterval</span><span class="p">(</span><span class="s2">&quot;asdf&quot;</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+</span><span class='line'><span class="k">while</span><span class="p">(</span><span class="nx">t</span><span class="p">){</span><span class="nx">clearInterval</span><span class="p">(</span><span class="o">--</span><span class="nx">t</span><span class="p">)}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こういうものがあったのでURIchangerのソースを変更しておきます。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -852,110 +1022,6 @@ Rubyは文字コードとか色々めんどくさいです。</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/19/github-jekyll/">HTMLについて</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-19T00:00:00+09:00" pubdate data-updated="true">Aug 19<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>最近</h2>
-
-
-<p>よく目にするのが、表示されるんだからHTMLは適当でいいじゃんｗｗｗ
-とか
-HTMLとか簡単じゃね？出来ない奴いんの？ｗｗｗ
-というような書き込み・発言です。</p>
-
-<p>まーあながち後者の言ってることは間違いじゃないんですが、そう言う人に限って理解できていないことが多いです。
-というか僕と出会って、そういうようなことを言った人の中には残念ながら理解できている人がいませんでした。</p>
-
-<p>おまけに、本来は素人の手本になるべきはずの企業のサイトや、WEB開発を売りにしている企業のサイトでさえ、HTMLの文法が守れていないところがかなり多いわけです。(テーブルレイアウト三昧だったり。レイアウトが崩れていたり。)</p>
-
-<p>今更僕が異論を唱えたところでどうなるって話でもないんですが、このブログをみてくれている人には僕がHTMLを書く際気をつけることや、考え方について知ってもらいたいので書こうと思います。</p>
-
-<h2>まず気をつけていること</h2>
-
-
-
-
-<h5>HTMLでデザインはせずに、CSSにデザインを一任するということ</h5>
-
-
-<p>これを守ることでHTML自身の負担が減ります。
-table要素を使って頑張ってレイアウトしたりだとか、面倒なことはしなくていいわけです。
-そもそもHTMLでデザインしちゃったらCSSの存在意義が無いので。
-何かモノを作る企業ってのは大抵、作業も役割分担をしていると思うんですが、WEBサイトを作るときに言語の役割を考えられていないのは、ぶっちゃけなぞいです。
-その人その人の適性を見極めて役割分担するより、その言語にもともとある役割をそのまま利用するだけって方が簡単だと思うんですが。</p>
-
-<h5>HTMLは最低限validであること</h5>
-
-
-<p>C言語で文法エラーを起こすとプログラムは動作しません。
-他のプログラミング言語も然りです。
-しかしながらHTMLは適当な文を書いてもある程度は表示できてしまいます。
-ですが、そうして表示されたページのレイアウトは、あなたが作ったものではなく、ブラウザの補正があってようやく表示されてるものです。
-言いたいことは、そういったページをいくら作ってもあなたがHTMLを書いたことにはならないのでどんまいってことです。
-あ、でもgoogleのように文法を守ってなくても全ブラウザ(IE6以下は除くかな？)の表示が統一されている場合もあります。(＋表示速度もはやい。)
-googleほどの技術力や思考力を自分が持っているという自信があるのであれば、validじゃなくてもいいのかもしれませんね。</p>
-
-<h5>視覚的な意味合いしかない物理要素は極力使わず、論理要素でHTMLを構成して、論理構造を明確にすること</h5>
-
-
-<p>これは端的に言えば、障がい者用のブラウザに対する配慮です。
-物理要素で書かれていても、目の見えない人にしてみれば意味がないので、なるべく使うのは控えたいと思ってます。
-これに関しては、自分は目が見えるしｗｗｗｗ目見えない奴とかマイノリティだろｗｗｗｗｗとか言う人が多そうですし、実際そういう人を説得するのはめんどいので、その人の良心に任せるしかないと思ってます。</p>
-
-<h2>考え方</h2>
-
-
-<p>とにかく僕はめんどくさかったり、だるいことが嫌いなんです。
-HTMLを使ってデザインするなんてめんどくさすぎて、やってられません。
-HTMLはデザインを一切気にせず、サクッと書いて、CSSで各要素にデザイン的な意味合いを付加していく・・・っていうほうが楽だと思うし実際のコード量も減る場合がほとんどです。
-コード量が減るということは表示速度がその分はやくなるということです。
-まぁ色々とメリットはあると思うんですよ。
-こっちはHTMLという言語を使わせてもらっている立場なので滅茶苦茶なコード書くのは失礼な気もしますしね。</p>
-
-<p>言葉足らずなとこがある気がしますが、暑いので終わります。
-ミスとかあったら報告してくれると嬉しいです。</p>
-
-<h2>追記</h2>
-
-
-<p>めんどくさいことが嫌ならプログラミングするなよｗｗｗとか言わないでください。
-僕にとっては娯楽であり、目標を達成するための道具なのでめんどくさいことには含まれないんです。
-気分で一時的に含まれることはあります。
-テキトーでごめんなさい。</p>
-
-<p>あと、HTML勉強会やりたいですね。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -970,15 +1036,19 @@ HTMLはデザインを一切気にせず、サクッと書いて、CSSで各要�
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 129.33333333333334%'>Ruby(22)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (22)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a>
@@ -994,10 +1064,6 @@ HTMLはデザインを一切気にせず、サクッと書いて、CSSで各要�
     
       <li class="post">
         <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a>
       </li>
     
   </ul>

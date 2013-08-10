@@ -4,7 +4,7 @@
   <title><![CDATA[法華経]]></title>
   <link href="http://namusyaka.github.com/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-02-05T20:47:10+09:00</updated>
+  <updated>2013-08-11T01:26:26+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,659 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか]]></title>
+    <link href="http://namusyaka.github.com/blog/2013/08/10/github-jekyll/"/>
+    <updated>2013-08-10T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/08/10/github-jekyll</id>
+    <content type="html"><![CDATA[<p>タイトルは大げさですみません。</p>
+
+<p>Padrino Contributorの先輩である<a href="http://twitter.com/tyabe">@tyabeさん</a>から<a href="http://tyabe.hatenablog.com/entry/2013/08/09/000000">解説の要請</a>をいただいたので、うろ覚えですが解説していきます。</p>
+
+<p>ちなみに問題のissueは<a href="https://github.com/padrino/padrino-framework/issues/1366">broken parameter assignment in routing (11.2)</a>になります。</p>
+
+<h2>まずは挙動確認</h2>
+
+<p>nesquenaさんやsshawさんがこれもおかしいよ情報を書き込んでいてくれたので、そのテストコードを参考におかしくなる挙動を見つけていきます。</p>
+
+<p>その結果、以下のことがわかります。</p>
+
+<ul>
+<li>:withオプションに限らず、正規表現を使ったキャプチャを使った場合の挙動がおかしい。</li>
+<li>レスポンスのステータスコードが405になっている(許可されていないメソッド)。</li>
+</ul>
+
+
+<p>この二つを軸にして、実際のコードを読んでいきます。</p>
+
+<h2>padrino-core/application/routing.rb</h2>
+
+<p>基本的にPadrinoでは、<a href="https://github.com/padrino/padrino-framework/blob/master/padrino-core/lib/padrino-core/application/routing.rb#L643-L725">routeメソッド</a>でrouteを追加したりオプションやキャプチャをごにょごにょしているので、まずはそこを見ていきます。</p>
+
+<p>この辺はプリントデバッグをした記憶がありますがあまり覚えてないです、すみません。</p>
+
+<p>キャプチャ用のオプションなどはrouteメソッド内の以下の部分が肝のようでした。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>          <span class="n">options</span><span class="o">.</span><span class="n">delete_if</span> <span class="k">do</span> <span class="o">|</span><span class="n">option</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">route</span><span class="o">.</span><span class="n">significant_variable_names</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">option</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">route</span><span class="o">.</span><span class="n">add_match_with</span><span class="p">(</span><span class="n">option</span> <span class="o">=&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
+</span><span class='line'>              <span class="kp">true</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>          <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここでrouteに対してadd_match_withでオプションを渡しているようです。</p>
+
+<p>routeはHttp::Routeのインスタンスなので、routing.rbはこのくらいにして次に進みます。</p>
+
+<h2>そしてhttp_routerへ…</h2>
+
+<p>まずはroute.add_match_withの動作を追います。</p>
+
+<p><a href="https://github.com/joshbuddy/http_router/blob/master/lib/http_router.rb">http_router.rb</a>を探してもadd_match_withなんでメソッドはないので得意のヘルパーだろうなと思い、<a href="https://github.com/joshbuddy/http_router/blob/master/lib/http_router/route_helper.rb">route_helper.rb</a>を探すと案の定ありました。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">add_match_with</span><span class="p">(</span><span class="n">matchers</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@match_with</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>      <span class="vi">@match_with</span><span class="o">.</span><span class="n">merge!</span><span class="p">(</span><span class="n">matchers</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>このコード自体には何の問題も無く、やっぱりマッチングがおかしいんだよね〜ということで、match_withをコード内から探していくとmatches_withというメソッドがroute.rbで見つかります。</p>
+
+<p>今度はmatches_withを検索すると明らかにそれっぽくて読み難いコードが<a href="https://github.com/joshbuddy/http_router/blob/master/lib/http_router/node/root.rb">root.rb</a>で見つかります(add_route, add_normal_partの辺りです)。</p>
+
+<p>ここからはしばらく、渡されたキャプチャがどういう順序を辿って行くのか調べていました(プリントデバッグなので省略します)。</p>
+
+<p>結果、node.add_spanning_match(route.matches_with(name))に渡っていることがわかります。</p>
+
+<p>add_spanning_matchは<code>/lib/http_router/node.rb</code>にあるようで、以下のコードになります。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>    <span class="k">def</span> <span class="nf">add_spanning_match</span><span class="p">(</span><span class="n">regexp</span><span class="p">,</span> <span class="n">matching_indicies</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">splitting_indicies</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">add</span><span class="p">(</span><span class="no">SpanningRegex</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="vi">@router</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="n">regexp</span><span class="p">,</span> <span class="n">matching_indicies</span><span class="p">,</span> <span class="n">splitting_indicies</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ついに黒幕が正体を現しました。SpanningRegex、こいつです。</p>
+
+<h3>lib/http_router/node/spanning_regex.rbへ</h3>
+
+<p>ここまで辿り着けば簡単な気もしますが(params_countのコードが明らかにおかしいので)、おかしい部分には全く気づかずにちらっと見て諦めました。</p>
+
+<p>あまりに意味不明なので、http_routerが内部で生成してくれたありがたいソースコードをprintしてどのように遷移していくのか見て行くことにしました。</p>
+
+<p>以下のようなコードをpadrino-core/application/routing.rbに書きます(実はデバッグ時のコードは消しちゃって残ってないので再現になります…)。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Node</span><span class="o">::</span><span class="no">Root</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="n">routes</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">routes</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">route</span><span class="o">|</span> <span class="n">add_route</span><span class="p">(</span><span class="n">route</span><span class="p">)}</span>
+</span><span class='line'>      <span class="n">root</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">methods_module</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">_code</span> <span class="o">=</span> <span class="n">to_code</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="n">_code</span>
+</span><span class='line'>      <span class="nb">instance_eval</span> <span class="s2">&quot;def call(request, &amp;callback)</span><span class="se">\n</span><span class="si">#{</span><span class="n">_code</span><span class="si">}</span><span class="se">\n</span><span class="s2">nil</span><span class="se">\n</span><span class="s2">end&quot;</span>
+</span><span class='line'>      <span class="vi">@compiled</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>余談ですが、http_routerではrouteを追加するごとに、<code>to_code</code>で生成されるコードが増えていきます。地獄です。</p>
+
+<h3>to_codeで生成されるコードを読む</h3>
+
+<p>適当に作ったpadrino-appのapp/app.rbを以下のようにして、padrino sでデバッグ開始です(mock_appとか使ってテストした方が早かったと今になって思う)。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Sandbox</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">App</span> <span class="o">&lt;</span> <span class="no">Padrino</span><span class="o">::</span><span class="no">Application</span>
+</span><span class='line'>    <span class="n">register</span> <span class="no">Padrino</span><span class="o">::</span><span class="no">Rendering</span>
+</span><span class='line'>    <span class="n">register</span> <span class="no">Padrino</span><span class="o">::</span><span class="no">Helpers</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">post</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:foo</span><span class="p">,</span> <span class="ss">:bar</span><span class="o">]</span><span class="p">,</span> <span class="ss">:bar</span> <span class="o">=&gt;</span> <span class="sr">/.+/</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">get</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:map</span> <span class="o">=&gt;</span> <span class="s1">&#39;/mystuff/:a_id/boing/:boing_id&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>適当に<code>/</code>などにアクセスすると以下のような出力が得られます(実際の出力は見難かったので少し整形しています)。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># HttpRouter::Node::Variable</span>
+</span><span class='line'><span class="k">unless</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>  <span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>  <span class="c1"># HttpRouter::Node::SpanningRegex</span>
+</span><span class='line'>  <span class="n">whole_path1</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">joined_path</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">match</span> <span class="o">=</span> <span class="sr">/.+/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">whole_path1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">zero?</span>
+</span><span class='line'>    <span class="n">_whole_path1</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dup</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="n">match</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">remaining_path</span> <span class="o">=</span> <span class="n">whole_path1</span><span class="o">[</span><span class="n">match</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">size</span> <span class="o">+</span> <span class="p">(</span><span class="n">whole_path1</span><span class="o">[</span><span class="n">match</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">size</span><span class="o">]</span> <span class="o">==</span> <span class="sc">?/</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="n">whole_path1</span><span class="o">.</span><span class="n">size</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">remaining_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># HttpRouter::Node::RequestMethod</span>
+</span><span class='line'>    <span class="k">if</span> <span class="s2">&quot;POST&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>      <span class="k">if</span> <span class="s2">&quot;POST&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>        <span class="c1"># HttpRouter::Node::Path</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>          <span class="kp">catch</span><span class="p">(</span><span class="ss">:pass</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">callback</span>
+</span><span class='line'>              <span class="n">request</span><span class="o">.</span><span class="n">called</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>              <span class="n">callback</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="no">Response</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="vi">@ivar_2</span><span class="p">))</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>              <span class="n">env</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">env</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.request&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">].</span><span class="n">merge!</span><span class="p">(</span><span class="no">Hash</span><span class="o">[[</span><span class="ss">:foo</span><span class="p">,</span> <span class="ss">:bar</span><span class="o">].</span><span class="n">zip</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>              <span class="vi">@router</span><span class="o">.</span><span class="n">rewrite_path_info</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">response</span> <span class="o">=</span> <span class="vi">@router</span><span class="o">.</span><span class="n">process_destination_path</span><span class="p">(</span><span class="vi">@ivar_2</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+</span><span class='line'>              <span class="k">return</span> <span class="n">response</span> <span class="k">unless</span> <span class="n">router</span><span class="o">.</span><span class="n">pass_on_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">acceptable_methods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;POST&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">_whole_path1</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># HttpRouter::Node::Lookup</span>
+</span><span class='line'><span class="k">unless</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>  <span class="n">part3</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>  <span class="k">case</span> <span class="n">part3</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s2">&quot;mystuff&quot;</span>
+</span><span class='line'>    <span class="k">unless</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>      <span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>      <span class="c1"># HttpRouter::Node::Lookup</span>
+</span><span class='line'>      <span class="k">unless</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>        <span class="n">part4</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>        <span class="k">case</span> <span class="n">part4</span>
+</span><span class='line'>        <span class="k">when</span> <span class="s2">&quot;boing&quot;</span>
+</span><span class='line'>          <span class="k">unless</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>            <span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>            <span class="c1"># HttpRouter::Node::RequestMethod</span>
+</span><span class='line'>            <span class="k">if</span> <span class="s2">&quot;GET&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>              <span class="k">if</span> <span class="s2">&quot;GET&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>              <span class="c1"># HttpRouter::Node::Path</span>
+</span><span class='line'>                <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>                  <span class="kp">catch</span><span class="p">(</span><span class="ss">:pass</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>                    <span class="k">if</span> <span class="n">callback</span>
+</span><span class='line'>                      <span class="n">request</span><span class="o">.</span><span class="n">called</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>                      <span class="n">callback</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="no">Response</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="vi">@ivar_5</span><span class="p">))</span>
+</span><span class='line'>                    <span class="k">else</span>
+</span><span class='line'>                      <span class="n">env</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">env</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.request&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">].</span><span class="n">merge!</span><span class="p">(</span><span class="no">Hash</span><span class="o">[[</span><span class="ss">:a_id</span><span class="p">,</span> <span class="ss">:boing_id</span><span class="o">].</span><span class="n">zip</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>                      <span class="vi">@router</span><span class="o">.</span><span class="n">rewrite_path_info</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</span><span class='line'>                      <span class="n">response</span> <span class="o">=</span> <span class="vi">@router</span><span class="o">.</span><span class="n">process_destination_path</span><span class="p">(</span><span class="vi">@ivar_5</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+</span><span class='line'>                      <span class="k">return</span> <span class="n">response</span> <span class="k">unless</span> <span class="n">router</span><span class="o">.</span><span class="n">pass_on_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class='line'>                    <span class="k">end</span>
+</span><span class='line'>                  <span class="k">end</span>
+</span><span class='line'>                <span class="k">end</span>
+</span><span class='line'>              <span class="k">end</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">request</span><span class="o">.</span><span class="n">acceptable_methods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;GET&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1"># HttpRouter::Node::RequestMethod</span>
+</span><span class='line'>            <span class="k">if</span> <span class="s2">&quot;HEAD&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>              <span class="k">if</span> <span class="s2">&quot;HEAD&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>              <span class="c1"># HttpRouter::Node::Path</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>                  <span class="kp">catch</span><span class="p">(</span><span class="ss">:pass</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>                    <span class="k">if</span> <span class="n">callback</span>
+</span><span class='line'>                      <span class="n">request</span><span class="o">.</span><span class="n">called</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>                      <span class="n">callback</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="no">Response</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="vi">@ivar_6</span><span class="p">))</span>
+</span><span class='line'>                    <span class="k">else</span>
+</span><span class='line'>                      <span class="n">env</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">env</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.request&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>                      <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">].</span><span class="n">merge!</span><span class="p">(</span><span class="no">Hash</span><span class="o">[[</span><span class="ss">:a_id</span><span class="p">,</span> <span class="ss">:boing_id</span><span class="o">].</span><span class="n">zip</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>                      <span class="vi">@router</span><span class="o">.</span><span class="n">rewrite_path_info</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</span><span class='line'>                      <span class="n">response</span> <span class="o">=</span> <span class="vi">@router</span><span class="o">.</span><span class="n">process_destination_path</span><span class="p">(</span><span class="vi">@ivar_6</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+</span><span class='line'>                      <span class="k">return</span> <span class="n">response</span> <span class="k">unless</span> <span class="n">router</span><span class="o">.</span><span class="n">pass_on_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class='line'>                    <span class="k">end</span>
+</span><span class='line'>                  <span class="k">end</span>
+</span><span class='line'>                <span class="k">end</span>
+</span><span class='line'>              <span class="k">end</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>            <span class="n">request</span><span class="o">.</span><span class="n">acceptable_methods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;HEAD&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'>          <span class="k">end</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">part4</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'>    <span class="k">end</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">part3</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># HttpRouter::Node::Glob</span>
+</span><span class='line'><span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">globbed_params7</span> <span class="o">=</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'><span class="k">until</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">empty?</span>
+</span><span class='line'>  <span class="n">globbed_params7</span> <span class="o">&lt;&lt;</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>  <span class="c1"># HttpRouter::Node::Regex</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">match</span> <span class="o">=</span> <span class="sr">/([^\/]*?)\.png$/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">first</span><span class="p">)</span> <span class="ow">and</span> <span class="n">match</span><span class="o">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">zero?</span>
+</span><span class='line'>    <span class="n">part</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">params</span> <span class="o">&lt;&lt;</span> <span class="n">match</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>    <span class="c1"># HttpRouter::Node::RequestMethod</span>
+</span><span class='line'>    <span class="k">if</span> <span class="s2">&quot;GET&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>      <span class="k">if</span> <span class="s2">&quot;GET&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>        <span class="c1"># HttpRouter::Node::Path</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>          <span class="kp">catch</span><span class="p">(</span><span class="ss">:pass</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">callback</span>
+</span><span class='line'>              <span class="n">request</span><span class="o">.</span><span class="n">called</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>              <span class="n">callback</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="no">Response</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="vi">@ivar_8</span><span class="p">))</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>              <span class="n">env</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">env</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.request&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">].</span><span class="n">merge!</span><span class="p">(</span><span class="no">Hash</span><span class="o">[[</span><span class="ss">:__sinatra__</span><span class="p">,</span> <span class="ss">:image</span><span class="o">].</span><span class="n">zip</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>              <span class="vi">@router</span><span class="o">.</span><span class="n">rewrite_path_info</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">response</span> <span class="o">=</span> <span class="vi">@router</span><span class="o">.</span><span class="n">process_destination_path</span><span class="p">(</span><span class="vi">@ivar_8</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+</span><span class='line'>              <span class="k">return</span> <span class="n">response</span> <span class="k">unless</span> <span class="n">router</span><span class="o">.</span><span class="n">pass_on_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">acceptable_methods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;GET&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="c1"># HttpRouter::Node::RequestMethod</span>
+</span><span class='line'>    <span class="k">if</span> <span class="s2">&quot;HEAD&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>      <span class="k">if</span> <span class="s2">&quot;HEAD&quot;</span> <span class="o">===</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">request_method</span>
+</span><span class='line'>        <span class="c1"># HttpRouter::Node::Path</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">path_finished?</span>
+</span><span class='line'>          <span class="kp">catch</span><span class="p">(</span><span class="ss">:pass</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">callback</span>
+</span><span class='line'>              <span class="n">request</span><span class="o">.</span><span class="n">called</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>              <span class="n">callback</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="no">Response</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="vi">@ivar_9</span><span class="p">))</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>              <span class="n">env</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">rack_request</span><span class="o">.</span><span class="n">dup</span><span class="o">.</span><span class="n">env</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.request&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">]</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>              <span class="n">env</span><span class="o">[</span><span class="s1">&#39;router.params&#39;</span><span class="o">].</span><span class="n">merge!</span><span class="p">(</span><span class="no">Hash</span><span class="o">[[</span><span class="ss">:__sinatra__</span><span class="p">,</span> <span class="ss">:image</span><span class="o">].</span><span class="n">zip</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>              <span class="vi">@router</span><span class="o">.</span><span class="n">rewrite_path_info</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">response</span> <span class="o">=</span> <span class="vi">@router</span><span class="o">.</span><span class="n">process_destination_path</span><span class="p">(</span><span class="vi">@ivar_9</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+</span><span class='line'>              <span class="k">return</span> <span class="n">response</span> <span class="k">unless</span> <span class="n">router</span><span class="o">.</span><span class="n">pass_on_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">acceptable_methods</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;HEAD&quot;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">unshift</span> <span class="n">part</span>
+</span><span class='line'>    <span class="n">request</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">pop</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">globbed_params7</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>凄まじいですね！</p>
+
+<p>これをcallメソッドとしてinstance_evalで定義して、リクエスト毎に毎回このコードが実行されているんだからかなりヤバいです。</p>
+
+<p>このコードを読む前提として、以下のものを挙げておきます。</p>
+
+<ul>
+<li>requestはHttpRouter::Request。Rack::Requestをごにょごにょするクラスです。</li>
+<li>request.pathは原則的に、パスを<code>/</code>でsplitした配列を返します。</li>
+<li>request.joined_pathはrequest.pathを<code>/</code>でjoinした結果である文字列を返します。</li>
+<li>request.paramsは後に、ブロック内で参照できるparamsの元となるものです。詳しくは上のコードとあわせて<code>padrino-core/application/routing.rb</code>にあるprocess_destination_pathメソッド付近を読むとわかります。</li>
+<li>生成されるコードでは、条件に入る前にrequest.paramsを追加し、条件に当てはまらなかった場合にはrequest.pathやrequest.paramsの値を操作して、帳尻を合わせるということをしています。</li>
+<li>どう考えてもおかしい<code>match = /.+/.match(whole_path1)</code>がありますが、今回の問題の本質ではないので飛ばします(新たなバグの原因なのでそのうち時間があれば直そうと思っています)。</li>
+</ul>
+
+
+<p>今回問題なのは、<code>/mystuff/5/boing/2</code>にリクエストを飛ばしたときに405を返すというところで、本来であれば46行目の<code>case part3</code>から始まる部分にマッチすべきリクエストのはずです。</p>
+
+<p>part3の中身がおかしいことは明らかなので、以下のモンキーパッチをrouting.rbに書いて、中身を調べます。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">class</span> <span class="nc">Node</span><span class="o">::</span><span class="no">Lookup</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">to_code</span>
+</span><span class='line'>      <span class="n">part_name</span> <span class="o">=</span> <span class="s2">&quot;part</span><span class="si">#{</span><span class="n">root</span><span class="o">.</span><span class="n">next_counter</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="s2">&quot;unless request.path_finished?</span>
+</span><span class='line'><span class="s2">        </span><span class="si">#{</span><span class="n">part_name</span><span class="si">}</span><span class="s2"> = request.path.shift</span>
+</span><span class='line'><span class="s2">        p &#39;</span><span class="si">#{</span><span class="n">part_name</span><span class="si">}</span><span class="s2"> is &#39; + </span><span class="si">#{</span><span class="n">part_name</span><span class="si">}</span><span class="s2"> # この部分を追加</span>
+</span><span class='line'><span class="s2">        case </span><span class="si">#{</span><span class="n">part_name</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">        </span><span class="si">#{</span><span class="vi">@map</span><span class="o">.</span><span class="n">map</span><span class="p">{</span><span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="s2">&quot;when </span><span class="si">#{</span><span class="n">k</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">; </span><span class="si">#{</span><span class="n">v</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_code</span><span class="p">)</span> <span class="o">*</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="si">}</span><span class="s2">;&quot;</span><span class="si">}</span><span class="s2"> * &quot;</span><span class="p">\</span><span class="n">n</span><span class="s2">&quot;}</span>
+</span><span class='line'><span class="s2">        end</span>
+</span><span class='line'><span class="s2">        request.path.unshift </span><span class="si">#{</span><span class="n">part_name</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">      end&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>すると中身が判明し、<code>"part3 is 5/boing/2"</code>と出ます(本当は中身がおかしいにしても5が出力されるべきなんですが、前述したどう考えてもおかしい部分のせいでこうなっています)。</p>
+
+<p>ここまで来ると、前提として挙げた帳尻合わせが上手くいっていないことがわかるので、その部分を重点的に見ていきます。</p>
+
+<p>もう気づいている人も多いかと思いますが、生成されたコードの37行目に<code>request.params.slice!(-8, 1)</code>とあります。</p>
+
+<p>ここで本来削除されるべきparamを削除できていないんだろうと思い、実際にこの部分を生成しているSpanningRegexを再度調べます。</p>
+
+<p>以下のコードです。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">HttpRouter</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Node</span>
+</span><span class='line'>    <span class="k">class</span> <span class="nc">SpanningRegex</span> <span class="o">&lt;</span> <span class="no">Regex</span>
+</span><span class='line'>      <span class="k">def</span> <span class="nf">to_code</span>
+</span><span class='line'>        <span class="n">params_count</span> <span class="o">=</span> <span class="vi">@ordered_indicies</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">whole_path_var</span> <span class="o">=</span> <span class="s2">&quot;whole_path</span><span class="si">#{</span><span class="n">root</span><span class="o">.</span><span class="n">next_counter</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>        <span class="s2">&quot;</span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2"> = request.joined_path</span>
+</span><span class='line'><span class="s2">        if match = </span><span class="si">#{</span><span class="vi">@matcher</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2">.match(</span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2">) and match.begin(0).zero?</span>
+</span><span class='line'><span class="s2">          _</span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2"> = request.path.dup</span>
+</span><span class='line'><span class="s2">          &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">param_capturing_code</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span>
+</span><span class='line'><span class="s2">          remaining_path = </span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2">[match[0].size + (</span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2">[match[0].size] == ?/ ? 1 : 0), </span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2">.size]</span>
+</span><span class='line'><span class="s2">          request.path = remaining_path.split(&#39;/&#39;)</span>
+</span><span class='line'><span class="s2">          </span><span class="si">#{</span><span class="n">node_to_code</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">          request.path = _</span><span class="si">#{</span><span class="n">whole_path_var</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">          request.params.slice!(</span><span class="si">#{</span><span class="o">-</span><span class="n">params_count</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">params_count</span><span class="si">}</span><span class="s2">)</span>
+</span><span class='line'><span class="s2">       end</span>
+</span><span class='line'><span class="s2">       &quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>params_count.size</code>は明らかにおかしい(Fixnum#sizeをこの場面で使うことはないだろうと思った)ので、.size部分を消したものをモンキーパッチとして、routing.rbに追加してやるとしっかり帳尻が合い、</p>
+
+<p>issueで取り上げられていたテストも無事動きました。</p>
+
+<p>後は、今回の変更で以前まで動いていたコードが動かなくなっていないかをテストして、<a href="https://github.com/padrino/padrino-framework/pull/1378">pull req</a>を飛ばしました。</p>
+
+<p>以上が、今回の大まかな顛末となります。</p>
+
+<p>実際にはこれに辿り着いた後も、明らかにおかしい部分(前述)もまとめて上手く直す方法ないかな〜と模索していましたが途中で嫌になったのでやめてしまいました。</p>
+
+<h2>総括</h2>
+
+<ul>
+<li>priorityを直したときにhttp_routerのコードをある程度読んでいたのでそれが良かったと思います。</li>
+<li>priorityを直したときと違って、明らかに今回は開発者の人が動かそうとしているのがわかったので、少ない変更で解決できて安心しています。</li>
+<li>コード生成部分、ヤバいと思うと同時にすごいなーとも思いました。かなり勉強になりました。</li>
+<li>そもそも、SpanningRegexに辿り着いた時点で気づくべきミス(少なくとも違和感を感じるべき)だったのでまだまだ実力が足りないなと実感しました。</li>
+</ul>
+
+
+<p>最後になりますが、Padrinoは現在http_routerに依存していますが、今後のアップデートで(多分1.0かな？)http_routerを削除して、新たにroutingを書き換える予定になっています。</p>
+
+<p>http_routerは確かにアレですが、Padrinoのことは嫌いにならずに使っていきましょう！</p>
+
+<p>自分も少しでもPadrinoに協力できるようにがんばります！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2ch SSのまとめのまとめ?アンテナ?を作った]]></title>
@@ -1595,25 +2248,6 @@ Firefoxでしか動作確認しておりません</p>
 
 </dl>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[トンヌラ]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/02/06/github-jekyll/"/>
-    <updated>2012-02-06T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/02/06/github-jekyll</id>
-    <content type="html"><![CDATA[<p>前の記事で書いた画像を予めloadの理屈について簡単に説明します。
-大抵のブラウザでは、ImageオブジェクトのsrcプロパティにURLを突っ込んだ時点でそれを取るRequestを飛ばします。
-要はその仕組みを利用し(一度loadした画像はブラウザがキャッシュする)、遅れて表示される等の問題を解消したかったわけです。
-以下のようなコードを実行し、Webコンソールとか見るとわかります。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="k">new</span> <span class="nx">Image</span><span class="p">()).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://example.com/hoge.png&quot;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>が、IEではどうも毎回画像をloadしまくってるようなので意味ないんだなこれが。</p>
 ]]></content>
   </entry>
   

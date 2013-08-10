@@ -9,27 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="root, 相対パス, 絶対パス対応
-CSSスプライトとかやってないサイト用 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-(function () { var styleSheets = document.styleSheets; for ( &hellip;">
+  <meta name="description" content="前の記事で書いた画像を予めloadの理屈について簡単に説明します。
+大抵のブラウザでは、ImageオブジェクトのsrcプロパティにURLを突っ込んだ時点でそれを取るRequestを飛ばします。
+要はその仕組みを利用し(一度loadした画像はブラウザがキャッシュする)、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,6 +78,52 @@ CSSスプライトとかやってないサイト用 1
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/06/github-jekyll/">トンヌラ</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-06T00:00:00+09:00" pubdate data-updated="true">Feb 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>前の記事で書いた画像を予めloadの理屈について簡単に説明します。
+大抵のブラウザでは、ImageオブジェクトのsrcプロパティにURLを突っ込んだ時点でそれを取るRequestを飛ばします。
+要はその仕組みを利用し(一度loadした画像はブラウザがキャッシュする)、遅れて表示される等の問題を解消したかったわけです。
+以下のようなコードを実行し、Webコンソールとか見るとわかります。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="k">new</span> <span class="nx">Image</span><span class="p">()).</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://example.com/hoge.png&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>が、IEではどうも毎回画像をloadしまくってるようなので意味ないんだなこれが。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1068,70 +1096,6 @@ MemCacheとmod_rubyを導入してみました。
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/30/github-jekyll/">Spcamp2011のxss問題について</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-30T00:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>http://utf-8.jp/camp2011/ctf/inquiry.html</p>
-
-<p>これです。
-id:hasegawayosukeさんが提示した問題ですね。
-実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、ネタバレしてしらけんのもアレかなと思ったので記事を書いてませんでした。
-まーでも、そろそろいいかなということでまとめます。
-まだ見たくないという人は見ないほうがいいとおもいます。</p>
-
-<p>====</p>
-
-<p>まずソースをみます。
-とりあえず何か怪しいとこないかなーということで眺めた結果、あれ？とおもう点発見。
-最後のif文でなぜかjQueryのhtmlメソッドにわざとらしく文字列結合でinput要素を渡してるんですね。
-あーこの辺っぽいなということで、クエリーのconfirmを1に設定して色々試します。</p>
-
-<p>色々試すといっても、メールアドレス以外は全角制限があるので大したことは出来ず、
-メールアドレスチェックの正規表現をよく見ると、&#8217;とか=とかが使えることがわかりました。</p>
-
-<p>これでなんとかメールアドレス確認部分を変更する事が出来た(&#8216;onmouseover=&#8217;this.value=location.href&#8217;など)んですが、location.hrefはencodeされた状態で出力されてしまうんですね。
-これは困ったぞということで調べた結果、location.hashというプロパティを使えば良いことがわかりました。
-location.hashは#以降がasciiである限りencodeされていない状態で出力してくれますね。
-その結果以下のようなURLになりましたとさ。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>なんかもっとスマートな方法あるのかなと思ったけどこれでいいや。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1146,15 +1110,19 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 129.33333333333334%'>Ruby(22)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (22)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a>
@@ -1170,10 +1138,6 @@ location.hashは#以降がasciiである限りencodeされていない状態で�
     
       <li class="post">
         <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a>
       </li>
     
   </ul>

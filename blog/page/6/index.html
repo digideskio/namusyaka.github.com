@@ -9,8 +9,10 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="心を飾った今もーーあなたをー忘れらーれーなくーてーーーーー
-">
+  <meta name="description" content="今月の二十日から一人暮らしをしてるんだけど、ネットがつながりません。
+今までネット中心の生活だったから本当に困りました。
+良い機会だから読んでない本を消化しようと試みるも一日で読み終わってしまいました。
+だからほかの娯楽、もとい夢中になれることが必要で、色々考えてるけど見つからないです。 ∴ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +79,55 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/25/github-jekyll/"><h4>新生活</h4></a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-25T00:00:00+09:00" pubdate data-updated="true">Mar 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今月の二十日から一人暮らしをしてるんだけど、ネットがつながりません。
+今までネット中心の生活だったから本当に困りました。
+良い機会だから読んでない本を消化しようと試みるも一日で読み終わってしまいました。
+だからほかの娯楽、もとい夢中になれることが必要で、色々考えてるけど見つからないです。</p>
+
+<p>∴俺ってつまらない人間だなあと思ったという話。</p>
+
+<h2>プログラミング</h2>
+
+
+<p>いつも公式リファレンスなんかを読みながらプログラミングをするんですが、携帯でググりながらやるのは非常に面倒です。
+せっかくサーバーを借りたのに申し訳ないですね。</p>
+
+<p>来月の大学入学式が終わった時点でネットがつながってなかったらネットができる環境に移住したいと思います。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -963,225 +1014,6 @@ getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.n
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/03/01/github-jekyll/">三年とちょっとぶりくらいにC言語書いた</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-01T00:00:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>このブログも一万PVですか。おめでとう俺。</p>
-
-<h2>ﾅﾑ変換</h2>
-
-
-<p>というツールがあることをご存知ですか。
-大分前に僕が作った物ですが、日本語入力できないしあまり面白くないんですよね。
-んで、Cを書きたいなーと最近思っていたのでCで似たようなプログラムを書きました。</p>
-
-<script src="https://gist.github.com/869509.js"> </script>
-
-
-<p><noscript></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">encode</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">target</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">char</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="n">sum</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">*</span><span class="n">target</span><span class="p">;</span> <span class="o">*</span><span class="n">target</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">128</span><span class="p">;</span> <span class="n">b</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>                                <span class="n">result</span><span class="p">[</span><span class="n">sum</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="o">*</span><span class="n">target</span> <span class="o">&amp;</span> <span class="n">b</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="n">result</span><span class="p">[</span><span class="n">sum</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-</span><span class='line'>                <span class="n">free</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="nf">decode</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">target</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">;</span>
-</span><span class='line'>        <span class="kt">char</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">sum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">sum</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
-</span><span class='line'>                        <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span>
-</span><span class='line'>                                <span class="k">if</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span class='line'>                                        <span class="n">b</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>                        <span class="n">target</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">;</span>
-</span><span class='line'>                        <span class="n">result</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="n">result</span><span class="p">[</span><span class="n">sum</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>                <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">);</span>
-</span><span class='line'>                <span class="n">free</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                        <span class="k">switch</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
-</span><span class='line'>                                <span class="k">case</span> <span class="sc">&#39;e&#39;</span>:
-</span><span class='line'>                                        <span class="n">encode</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-</span><span class='line'>                                        <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                                <span class="k">case</span> <span class="sc">&#39;d&#39;</span>:
-</span><span class='line'>                                        <span class="n">decode</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
-</span><span class='line'>                                        <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>                        <span class="p">}</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></noscript>
-コンパイルしてください。
-そのうち配布するかもしれませんが。
-引数には共にオプション(-e,-d)と変換する文字列と変換後(前)の文字列が必要です。
-デコードする際は、エンコード時に渡した変換後の文字列を渡します。
-また、変換後(前)の文字列は必ず半角且つ、二文字でなくてはいけません(ab,ﾅﾑ等)。
-以下に例を示します。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>C:\<span class="p">&gt;</span>hoge.exe <span class="p">-</span><span class="k">e</span> なむきもい ﾅﾑ
-</span><span class='line'>ﾅﾑﾅﾅﾅﾅﾅﾑﾅﾅﾅﾑﾅﾅﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾑﾑﾑﾑﾅﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾑﾑﾅﾑﾅﾑﾅﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾅﾅﾅﾅﾑﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾑﾅﾅﾅﾑﾅﾑ
-</span><span class='line'>
-</span><span class='line'>C:\<span class="p">&gt;</span>hoge.exe <span class="p">-</span><span class="k">d</span> ﾅﾑﾅﾅﾅﾅﾅﾑﾅﾅﾅﾑﾅﾅﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾑﾑﾑﾑﾅﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾑﾑﾅﾑﾅﾑﾅﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾅﾅﾅﾅﾑﾑﾑﾅﾑﾅﾅﾅﾅﾅﾑﾅﾑﾅﾅﾅﾑﾅﾑ ﾅﾑ
-</span><span class='line'>なむきもい
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>やっぱり文字列をいじってどーのこーのやるのはスクリプト言語が断然楽ですね。
-非常にだるかったです。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1196,15 +1028,19 @@ getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.n
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 129.33333333333334%'>Ruby(22)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (22)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a>
@@ -1220,10 +1056,6 @@ getElementByIdの結果をキャッシュした場合の比較 http://d.hatena.n
     
       <li class="post">
         <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a>
       </li>
     
   </ul>

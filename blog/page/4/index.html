@@ -9,11 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="さきほど公開したエントリーですがもっと高速化をすることが出来たので報告します。
-まず 1
-var i = s = &quot;&quot;; の部分。
-空文字は自動で0にキャストされるので使っていましたがそれがコストになっていました。
-当たり前のことですね。 よって、 &hellip;">
+  <meta name="description" content="http://utf-8.jp/camp2011/ctf/inquiry.html これです。
+id:hasegawayosukeさんが提示した問題ですね。
+実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +78,70 @@ var i = s = &quot;&quot;; の部分。
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/30/github-jekyll/">Spcamp2011のxss問題について</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-30T00:00:00+09:00" pubdate data-updated="true">Aug 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>http://utf-8.jp/camp2011/ctf/inquiry.html</p>
+
+<p>これです。
+id:hasegawayosukeさんが提示した問題ですね。
+実は二週間以上前に(@tyageと同じ日だったよねたしか)解いてたんですが、ネタバレしてしらけんのもアレかなと思ったので記事を書いてませんでした。
+まーでも、そろそろいいかなということでまとめます。
+まだ見たくないという人は見ないほうがいいとおもいます。</p>
+
+<p>====</p>
+
+<p>まずソースをみます。
+とりあえず何か怪しいとこないかなーということで眺めた結果、あれ？とおもう点発見。
+最後のif文でなぜかjQueryのhtmlメソッドにわざとらしく文字列結合でinput要素を渡してるんですね。
+あーこの辺っぽいなということで、クエリーのconfirmを1に設定して色々試します。</p>
+
+<p>色々試すといっても、メールアドレス以外は全角制限があるので大したことは出来ず、
+メールアドレスチェックの正規表現をよく見ると、&#8217;とか=とかが使えることがわかりました。</p>
+
+<p>これでなんとかメールアドレス確認部分を変更する事が出来た(&#8216;onmouseover=&#8217;this.value=location.href&#8217;など)んですが、location.hrefはencodeされた状態で出力されてしまうんですね。
+これは困ったぞということで調べた結果、location.hashというプロパティを使えば良いことがわかりました。
+location.hashは#以降がasciiである限りencodeされていない状態で出力してくれますね。
+その結果以下のようなURLになりましたとさ。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>http://utf-8.jp/camp2011/ctf/inquiry.html?name=%E3%81%82<span class="err">&amp;</span>mail=&#39;onmouseover=&#39;document.body.innerHTML=location.hash&#39;%40hoge.com<span class="err">&amp;</span>text=%E3%81%82<span class="err">&amp;</span>confirm=1#<span class="nt">&lt;a</span> <span class="na">onmouseover=</span><span class="s">&quot;alert(document.location)&quot;</span><span class="nt">&gt;</span>XSS<span class="nt">&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>なんかもっとスマートな方法あるのかなと思ったけどこれでいいや。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -678,95 +740,6 @@ http://twitter.com/#!/username形式のページで使えます.
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/05/21/github-jekyll/">大学生になってよかったことよくなかったこと</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-21T00:00:00+09:00" pubdate data-updated="true">May 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>よかったこと</h2>
-
-
-<p>とくになし</p>
-
-<h2>よかったとおもえるかもしれなかったこと, おもえるかもしれないこと</h2>
-
-
-
-
-<dl>
-<dt>学割
-<dd>知っての通り色々学割がききます.
-<dd>友達の話では, 自動車学校での補習料金が免除になるとかならないとか. Apple製品も学割でいくらか安くなりますね.
-<dd>あとは大学生だと無料で使える開発環境があったり, 大学でwindowsが無料配布されていたりといったところですかね.
-<dd>他にもまだまだあると思いますが, 僕自身は未だにこれらの特権を利用できていません.
-<dt>キャンパスライフ
-<dd>確かに友達も腐るほど出来たので楽しいですしオールで語り明かすのも青春やなーって感じがするんですが, 終わった後の反動が正直つらいです.
-<dd>俺このままじゃまずいだろ…と思ってしまいます.
-<dt>可愛い子
-<dd>キャンパスライフに含めるか迷いましたが分けました.やはり青春には華が必要だと思います.
-<dd>彼女でも作って楽しむと良いと思います.
-<dd>僕には彼女はいません.
-<dd>僕の好きな武井咲は女の子です.
-<dt>高校までとは違う, より専門性のある講義でスキルを磨ける.
-<dd>これは完全に僕の責任なんですが,僕の行っている学科, 及び大学ではあまりためになりそうなことはやらないのでだらけています.
-<dd>もっとまじめに受験する大学を選ぶべきだったかもしれません.
-<dd>しかしそもそも僕の場合はお勉強が嫌いなので, どこにいっても大差なかったでしょう.
-</dl>
-
-
-
-
-<h2>よくなかったこと</h2>
-
-
-
-
-<dl>
-<dt>あんまり自由じゃない
-<dd>僕の求める自由がフリーダムすぎるのかもしれませんが, そんなに自由じゃないです.
-<dd>講義に出ないと色々うるさいです.うるさいですけどそこそこ慣れます.
-<dd>勝手に単位落としてもらっていいんだけどなぁー.
-<dd>教授ってのも大変だと思います.
-<dt>人間関係
-<dd>人とかかわるということはなかなか大変で, それなりに相手のことを考えてやらないといけないわけで,それが面倒ではあります.
-<dd>なんというか高校を卒業したばっかりという感じの人ばかりなので, なんだかなと思うことが多々ありますね.
-</dl>
-
-
-<p>今後良かったと思えることがあるかもしれないけど, それは別に今の大学じゃなきゃだめだったと思うようなものではないだろうなって感じですかね.
-皆さんは楽しい大学生活をおくってください.</p>
-
-<p>おしまい.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -781,15 +754,19 @@ http://twitter.com/#!/username形式のページで使えます.
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 129.33333333333334%'>Ruby(22)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (22)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a>
@@ -805,10 +782,6 @@ http://twitter.com/#!/username形式のページで使えます.
     
       <li class="post">
         <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/04/github-jekyll/">WhitespaceをJavaScriptに変換するライブラリとWhitespaceインタプリタを作った</a>
       </li>
     
   </ul>
