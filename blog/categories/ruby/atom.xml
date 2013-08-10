@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-08-11T01:26:26+09:00</updated>
+  <updated>2013-08-11T01:47:25+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -609,6 +609,7 @@
 <li>request.pathは原則的に、パスを<code>/</code>でsplitした配列を返します。</li>
 <li>request.joined_pathはrequest.pathを<code>/</code>でjoinした結果である文字列を返します。</li>
 <li>request.paramsは後に、ブロック内で参照できるparamsの元となるものです。詳しくは上のコードとあわせて<code>padrino-core/application/routing.rb</code>にあるprocess_destination_pathメソッド付近を読むとわかります。</li>
+<li>request.rack_request.request_methodは動作に問題なく、<code>/mystuff/5/boing/2</code>にGETでリクエストを飛ばすとGETが格納されています。</li>
 <li>生成されるコードでは、条件に入る前にrequest.paramsを追加し、条件に当てはまらなかった場合にはrequest.pathやrequest.paramsの値を操作して、帳尻を合わせるということをしています。</li>
 <li>どう考えてもおかしい<code>match = /.+/.match(whole_path1)</code>がありますが、今回の問題の本質ではないので飛ばします(新たなバグの原因なのでそのうち時間があれば直そうと思っています)。</li>
 </ul>
