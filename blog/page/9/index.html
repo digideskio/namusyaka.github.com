@@ -9,9 +9,10 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="を書きました。
-URIchangerと言います。 あ、それとやっぱり落ち着かない気分なので敬語に戻そうと思います。 本題 チャベリでは、初回ページロード時の関数内容を記録して、一定時間ごとに現在の関数処理とそれが一致するかどうかを確認しています。
-一致しなければトップページに飛ばされてしまいます &hellip;">
+  <meta name="description" content="エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,73 @@ URIchangerと言います。 あ、それとやっぱり落ち着かない気分
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/07/github-jekyll/">自分の見ているページを悟られないようにするためのJavaScript。</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-07T00:00:00+09:00" pubdate data-updated="true">Nov 7<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>エロサイトを見ている最中に急用が出来てしまったとき、あなたならどうしますか。
+一人暮らしだったらそのままにするのもありでしょう。
+しかし、あなたが留守にしている間、誰かがそのエロサイトを覗く可能性がある場合は・・・。
+そういうときにtitle要素のテキストノードを書き換える方法が有効だったりします。</p>
+
+<p>以下のコードをそのページで実行します。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="s2">&quot;YouTube - Broadcast Yourself&quot;</span><span class="p">})()</span>
+</span><span class='line'><span class="cm">/*これをアドレス入力欄に入力して実行するとそのページの表示名がYouTube - Broadcast Yourselfに変わります。</span>
+</span><span class='line'><span class="cm">そのページ自体を開いておかなければただYouTubeを開いているように見えるのでかなり有効だと思います。*/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>見られたくないページが複数ある場合。</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;国会議事堂の全て&quot;</span><span class="p">,</span><span class="s2">&quot;フラワーホーンの飼育&quot;</span><span class="p">,</span><span class="s2">&quot;Twitter / ホーム&quot;</span><span class="p">],</span><span class="nx">n</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="nx">n</span><span class="p">]})()</span>
+</span><span class='line'><span class="cm">/*同じくアドレス入力欄に入力して実行すると変数aの配列の中身にあるタイトルにランダムで変更されます。もちろんタイトルを変えるのも、配列要素数を増やすのも減らすのも自由です。*/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>毎回入力するのは面倒なのでブックマークレット形式にする場合。
+ブックマークレットのやり方は<a href="http://namusyaka.info/ukeru/">うけるthis参照</a>。
+<a href='javascript:(function(){document.getElementsByTagName("title")[0].innerHTML="YouTube - Broadcast Yourself"})()'>固定変更</a></p>
+
+<p><a href='javascript:(function(){var a=["国会議事堂の全て","フラワーホーンの飼育","Twitter / ホーム"],n=Math.floor(Math.random()*a.length);document.getElementsByTagName("title")[0].innerHTML=a[n]})()'>ランダム変更</a></p>
+
+<p>しょうもないなとは思いますが、個人的に使いたいと思う場面が結構あったので書かせていただきました。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -965,63 +1033,6 @@ http://namusyaka.sakura.ne.jp/najax/
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/08/24/github-jekyll/">Najax開発のすすめ</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-24T00:00:00+09:00" pubdate data-updated="true">Aug 24<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Twitterなどではつぶやいたりしてるんですが、NajaxというGUIをSkypeに似せたWEBチャットを作っています。
-クライアントはHTML,CSS,JavaScript。
-サーバサイドはRubyで処理するつもりです。</p>
-
-<h2>簡単にシステムを説明すると</h2>
-
-
-<p>・基本的に一度入室すると退室申請を出すまでチャットメンバーとして在籍し続ける。
-・どのメンバーがチャットを開いているかをアイコン画像で表示。
-・チャットの会話システムはポーリングを用いる。</p>
-
-<p>というものです。
-まぁ難しい技術を要するものは無いんですが結構めんどくさいので手伝ってくれる人募集します。
-参考までにSSはっときます。
-[f:id:namusyaka:20100824231343p:image]</p>
-
-<h2>愚痴ですが</h2>
-
-
-<p>PHPは美しくないとか気持ち悪いとか言ってた僕ですが文字コード関係を
-あまり考えなくていいという点でとても楽です。
-Rubyは文字コードとか色々めんどくさいです。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -1036,15 +1047,19 @@ Rubyは文字コードとか色々めんどくさいです。</p>
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 102.66666666666667%'>Padrino(2)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 132.0%'>Ruby(24)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 130.66666666666666%'>その他(23)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (2)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (24)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/github-jekyll/">SSのためのWEBサービス「SS Note β」をリリースしました。</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
@@ -1060,10 +1075,6 @@ Rubyは文字コードとか色々めんどくさいです。</p>
     
       <li class="post">
         <a href="/blog/2012/12/11/github-jekyll/">PiggerというWebサービスをつくっている話</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-08-11T01:47:25+09:00</updated>
+  <updated>2013-11-14T23:49:22+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SSのためのWEBサービス「SS Note β」をリリースしました。]]></title>
+    <link href="http://namusyaka.github.com/blog/2013/11/04/github-jekyll/"/>
+    <updated>2013-11-04T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/11/04/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://www.ssnote.net/">SS Note β</a></p>
+
+<p>リリースしたといっても二ヶ月以上前のことで、それからぼちぼち開発しつつ運用している。</p>
+
+<h2>アクセス・利用者数</h2>
+
+<p>一日大体10万PV・5万UU程度。</p>
+
+<p>現在の登録者数は400人ちょっと。</p>
+
+<p>未登録でもSSを読んだり書いたりといった一通りの機能は使えるのでまあこんなものかという感想。</p>
+
+<p>利用者がいつ見てもいるというのは存外気分が良い。</p>
+
+<p>シムシティ的な感覚と誰かが言っていたけどわかる気がする。ユーザー参加型サービスの醍醐味みたいなものなんだろうか。</p>
+
+<h2>仕組みや使ったライブラリ等</h2>
+
+<p><a href="http://www.padrinorb.com/">Padrino Framework</a>を採用。(余談だけど頻繁にpull reqを投げていたら、<a href="http://www.padrinorb.com/team">Padrino Core Team</a>に誘われたので参加することにした。万歳。)</p>
+
+<p>SS Noteでは特に変わったことはしていなくて、Padrino/ActiveRecordでシステムを書いて、できるところはMemcachedとファイルでとにかくキャッシュキャッシュキャッシュ。</p>
+
+<p>今まで食わず嫌いだったGEMをいくつか使うようにしていて、中でもCompassとFactoryGirlは便利だった。</p>
+
+<h2>開発について</h2>
+
+<p>ローカルではGuardを起動してガンガンテストをまわしながらテスト・コードを書く。</p>
+
+<p>TDDとか意識してみたつもりだけど、あんまできてる感じしないな。</p>
+
+<p>ローカルでcommitしたらテストサーバ(兼Gitlab運用サーバ)にpushして、gitlab ciでテストを回して確認。</p>
+
+<p>問題がなければ本番サーバでgit pullしてdeployという流れ。</p>
+
+<p>便利だな〜。</p>
+
+<h2>今後について</h2>
+
+<p>ちゃんと育てていきたいと思っていて、継続的に開発していく。</p>
+
+<p>とりあえずは登録者数1000人目指そう。</p>
+
+<p>興味ある方はnamusyaka@gmail.comまで連絡ください！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
@@ -121,15 +172,6 @@
 <p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
 初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
 当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[暑中見舞い]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/08/05/github-jekyll/"/>
-    <updated>2011-08-05T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/08/05/github-jekyll</id>
-    <content type="html"><![CDATA[<p>あついですね</p>
 ]]></content>
   </entry>
   

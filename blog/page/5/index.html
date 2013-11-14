@@ -9,10 +9,9 @@
   <meta name="author" content="namusyaka">
 
   
-  <meta name="description" content="よかったこと とくになし よかったとおもえるかもしれなかったこと, おもえるかもしれないこと 学割
-知っての通り色々学割がききます.
-友達の話では, 自動車学校での補習料金が免除になるとかならないとか. Apple製品も学割でいくらか安くなりますね.
-あとは大学生だと無料で使える開発環境があったり &hellip;">
+  <meta name="description" content="Twitterではスクロールをすると自動で過去のツイートが読み込まれます.
+それを利用した検索ブックマークレットを作ってみました.
+http://twitter.com/#!/username形式のページで使えます. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/22/github-jekyll/">JavaScriptでTwitter検索を実装する</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-22T00:00:00+09:00" pubdate data-updated="true">May 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Twitterではスクロールをすると自動で過去のツイートが読み込まれます.
+それを利用した検索ブックマークレットを作ってみました.
+http://twitter.com/#!/username形式のページで使えます.
+デフォルトで読み込まれていたのでjQueryを使ってclassの配列を取得しています.
+もしかしたらもっと良い書き方があるかもしれません.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//スクリプト</span>
+</span><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">s</span><span class="p">){</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span><span class="nx">$t</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">e</span><span class="p">)},</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="nx">s</span><span class="p">,</span>
+</span><span class='line'>  <span class="nx">loop</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">m</span><span class="p">);</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">l</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.stream-item&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="o">++</span><span class="nx">i</span><span class="p">){</span>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">+=</span><span class="s1">&#39;/status/&#39;</span><span class="o">+</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/data-item-id=&quot;([0-9]+)&quot;/</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span>
+</span><span class='line'>        <span class="nx">b</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">&gt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;見つからなかった。&#39;</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">m</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">;</span>
+</span><span class='line'>    <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">};</span>
+</span><span class='line'>  <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">loop</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'><span class="p">})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;探すテキスト入力&#39;</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//圧縮後</span>
+</span><span class='line'><span class="nx">javascript</span><span class="o">:</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">s</span><span class="p">){</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="nb">document</span><span class="p">,</span><span class="nx">$t</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">e</span><span class="p">)},</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="nx">s</span><span class="p">,</span><span class="nx">loop</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nb">window</span><span class="p">.</span><span class="nx">scroll</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">m</span><span class="p">);</span><span class="kd">var</span> <span class="nx">l</span><span class="o">=</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.stream-item&quot;</span><span class="p">);</span><span class="k">for</span><span class="p">(;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="o">++</span><span class="nx">i</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="o">!==-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="o">+=</span><span class="s1">&#39;/status/&#39;</span><span class="o">+</span><span class="nx">l</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/data-item-id=&quot;([0-9]+)&quot;/</span><span class="p">)[</span><span class="mi">1</span><span class="p">];</span><span class="nx">b</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="k">return</span><span class="p">;}}</span><span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">&gt;</span><span class="nx">l</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="k">return</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;見つからなかった。&#39;</span><span class="p">);</span><span class="nx">m</span> <span class="o">+=</span> <span class="nx">s</span><span class="p">;</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);};</span><span class="nx">setTimeout</span><span class="p">(</span><span class="nx">loop</span><span class="p">,</span><span class="mi">1000</span><span class="p">);})(</span><span class="nb">window</span><span class="p">.</span><span class="nx">prompt</span><span class="p">(</span><span class="s1">&#39;探すテキスト入力&#39;</span><span class="p">),</span> <span class="mi">2000</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -835,182 +925,6 @@ Liquid error: ClassNotFound: no lexer for alias &#8216;ssh&#8217; found</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/04/github-jekyll/">Rubyで掲示板を割と簡単に作れるモジュールを作った&今年がんばること</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-04T00:00:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>おひさしぶりです。
-ネットもつながりプログラミングをやりたい放題なので、今は意気揚々としています。</p>
-
-<h2>まず、今年がんばること</h2>
-
-
-
-
-<dl>
-  <dt>オープンソースに活動していく。</dt>
-  <dd>Github, Gist, ブログに今まで以上にコードをあげていきたい。</dd>
-  <dd>まだ無いが、実用的で汎用性の高いモジュールを作っていきたい。</dd>
-  <dt>Gitを使いこなせるようになる。</dt>
-  <dd>実用Gitを購入したので、読みながら頑張りたい。</dd>
-  <dt>Rubyに関する造詣を深める。</dt>
-  <dd>そのまんま東。</dd>
-  <dt>PerlとPythonを知る。</dt>
-  <dd>その上で一番自分に合った言語を決めたい。</dd>
-  <dt>ウェブサービスで一発あてる。</dt>
-  <dd>Twitter媒体に固執せずに、便利なものを作っていきたい。(なむぴたは順調に利用者が増えていってくれてるみたいですね＞＜)</dd>
-</dl>
-
-
-
-
-<h2>Rubyで掲示板を割と簡単に作れるモジュール</h2>
-
-
-<p>Crewと言います。
-簡単と言っても汎用性は低いですし、毎度のことながら設計ミスったなーと思ってます。
-<a href="https://github.com/namusyaka">ソース</a>
-<a href="http://namusyaka.info/bbs/">テスト</a></p>
-
-<p>デフォルトの設定(スレタテ、書き込み、読み込み)では、それぞれ三つのファイルが必要です。
-ファイル名は、config.ymlで変更できます。
-config.ymlは掲示板本体のディレクトリ内に設置してください。</p>
-
-<h5>スレタテ、書き込みをした後にそのファイルを表示するスクリプト</h5>
-
-
-<p>三つのファイルを書くのは面倒だし、githubにあがっているのでそっちをみてください。
-ここでは簡単にスレタテ、書き込み、読み込みをするスクリプトを書いてみます。</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;crew&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;cgi&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Hash</span> <span class="c1"># HashのvalueをCGI.unescape</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">decode_uri</span>
-</span><span class='line'>    <span class="nb">hash</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>    <span class="nb">self</span><span class="o">.</span><span class="n">each_pair</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
-</span><span class='line'>      <span class="nb">hash</span><span class="o">[</span><span class="n">key</span><span class="o">]</span> <span class="o">=</span> <span class="no">CGI</span><span class="o">.</span><span class="n">unescape</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nb">hash</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Crew</span><span class="o">::</span><span class="no">Action</span><span class="o">.</span><span class="n">start_up</span> <span class="c1"># datと過去ログ用のディレクトリを生成するだけです。</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># クエリーをhashに変換</span>
-</span><span class='line'><span class="n">post</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sr">/[&amp;=]/</span><span class="p">)</span>
-</span><span class='line'><span class="n">post</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">length</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-</span><span class='line'><span class="n">post</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">[*</span><span class="n">post</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># config.ymlのstatusを取得。</span>
-</span><span class='line'><span class="c1"># 全部取得したい場合はCrew.config</span>
-</span><span class='line'><span class="n">status</span> <span class="o">=</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">get_status</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># Crew:::Actionオブジェクトを生成。</span>
-</span><span class='line'><span class="n">action</span> <span class="o">=</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Action</span><span class="o">.</span><span class="n">new</span><span class="p">({</span>
-</span><span class='line'>  <span class="ss">:title</span>  <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;title&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:ip</span>     <span class="o">=&gt;</span> <span class="no">ENV</span><span class="o">[</span><span class="s2">&quot;REMOTE_ADDR&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:name</span>   <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;username&quot;</span><span class="o">]</span><span class="p">,</span><span class="err">　</span><span class="c1">#無くても可</span>
-</span><span class='line'>  <span class="ss">:text</span>   <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;text&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>  <span class="ss">:e_mail</span> <span class="o">=&gt;</span> <span class="n">post</span><span class="o">[</span><span class="s2">&quot;e_mail&quot;</span><span class="o">]</span><span class="err">　</span><span class="c1">#無くても可</span>
-</span><span class='line'><span class="p">}</span><span class="o">.</span><span class="n">decode_uri</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># スレタテ</span>
-</span><span class='line'><span class="c1"># 成功したら新しいファイル名を返す</span>
-</span><span class='line'><span class="n">new_file</span> <span class="o">=</span> <span class="n">action</span><span class="o">.</span><span class="n">build</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 作ったファイルに同じ内容を書き込み</span>
-</span><span class='line'><span class="c1"># 失敗したらnil、成功したら0を返す</span>
-</span><span class='line'><span class="n">action</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_file</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">print</span> <span class="s2">&quot;Content-Type:text/html</span><span class="se">\n\n</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="c1"># 作ったファイルの中身を返す。</span>
-</span><span class='line'><span class="c1"># 第二引数は読み込みたい分の数を指定する。</span>
-</span><span class='line'><span class="c1"># falseの場合は中身を全て、20を指定したら1と最新20件を返す。</span>
-</span><span class='line'><span class="c1"># レスポンスの一か所のみ欲しい場合はpick_threadを使う。</span>
-</span><span class='line'><span class="nb">print</span> <span class="no">Crew</span><span class="o">::</span><span class="no">Reader</span><span class="o">.</span><span class="n">get_thread</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="kp">false</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1025,15 +939,19 @@ config.ymlは掲示板本体のディレクトリ内に設置してください�
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 101.33333333333333%'>Padrino(1)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 130.66666666666666%'>Ruby(23)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 129.33333333333334%'>その他(22)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 102.66666666666667%'>Padrino(2)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 132.0%'>Ruby(24)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 130.66666666666666%'>その他(23)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (1)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (23)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (22)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (2)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (24)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/04/github-jekyll/">SSのためのWEBサービス「SS Note β」をリリースしました。</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/08/10/github-jekyll/">私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか</a>
@@ -1049,10 +967,6 @@ config.ymlは掲示板本体のディレクトリ内に設置してください�
     
       <li class="post">
         <a href="/blog/2012/12/11/github-jekyll/">PiggerというWebサービスをつくっている話</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/10/github-jekyll/">Whitespaceでヴィジュネル暗号を実装した</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-08-11T01:47:25+09:00</updated>
+  <updated>2013-11-14T23:49:22+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SSのためのWEBサービス「SS Note β」をリリースしました。]]></title>
+    <link href="http://namusyaka.github.com/blog/2013/11/04/github-jekyll/"/>
+    <updated>2013-11-04T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/11/04/github-jekyll</id>
+    <content type="html"><![CDATA[<p><a href="http://www.ssnote.net/">SS Note β</a></p>
+
+<p>リリースしたといっても二ヶ月以上前のことで、それからぼちぼち開発しつつ運用している。</p>
+
+<h2>アクセス・利用者数</h2>
+
+<p>一日大体10万PV・5万UU程度。</p>
+
+<p>現在の登録者数は400人ちょっと。</p>
+
+<p>未登録でもSSを読んだり書いたりといった一通りの機能は使えるのでまあこんなものかという感想。</p>
+
+<p>利用者がいつ見てもいるというのは存外気分が良い。</p>
+
+<p>シムシティ的な感覚と誰かが言っていたけどわかる気がする。ユーザー参加型サービスの醍醐味みたいなものなんだろうか。</p>
+
+<h2>仕組みや使ったライブラリ等</h2>
+
+<p><a href="http://www.padrinorb.com/">Padrino Framework</a>を採用。(余談だけど頻繁にpull reqを投げていたら、<a href="http://www.padrinorb.com/team">Padrino Core Team</a>に誘われたので参加することにした。万歳。)</p>
+
+<p>SS Noteでは特に変わったことはしていなくて、Padrino/ActiveRecordでシステムを書いて、できるところはMemcachedとファイルでとにかくキャッシュキャッシュキャッシュ。</p>
+
+<p>今まで食わず嫌いだったGEMをいくつか使うようにしていて、中でもCompassとFactoryGirlは便利だった。</p>
+
+<h2>開発について</h2>
+
+<p>ローカルではGuardを起動してガンガンテストをまわしながらテスト・コードを書く。</p>
+
+<p>TDDとか意識してみたつもりだけど、あんまできてる感じしないな。</p>
+
+<p>ローカルでcommitしたらテストサーバ(兼Gitlab運用サーバ)にpushして、gitlab ciでテストを回して確認。</p>
+
+<p>問題がなければ本番サーバでgit pullしてdeployという流れ。</p>
+
+<p>便利だな〜。</p>
+
+<h2>今後について</h2>
+
+<p>ちゃんと育てていきたいと思っていて、継続的に開発していく。</p>
+
+<p>とりあえずは登録者数1000人目指そう。</p>
+
+<p>興味ある方はnamusyaka@gmail.comまで連絡ください！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[私は如何にしてPadrino::Routing及びhttp_routerのバグを直したか]]></title>
@@ -885,151 +936,6 @@
 <p><a href="http://www.pigger.in/">Piggerβ</a></p>
 
 <p>バグ・脆弱性・意見・要望は<a href="http://twitter.com/namusyaka">Twitter</a>のDMで教えてくだしあ</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopressのデザインテーマを変更する]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/10/03/github-jekyll/"/>
-    <updated>2012-10-03T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/10/03/github-jekyll</id>
-    <content type="html"><![CDATA[<p>Octopressは素晴らしいし、デフォルトのクラシックもかっこいいんだけど如何せん利用者がほとんどデフォルトのまま。
-かといってSCSSとかだるいし、自分独自とはいかないまでもデザインは変更したかった。
-そこで見つけたのがhttps://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
-ハイクオリティなテーマがいっぱいあるので、自分好みのやつを使えば良いと思う。
-使い方は書いてある通り。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd octopress
-</span><span class='line'>$ git clone GIT_URL .themes/THEME_NAME
-</span><span class='line'>$ rake install['THEME_NAME']
-</span><span class='line'>$ rake generate
-</span><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>後は、http://localhost:4000/ でデザインの確認をしつつ、いい感じだとおもったらrake deploy。</p>
-
-<p>octopressいいね！</p>
-
-<h2>TypeScript</h2>
-
-
-<p>旨み成分分析したい。</p>
-
-<p>見難いと思うけど上がTypeScriptから吐き出されたJavaScript。
-下がTypeScript。</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">Hoge</span><span class="p">;</span>
-</span><span class='line'><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">Hoge</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">Fuga</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">function</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">increment</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">++</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'>    <span class="nx">Fuga</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">decrement</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">--</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nx">Fuga</span><span class="p">;</span>
-</span><span class='line'><span class="p">})();</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">plus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">increment</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">Hoge</span><span class="p">.</span><span class="nx">plus</span> <span class="o">=</span> <span class="nx">plus</span><span class="p">;</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">minus</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">fuga</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fuga</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="nx">fuga</span><span class="p">.</span><span class="nx">decrement</span><span class="p">();</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nx">Hoge</span><span class="p">.</span><span class="nx">minus</span> <span class="o">=</span> <span class="nx">minus</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">})(</span><span class="nx">Hoge</span> <span class="o">||</span> <span class="p">(</span><span class="nx">Hoge</span> <span class="o">=</span> <span class="p">{}));</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>module Hoge {
-</span><span class='line'>  class Fuga {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>constructor(public x: number) {}
-</span><span class='line'>increment() { return ++this.x }
-</span><span class='line'>decrement() { return --this.x }
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }
-</span><span class='line'>  export function plus (n: number) {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>var fuga = new Fuga(n);
-</span><span class='line'>return fuga.increment();
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }
-</span><span class='line'>  export function minus (n: number) {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>var fuga = new Fuga(n);
-</span><span class='line'>return fuga.decrement();
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><a href="http://www.typescriptlang.org/">Welcome to TypeScript</a>からdocx形式かpdf形式でSpecification読めます。</p>
 ]]></content>
   </entry>
   
