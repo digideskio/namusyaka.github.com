@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-11-14T23:49:22+09:00</updated>
+  <updated>2013-11-14T23:53:14+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SSのためのWEBサービス「SS Note β」をリリースしました。]]></title>
-    <link href="http://namusyaka.github.com/blog/2013/11/04/github-jekyll/"/>
-    <updated>2013-11-04T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2013/11/04/github-jekyll</id>
+    <link href="http://namusyaka.github.com/blog/2013/11/14/github-jekyll/"/>
+    <updated>2013-11-14T00:00:00+09:00</updated>
+    <id>http://namusyaka.github.com/blog/2013/11/14/github-jekyll</id>
     <content type="html"><![CDATA[<p><a href="http://www.ssnote.net/">SS Note β</a></p>
 
 <p>リリースしたといっても二ヶ月以上前のことで、それからぼちぼち開発しつつ運用している。</p>
