@@ -115,7 +115,7 @@
 <p>その結果、以下のことがわかります。</p>
 
 <ul>
-<li>:withオプションに限らず、正規表現を使ったキャプチャを使った場合の挙動がおかしい。</li>
+<li>:withオプションに限らず、キャプチャに正規表現を使った際の挙動がおかしい。</li>
 <li>レスポンスのステータスコードが405になっている(許可されていないメソッド)。</li>
 </ul>
 
@@ -191,7 +191,7 @@
 
 <p>ここまで辿り着けば簡単な気もしますが(params_countのコードが明らかにおかしいので)、おかしい部分には全く気づかずにちらっと見て諦めました。</p>
 
-<p>あまりに意味不明なので、http_routerが内部で生成してくれたありがたいソースコードをprintしてどのように遷移していくのか見て行くことにしました。</p>
+<p>読むことができないので、http_routerが内部で生成してくれたありがたいソースコードをprintしてどのように遷移していくのか見て行くことにしました。</p>
 
 <p>以下のようなコードをpadrino-core/application/routing.rbに書きます(実はデバッグ時のコードは消しちゃって残ってないので再現になります…)。</p>
 
@@ -620,7 +620,7 @@
 
 <p>凄まじいですね！</p>
 
-<p>これをcallメソッドとしてinstance_evalで定義して、リクエスト毎に毎回このコードが実行されているんだからかなりヤバいです。</p>
+<p>これをcallメソッドとしてinstance_evalで定義して、リクエスト毎に毎回このコードが実行されていることになります。</p>
 
 <p>このコードを読む前提として、以下のものを挙げておきます。</p>
 
@@ -630,8 +630,8 @@
 <li>request.joined_pathはrequest.pathを<code>/</code>でjoinした結果である文字列を返します。</li>
 <li>request.paramsは後に、ブロック内で参照できるparamsの元となるものです。詳しくは上のコードとあわせて<code>padrino-core/application/routing.rb</code>にあるprocess_destination_pathメソッド付近を読むとわかります。</li>
 <li>request.rack_request.request_methodは動作に問題なく、<code>/mystuff/5/boing/2</code>にGETでリクエストを飛ばすとGETが格納されています。</li>
-<li>生成されるコードでは、条件に入る前にrequest.paramsを追加し、条件に当てはまらなかった場合にはrequest.pathやrequest.paramsの値を操作して、帳尻を合わせるということをしています。</li>
-<li>どう考えてもおかしい<code>match = /.+/.match(whole_path1)</code>がありますが、今回の問題の本質ではないので飛ばします(新たなバグの原因なのでそのうち時間があれば直そうと思っています)。</li>
+<li>生成されるコードでは、条件に入る前にrequest.paramsを追加し、条件に当てはまらなかった場合にはrequest.pathやrequest.paramsの値を操作して、帳尻を合わせています。</li>
+<li><code>match = /.+/.match(whole_path1)</code>の部分は不適切だと思われますが、今回の問題の本質ではないので飛ばします(新たなバグの原因なのでそのうち時間があれば直そうと思っています)。</li>
 </ul>
 
 
@@ -668,7 +668,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<p>すると中身が判明し、<code>"part3 is 5/boing/2"</code>と出ます(本当は中身がおかしいにしても5が出力されるべきなんですが、前述したどう考えてもおかしい部分のせいでこうなっています)。</p>
+<p>すると中身が判明し、<code>"part3 is 5/boing/2"</code>と出ます(本当は中身がおかしいにしても5が出力されるべきなんですが、前述した不適切だと思われる部分のせいでこうなっています)。</p>
 
 <p>ここまで来ると、前提として挙げた帳尻合わせが上手くいっていないことがわかるので、その部分を重点的に見ていきます。</p>
 
@@ -748,6 +748,18 @@
 <p>http_routerは確かにアレですが、Padrinoのことは嫌いにならずに使っていきましょう！</p>
 
 <p>自分も少しでもPadrinoに協力できるようにがんばります！</p>
+
+<h2>追記</h2>
+
+<p>http_routerがPadrinoの高速なルーティングを実現しているという事実を認めたとしても、やはり保守性に問題がありすぎるので、自分でルーターを開発してみました。</p>
+
+<p><a href="https://github.com/namusyaka/pendragon">namusyaka/pendragon</a></p>
+
+<p>Padrino1.0からはこのルーターが組み込まれる予定です。</p>
+
+<p><a href="https://github.com/rkh/mustermann">Mustermann</a>というライブラリを使用しているため、ルーターのコード自体は然程多くはありません。</p>
+
+<p>現時点で既にhttp_routerと同等以上のパフォーマンスを発揮していますし、まだ高速化の余地があるのでなかなか楽しみなやつです。</p>
 </div>
 
 
@@ -811,11 +823,11 @@
   
     <section>
   <h1>Tag Cloud</h1>
-    <span id="tag-cloud"><a href='/blog/categories/-x-html' style='font-size: 105.33333333333333%'>(X)HTML(4)</a> <a href='/blog/categories/c' style='font-size: 101.33333333333333%'>C(1)</a> <a href='/blog/categories/git' style='font-size: 101.33333333333333%'>Git(1)</a> <a href='/blog/categories/javascript' style='font-size: 160.0%'>JavaScript(45)</a> <a href='/blog/categories/jscript' style='font-size: 101.33333333333333%'>JScript(1)</a> <a href='/blog/categories/linux' style='font-size: 101.33333333333333%'>linux(1)</a> <a href='/blog/categories/najax' style='font-size: 101.33333333333333%'>Najax(1)</a> <a href='/blog/categories/octopress' style='font-size: 101.33333333333333%'>octopress(1)</a> <a href='/blog/categories/padrino' style='font-size: 102.66666666666667%'>Padrino(2)</a> <a href='/blog/categories/python' style='font-size: 101.33333333333333%'>Python(1)</a> <a href='/blog/categories/ruby' style='font-size: 132.0%'>Ruby(24)</a> <a href='/blog/categories/whitespace' style='font-size: 102.66666666666667%'>Whitespace(2)</a> <a href='/blog/categories/その他' style='font-size: 130.66666666666666%'>その他(23)</a> <a href='/blog/categories/リリース' style='font-size: 109.33333333333333%'>リリース(7)</a> <a href='/blog/categories/遊んだ' style='font-size: 101.33333333333333%'>遊んだ(1)</a> </span>
+    <span id="tag-cloud"><a href='/blog/categories/padrino' style='font-size: 140.0%'>Padrino(2)</a> <a href='/blog/categories/ruby' style='font-size: 160.0%'>Ruby(3)</a> <a href='/blog/categories/その他' style='font-size: 120.0%'>その他(1)</a> <a href='/blog/categories/リリース' style='font-size: 120.0%'>リリース(1)</a> </span>
 </section>
 <section>
   <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/-x-html'>(X)HTML (4)</a></li><li><a href='/blog/categories/c'>C (1)</a></li><li><a href='/blog/categories/git'>Git (1)</a></li><li><a href='/blog/categories/javascript'>JavaScript (45)</a></li><li><a href='/blog/categories/jscript'>JScript (1)</a></li><li><a href='/blog/categories/linux'>linux (1)</a></li><li><a href='/blog/categories/najax'>Najax (1)</a></li><li><a href='/blog/categories/octopress'>octopress (1)</a></li><li><a href='/blog/categories/padrino'>Padrino (2)</a></li><li><a href='/blog/categories/python'>Python (1)</a></li><li><a href='/blog/categories/ruby'>Ruby (24)</a></li><li><a href='/blog/categories/whitespace'>Whitespace (2)</a></li><li><a href='/blog/categories/その他'>その他 (23)</a></li><li><a href='/blog/categories/リリース'>リリース (7)</a></li><li><a href='/blog/categories/遊んだ'>遊んだ (1)</a></li></ul>
+    <ul id="category-list"><li><a href='/blog/categories/padrino'>Padrino (2)</a></li><li><a href='/blog/categories/ruby'>Ruby (3)</a></li><li><a href='/blog/categories/その他'>その他 (1)</a></li><li><a href='/blog/categories/リリース'>リリース (1)</a></li></ul>
 </section>
 <section>
   <h1>Recent Posts</h1>
@@ -831,14 +843,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/29/github-jekyll/">2ch SSのまとめのまとめ?アンテナ?を作った</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/17/github-jekyll/">PiggerというWebサービスをつくった男がいる</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/11/github-jekyll/">PiggerというWebサービスをつくっている話</a>
       </li>
     
   </ul>
@@ -901,7 +905,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - namusyaka -
+  Copyright &copy; 2014 - namusyaka -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

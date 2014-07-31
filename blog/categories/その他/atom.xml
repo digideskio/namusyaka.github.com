@@ -4,7 +4,7 @@
   <title><![CDATA[Category: その他 | 法華経]]></title>
   <link href="http://namusyaka.github.com/blog/categories/その他/atom.xml" rel="self"/>
   <link href="http://namusyaka.github.com/"/>
-  <updated>2013-11-14T23:53:14+09:00</updated>
+  <updated>2014-07-31T20:32:03+09:00</updated>
   <id>http://namusyaka.github.com/</id>
   <author>
     <name><![CDATA[namusyaka]]></name>
@@ -61,117 +61,6 @@
 <p>とりあえずは登録者数1000人目指そう。</p>
 
 <p>興味ある方はnamusyaka@gmail.comまで連絡ください！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mr.Easiness閉鎖しましたってことと近況について]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/06/27/github-jekyll/"/>
-    <updated>2012-06-27T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/06/27/github-jekyll</id>
-    <content type="html"><![CDATA[<h2>Mr.Easiness閉鎖の件</h2>
-
-
-<p>タイトルにあるとおり閉鎖しました。
-理由は色々ありますが、主として削除依頼にいちいち対応するのがだるかったことが挙げられます。</p>
-
-<h2>近況</h2>
-
-
-<p>ぼちぼち稼ぎつつLuilakの方で色々やってます。
-現在のメインプロジェクトはエディタ＋付属言語の開発です。
-自分達で作った言語でプログラミングをするというのは新鮮で面白いですね。
-七月中旬にはリリース予定です。</p>
-
-<p>おわり。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[大学やめます]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/04/06/github-jekyll/"/>
-    <updated>2012-04-06T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/04/06/github-jekyll</id>
-    <content type="html"><![CDATA[<p>個人事業主にでもなろうかと思います。
-余裕ができたら<a herf="http://luilak.net">Luilak</a>を法人化します。
-よろしく。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[キーワード解析に重点をおいたTwitterプロフィールサービス「Twihomeβ」をリリースしました。]]></title>
-    <link href="http://namusyaka.github.com/blog/2012/02/17/github-jekyll/"/>
-    <updated>2012-02-17T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2012/02/17/github-jekyll</id>
-    <content type="html"><![CDATA[<p><a href="http://twihome.jp/">TwihomeURL</a></p>
-
-
-<p>大昔に作ったtwihome.jpn.orgのリメイクを作ろうぜということで<a href="http://luilak.net">Luilak</a>で開発しました。
-確か去年の年末くらいから開発し始めましたが、色々あって公開にやたらと時間がかかった挙げ句、機能も相当縮小してリリースすることになってしまったのが残念です。
-ただ、プロフィールサービスも色々ある中、気になるキーワードをよく使うユーザーを検索してつながりを拡げられる(かもしれない)っていうのは新しいんじゃないかと思うわけで、短期間で修正しまくった割にはそこそこ満足しています。
-そのうちGithubで全ソース公開するかもしれません。
-以下、簡単な説明</p>
-
-<dl>
-<dt>機能
-<dd>最近のキーワードを解析してそれに関する情報の表示
-<dd>同じキーワードを持つユーザーの検索
-<dd>スマホ対応
-<dd>各ユーザーのPV表示
-
-<dt>運用環境
-<dd>さくらのVPS512
-
-<dt>感想
-<dd>デザイン、フロントエンド、バックエンドと担当しましたが、未だに色々発見があって楽しいです。
-<dd>このサービスでテンプレートエンジンを初めて使ってみて、便利だなあと感動できたことが一番の収穫ですかね。
-
-</dl>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SkypeチャットとWebを連携するサービス、「Webype(ウェバイプ)β」をリリースしました]]></title>
-    <link href="http://namusyaka.github.com/blog/2011/10/08/github-jekyll/"/>
-    <updated>2011-10-08T00:00:00+09:00</updated>
-    <id>http://namusyaka.github.com/blog/2011/10/08/github-jekyll</id>
-    <content type="html"><![CDATA[<p>こんばんは、ぼくです。</p>
-
-<p>この度、ぼくの団体<a href="http://luilak.net">Luilak</a>が新たに<a href="http://www.luilak.net/webype/">サービス</a>をリリースしたので、その報告と共に簡単な感想を述べようと思います。</p>
-
-<h2>Webype(ウェバイプ)βとは</h2>
-
-
-<p>・WebとSkypeチャットをつなぐパイプ的なサービス。
-・完全無料。
-・独自CSSで自分のデザインを反映できる。
-・その他、様々な機能がある。
-・<a href="http://www.luilak.net/webype/sample">サンプル</a></p>
-
-<h2>なぜつくったか</h2>
-
-
-<p>似たようなサービスは他にもあったんですが、有料化だったり広告をクリックしなきゃいけなかったりと面倒になったので、自分の実装したい機能なども合わせて新たに作ることにしました。
-結果的には、モニター、一般ユーザーにも満足していただけたようで何よりです。</p>
-
-<h2>どう展開していくか</h2>
-
-
-<p>はっきり言って、このサービスで安定した収益を発生させようだとかはあまり考えていなくて、知名度の向上が目的です。
-開発者同士で話していても、「せっかくサービスを作っても、一定以上の人に評価してもらう所にまで持っていくのがまず大変だよね～」という見解を持っている人が多いようで、その土俵に乗るべく頑張った次第であります。</p>
-
-<p>でもやっぱりお金欲しいよねって思うのが人情です。
-今はまだ実装していませんが、定時刻に広告を流すようにしようかなと考えております。
-ただ、ぼく自身が広告うっせーんだよ死ねやと思うタイプの人間なので、あまりユーザーの邪魔にならないような出し方にしたいなとは思っておりますので、Webypeを見捨てないでおくんなまし。
-また、コンテストにも提出する予定なので応援してくれると幸いです。</p>
-
-<h2>作ってみた感想</h2>
-
-
-<p>インフラや画像加工と言った、ぼくの苦手な部分をフォローしてもらえたお陰で(できればプログラミングもやってもらいたかったでござるが)、なんとかβ版完成に漕ぎ着けることができました。
-初めてVPSを借りたり、mod_rubyを導入したり、MemCachedとか何よ？ってところから始まったので、なかなか大変でしたが楽しかったですね。
-当分は、Webypeの運用に集中することになりそうですが、メンバーも増えてきたので保守に回りすぎず、これからも色々つくっていきたいです。</p>
 ]]></content>
   </entry>
   
